@@ -1,0 +1,11 @@
+/_book/
+/.quarto/
+/_site/
+/_freeze/
+*_files/
+*_cache/
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store

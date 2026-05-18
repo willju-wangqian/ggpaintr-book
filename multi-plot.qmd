@@ -1,0 +1,11 @@
+# Multi-Plot Apps
+
+::: callout-note
+**Draft stub.** Scope: ptr_app_grid(): several formulas with widgets shared across plots.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "Multi-Plot Apps" -->

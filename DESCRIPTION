@@ -1,0 +1,19 @@
+Package: ggpaintrbook
+Title: The ggpaintr Book (dependency manifest only)
+Version: 0.0.0.9000
+Description: Not a real package. This DESCRIPTION exists only so CI and
+    renv can resolve the packages the book's examples depend on, mirroring
+    the convention used by the ggplot2 book repository.
+Encoding: UTF-8
+Imports:
+    ggpaintr,
+    shiny,
+    shinyWidgets,
+    ggplot2,
+    bslib,
+    plotly,
+    ggiraph,
+    dplyr,
+    rlang
+Remotes:
+    willju-wangqian/ggpaintr

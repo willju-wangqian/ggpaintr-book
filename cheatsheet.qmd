@@ -1,0 +1,8 @@
+# Cheatsheet {.unnumbered}
+
+::: callout-note
+**Draft stub.** One-page quick reference: every placeholder token and
+every entry point (L1/L2/L3) at a glance.
+:::
+
+<!-- TODO: build the cheatsheet -->

@@ -1,0 +1,11 @@
+# Shared Placeholders
+
+::: callout-note
+**Draft stub.** Scope: var(shared=), the ptr_shared() coordinator, section vs panel, and how partition governs ownership.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "Shared Placeholders" -->

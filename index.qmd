@@ -1,0 +1,33 @@
+# Welcome {.unnumbered}
+
+This is the work-in-progress book for **ggpaintr**, an R package that turns ggplot-like *formula strings* into Shiny apps: placeholder tokens in the formula (`var`, `text`, `num`, `expr`, `upload`) become input widgets automatically.
+
+The book is structured after the [ggplot2 book](https://ggplot2-book.org/) but follows ggpaintr's own architecture — the formula language, the placeholder system, the L1/L2/L3 embedding model, customization, and the internals.
+
+## Who this is for
+
+Readers who know ggplot2 and Shiny basics and want to build, embed, customize, or extend ggpaintr-driven plotting apps.
+
+## How the examples work {#sec-examples}
+
+ggpaintr produces **interactive Shiny apps**. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:
+
+- code is shown **verbatim and is not executed** (the book default is `eval: false`);
+- the resulting app UI is shown as a **screenshot or GIF**;
+- code examples are kept in sync with — and ideally pinned by — a tested fixture in the package, so what you read is what actually runs (see `book-conventions.md`).
+
+Output that *is* static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.
+
+## Installation
+
+```r
+# released (when available)
+install.packages("ggpaintr")
+
+# development version
+# pak::pak("willju-wangqian/ggpaintr")   # TODO: confirm repo slug
+```
+
+## Source
+
+This book lives in its **own repository**, separate from the ggpaintr package (mirroring how the ggplot2 book is separate from ggplot2). See `README.md` for build/deploy.

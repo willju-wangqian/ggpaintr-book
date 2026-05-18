@@ -1,0 +1,11 @@
+# Custom Placeholders
+
+::: callout-note
+**Draft stub.** Scope: ptr_define_placeholder_value/consumer/source, the process-global registry, and the hooks.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "Custom Placeholders" -->

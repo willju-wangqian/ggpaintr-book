@@ -1,0 +1,67 @@
+project:
+  type: book
+
+book:
+  title: "ggpaintr"
+  subtitle: "Formula-Driven Shiny Plot Apps"
+  # TODO: fill in once known
+  author: "Wang Qian Ju"
+  date: today
+  # TODO: set to the real book repo once created on GitHub
+  repo-url: https://github.com/willju-wangqian/ggpaintr-book
+  repo-branch: main
+  repo-actions: [edit, issue]
+  search: true
+  sidebar:
+    style: docked
+  chapters:
+    - index.qmd
+    - part: "Foundations"
+      chapters:
+        - getting-started.qmd
+        - formula-language.qmd
+        - placeholders.qmd
+        - data-and-upload.qmd
+        - generated-code.qmd
+    - part: "Composition"
+      chapters:
+        - shared-placeholders.qmd
+        - multi-plot.qmd
+    - part: "Embedding (L1 / L2 / L3)"
+      chapters:
+        - l1-apps.qmd
+        - l2-modules.qmd
+        - l3-render-path.qmd
+    - part: "Customization & Extension"
+      chapters:
+        - ui-text.qmd
+        - custom-placeholders.qmd
+        - theming-wrappers.qmd
+        - custom-rendering.qmd
+    - part: "Internals"
+      chapters:
+        - how-it-works.qmd
+        - safety-model.qmd
+    - references.qmd
+  appendices:
+    - cheatsheet.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    code-link: true
+    code-copy: true
+  # pdf:                       # uncomment when a PDF build is wanted
+  #   documentclass: scrbook
+
+# Default chunk policy for the whole book. ggpaintr produces *interactive
+# Shiny apps* that cannot render to static HTML, so example chunks are shown
+# verbatim and NOT executed; the running UI is shown as a screenshot/GIF.
+# See book-conventions.md. Override per-chunk only for genuinely static
+# output (e.g. the generated-code string, the formula -> widget mapping).
+execute:
+  eval: false
+  echo: true
+  warning: false

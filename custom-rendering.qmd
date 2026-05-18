@@ -1,0 +1,11 @@
+# Custom Rendering and Integrations
+
+::: callout-note
+**Draft stub.** Scope: plotly and ggiraph host outputs; ptr_gg_extra() programmatic layer injection.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "Custom Rendering and Integrations" -->

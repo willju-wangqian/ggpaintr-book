@@ -1,0 +1,11 @@
+# The Formula Language
+
+::: callout-note
+**Draft stub.** Scope: Which ggplot-like strings ggpaintr accepts: pipelines, layers, aesthetics, and what is literal vs a placeholder.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "The Formula Language" -->

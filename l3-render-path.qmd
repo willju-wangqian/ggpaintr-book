@@ -1,0 +1,11 @@
+# L3: Owning the Render Path
+
+::: callout-note
+**Draft stub.** Scope: The ptr_ui_* combinators, state$runtime(), and custom host outputs.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "L3: Owning the Render Path" -->

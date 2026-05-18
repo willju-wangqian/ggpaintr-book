@@ -1,0 +1,11 @@
+# The Generated Code and Plot
+
+::: callout-note
+**Draft stub.** Scope: How the formula plus current inputs become runnable ggplot2 code and the rendered plot.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "The Generated Code and Plot" -->

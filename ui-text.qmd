@@ -1,0 +1,11 @@
+# UI Text and Copy
+
+::: callout-note
+**Draft stub.** Scope: The ptr_ui_text() override model: shell vs params, alias normalization, merge precedence.
+
+Examples follow the Shiny rendering convention (`book-conventions.md`):
+code shown verbatim and not executed, the running UI shown as a
+screenshot/GIF, kept in sync with a tested package fixture.
+:::
+
+<!-- TODO: write "UI Text and Copy" -->
