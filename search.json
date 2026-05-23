@@ -1,0 +1,250 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ggpaintr",
+    "section": "",
+    "text": "Welcome\nThis is the work-in-progress book for ggpaintr, an R package that turns ggplot-like formula strings into Shiny apps: placeholder tokens in the formula (var, text, num, expr, upload) become input widgets automatically.\nThe book teaches how to use ggpaintr and how to extend it. It is purely user-facing; design ideas live in the package repository, not here.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#version-this-book-documents",
+    "href": "index.html#version-this-book-documents",
+    "title": "ggpaintr",
+    "section": "Version this book documents",
+    "text": "Version this book documents\nThis book is pinned to ggpaintr @beec4325 (the post-ADR-0006 / post-ADR-0010 development tip — no tagged release covers this API yet). The pin lives in DESCRIPTION Remotes: and is enforced by Rscript dev/book-gate.R. To follow along with the same version:\nremotes::install_github(\"willju-wangqian/ggpaintr@beec43259ef3df7490e08944bb4a79cd8655b0c5\")\nWhen the package cuts a tagged release covering the API in this book, the pin will move to that tag in a single PR; the install snippet above will update accordingly.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#who-this-is-for",
+    "href": "index.html#who-this-is-for",
+    "title": "ggpaintr",
+    "section": "Who this is for",
+    "text": "Who this is for\nReaders who know ggplot2 and Shiny basics and want to build, embed, customize, or extend ggpaintr-driven plotting apps.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#sec-examples",
+    "href": "index.html#sec-examples",
+    "title": "ggpaintr",
+    "section": "How the examples work",
+    "text": "How the examples work\nggpaintr produces interactive Shiny apps. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:\n\ncode is shown verbatim and is not executed (the book default is eval: false);\nthe resulting app UI is shown as a screenshot or GIF;\na small number of “hero” chapters embed a live shinylive widget you can interact with directly in the browser (see ADR 0002);\nevery code example is bound by #| fixture: &lt;slug&gt; to a tested fixture under tests/fixtures/book-apps/&lt;slug&gt;/app.R, and Rscript dev/book-gate.R enforces that what you read is what runs (see dev/plans/book-workflow.md and book-conventions.md).\n\nOutput that is static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#source",
+    "href": "index.html#source",
+    "title": "ggpaintr",
+    "section": "Source",
+    "text": "Source\nThis book lives in its own repository, separate from the ggpaintr package (mirroring how the ggplot2 book is separate from ggplot2). See README.md for build/deploy.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "getting-started.html",
+    "href": "getting-started.html",
+    "title": "1  Getting Started",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: Your first app with ptr_app() on a literal formula, then adding a single placeholder.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "formula-language.html",
+    "href": "formula-language.html",
+    "title": "2  The Formula Language",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: Which ggplot-like strings ggpaintr accepts: pipelines, layers, aesthetics, and what is literal vs a placeholder.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Formula Language</span>"
+    ]
+  },
+  {
+    "objectID": "placeholders.html",
+    "href": "placeholders.html",
+    "title": "3  Placeholders",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: every placeholder token — var, text, num, expr, upload — the widget each generates, named vs positional arguments, and how upload-driven data flows through the app. (Absorbs the former data-and-upload.qmd per the 2026-05-23 TOC consolidation.)\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "generated-code.html",
+    "href": "generated-code.html",
+    "title": "4  The Generated Code and Plot",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: How the formula plus current inputs become runnable ggplot2 code and the rendered plot.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>The Generated Code and Plot</span>"
+    ]
+  },
+  {
+    "objectID": "use-cases.html",
+    "href": "use-cases.html",
+    "title": "5  Use cases",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: detailed, end-to-end use cases. Absorbs (and expands) the package’s ggpaintr-use-cases vignette once that vignette is e2e-green and drift-audit-clean. Migration is paired with the package PR that drops the vignette content from there per dev/plans/book-workflow.md § “Cross-repo vignette migration”.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use cases</span>"
+    ]
+  },
+  {
+    "objectID": "gallery.html",
+    "href": "gallery.html",
+    "title": "6  Gallery",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: a catalogue of representative apps with the formula and a screenshot of each. Absorbs (and expands) the package’s ggpaintr-gallery vignette once that vignette is e2e-green and drift-audit-clean.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Gallery</span>"
+    ]
+  },
+  {
+    "objectID": "customization.html",
+    "href": "customization.html",
+    "title": "7  Customization",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: re-styling, re-labelling, re-arranging — the user-facing customization surface. Absorbs the package’s ggpaintr-customization vignette in full once that vignette is e2e-green and drift-audit-clean; the package drops its copy in the paired PR. Covers UI text, CSS hooks, widget defaults, and theming wrappers from a user perspective; the extension-author perspective on the same surfaces is in Custom placeholders and Theming wrappers.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Customization</span>"
+    ]
+  },
+  {
+    "objectID": "shared-placeholders.html",
+    "href": "shared-placeholders.html",
+    "title": "8  Shared Placeholders",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: var(shared=), the ptr_shared() coordinator, section vs panel, and how partition governs ownership.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shared Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "multi-plot.html",
+    "href": "multi-plot.html",
+    "title": "9  Multi-Plot Apps",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: ptr_app_grid(): several formulas with widgets shared across plots.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-Plot Apps</span>"
+    ]
+  },
+  {
+    "objectID": "embed-default.html",
+    "href": "embed-default.html",
+    "title": "10  Embedding with the default layout",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: dropping ggpaintr into your own Shiny app with the default layout. The self-contained ptr_ui() / ptr_server() pair. Multi-instance: the ptr_shared() coordinator + ptr_shared_panel() + ptr_shared_server(). Optional CSS restyle.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Embedding with the default layout</span>"
+    ]
+  },
+  {
+    "objectID": "embed-bare.html",
+    "href": "embed-bare.html",
+    "title": "11  Embedding with bare pieces",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: owning the layout. Bare UI pieces (ptr_ui_controls, ptr_ui_plot, ptr_ui_error, ptr_ui_code, ptr_ui_header, ptr_ui_shared_panel) and the combinators (ptr_ui_inline_error, ptr_ui_toggle_code). The optional ptr_ui_page shell. Per ADR 0006, the server side is the single public ptr_server() — there is no separate “L3 server”.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with bare pieces</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html",
+    "href": "custom-render.html",
+    "title": "12  Custom rendering",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: rendering the plot in your own output widget (plotly, ggiraph, a custom htmlwidget). The canonical pattern per ADR 0006: state &lt;- ptr_server(formula, id) in your host server, place your own widget at shiny::NS(id)(\"my_plot\") in the UI, and read state$runtime()$plot. Also covers ptr_gg_extra() programmatic layer injection.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-placeholders.html",
+    "href": "custom-placeholders.html",
+    "title": "13  Custom Placeholders",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: ptr_define_placeholder_value/consumer/source, the process-global registry, and the hooks.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Custom Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "theming-wrappers.html",
+    "href": "theming-wrappers.html",
+    "title": "14  Theming and Wrappers",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: ptr_app_bslib(), exposing downstream bslib arguments, and CSS assets.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Theming and Wrappers</span>"
+    ]
+  },
+  {
+    "objectID": "ui-text.html",
+    "href": "ui-text.html",
+    "title": "15  UI Text and Copy",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: The ptr_ui_text() override model: shell vs params, alias normalization, merge precedence.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>UI Text and Copy</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html",
+    "href": "llm.html",
+    "title": "16  LLM integration",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: ggpaintr’s LLM-assisted features for editing formulas. Absorbs the package’s ggpaintr-llm vignette once that vignette is e2e-green and drift-audit-clean. Covers the user-facing API only — provider configuration, prompt shape, fallback behavior — not the internals of how the assistant is wired.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R. LLM-backed fixtures need either a mocked provider or skip-on-no-key handling; the gate must boot them either way.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>LLM integration</span>"
+    ]
+  },
+  {
+    "objectID": "safety.html",
+    "href": "safety.html",
+    "title": "17  Writing safe formulas",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. Scope: user-facing safety. What the expr placeholder accepts, the allow-list of operations, and how to write formulas that an end user can edit without exposing your app to arbitrary R evaluation. The internal evaluator design is intentionally out of scope — this chapter is about what a user of ggpaintr needs to know to ship a safe app.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Writing safe formulas</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html",
+    "href": "cheatsheet.html",
+    "title": "Cheatsheet",
+    "section": "",
+    "text": "Note\n\n\n\nDraft stub. One-page quick reference: every placeholder token and every entry point (L1/L2/L3) at a glance.",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  }
+]
