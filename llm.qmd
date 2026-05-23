@@ -1,0 +1,9 @@
+# LLM integration
+
+::: callout-note
+**Draft stub.** Scope: ggpaintr's LLM-assisted features for editing formulas. Absorbs the package's `ggpaintr-llm` vignette once that vignette is e2e-green and drift-audit-clean. Covers the user-facing API only — provider configuration, prompt shape, fallback behavior — not the internals of how the assistant is wired.
+
+Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`. LLM-backed fixtures need either a mocked provider or skip-on-no-key handling; the gate must boot them either way.
+:::
+
+<!-- TODO: write "LLM integration" -->

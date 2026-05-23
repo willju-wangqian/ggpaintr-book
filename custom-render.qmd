@@ -1,0 +1,9 @@
+# Custom rendering
+
+::: callout-note
+**Draft stub.** Scope: rendering the plot in your own output widget (plotly, ggiraph, a custom htmlwidget). The canonical pattern per ADR 0006: `state <- ptr_server(formula, id)` in your host server, place your own widget at `shiny::NS(id)("my_plot")` in the UI, and read `state$runtime()$plot`. Also covers `ptr_gg_extra()` programmatic layer injection.
+
+Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
+:::
+
+<!-- TODO: write "Custom rendering" -->

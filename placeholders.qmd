@@ -1,11 +1,9 @@
 # Placeholders
 
 ::: callout-note
-**Draft stub.** Scope: The var, text, num, expr and upload tokens and the widget each generates; named vs positional.
+**Draft stub.** Scope: every placeholder token — `var`, `text`, `num`, `expr`, `upload` — the widget each generates, named vs positional arguments, and how upload-driven data flows through the app. (Absorbs the former `data-and-upload.qmd` per the 2026-05-23 TOC consolidation.)
 
-Examples follow the Shiny rendering convention (`book-conventions.md`):
-code shown verbatim and not executed, the running UI shown as a
-screenshot/GIF, kept in sync with a tested package fixture.
+Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
 :::
 
 <!-- TODO: write "Placeholders" -->

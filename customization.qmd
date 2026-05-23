@@ -1,0 +1,9 @@
+# Customization
+
+::: callout-note
+**Draft stub.** Scope: re-styling, re-labelling, re-arranging — the user-facing customization surface. Absorbs the package's `ggpaintr-customization` vignette in full once that vignette is e2e-green and drift-audit-clean; the package drops its copy in the paired PR. Covers UI text, CSS hooks, widget defaults, and theming wrappers from a user perspective; the extension-author perspective on the same surfaces is in [Custom placeholders](custom-placeholders.qmd) and [Theming wrappers](theming-wrappers.qmd).
+
+Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
+:::
+
+<!-- TODO: write "Customization" -->

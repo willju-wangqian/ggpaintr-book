@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ggpaintr book — workflow grill status (2026-05-23)</title>
+<style>
+  body { font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+  h1 { font-size: 1.6rem; border-bottom: 2px solid #444; padding-bottom: .3rem; }
+  h2 { font-size: 1.2rem; margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: .2rem; }
+  h3 { font-size: 1.0rem; margin-top: 1.5rem; }
+  code, pre { font-family: "SF Mono", Menlo, Consolas, monospace; }
+  pre { background: #f4f4f4; padding: .75rem 1rem; border-radius: 4px; overflow-x: auto; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; margin: .5rem 0 1.5rem; width: 100%; }
+  th, td { border: 1px solid #ddd; padding: .4rem .6rem; text-align: left; vertical-align: top; font-size: 13px; }
+  th { background: #f0f0f0; }
+  .meta { color: #666; font-size: 13px; }
+  .pass { color: #1a7f37; font-weight: bold; }
+  .fail { color: #b91c1c; font-weight: bold; }
+  .todo { background: #fff8c5; padding: .3rem .5rem; border-left: 3px solid #d4a72c; margin: .5rem 0; }
+  .note { background: #ddf4ff; padding: .3rem .5rem; border-left: 3px solid #218bff; margin: .5rem 0; }
+  ul, ol { padding-left: 1.5rem; }
+  li { margin: .15rem 0; }
+</style>
+</head>
+<body>
+
+<h1>ggpaintr book — workflow grill status (status quo)</h1>
+<p class="meta">Recorded: 2026-05-23. Session: <code>/grill-with-docs</code>. Result: workflow scaffolded; gate runs green; ready for first vignette migration when the package side clears.</p>
+
+<h2>Triggering question</h2>
+<p>"We need a workflow to ensure that the content in the book truthfully shows what ggpaintr delivers." Goals stated by the user: teach use + extend, purely user-facing (no design ideas), embed shiny apps in HTML if possible, vignettes shrink to minimal use-case + gallery, book absorbs the rest (llm, safety, customization, advanced use-case/gallery).</p>
+
+<h2>Inputs surveyed at start</h2>
+<ul>
+  <li>Book repo at <code>/Users/willju/Research/ggpaintr-book/</code>: Quarto scaffold, 1 commit, stub chapters.</li>
+  <li>Package repo at <code>/Users/willju/Research/ggpaintr-post-add-expr/</code>: HEAD <code>beec43259ef3df7490e08944bb4a79cd8655b0c5</code>, well ahead of v0.9.2 tag and v0.9.0 CRAN. CONTEXT.md "design LOCKED 2026-05-16, amended 2026-05-18" — ADR 0006 renames live in source.</li>
+  <li>Package has a fixture / e2e discipline at <code>tests/testthat/fixtures/vignette-apps/&lt;slug&gt;/app.R</code> with <code>&gt;&gt;&gt;</code> marker blocks verbatim-equal to vignette chunks, exercised by <code>test-e2e-vignette-examples-shinytest2.R</code>.</li>
+</ul>
+
+<h2>Drift surfaced before grilling started</h2>
+<ol>
+  <li><code>_quarto.yml</code> listed <code>l3-render-path.qmd</code>. Package <code>CONTEXT.md</code> records ADR 0006 supersedes that vocabulary ("L3 is UI-side only"; "render path" as a server concept is in the Avoid list).</li>
+  <li><code>_quarto.yml</code> had an "Internals" part — contradicts the user's "purely user-facing" goal.</li>
+  <li>Book <code>DESCRIPTION</code>'s <code>Remotes:</code> was un-pinned (floated on ggpaintr default branch).</li>
+</ol>
+
+<h2>Nine locked decisions</h2>
+<table>
+<tr><th>#</th><th>Decision</th><th>Locked value</th></tr>
+<tr><td>1</td><td>Truth source</td><td>Book owns its own fixture suite at <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code></td></tr>
+<tr><td>2</td><td>Display mode</td><td>Hybrid: shinylive on 1–2 hero demos, screenshots elsewhere</td></tr>
+<tr><td>3</td><td>Gate</td><td>Boot + Verbatim + Symbol existence + Screenshot pair-hash + Shinylive</td></tr>
+<tr><td>4</td><td>Pin policy</td><td>SHA today (<code>@beec43259ef3df7490e08944bb4a79cd8655b0c5</code>); bump to tag at next ggpaintr release</td></tr>
+<tr><td>5</td><td>Chunk binding</td><td>Chunk option <code>#| fixture: &lt;slug&gt;</code></td></tr>
+<tr><td>6</td><td>Tooling</td><td>R scripts in <code>dev/</code>; authoritative <code>Rscript dev/book-gate.R</code> → <code>BOOK GATE: PASS</code></td></tr>
+<tr><td>7</td><td>TOC</td><td>New parts: Foundations / Use cases &amp; gallery / Composition / Embedding / Extension / Advanced topics. <code>data-and-upload.qmd</code> folded into <code>placeholders.qmd</code>. Internals dropped.</td></tr>
+<tr><td>8</td><td>Cutover</td><td>Lead with book; paired package PR drops vignette + fixtures + e2e cases once chapter ships</td></tr>
+<tr><td>9</td><td>Precondition</td><td>Per-vignette package e2e green + drift audit clean before book absorbs that vignette</td></tr>
+</table>
+
+<h2>Files shipped (this session)</h2>
+
+<h3>Documentation</h3>
+<ul>
+  <li><code>dev/plans/book-workflow.md</code> — anchor doc with Success Criteria, Constraints, BDD scenarios (Gherkin), Definition of Done.</li>
+  <li><code>docs/adr/0001-book-owns-fixtures.md</code> — fixture ownership ADR.</li>
+  <li><code>docs/adr/0002-hybrid-display.md</code> — display mode ADR.</li>
+  <li><code>CLAUDE.md</code> (new at book root) — agent harness contract, authoritative gate command, proxy traps, source-of-truth rules.</li>
+  <li><code>book-conventions.md</code> — updated to document <code>#| fixture: &lt;slug&gt;</code>, pair-hash convention, hero front-matter.</li>
+  <li><code>index.qmd</code> — version banner with SHA install snippet.</li>
+  <li><code>tests/fixtures/book-apps/README.md</code> — fixture directory intro.</li>
+</ul>
+
+<h3>Gate</h3>
+<ul>
+  <li><code>dev/book-gate.R</code> — fully functional Verbatim, Symbol, Pair-hash checks; Boot and Shinylive checks return a sentinel failure when fixtures/heroes are present but the runtime is not yet wired (so an empty book passes trivially and the moment a fixture appears the gate demands wiring).</li>
+  <li><code>dev/book-shoot.R</code> — fully functional pair-hash sidecar writer; placeholder-PNG fallback for shinytest2 capture (real <code>AppDriver$new()</code> path is sketched in comments).</li>
+  <li><code>.github/workflows/book-gate.yml</code> — CI wrapper that installs R + Quarto + Chromium + the pinned ggpaintr and runs the gate on push / PR.</li>
+</ul>
+
+<h3>TOC restructure</h3>
+<table>
+<tr><th>Action</th><th>From</th><th>To</th></tr>
+<tr><td>Rename</td><td><code>l2-modules.qmd</code></td><td><code>embed-default.qmd</code></td></tr>
+<tr><td>Rename</td><td><code>l3-render-path.qmd</code></td><td><code>embed-bare.qmd</code></td></tr>
+<tr><td>Rename</td><td><code>safety-model.qmd</code></td><td><code>safety.qmd</code> (reframed as "Writing safe formulas", user-facing)</td></tr>
+<tr><td>Rename</td><td><code>custom-rendering.qmd</code></td><td><code>custom-render.qmd</code></td></tr>
+<tr><td>Delete</td><td><code>l1-apps.qmd</code></td><td>—  (folded into <code>getting-started.qmd</code>)</td></tr>
+<tr><td>Delete</td><td><code>how-it-works.qmd</code></td><td>—  (Internals part dropped)</td></tr>
+<tr><td>Delete</td><td><code>data-and-upload.qmd</code></td><td>—  (folded into <code>placeholders.qmd</code>)</td></tr>
+<tr><td>New stub</td><td>—</td><td><code>use-cases.qmd</code>, <code>gallery.qmd</code>, <code>customization.qmd</code>, <code>llm.qmd</code></td></tr>
+</table>
+
+<h3>Pin</h3>
+<p><code>DESCRIPTION</code> <code>Remotes:</code> now reads <code>willju-wangqian/ggpaintr@beec43259ef3df7490e08944bb4a79cd8655b0c5</code>. <code>index.qmd</code> version banner matches.</p>
+
+<h2>Gate self-test</h2>
+<p>First run of <code>Rscript dev/book-gate.R</code> against the empty scaffold:</p>
+<pre>Boot:        0/0 fixtures booted
+Verbatim:    0/0 chunks match fixture markers
+Symbols:     20 ptr_* refs resolve
+  - unknown symbols: ptr_module_ui, ptr_module_server
+Screenshots: 0/0 pair-hashes match
+Shinylive:   0/0 hero demos compile
+<span class="fail">BOOK GATE: FAIL</span></pre>
+
+<p>The gate caught real drift on its first run: <code>ptr_module_ui</code> and <code>ptr_module_server</code> were mentioned in a renamed-from parenthetical in <code>embed-default.qmd</code>; those symbols no longer exist in the pinned ggpaintr. Dropping the rename-history aside (it's not user-facing content anyway, per the user's stated voice) resolved it. Re-run:</p>
+
+<pre>Boot:        0/0 fixtures booted
+Verbatim:    0/0 chunks match fixture markers
+Symbols:     20 ptr_* refs resolve
+Screenshots: 0/0 pair-hashes match
+Shinylive:   0/0 hero demos compile
+<span class="pass">BOOK GATE: PASS</span></pre>
+
+<h2>Known TODOs in the scaffolding</h2>
+
+<div class="todo"><strong>book-gate.R::check_boot</strong> — wire shinytest2 against <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>. Currently returns FAIL when fixtures exist but the driver is not wired (loud, not silent). Lands with the first fixture migration.</div>
+
+<div class="todo"><strong>book-gate.R::check_shinylive</strong> — wire shinylive compile for chapters with <code>shinylive: true</code> in front-matter. Same loud-fail pattern. Lands with the first hero chapter.</div>
+
+<div class="todo"><strong>book-shoot.R</strong> — real shinytest2 <code>AppDriver$new()</code> + <code>get_screenshot()</code> path. Today writes a placeholder PNG so the pair-hash sidecar machinery is exercisable end-to-end. Lands with the first fixture migration.</div>
+
+<h2>Honest gaps the gate does not catch</h2>
+<ul>
+  <li><strong>Behavioral regression:</strong> if ggpaintr renames an argument but the old name silently no-ops, the gate passes and the book documents working code that does nothing. Mitigation: precondition #9 — the package's own e2e suite catches this upstream before the pin advances.</li>
+  <li><strong>Shinylive incompatibility:</strong> file upload via OS picker, plotly, ggiraph are likely shinylive hazards. Hero chapters must avoid these features, or fall back to screenshot for that chapter.</li>
+  <li><strong>Drift audit coverage:</strong> precondition #9 names a per-vignette drift audit, but only some package vignettes have one in <code>dev/audit/</code> today. Migration of any given vignette is blocked until the audit covers it.</li>
+  <li><strong>Pixel-level visual change:</strong> the pair-hash detects "screenshot was not refreshed after fixture edit"; it does not detect "fixture unchanged but the running app now looks different" (e.g. an upstream Shiny CSS change). Acceptable cost — image diff is famously flaky.</li>
+</ul>
+
+<h2>What's next</h2>
+<ol>
+  <li><strong>Wait</strong> on package-side precondition for the first vignette to retire. The smallest is <code>ggpaintr-safety</code> (134 lines). It needs <code>test-e2e-vignette-examples-shinytest2.R</code> green for its fixtures and a drift audit pass.</li>
+  <li><strong>When safety clears:</strong> open paired PRs. Book PR creates <code>safety.qmd</code> content + ports fixtures to <code>tests/fixtures/book-apps/</code> + finishes wiring <code>check_boot</code> and <code>book-shoot.R</code>'s real capture path + runs the gate to PASS. Package PR drops <code>vignettes/ggpaintr-safety.Rmd</code> + its fixtures + its e2e cases.</li>
+  <li><strong>Repeat</strong> for <code>llm</code>, then <code>customization</code>.</li>
+  <li><strong>Hero selection:</strong> initial candidates are <code>getting-started.qmd</code> and a formula-language playground in <code>formula-language.qmd</code>; wire after the migration pattern is proven.</li>
+  <li><strong>Bump pin</strong> to a tag when ggpaintr cuts the next release containing ADR 0006 + ADR 0010. Update <code>DESCRIPTION</code> Remotes + <code>index.qmd</code> banner in the same PR; the gate enforces consistency.</li>
+</ol>
+
+<h2>Cross-references</h2>
+<ul>
+  <li><a href="../plans/book-workflow.md">dev/plans/book-workflow.md</a> — full workflow</li>
+  <li><a href="../../docs/adr/0001-book-owns-fixtures.md">docs/adr/0001-book-owns-fixtures.md</a></li>
+  <li><a href="../../docs/adr/0002-hybrid-display.md">docs/adr/0002-hybrid-display.md</a></li>
+  <li><a href="../../CLAUDE.md">CLAUDE.md</a></li>
+  <li><a href="../../book-conventions.md">book-conventions.md</a></li>
+  <li>Package CONTEXT (read-only reference): <code>../ggpaintr-post-add-expr/CONTEXT.md</code></li>
+</ul>
+
+</body>
+</html>

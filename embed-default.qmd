@@ -1,0 +1,9 @@
+# Embedding with the default layout
+
+::: callout-note
+**Draft stub.** Scope: dropping ggpaintr into your own Shiny app with the default layout. The self-contained `ptr_ui()` / `ptr_server()` pair. Multi-instance: the `ptr_shared()` coordinator + `ptr_shared_panel()` + `ptr_shared_server()`. Optional CSS restyle.
+
+Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
+:::
+
+<!-- TODO: write "Embedding with the default layout" -->

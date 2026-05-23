@@ -3,7 +3,9 @@ Title: The ggpaintr Book (dependency manifest only)
 Version: 0.0.0.9000
 Description: Not a real package. This DESCRIPTION exists only so CI and
     renv can resolve the packages the book's examples depend on, mirroring
-    the convention used by the ggplot2 book repository.
+    the convention used by the ggplot2 book repository. The Remotes line
+    pins ggpaintr to a specific SHA; do not point it at a moving target
+    (a branch name without an @sha is rejected by Rscript dev/book-gate.R).
 Encoding: UTF-8
 Imports:
     ggpaintr,
@@ -14,6 +16,12 @@ Imports:
     plotly,
     ggiraph,
     dplyr,
-    rlang
+    rlang,
+    digest,
+    rprojroot,
+    yaml,
+    stringr,
+    shinytest2,
+    png
 Remotes:
-    willju-wangqian/ggpaintr
+    willju-wangqian/ggpaintr@beec43259ef3df7490e08944bb4a79cd8655b0c5

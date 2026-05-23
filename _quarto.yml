@@ -4,10 +4,8 @@ project:
 book:
   title: "ggpaintr"
   subtitle: "Formula-Driven Shiny Plot Apps"
-  # TODO: fill in once known
   author: "Wang Qian Ju"
   date: today
-  # TODO: set to the real book repo once created on GitHub
   repo-url: https://github.com/willju-wangqian/ggpaintr-book
   repo-branch: main
   repo-actions: [edit, issue]
@@ -21,27 +19,30 @@ book:
         - getting-started.qmd
         - formula-language.qmd
         - placeholders.qmd
-        - data-and-upload.qmd
         - generated-code.qmd
+    - part: "Use cases & gallery"
+      chapters:
+        - use-cases.qmd
+        - gallery.qmd
+        - customization.qmd
     - part: "Composition"
       chapters:
         - shared-placeholders.qmd
         - multi-plot.qmd
-    - part: "Embedding (L1 / L2 / L3)"
+    - part: "Embedding"
       chapters:
-        - l1-apps.qmd
-        - l2-modules.qmd
-        - l3-render-path.qmd
-    - part: "Customization & Extension"
+        - embed-default.qmd
+        - embed-bare.qmd
+        - custom-render.qmd
+    - part: "Extension"
       chapters:
-        - ui-text.qmd
         - custom-placeholders.qmd
         - theming-wrappers.qmd
-        - custom-rendering.qmd
-    - part: "Internals"
+        - ui-text.qmd
+    - part: "Advanced topics"
       chapters:
-        - how-it-works.qmd
-        - safety-model.qmd
+        - llm.qmd
+        - safety.qmd
     - references.qmd
   appendices:
     - cheatsheet.qmd
@@ -53,14 +54,14 @@ format:
     theme: cosmo
     code-link: true
     code-copy: true
-  # pdf:                       # uncomment when a PDF build is wanted
-  #   documentclass: scrbook
 
 # Default chunk policy for the whole book. ggpaintr produces *interactive
 # Shiny apps* that cannot render to static HTML, so example chunks are shown
-# verbatim and NOT executed; the running UI is shown as a screenshot/GIF.
-# See book-conventions.md. Override per-chunk only for genuinely static
-# output (e.g. the generated-code string, the formula -> widget mapping).
+# verbatim and NOT executed; the running UI is shown as a screenshot/GIF
+# whose pair-hash matches the fixture under tests/fixtures/book-apps/<slug>/.
+# Override per-chunk only for genuinely static output (e.g. the generated
+# code string, the formula -> widget mapping). See book-conventions.md and
+# dev/plans/book-workflow.md.
 execute:
   eval: false
   echo: true

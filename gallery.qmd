@@ -1,0 +1,9 @@
+# Gallery
+
+::: callout-note
+**Draft stub.** Scope: a catalogue of representative apps with the formula and a screenshot of each. Absorbs (and expands) the package's `ggpaintr-gallery` vignette once that vignette is e2e-green and drift-audit-clean.
+
+Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
+:::
+
+<!-- TODO: write "Gallery" -->

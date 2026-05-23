@@ -1,0 +1,9 @@
+# Embedding with bare pieces
+
+::: callout-note
+**Draft stub.** Scope: owning the layout. Bare UI pieces (`ptr_ui_controls`, `ptr_ui_plot`, `ptr_ui_error`, `ptr_ui_code`, `ptr_ui_header`, `ptr_ui_shared_panel`) and the combinators (`ptr_ui_inline_error`, `ptr_ui_toggle_code`). The optional `ptr_ui_page` shell. Per ADR 0006, the server side is the single public `ptr_server()` — there is no separate "L3 server".
+
+Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
+:::
+
+<!-- TODO: write "Embedding with bare pieces" -->
