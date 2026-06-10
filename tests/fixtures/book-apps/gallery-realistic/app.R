@@ -3,16 +3,6 @@
 library(ggpaintr)
 library(ggplot2)
 # >>>
-arg_range <- function() {
-  function(arg_expr) {
-    val <- tryCatch(eval(arg_expr, baseenv()), error = function(e) NULL)
-    if (!is.numeric(val) || length(val) != 2L) {
-      stop("ppRange() default must be a length-2 numeric vector, e.g. c(10, 45)")
-    }
-    val
-  }
-}
-
 ppRange <- ptr_define_placeholder_value(
   keyword = "ppRange",
   build_ui = function(node, label = NULL, selected = NULL, ...) {
@@ -26,7 +16,7 @@ ppRange <- ptr_define_placeholder_value(
     rlang::expr(c(!!value[1], !!value[2]))
   },
   ui_text_defaults = list(label = "Range for {param}"),
-  parse_positional_arg = arg_range()
+  parse_positional_arg = ptr_arg_numeric(vector = TRUE, length = 2L)
 )
 
 {

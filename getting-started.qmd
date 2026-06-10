@@ -22,7 +22,7 @@ Three things are worth noticing before you click anything:
 
 - **There is no `data =` argument to `ptr_app()`.** The bare symbol `mtcars` is resolved in your calling environment, exactly as it would be if you ran the `ggplot()` call directly. The only required argument is the formula itself.
 - **The dropdowns already know the columns.** `ppVar` is *data-aware*: it lists the columns of whatever data flows into it.
-- **Nothing renders yet.** ggpaintr re-draws only when **Update plot** is clicked. Changing a widget stages a value; the button commits it. This keeps a half-typed input from strobing the plot.
+- **Nothing renders yet.** By default, ggpaintr re-draws only when **Update plot** is clicked. Changing a widget stages a value; the button commits it. This keeps a half-typed input from strobing the plot.
 
 Pick `wt` and `mpg`, click **Update plot**, and the scatterplot appears — along with the generated ggplot2 code behind the `</>` toggle, ready to copy back into a script (@sec-generated-code).
 

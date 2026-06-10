@@ -12,7 +12,7 @@ ppPercent <- ptr_define_placeholder_value(
     shiny::sliderInput(
       node$id, label = label %||% "Percent",
       min = 0, max = 100,
-      value = selected %||% node$default %||% 50,
+      value = selected,   # the framework routes ppPercent(40) in here
       step = step
     )
   },
@@ -25,9 +25,9 @@ ppPercent <- ptr_define_placeholder_value(
   validate_session_input = function(value, ctx) {
     v <- suppressWarnings(as.numeric(value))
     if (length(v) != 1L || is.na(v) || v < 0 || v > 100) {
-      rlang::abort("Percent must be a single number between 0 and 100.")
+      return("Percent must be a single number between 0 and 100.")
     }
-    value
+    TRUE
   },
 
   parse_positional_arg = ptr_arg_numeric(),

@@ -36,7 +36,7 @@ A common alternative is to stuff the entire manual into the system prompt. That 
 | Layer                  | When it loads              | What it teaches |
 |------------------------|----------------------------|------------------|
 | Primer                 | Every turn (~4,000 tokens) | ggpaintr exists; 3-level model; decision rule. |
-| `ggpaintr_docs(topic)` | On demand                  | One focused runnable example (~650–2,650 tokens). |
+| `ggpaintr_docs(topic)` | On demand                  | One focused runnable example (~500–2,800 tokens). |
 
 The primer carries an explicit rule — *"Before writing R code for an interactive plot task, call `ggpaintr_docs(topic)` to fetch the runnable example"* — and that rule plus the enum-constrained argument is what makes the LLM reliably reach for the tool instead of hallucinating an API.
 
@@ -67,7 +67,7 @@ A short guide to each:
 | `level3_gg_extra`      | Round-trip host layers into the generated code pane. |
 | `custom_placeholder`   | Date pickers, sliders, any widget not in the five built-ins. |
 
-Topics whose example is a standalone runnable app open with a `library()` preamble; signature- or fragment-only topics (`level1_ptr_app`, `level1_ptr_options`, `overview`) do not, by design.
+Topics whose example is a standalone runnable app open with a `library()` preamble; fragment-style topics (`overview`, `level2_custom_ids`, `level3_custom_render`, `level3_layout`) do not, by design.
 
 ## Inspecting what the LLM will see
 
@@ -156,10 +156,10 @@ nchar(payload)
 
 - **After upgrading ggpaintr** — new topics are not reachable until `ptr_llm_register()` runs again (the enum list is snapshotted).
 - **Switching chat providers** — registration is per-`Chat` object; every new session needs its own registration.
-- **Changing the tool name** — rebuild the chat from scratch; `Chat` objects do not expose a public unregister API in current ellmer.
+- **Changing the tool name** — drop the old tool with `chat$set_tools()` (inspect what is attached via `chat$get_tools()`) and register the new one; ellmer has no dedicated `unregister_tool()`, but you do not need to rebuild the chat.
 
 ## Current behavior boundary
 
-- The primer and topic files are bundled with the package and hand-curated; regenerating them from the source documentation is not yet automated.
+- The primer and topic files are bundled with the package. Their factual blocks — signatures, the token table, the topic index — are regenerated from live introspection by the package's `dev/build-llm.R` (lint / generate / verify modes); the surrounding prose is still hand-curated.
 - ellmer is a suggested dependency — nothing loads until you call the helper, and `ptr_llm_register()` errors with a clear message if ellmer is not installed.
 - The helper sets only the tool. The system prompt is your responsibility — pass `ptr_llm_primer()` to the `chat_*()` constructor explicitly.

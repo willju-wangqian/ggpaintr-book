@@ -34,11 +34,11 @@ Per-run overrides of these defaults go through `spec =` (@sec-formula-language).
 
 ## Styling with CSS
 
-ggpaintr ships a bundled stylesheet and a stable, BEM-style class vocabulary under the `ptr-` prefix. Two surfaces, in order of invasiveness.
+ggpaintr ships a bundled stylesheet and a BEM-style class vocabulary under the `ptr-` prefix. Two surfaces, in order of invasiveness.
 
 ### Surface 1 — class hooks ggpaintr already emits
 
-Every region of the default shell carries a stable class you can target from your own CSS. This vocabulary is committed surface; releases will not silently rename it:
+Every region of the default shell carries a class you can target from your own CSS. These classes are the practical styling hook today, but the package does not document them as a stability contract — the documented theming surface is the `--ptr-*` CSS custom-property tokens on `.ptr-app`. Pin your ggpaintr version if a theme leans on the class names:
 
 | Region                | Block               | Notable elements |
 |-----------------------|---------------------|------------------|
@@ -46,7 +46,7 @@ Every region of the default shell carries a stable class you can target from you
 | Plot card             | `.ptr-card`         | `.ptr-card--plot`, `.ptr-card__head`, `.ptr-card__title`, `.ptr-card__body` |
 | Output area           | `.ptr-output`       | — |
 | Generated-code window | `.ptr-code-window`  | `.ptr-code-window__head`, `.ptr-code-window__title`, `.ptr-code-window__actions`, `.ptr-code-window__close`, `.ptr-code-window__body`, `.ptr-copy-btn`, `.ptr-code-toggle`, `.ptr-icon-btn` |
-| Shared-controls panel | `.ptr-shared-panel` | `.ptr-shared-panel__title`, `.ptr-shared-panel__hint` |
+| Shared-controls panel | `.ptr-shared-panel` | `.ptr-shared-panel__title`, `.ptr-shared-panel__help`, `.ptr-shared-panel__tip` |
 | Pipeline stage rows   | `.ptr-stage`        | `.ptr-stage-head`, `.ptr-stage-fields`, `.ptr-stage-row` |
 | Inline errors         | `.ptr-alert`        | `.ptr-alert--error`, `.ptr-alert__detail` |
 

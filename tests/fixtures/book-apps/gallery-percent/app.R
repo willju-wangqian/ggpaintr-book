@@ -12,7 +12,7 @@ ppPercent <- ptr_define_placeholder_value(
     shiny::sliderInput(
       node$id, label = label %||% "Percent",
       min = 0, max = 100,
-      value = selected %||% node$default %||% 50,
+      value = selected,
       step = step
     )
   },

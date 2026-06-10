@@ -52,7 +52,7 @@ When you change anything that touches a fixture, a chunk, prose mentioning a `pt
 ## Display modes
 
 - Default: verbatim code chunk + screenshot/GIF (`book-conventions.md` § "The Shiny rendering problem").
-- Hero chapters (initially `getting-started.qmd`, `formula-language.qmd`) embed shinylive widgets. A chapter is a hero only if a reader gains real value from poking at it; see [ADR 0002](docs/adr/0002-hybrid-display.md) for the rationale and fallback rules.
+- Shinylive heroes are deferred (NO-GO, see `dev/notes/2026-06-10-shinylive-spike.md`): ggpaintr has no wasm distribution channel, so no chapter sets `shinylive: true` and the gate truthfully reports `Shinylive: 0/0`. The would-be heroes (`getting-started.qmd`, `formula-language.qmd`) are authored screenshot-only under [ADR 0002](docs/adr/0002-hybrid-display.md)'s fallback rule; revisit only if ggpaintr ships wasm builds (CRAN or r-universe).
 
 ## Out of scope
 

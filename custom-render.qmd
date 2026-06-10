@@ -73,6 +73,8 @@ output[[shiny::NS("plot1")("my_code")]] <- shiny::renderText({
 })
 ```
 
+Be aware that `code_text` holds only the substituted formula code — any `ptr_gg_extra()` extras (see below) are folded into the plot, never into this slot, so the panel above silently drops them. If your panel must show extras too, keep a `state$runtime()` read for the reactive dependency and return `ptr_extract_code(state)` instead — that accessor appends the extras text on top, exactly like the bundled code panel does.
+
 For non-reactive contexts (a download handler, a snapshot test), the public accessor is `ptr_extract_code(state)`. It returns a single string and includes any `ptr_gg_extra()` expressions captured on the state.
 
 ## Custom error UI
@@ -91,7 +93,7 @@ output[[shiny::NS("plot1")("my_status")]] <- shiny::renderUI({
 
 ## Programmatic layer injection — `ptr_gg_extra()`
 
-`ptr_gg_extra(state, ...)` evaluates one or more ggplot2 expressions and attaches the results as "extras" on the state. The runtime folds them into the rendered plot on the next cycle, and the generated code (both `state$runtime()$code_text` and `ptr_extract_code(state)`) includes them. Each call replaces the previously captured extras — pass everything you want layered on in a single call:
+`ptr_gg_extra(state, ...)` evaluates one or more ggplot2 expressions and attaches the results as "extras" on the state. The runtime folds them into the rendered plot on the next cycle; in the generated code they never enter `state$runtime()$code_text` — the extras text is appended on top only by `ptr_extract_code(state)` and the bundled code panel. Each call replaces the previously captured extras — pass everything you want layered on in a single call:
 
 ```{r}
 #| eval: false
@@ -115,7 +117,7 @@ shiny::shinyApp(ui, server)
 
 ![A host button injecting `scale_x_log10()` into the next draw via `ptr_gg_extra()`.](images/custom-render-extra.png)
 
-Eval errors from the captured expressions leave the existing extras untouched (atomic update), and extras are suppressed automatically while the underlying runtime reports a failure — stale extras from a prior successful draw never surface during an error state.
+Eval errors from the captured expressions leave the existing extras untouched (atomic update), and extras are suppressed automatically while the underlying runtime reports a failure — on the custom-renderer path (`state$runtime()` reads and the `ptr_extract_plot()` / `ptr_extract_code()` / `ptr_extract_error()` accessors), stale extras from a prior successful draw never surface during an error state. The bundled panes behave differently: their retain-on-error fallback keeps the last successful plot and code on screen — extras included — while the error pane shows the new diagnostic.
 
 ## Shared widgets driving custom renderers
 

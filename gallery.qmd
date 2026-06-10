@@ -33,21 +33,11 @@ ggplot(mpg, aes(displ, hwy, color = class)) +
   coord_cartesian(xlim = c(1, 7), ylim = c(10, 45))
 ```
 
-Now replace each tuning knob with a placeholder. The columns become pickers, the labels become text inputs, the y-range becomes a slider backed by a small custom value placeholder, `ppRange`, defined right in the chunk:
+Now replace each tuning knob with a placeholder. The columns become pickers, the labels become text inputs, the y-range becomes a slider backed by a small custom value placeholder, `ppRange`, defined right in the chunk. Its length-2 default is validated by the package's own `ptr_arg_numeric(vector = TRUE, length = 2L)`, which constant-folds a literal like `c(10, 45)` without evaluating arbitrary code:
 
 ```{r}
 #| eval: false
 #| fixture: gallery-realistic
-arg_range <- function() {
-  function(arg_expr) {
-    val <- tryCatch(eval(arg_expr, baseenv()), error = function(e) NULL)
-    if (!is.numeric(val) || length(val) != 2L) {
-      stop("ppRange() default must be a length-2 numeric vector, e.g. c(10, 45)")
-    }
-    val
-  }
-}
-
 ppRange <- ptr_define_placeholder_value(
   keyword = "ppRange",
   build_ui = function(node, label = NULL, selected = NULL, ...) {
@@ -61,7 +51,7 @@ ppRange <- ptr_define_placeholder_value(
     rlang::expr(c(!!value[1], !!value[2]))
   },
   ui_text_defaults = list(label = "Range for {param}"),
-  parse_positional_arg = arg_range()
+  parse_positional_arg = ptr_arg_numeric(vector = TRUE, length = 2L)
 )
 
 {
@@ -83,7 +73,7 @@ Rebuilding the original graphic from the running app is a matter of picking thos
 
 ## Data-cleaning pipelines into `ggplot()` {#sec-gallery-pipelines}
 
-ggpaintr parses any expression that evaluates to a ggplot object, including the common "clean, then plot" pipeline. Pipeline stages with placeholders get the per-layer **Data** subtab described in @sec-formula-language.
+ggpaintr's formula grammar is a single `ggplot()` call plus `+` layers, and that covers the common "clean, then plot" pipeline: stages piped into `ggplot()` are lifted into the app when the lift gates pass — at least one stage, a lossless round-trip of the split, and a source that is a bare symbol (or a source-role placeholder like `ppUpload`). Pipeline stages with placeholders get the per-layer **Data** subtab described in @sec-formula-language.
 
 ### Filter, group, and plot
 
@@ -122,7 +112,7 @@ ptr_app(
 
 ### PCA scores with 95% confidence ellipses
 
-A classic exploratory move — project numeric columns onto their first two principal components, colour by a grouping factor, overlay confidence ellipses. The `do_pca()` helper keeps the lambda out of the pipe (anonymous-function pipe stages are unsupported — @sec-formula-language):
+A classic exploratory move — project numeric columns onto their first two principal components, colour by a grouping factor, overlay confidence ellipses. The `do_pca()` helper keeps the lambda out of the pipe — a lambda stage would still run in the generated code, but it is silently inert in the UI: no stage row or toggle, and any placeholder inside it is ignored (@sec-formula-language):
 
 ```{r}
 #| eval: true
@@ -519,7 +509,7 @@ ppPercent <- ptr_define_placeholder_value(
     shiny::sliderInput(
       node$id, label = label %||% "Percent",
       min = 0, max = 100,
-      value = selected %||% node$default %||% 50,
+      value = selected,
       step = step
     )
   },

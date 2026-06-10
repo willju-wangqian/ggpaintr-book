@@ -64,7 +64,7 @@ shiny::shinyApp(ui, server)
 
 ![`metric` is referenced by both formulas, so its picker lives in the standalone shared panel on top; picking a column and clicking **Draw all** redraws both plots in lockstep.](images/shared-trio.png)
 
-`ptr_shared_panel()` emits a **Draw all** button (top-level input id `ptr_shared_draw_all`) whenever the coordinator spans two or more formulas; the per-module **Update plot** buttons still work independently. Building `ptr_shared()` from a `formulas` list that declares no `shared = "..."` annotation is an error — drop the coordinator and use the plain module path if nothing is shared.
+`ptr_shared_panel()` emits a **Draw all** button (top-level input id `ptr_shared_draw_all`) whenever the coordinator spans two or more formulas and the `gate_draw` setting is on (the default; `ptr_options(gate_draw = FALSE)` drops the button and each panel re-renders live instead); the per-module **Update plot** buttons still work independently. Building `ptr_shared()` from a `formulas` list that declares no `shared = "..."` annotation is an error — drop the coordinator and use the plain module path if nothing is shared.
 
 ## The partition in action
 
@@ -108,7 +108,7 @@ The framework names every widget it emits from the formula's syntax, so the same
 
 **Layer names.** Each top-level call in the formula contributes a layer name equal to the function being called (`ggplot`, `geom_point`, `facet_wrap`, …). Repeats get `-2`, `-3`, … suffixes: `geom_point() + geom_point()` yields `geom_point`, `geom_point-2`.
 
-**Per-placeholder input ids** follow `<layer>_<path>_<keyword>_<shared-or-NA>`, where `<path>` is the underscore-joined positional index path into the call. `aes(x = ppVar, y = ppVar)` inside the `ggplot()` layer yields `ggplot_1_1_ppVar_NA` and `ggplot_1_2_ppVar_NA`; a shared annotation `ppVar(shared = "x_col")` lands at `ggplot_1_1_ppVar_x_col`.
+**Per-placeholder input ids** follow `<layer>_<path>_<keyword>_NA`, where `<path>` is the underscore-joined positional index path into the call. `aes(x = ppVar, y = ppVar)` inside the `ggplot()` layer yields `ggplot_1_1_ppVar_NA` and `ggplot_1_2_ppVar_NA`. A shared annotation never gets a layer-derived id: `ppVar(shared = "x_col")` is bound at the canonical `shared_x_col`. Every shared key owns `shared_<key>` (and, when the key sits on a piped stage, `shared_<key>_stage_enabled`), so treat those as part of the collision surface too.
 
 **Layer-derived ids:**
 
@@ -116,9 +116,9 @@ The framework names every widget it emits from the formula's syntax, so the same
 |-----------------------------------------------|------------|
 | `<layer>_checkbox`                            | "include this layer" toggle (no checkbox on `ggplot`) |
 | `<layer>_<path>_stage_enabled`                | per-stage toggle on piped data-arg pipelines |
-| `<placeholder-id>_ui`                         | `renderUI` container for a consumer placeholder |
+| `<placeholder-id>_ui`                         | `renderUI` container for any placeholder (value, source, or consumer) |
 | `<layer>_subtab`, `ptr_layer_content_<layer>` | internal layer-nav and panel-container ids |
 
-**Top-level package-owned ids.** The framework writes to a fixed set of `ptr_`-prefixed top-level ids that are **not** user-configurable: `ptr_plot`, `ptr_error`, `ptr_code`, `ptr_update_plot`, the panel ids `ptr_shared_draw_all` / `ptr_shared_errors`, and the layer-nav inputs `ptr_layer_select` / `ptr_layer_tabset`. Treat the whole `ptr_` prefix as reserved. When `ptr_shared(id = "<id>")` is supplied, every coordinator-owned id is carried under an `<id>-` prefix, so two coordinators can coexist in one session.
+**Top-level package-owned ids.** The framework writes to a fixed set of `ptr_`-prefixed top-level ids that are **not** user-configurable: `ptr_plot`, `ptr_error`, `ptr_code`, `ptr_code_mode`, `ptr_update_plot`, the panel ids `ptr_shared_draw_all` / `ptr_shared_errors`, and the layer-nav inputs `ptr_layer_select` / `ptr_layer_tabset`. Treat the whole `ptr_` prefix as reserved. When `ptr_shared(id = "<id>")` is supplied, every coordinator-owned id is carried under an `<id>-` prefix, so two coordinators can coexist in one session.
 
-> Rule of thumb: in a host app's top-level namespace, don't author Shiny inputs or outputs whose ids start with `ptr_` or match `<layer-name-from-your-formula>_…`. If that feels brittle, wrap the embed with a unique `id` and the collision surface disappears entirely.
+> Rule of thumb: in a host app's top-level namespace, don't author Shiny inputs or outputs whose ids start with `ptr_` or `shared_`, or match `<layer-name-from-your-formula>_…`. If that feels brittle, wrap the embed with a unique `id` and the collision surface disappears entirely.

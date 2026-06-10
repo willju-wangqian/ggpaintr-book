@@ -3,26 +3,22 @@
 library(ggpaintr)
 library(ggplot2)
 # >>>
-.env <- environment()   # the scope whose data frames should be loadable
-
 ptr_define_placeholder_source(
   keyword  = "ppDataset",
   shortcut = TRUE,
 
   build_ui = function(node, label = NULL, ...) {
-    # env-name-only source: the framework's shortcut text box is the sole
-    # entry point, so build_ui contributes no widget of its own.
+    # Shortcut-only source: the framework's text box is the sole entry
+    # point, so build_ui contributes no widget of its own.
     NULL
   },
 
   resolve_data = function(value, node, ...) {
-    nm <- if (is.character(value) && length(value) == 1L && nzchar(value)) value else NULL
-    if (is.null(nm)) return(NULL)
-    tryCatch(get(nm, envir = .env, inherits = TRUE),
-             error = function(e) NULL)
+    # `value` is the primary widget's value -- always NULL here, since
+    # build_ui renders nothing. The shortcut lookup is the framework's.
+    NULL
   },
 
-  resolve_expr     = function(value, node, ...) rlang::sym(value),
   ui_text_defaults = list(label = "Dataset for {param}")
 )
 

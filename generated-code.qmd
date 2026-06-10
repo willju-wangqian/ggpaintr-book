@@ -21,7 +21,7 @@ facet_wrap(ppExpr)
 
 ![The code window after an update with the title and facet left empty: the generated code is just `ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()` — the empty `labs()` and `facet_wrap()` vanished.](images/generated-code-cleanup.png)
 
-The cleanup list covers safe ggplot2 no-ops: `theme()`, `labs()`, `xlab` / `ylab` / `ggtitle`, `facet_wrap` / `facet_grid` / `facet_null`, `xlim` / `ylim` / `lims`, `expand_limits`, `guides`, `annotate`, and the empty mapping helper `aes()`. Third-party helpers (e.g. `pcp_theme()` from ggpcp) are *not* on the list — absence is the "removal safety unknown" signal. Pass `safe_to_remove = c("pcp_theme")` to opt a specific name into the cleanup pass. A `ppExpr` whose user typed an expression always wins: whatever was typed is honoured verbatim, even if its top-level name is in `safe_to_remove`.
+The cleanup list spans ggplot2, dplyr, and the rest of the core tidyverse (tidyr, tibble, purrr, stringr, forcats, lubridate, and more). On the ggplot2 side that includes `theme()`, `labs()`, `xlab` / `ylab` / `ggtitle`, `facet_wrap` / `facet_grid` / `facet_null`, `xlim` / `ylim` / `lims`, `expand_limits`, `guides`, `annotate`, and the empty mapping helper `aes()`; an empty `filter()`, `mutate()`, or `select()` vanishes the same way. Third-party helpers (e.g. `pcp_theme()` from ggpcp) are *not* on the list — absence is the "removal safety unknown" signal. Pass `safe_to_remove = c("pcp_theme")` to opt a specific name into the cleanup pass. A `ppExpr` whose user typed an expression always wins: whatever was typed is honoured verbatim, even if its top-level name is in `safe_to_remove`.
 
 ## Column names the generated code can actually use
 
@@ -40,7 +40,7 @@ clean <- ptr_normalize_column_names(messy)
 names(clean)
 ```
 
-Uploaded data (@sec-placeholders) goes through the same normalization automatically; the manual call is only needed for data already in your R session. `?ptr_normalize_column_names` documents the exact rules (`make.names()` plus uniqueness and reserved-word collision avoidance).
+Uploaded data (@sec-placeholders) goes through the same normalization automatically; the manual call is only needed for data already in your R session. `?ptr_normalize_column_names` documents the exact rules (runs of non-alphanumeric characters become `_`, duplicates are de-duplicated with `_`-numbered suffixes, and reserved words get a trailing `_` — so `"first column"` becomes `first_column` and `"if"` becomes `if_`, exactly as the chunk above prints).
 
 ## Reading the plot and code programmatically
 

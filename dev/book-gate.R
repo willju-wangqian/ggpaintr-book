@@ -209,7 +209,7 @@ check_symbols <- function(qmd_files) {
   # clicks ptr_update_plot / ptr_shared_draw_all). Only ids belong here;
   # never add a function name to paper over a Symbols failure.
   RUNTIME_ID_ALLOWLIST <- c(
-    "ptr_plot", "ptr_error", "ptr_code", "ptr_update_plot",
+    "ptr_plot", "ptr_error", "ptr_code", "ptr_code_mode", "ptr_update_plot",
     "ptr_shared_draw_all", "ptr_shared_errors",
     "ptr_layer_select", "ptr_layer_tabset", "ptr_layer_content_"
   )

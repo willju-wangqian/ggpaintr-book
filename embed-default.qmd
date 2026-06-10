@@ -35,7 +35,7 @@ shiny::shinyApp(ui, server)
 
 ## What `ptr_server()` gives you
 
-`ptr_server()` returns the app's **state object** — embedders that want to react to it (inject layers with `ptr_gg_extra()`, read the live plot or code via `ptr_extract_plot()` / `ptr_extract_code()`) capture the return value; otherwise the side effects are all that matter. Its `...` are forwarded, so `ui_text =`, `expr_check =`, `safe_to_remove =`, and the shared-binding arguments are all available here exactly as on `ptr_app()`. Boot-state still lives in the formula: write `ppLayerOff(geom_X(), TRUE)` to start a layer unchecked (@sec-customization).
+`ptr_server()` returns the app's **state object** — embedders that want to react to it (inject layers with `ptr_gg_extra()`, or read the live plot and code via `state$runtime()$plot` / `state$runtime()$code_text` inside a reactive context) capture the return value; otherwise the side effects are all that matter. The one-shot readers `ptr_extract_plot()` / `ptr_extract_code()` are `isolate()`-wrapped — reserve them for non-reactive contexts (download handlers, tests), not `render*{}` blocks. Its `...` are forwarded, so `ui_text =`, `expr_check =`, and `safe_to_remove =` are available here exactly as on `ptr_app()`; the shared-binding arguments (`shared_state =` and friends) are also accepted, going beyond what `ptr_app()` offers. Boot-state still lives in the formula: write `ppLayerOff(geom_X(), TRUE)` to start a layer unchecked (@sec-customization).
 
 ## Several linked blocks
 

@@ -27,7 +27,7 @@ ppPercent <- ptr_define_placeholder_value(
     shiny::sliderInput(
       node$id, label = label %||% "Percent",
       min = 0, max = 100,
-      value = selected %||% node$default %||% 50,
+      value = selected,   # the framework routes ppPercent(40) in here
       step = step
     )
   },
@@ -40,9 +40,9 @@ ppPercent <- ptr_define_placeholder_value(
   validate_session_input = function(value, ctx) {
     v <- suppressWarnings(as.numeric(value))
     if (length(v) != 1L || is.na(v) || v < 0 || v > 100) {
-      rlang::abort("Percent must be a single number between 0 and 100.")
+      return("Percent must be a single number between 0 and 100.")
     }
-    value
+    TRUE
   },
 
   parse_positional_arg = ptr_arg_numeric(),
@@ -65,12 +65,12 @@ The name to register and to write in formulas. Required.
 
 ### `build_ui` — and why its signature looks the way it does
 
-`build_ui` returns the Shiny control. Its **first argument is `node`** (required) — carrying, among other things, `node$id` (the input id you must give your widget) and `node$default` (the literal positional default from the formula, or `NULL`).
+`build_ui` returns the Shiny control. Its **first argument is `node`** (required) — carrying, among other things, `node$id` (the input id you must give your widget) and `node$default` (the literal positional default from the formula, or `NULL` — exposed for the framework's own bookkeeping; never read it inside the hook, as explained next).
 
 The framework does not call `build_ui(node)` bare. It calls it through an injector that *also* passes `label` (the resolved copy from `ui_text_defaults`, possibly overridden by the app's `ui_text`), `selected` (the persisted value, injected **only if your function can receive it**), and `named_args` (the validated named arguments from the formula call). Hence the canonical signature `function(node, label = NULL, selected = NULL, named_args = list(), ...)`:
 
 - You **opt in** to an injected argument by naming it — or by having `...`. If you neither name `selected` nor accept `...`, it is never injected. Naming the ones you use and keeping `...` to swallow the rest is the safe, forward-compatible shape.
-- Seed the widget from `selected %||% node$default %||% <fallback>`: `selected` carries the persisted input across re-renders, `node$default` is the boot seed, the fallback keeps the widget usable when the formula gave no default.
+- Seed the widget from `selected` — and *only* `selected`. The framework owns the precedence: on the first render it routes the formula's positional default (`ppPercent(40)`) into `selected`; on every later render `selected` is the live input, verbatim. Never read `node$default` yourself and never hardcode a fallback for the empty case — both bypass the seeding layer and snap a user-cleared widget back to the default on the next re-render. When `selected` is empty (`NULL`, `character(0)`, `""`, `NA`), render the widget empty; boot defaults belong in the formula.
 - Use `node$id` — and *only* `node$id` — as the widget id. Do not namespace it yourself; the framework already did.
 
 ### `resolve_expr`
@@ -79,11 +79,11 @@ The framework does not call `build_ui(node)` bare. It calls it through an inject
 
 ### `validate_session_input`
 
-Optional. `function(value, ctx)`, run before `resolve_expr`. Return the value to accept it, or `rlang::abort()` to surface an inline error. For mid-typing artifacts that should not flash an error, signal `ptr_signal_partial()` instead of aborting — it is caught on the live keystroke path but not on the draw path. (`ctx` earns its keep for consumers, below.)
+Optional. `function(value, ctx)`, run before `resolve_expr`. Return `TRUE` or `NULL` to accept; return a single character string to reject — it surfaces as the inline error message (`rlang::abort()` also rejects). Any *other* return value fails closed with a generic "validation failed" — so returning the value itself, a natural-looking mistake, rejects every draw. For mid-typing artifacts that should not flash an error, signal `ptr_signal_partial()` instead of aborting — it is caught on the live keystroke path but not on the draw path. (`ctx` earns its keep for consumers, below.)
 
 ### `parse_positional_arg`
 
-Declares whether the placeholder accepts a positional default in the formula, and validates it. Pass one of the argument validators — `ptr_arg_string()`, `ptr_arg_numeric()`, `ptr_arg_symbol()`, `ptr_arg_symbol_or_string()`, `ptr_arg_expression()`. Each inspects the default **as unevaluated code** (no `eval()`), so `ppPercent(40)` is validated to be a numeric literal at translate time. The element factories take `vector = TRUE` to accept a `c(...)` of elements — `ptr_arg_numeric(vector = TRUE, length = 2)`, `ptr_arg_symbol(vector = TRUE)` for a multi-column default like `c(mpg, hp)`. Leaving it `NULL` (the default) **rejects** any positional argument.
+Declares whether the placeholder accepts a positional default in the formula, and validates it. Pass one of the argument validators — `ptr_arg_string()`, `ptr_arg_numeric()`, `ptr_arg_symbol()`, `ptr_arg_symbol_or_string()`, `ptr_arg_expression()`. Each inspects the default **as unevaluated code** (the symbol, string, and expression validators never `eval()`; `ptr_arg_numeric()` first walks the AST against an allowlist, then constant-folds it in a sealed environment), so `ppPercent(40)` is validated to be a numeric literal at translate time. The element factories take `vector = TRUE` to accept a `c(...)` of elements — `ptr_arg_numeric(vector = TRUE, length = 2)`, `ptr_arg_symbol(vector = TRUE)` for a multi-column default like `c(mpg, hp)`. Leaving it `NULL` (the default) **rejects** any positional argument.
 
 ### `parse_named_args`
 
@@ -145,33 +145,29 @@ A source *produces* the data, so it sits at the head of a pipeline. Three things
 
 - **`resolve_data` replaces `resolve_expr` as the required producer**: `function(value, node, ...)` must return a data frame. `resolve_expr` becomes optional, defaulting to the symbol that names the produced frame in generated code — override it only for different generated code. The two can disagree on purpose: show `read.csv("...")` in the code while reading uploaded bytes at runtime.
 - **`embellish_eval` defaults to an abort guard**, not identity — a source has no sensible plain-R meaning until you give it one.
-- **`shortcut = TRUE` adds a framework-owned companion text box** (at `node$shortcut_id`) into which the user types the *name* of an object to load — the "or type a dataset name" box you saw on `ppUpload`. Because the framework owns that box, your `build_ui` must render only `node$id` — or nothing at all.
+- **`shortcut = TRUE` adds a framework-owned companion text box** (at `node$shortcut_id`) into which the user types the *name* of a data frame to load — the "or type a dataset name" box you saw on `ppUpload`. The framework owns the box *and* the lookup: it resolves the typed name itself, via `get(name, envir, inherits = TRUE)` against the `envir` passed to `ptr_app()` / `ptr_server()`. Because the framework owns that box, your `build_ui` must render only `node$id` — or nothing at all.
 
-This `ppDataset` lets the user type the name of any data frame in scope. `resolve_data` runs later, inside the framework — so capture the registration environment now (`.env`) instead of reaching for `parent.frame()` at resolve time:
+This `ppDataset` lets the user type the name of any data frame in scope. There is less to write than you might expect, because the shortcut machinery is not yours to reimplement: the typed name flows into `resolve_expr` as `value` (the default `rlang::sym(value)` already splices it into the generated code as a bare symbol), while `resolve_data` — still required, as the role's producer — receives the *primary* widget's value, `input[[node$id]]`, never the typed name (that reaches your hooks through `node` if you need it). With no primary widget that value is always `NULL`, so a no-op hook returning `NULL` ("no data yet") is the whole job:
 
 ```{r}
 #| eval: false
 #| fixture: custom-source
-.env <- environment()   # the scope whose data frames should be loadable
-
 ptr_define_placeholder_source(
   keyword  = "ppDataset",
   shortcut = TRUE,
 
   build_ui = function(node, label = NULL, ...) {
-    # env-name-only source: the framework's shortcut text box is the sole
-    # entry point, so build_ui contributes no widget of its own.
+    # Shortcut-only source: the framework's text box is the sole entry
+    # point, so build_ui contributes no widget of its own.
     NULL
   },
 
   resolve_data = function(value, node, ...) {
-    nm <- if (is.character(value) && length(value) == 1L && nzchar(value)) value else NULL
-    if (is.null(nm)) return(NULL)
-    tryCatch(get(nm, envir = .env, inherits = TRUE),
-             error = function(e) NULL)
+    # `value` is the primary widget's value -- always NULL here, since
+    # build_ui renders nothing. The shortcut lookup is the framework's.
+    NULL
   },
 
-  resolve_expr     = function(value, node, ...) rlang::sym(value),
   ui_text_defaults = list(label = "Dataset for {param}")
 )
 
@@ -182,7 +178,7 @@ ptr_app(
 
 ![`ppDataset()` at the pipeline head: type `mtcars` into the framework's text box and the downstream pickers light up.](images/custom-source.png)
 
-A source that owns a real widget (a `selectInput` of dataset names, say) is the same shape with `shortcut = FALSE` and a `build_ui` that renders the picker at `node$id`.
+A source that owns a real widget (a `selectInput` of dataset names, say) is the same shape with `shortcut = FALSE` and a `build_ui` that renders the picker at `node$id` — there `resolve_data` does the real work, turning `input[[node$id]]` into the frame (the example in `?ptr_define_placeholder_source` is exactly this shape).
 
 ## Common pitfalls
 
@@ -195,4 +191,4 @@ A source that owns a real widget (a `selectInput` of dataset names, say) is the 
 
 ## Unregistering
 
-`ptr_clear_placeholder("ppPercent")` removes one user-registered keyword; `ptr_clear_placeholder()` removes them all. The five built-ins are protected (clearing one errors). Re-registering an existing keyword overwrites the previous entry with a notice — no need to clear first.
+`ptr_clear_placeholder("ppPercent")` removes one user-registered keyword; `ptr_clear_placeholder()` removes them all. Seven keywords are protected (clearing one errors): the five built-in placeholders plus the structural `ppLayerOff` / `ppVerbSwitch`. Re-registering an existing keyword overwrites the previous entry with a notice — no need to clear first.

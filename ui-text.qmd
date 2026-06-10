@@ -7,13 +7,13 @@ Every label, placeholder, and help string in the generated UI comes from a deep-
 | Section          | What it controls |
 |------------------|------------------|
 | `shell`          | Outer chrome — app title, draw / draw-all buttons, layer picker label, data / controls subtab labels. |
-| `ppUpload`       | The `ppUpload` widget — file-picker label, optional dataset-name label / placeholder / help text. |
+| `upload`         | The `ppUpload` widget — nested `file` and `name` entries carrying the file-picker label and the optional dataset-name label / placeholder / help text. |
 | `layer_checkbox` | The "include this layer" toggle on each layer panel. |
 | `defaults`       | Per-keyword copy defaults — one entry per registered placeholder, including custom ones (auto-populated from each registration's `ui_text_defaults`). |
 | `params`         | Per-parameter overrides — copy that applies when a placeholder appears as the `x`, `color`, `title`, `alpha`, … argument of a layer. |
 | `layers`         | Per-layer overrides — copy scoped to one placeholder occurrence inside one specific layer call (e.g. the positional `ppExpr` of `facet_wrap()`). |
 
-The first three sections are flat: one fixed lookup path per UI slot. The last three are nested by keyword — and, for `layers`, by layer name × keyword × parameter — letting you scope an override to a single placeholder, a single parameter, or a single layer.
+The first three sections have fixed lookup paths: `layer_checkbox` is a single leaf, `upload` nests one level (`file`, `name`), and `shell` holds one leaf entry per chrome slot plus four plain-string keys for shared-controls copy (`shared_section_title` / `shared_section_hint`, `shared_panel_title` / `shared_panel_hint`). The last three are nested by keyword — and, for `layers`, by layer name × keyword × parameter — letting you scope an override to a single placeholder, a single parameter, or a single layer.
 
 ## Merge precedence
 

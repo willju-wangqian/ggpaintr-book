@@ -60,7 +60,7 @@ Uploaded column names are normalized automatically so that `ppVar` always sees s
 
 ## Nothing renders until you click Update
 
-ggpaintr re-draws only on **Update plot**. Changing a widget stages a new value but does not redraw on its own. This is deliberate: it keeps a half-typed expression from strobing the plot, and it is the one thing to remember when scripting an app in tests — set the inputs, *then* click the button.
+Under the default `gate_draw = TRUE` setting, ggpaintr re-draws only on **Update plot**. Changing a widget stages a new value but does not redraw on its own. (Setting `ptr_options(gate_draw = FALSE)` before building the app removes the button and re-renders live on every change.) This is deliberate: it keeps a half-typed expression from strobing the plot, and it is the one thing to remember when scripting an app in tests — set the inputs, *then* click the button.
 
 ## Beyond the built-ins
 

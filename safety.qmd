@@ -12,35 +12,35 @@ One scope note up front: ggpaintr has not been hardened for adversarial public d
 
 ## The `expr_check` flag
 
-`ppExpr` is the only keyword that accepts arbitrary R code. The other four — `ppVar`, `ppText`, `ppNum`, `ppUpload` — take atomic values or files, and nothing runs what the user typed as R. `expr_check` decides what happens to whatever lands in a `ppExpr` box before it reaches the evaluator:
+`ppExpr` is the only keyword that accepts arbitrary R code. The other four — `ppVar`, `ppText`, `ppNum`, `ppUpload` — take atomic values or files, and nothing runs what the user typed as R. `expr_check` governs two checkpoints: at translation time it validates your *entire formula* — author code included, so a formula containing `geom_point(data = system('id'))` aborts at translation under the default — and at run time it decides what happens to whatever lands in a `ppExpr` box before it reaches the evaluator:
 
 ```r
 ptr_app(formula, expr_check = TRUE)               # default — full denylist + walker
-ptr_app(formula, expr_check = FALSE)              # off — anything goes
+ptr_app(formula, expr_check = FALSE)              # off — formula checks skipped (ppExpr re-screen stays on)
 ptr_app(formula, expr_check = list(               # custom
-  allow_list = c("read.csv"),
+  allow_list = c("ggplot", "aes", "geom_point"),  # strict whitelist over EVERY call head in the formula
   deny_list  = c("get")
 ))
 ```
 
-`expr_check` is accepted on every public entry point that builds the formula's tree — `ptr_app()`, `ptr_ui()`, `ptr_ui_controls()`, `ptr_server()`, and `ptr_init_state()` — and defaults to `TRUE` everywhere.
+`expr_check` is accepted on every public entry point that builds the formula's tree — as a named argument on `ptr_app()`, `ptr_ui()`, `ptr_ui_controls()`, and `ptr_init_state()`, and via `ptr_server()`'s documented `...` passthrough to `ptr_init_state()` — and defaults to `TRUE` in all of them.
 
 ### The three modes
 
 | `expr_check =`                     | Mode      | What gets checked |
 |------------------------------------|-----------|-------------------|
 | `TRUE` (or `list()` with no lists) | denylist  | The curated 151-entry denylist (below). Any call to, symbol naming, or string literal mentioning a denied name aborts. |
-| `FALSE`                            | off       | No validation. Whatever the user typed reaches the evaluator. |
+| `FALSE`                            | off       | Skips the translate-time and eval-time checks on the formula. What the user types into a `ppExpr` box is *still* screened against the curated denylist when it is substituted into the plot — that re-screen is hardcoded on and cannot be disabled. |
 | `list(deny_list = ...)`            | denylist  | **Replaces** the curated 151 with *only* the names you list. On its own this *weakens* the default — there is no "add to the curated list" form. |
-| `list(allow_list = ...)`           | allowlist | Only listed names may appear as call heads. The curated always-dangerous names (e.g. `system`) stay blocked as bare symbols or strings regardless. With both lists, the effective allow set is `allow_list` minus `deny_list`. |
+| `list(allow_list = ...)`           | allowlist | A strict whitelist over *every* call head in the entire formula — `ggplot`, `aes`, each `geom_*`, everything — not just what lands in a `ppExpr` box; any head not listed aborts at translation. The curated always-dangerous names (e.g. `system`) stay blocked as bare symbols or strings regardless. With both lists, the effective allow set is `allow_list` minus `deny_list`. |
 
-The asymmetry is the thing to internalise: a bare `deny_list` *narrows* protection (it discards the other 150 curated names), while `allow_list` *keeps* the curated floor and only widens which call heads are permitted. To permit one extra name without losing the curated protection, use `allow_list`, not `deny_list`.
+The thing to internalise: both custom forms *replace* rather than extend. A bare `deny_list` discards the other 150 curated names, and `allow_list` narrows the whole formula to exactly the heads you list — only the bare-symbol/string floor stays curated. There is no "curated list plus or minus one name" form.
 
 ### When (never) to turn it off
 
-`expr_check = FALSE` is for local prototyping with trusted input — you, at the R prompt, on a private dataset. It is never right for any app another person can reach; co-workers on a shared dev server count.
+`expr_check = FALSE` is for local prototyping with trusted input — you, at the R prompt, on a private dataset. It is never right for any app another person can reach; co-workers on a shared dev server count. Note that `FALSE` is not a full off switch: it skips the formula checks, but `ppExpr` input is re-screened against the curated denylist at substitution time no matter what — typing `exists("x")` into the box still errors even with `expr_check = FALSE`.
 
-If a name you trust is blocked (e.g. `read.csv`, because the denylist is conservative), the fix is `expr_check = list(allow_list = "read.csv")`, which keeps the walker active for everything else — not `expr_check = FALSE`.
+If a name you trust is blocked in a `ppExpr` box (e.g. `read.csv`, because the denylist is conservative), there is currently no supported way to permit it. `expr_check = list(allow_list = "read.csv")` does not work, twice over: the allowlist is a strict whitelist over the whole formula, so the app aborts at launch because `ggplot` and friends aren't listed — and even with every formula head allowlisted, the substitution-time re-screen still applies the curated denylist and blocks `read.csv` typed into the box. (ggpaintr's own error message suggests the `allow_list` fix; that suggestion is an upstream bug.) The working remedy is to restructure: do the trusted call in ordinary R code outside the formula and hand the result in as data.
 
 ## The denylist + AST walker
 

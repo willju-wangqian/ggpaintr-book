@@ -1,6 +1,6 @@
 # The Formula Language {#sec-formula-language}
 
-The **formula** is the single source of truth for a ggpaintr app: what gets plotted, which decisions the user gets to make, and — as this chapter shows — which layers and pipeline stages are part of the chart on first paint. `ptr_app()` accepts the formula in two equivalent forms: as bare code (`ptr_app(ggplot(...) + ...)`) or as a string (`ptr_app("ggplot(...) + ...")`). The string form is convenient when the formula is built up programmatically or stored in a file; everything in this chapter works in both.
+The **formula** is the single source of truth for a ggpaintr app: what gets plotted, which decisions the user gets to make, and — as this chapter shows — which layers and pipeline stages are part of the chart on first paint. `ptr_app()` accepts the formula in two equivalent forms: as bare code (`ptr_app(ggplot(...) + ...)`) or as a string (`ptr_app("ggplot(...) + ...")`). The string form is convenient when the formula is built up programmatically or stored in a file; everything in this chapter works in both. One display caveat: in bare-expression mode R's parser desugars `|>` before the formula is captured, so the generated-code panel shows the nested-call form rather than the pipe you wrote. Stay in string mode (or use `%>%`) if you need `|>` preserved — and since this chapter leans on pipelines, its examples use string mode throughout.
 
 ## The tour formula
 
@@ -19,7 +19,7 @@ facet_wrap(ppExpr)
 
 ![The tour app at boot: three column pickers, a numeric input, a text input, and a code box for the facet expression.](images/formula-tour.png)
 
-The full grammar reference — positional-argument seeding, the `shared = "<id>"` annotation (@sec-shared-placeholders), and the empty-call cleanup rule (@sec-generated-code) — lives at `?ptr_app`.
+The full grammar reference is split across two help pages: positional-argument seeding lives at `?pp_placeholders`; the `shared = "<id>"` annotation (@sec-shared-placeholders) and the empty-call cleanup rule (@sec-generated-code) live at `?ptr_app`.
 
 ## Data pipelines in the formula
 
@@ -55,7 +55,7 @@ geom_point(alpha = ppNum)"
 
 ### What does not work yet
 
-**Anonymous functions as pipe stages.** `df |> (\(x) x[x$cyl > 4, ])() |> ggplot(...)` is not supported: the runtime resolves each stage's name from its call head, and an inline lambda has no name, so the stage cannot get a stable Shiny id or a Data-subtab row. Workaround: lift the anonymous function to a named helper in the calling environment, then use it as a bare-symbol stage (`df |> my_helper() |> ggplot(...)`).
+**Anonymous functions as pipe stages.** `df |> (\(x) x[x$cyl > 4, ])() |> ggplot(...)` is not rejected — the app boots and the lambda runs verbatim in the generated code — but the stage is invisible to the widget machinery: it gets no Data-subtab row and no enable/disable toggle. Worse, never put a placeholder *inside* the lambda body: something like `(\(x) x[x$cyl > ppNum, ])()` is silently ignored — no widget appears and no warning is raised. Prefer a named verb, or lift the anonymous function to a named helper in the calling environment and use it as a bare-symbol stage (`df |> my_helper(ppNum) |> ggplot(...)`), so the stage can carry placeholders and a toggle.
 
 ## Boot-state toggles: `ppLayerOff` and `ppVerbSwitch`
 
@@ -119,7 +119,7 @@ fit_first <- function(.data, formula, ...) my_fit(formula = formula, data = .dat
 
 ### `spec =` overrides the formula-side default at boot
 
-`ppLayerOff` / `ppVerbSwitch` set the *default* boot state. The `spec =` argument on `ptr_app()` / `ptr_server()` carries restore values for any widget, and a `spec =` entry **overrides the formula-side default** at boot. Round-tripping a saved app state therefore composes cleanly with formula-side toggles: capture `state$spec()` from a running app, re-launch with it, and a layer the formula boots off can come back on:
+`ppLayerOff` / `ppVerbSwitch` set the *default* boot state. The `spec =` argument on `ptr_app()` / `ptr_server()` carries restore values for any widget — except a `ppUpload` file input, which cannot be restored from a spec (only its companion text input is settable) — and a `spec =` entry **overrides the formula-side default** at boot. Round-tripping a saved app state therefore composes cleanly with formula-side toggles: capture `state$spec()` from a running app, re-launch with it, and a layer the formula boots off can come back on:
 
 ```r
 ptr_app(
