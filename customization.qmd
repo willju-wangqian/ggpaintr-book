@@ -1,9 +1,87 @@
 # Customization {#sec-customization}
 
-::: callout-note
-**Draft stub.** Scope: re-styling, re-labelling, re-arranging — the user-facing customization surface. Absorbs the package's `ggpaintr-customization` vignette in full once that vignette is e2e-green and drift-audit-clean; the package drops its copy in the paired PR. Covers UI text, CSS hooks, widget defaults, and theming wrappers from a user perspective; the extension-author perspective on the same surfaces is in [Custom placeholders](custom-placeholders.qmd) and [Theming wrappers](theming-wrappers.qmd).
+This chapter covers the *user-facing* customization surface: where boot-state defaults live, and how to restyle the default shell with CSS. The deeper levers each have their own chapter — rewriting every label and copy string is @sec-ui-text, packaging a styled shell as a reusable function is @sec-theming-wrappers, and adding new widget types is @sec-custom-placeholders.
 
-Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
-:::
+## Boot state belongs in the formula
 
-<!-- TODO: write "Customization" -->
+Older ggpaintr exposed a per-call `checkbox_defaults =` argument (and a global `checkbox_default_all_other_layer` option) to start layers unchecked. Both are gone: the formula-side keywords `ppLayerOff()` and `ppVerbSwitch()` (@sec-formula-language) carry that information inside the chart text itself, so the source of truth for "what starts off?" is the same string you wrote the chart against. If you are migrating old code, three mechanical conversions cover every prior use:
+
+1. **Direct entries** — start one named layer off:
+
+```r
+# Old
+ptr_app("ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point() + geom_smooth()",
+        checkbox_defaults = list(geom_smooth = FALSE))
+
+# New
+ptr_app("ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point() + ppLayerOff(geom_smooth(), TRUE)")
+```
+
+2. **Duplicate-group expansion** — a vector at a bare base name used to address every same-name instance; now wrap exactly the instance you mean:
+
+```r
+# Old (apply c(TRUE, FALSE) across two geom_point() layers)
+ptr_app("ggplot(...) + geom_point() + geom_point()",
+        checkbox_defaults = list(geom_point = c(TRUE, FALSE)))
+
+# New
+ptr_app("ggplot(...) + geom_point() + ppLayerOff(geom_point(), TRUE)")
+```
+
+3. **Opt-in mode** — code that relied on the removed global option wraps every should-start-off layer in `ppLayerOff(..., TRUE)` explicitly.
+
+Per-run overrides of these defaults go through `spec =` (@sec-formula-language).
+
+## Styling with CSS
+
+ggpaintr ships a bundled stylesheet and a stable, BEM-style class vocabulary under the `ptr-` prefix. Two surfaces, in order of invasiveness.
+
+### Surface 1 — class hooks ggpaintr already emits
+
+Every region of the default shell carries a stable class you can target from your own CSS. This vocabulary is committed surface; releases will not silently rename it:
+
+| Region                | Block               | Notable elements |
+|-----------------------|---------------------|------------------|
+| Outer shell           | `.ptr-app`          | `.ptr-app__header`, `.ptr-app__mark`, `.ptr-app__title` |
+| Plot card             | `.ptr-card`         | `.ptr-card--plot`, `.ptr-card__head`, `.ptr-card__title`, `.ptr-card__body` |
+| Output area           | `.ptr-output`       | — |
+| Generated-code window | `.ptr-code-window`  | `.ptr-code-window__head`, `.ptr-code-window__title`, `.ptr-code-window__actions`, `.ptr-code-window__close`, `.ptr-code-window__body`, `.ptr-copy-btn`, `.ptr-code-toggle`, `.ptr-icon-btn` |
+| Shared-controls panel | `.ptr-shared-panel` | `.ptr-shared-panel__title`, `.ptr-shared-panel__hint` |
+| Pipeline stage rows   | `.ptr-stage`        | `.ptr-stage-head`, `.ptr-stage-fields`, `.ptr-stage-row` |
+| Inline errors         | `.ptr-alert`        | `.ptr-alert--error`, `.ptr-alert__detail` |
+
+### Surface 2 — injecting your own stylesheet with `css =`
+
+Every self-contained entry point (`ptr_app()`, `ptr_ui()`, `ptr_shared_panel()`) accepts a `css =` argument — as does the optional L3 page shell `ptr_ui_page()`, and the `ptr_ui_assets(css = )` escape hatch for roots that bypass `ptr_ui_page()` (@sec-embed-bare). It takes a character vector of paths to `.css` files; each is registered as a static resource and linked **after** the bundled stylesheet, so your rules win at equal specificity. Relative `url(...)` references resolve against each file's own directory, so images can ship next to the stylesheet.
+
+A minimal theme that recolours the title bar and tightens the card padding:
+
+```css
+/* my-theme.css */
+.ptr-app__header { background: #1f2937; color: #f9fafb; }
+.ptr-app__title  { font-family: "Inter", sans-serif; letter-spacing: -0.01em; }
+.ptr-card__body  { padding: 0.5rem 0.75rem; }
+```
+
+```{r}
+#| eval: false
+#| fixture: customization-css
+ptr_app(
+  "ggplot(mtcars, aes(ppVar('wt'), ppVar('mpg'))) + geom_point()",
+  css = "my-theme.css"
+)
+```
+
+![The same app with `my-theme.css` injected: dark header, tightened plot card. Everything else is the bundled stylesheet.](images/customization-css.png)
+
+`css =` validates each path at construction time — missing files and non-`.css` extensions abort with a clear message, so typos surface before the first browser load.
+
+### What is *not* stable surface
+
+- Internal markup details — element order, nesting depth, descendant tag names — may change between releases even when class names stay. Style by class, not by structural selectors like `.ptr-card > div:nth-child(2)`.
+- Classes emitted by upstream Shiny, shinyWidgets, and bslib (`.shiny-input-container`, `.selectize-control`, `.form-control`, …) belong to those packages; their stability is governed there.
+- Anything matching `ptr_` with an underscore is an **id** (Shiny input/output id), not a class; styling against ids is possible but brittle, since ids are namespaced by host modules (@sec-shared-placeholders).
+
+## Beyond CSS
+
+If you find yourself passing the same `css =` and `ui_text =` to every app, package the combination as a wrapper function — that recipe, including how wrappers compose, is @sec-theming-wrappers.
