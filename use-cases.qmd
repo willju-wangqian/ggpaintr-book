@@ -6,7 +6,7 @@ ggpaintr exposes three levels of control, and choosing the right one up front sa
 |-------|--------------|----------|---------|
 | L1 | `ptr_app()` | The built-in chrome — title bar, layer picker, plot pane, code window — is enough. | this one |
 | L2 | `ptr_ui()` / `ptr_server()` | You own the surrounding Shiny app and want ggpaintr plots inside it. | @sec-embed-default |
-| L3 | `ptr_ui_*` bare pieces | You own the page layout, the renderer, or both. | @sec-embed-bare, @sec-custom-render |
+| L3 | bare UI pieces (`ptr_ui_page`, `ptr_ui_controls`, …) | You own the page layout, the renderer, or both. | @sec-embed-bare, @sec-custom-render |
 
 L1 is the dominant use case: hand ggpaintr a formula, get back a running Shiny app.
 
