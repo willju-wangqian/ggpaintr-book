@@ -227,7 +227,7 @@ Scenario: Styled app fixture boots
 
 ## M6 — Composition part (`shared-placeholders`, `multi-plot`)
 
-`shared-placeholders.qmd` from use-cases' shared-widget sections (single instance auto-inline; the shared trio; input-id construction and collision avoidance). `multi-plot.qmd` from tutorial § 3 (one plot inside your own app via `ptr_ui()`/`ptr_server()`; one control across several plots via `ptr_shared()` + `ptr_shared_panel()` + `ptr_shared_server()`; layout is plain Shiny `fluidRow`/`column` — `ptr_app_grid` does not exist at the pin and must not be mentioned). Estimated fixtures: 4.
+`shared-placeholders.qmd` from use-cases' shared-widget sections (single instance auto-inline; the shared trio; input-id construction and collision avoidance). `multi-plot.qmd` from tutorial § 3 (one plot inside your own app via `ptr_ui()`/`ptr_server()`; one control across several plots via `ptr_shared()` + `ptr_shared_panel()` + `ptr_shared_server()`; layout is plain Shiny `fluidRow`/`column` — `ptr_app_grid` is internal/unexported at the pin and must not be mentioned). Estimated fixtures: 4.
 
 **Success Criteria:** both chapters stub-free; the shared trio example and the own-app multi-plot example each have a booting fixture + screenshot; id-collision guidance names the actual id scheme the pinned version uses (verify against package man pages, not memory).
 
@@ -348,4 +348,4 @@ M0 → M1 are sequential and first (everything is written against the new pin; h
 - Gallery `eval: true` chunks make render time and CI dependency surface much larger; if CI time blows up, switch §§ 5–6 originals to pre-rendered images in a follow-up decision, not silently.
 - The two retired-vignette sources predate the pin by months; any example that no longer boots at `76a4126` is package drift — record it in `dev/notes/` and adapt the book copy, never patch the package from here.
 
-<!-- implementable: PASS date=2026-06-10 gate="Rscript dev/book-gate.R" hash=66ece2e8d9a2 -->
+<!-- implementable: PASS date=2026-06-10 gate="Rscript dev/book-gate.R" hash=8eac111e8f5a -->
