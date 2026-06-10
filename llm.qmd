@@ -1,9 +1,165 @@
-# LLM integration {#sec-llm}
+# Using ggpaintr from an LLM {#sec-llm}
 
-::: callout-note
-**Draft stub.** Scope: ggpaintr's LLM-assisted features for editing formulas. Absorbs the package's `ggpaintr-llm` vignette once that vignette is e2e-green and drift-audit-clean. Covers the user-facing API only — provider configuration, prompt shape, fallback behavior — not the internals of how the assistant is wired.
+Large language models are fluent at writing raw `shiny::fluidPage()` + server scaffolding from memory. They are *not* fluent at writing ggpaintr, because every model today has zero prior exposure to this package. Without help, a user asking "build me a Shiny app where I can pick columns from iris and see a scatter plot" gets hundreds of lines of hand-rolled Shiny that the `ptr_app()` one-liner would have covered.
 
-Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`. LLM-backed fixtures need either a mocked provider or skip-on-no-key handling; the gate must boot them either way.
-:::
+This chapter shows how to make any [ellmer](https://ellmer.tidyverse.org/) chat session reach for ggpaintr first, using two exported helpers:
 
-<!-- TODO: write "LLM integration" -->
+- `ptr_llm_primer()` — the system-prompt preamble that teaches the model the three-level integration model (@sec-use-cases) and the "call the docs tool before writing code" rule.
+- `ptr_llm_register()` — one-line registration of the `ggpaintr_docs` tool that serves focused runnable examples on demand.
+
+The tool is backed by `ptr_llm_topic()`, which returns the content of one bundled topic file. The LLM pulls only the topic it needs, instead of the whole manual loading the context window on every turn.
+
+## Quick start — three lines of setup
+
+```{r}
+#| eval: false
+library(ellmer)
+library(ggpaintr)
+
+chat <- chat_anthropic(system_prompt = ptr_llm_primer())
+ptr_llm_register(chat)
+
+chat$chat("Build a Shiny app where the user picks X and Y columns from mtcars.")
+```
+
+Under the hood:
+
+- `chat_anthropic()` loads the primer (~4,000 tokens) into the system prompt, which stays in context every turn.
+- `ptr_llm_register()` attaches a single tool named `ggpaintr_docs` to the chat session. The tool's one argument — `name` — is constrained by `type_enum()` to the exact set of topic names returned by `ptr_llm_topics()`, so the LLM cannot request a topic that does not exist.
+
+On the first turn the model sees the user's prompt, recognises it as a plot-explorer task, calls `ggpaintr_docs(name = "level1_ptr_app")`, and writes a `ptr_app(...)` snippet rather than raw Shiny.
+
+## What the primer + tool split buys you
+
+A common alternative is to stuff the entire manual into the system prompt. That works but wastes tokens: every chat turn pays for the full manual whether or not it is relevant. The primer/tool split is a lightweight form of retrieval:
+
+| Layer                  | When it loads              | What it teaches |
+|------------------------|----------------------------|------------------|
+| Primer                 | Every turn (~4,000 tokens) | ggpaintr exists; 3-level model; decision rule. |
+| `ggpaintr_docs(topic)` | On demand                  | One focused runnable example (~650–2,650 tokens). |
+
+The primer carries an explicit rule — *"Before writing R code for an interactive plot task, call `ggpaintr_docs(topic)` to fetch the runnable example"* — and that rule plus the enum-constrained argument is what makes the LLM reliably reach for the tool instead of hallucinating an API.
+
+## The available topics
+
+This chunk runs against the pinned ggpaintr at render time, so the list below is the canonical one:
+
+```{r}
+#| eval: true
+library(ggpaintr)
+ptr_llm_topics()
+```
+
+A short guide to each:
+
+| Topic                  | When the LLM should call it |
+|------------------------|------------------------------|
+| `overview`             | First orientation — the 3-level model and decision rule. |
+| `formula_syntax`       | Which placeholder keyword goes where; pipelines; `shared = "..."`. |
+| `level1_ptr_app`       | Quick turn-key single-plot app (`ptr_app()`). |
+| `level1_ptr_options`   | Package-global settings: verbosity, layer-checkbox default. |
+| `level2_module`        | Embed the default-layout block (`ptr_ui()` / `ptr_server()`) in the user's own Shiny app. |
+| `level2_custom_ids`    | Id collisions, the `ptr_` reserved prefix, generated-id grammar. |
+| `level2_shared`        | Multiple instances + the shared-coordinator trio for cross-instance widgets. |
+| `level2_ui_text`       | Override labels, help, placeholders; multi-section cascade. |
+| `level3_custom_render` | Own `renderPlot()` / `renderPlotly()` reading `state$runtime()`. |
+| `level3_layout`        | Own the layout — bare pieces, the two combinators, the optional `ptr_ui_page()` shell. |
+| `level3_gg_extra`      | Round-trip host layers into the generated code pane. |
+| `custom_placeholder`   | Date pickers, sliders, any widget not in the five built-ins. |
+
+Topics whose example is a standalone runnable app open with a `library()` preamble; signature- or fragment-only topics (`level1_ptr_app`, `level1_ptr_options`, `overview`) do not, by design.
+
+## Inspecting what the LLM will see
+
+You can read any topic directly, without booting a chat session — useful for integration tests or checking content before release. These run at render time:
+
+```{r}
+#| eval: true
+cat(substr(ptr_llm_primer(), 1, 400), "\n...")
+```
+
+```{r}
+#| eval: true
+cat(substr(ptr_llm_topic("level1_ptr_app"), 1, 600), "\n...")
+```
+
+## Provider swap and model choice
+
+The tool definition is provider-neutral — the same registration line works with every chat constructor ellmer exports:
+
+```{r}
+#| eval: false
+# Anthropic
+chat <- chat_anthropic(system_prompt = ptr_llm_primer(),
+                       model = "claude-sonnet-4-6")
+ptr_llm_register(chat)
+
+# OpenAI
+chat <- chat_openai(system_prompt = ptr_llm_primer(),
+                    model = "gpt-4o-mini")
+ptr_llm_register(chat)
+
+# Google
+chat <- chat_google_gemini(system_prompt = ptr_llm_primer())
+ptr_llm_register(chat)
+
+# Local (ollama)
+chat <- chat_ollama(system_prompt = ptr_llm_primer(),
+                    model = "llama3.1")
+ptr_llm_register(chat)
+```
+
+The primer is small; any model that supports tool calling will work. For fast iteration on the registration itself, a small, cheap model is a reasonable default.
+
+## Manual registration — what the helper does
+
+`ptr_llm_register()` is a thin convenience wrapper. To customise the tool (different name, tighter description, extra arguments), do it by hand:
+
+```{r}
+#| eval: false
+library(ellmer)
+
+ggpaintr_docs <- tool(
+  ptr_llm_topic,
+  name        = "ggpaintr_docs",
+  description = paste(
+    "Fetch a runnable ggpaintr example for one integration topic.",
+    "Call before writing R code for interactive ggplot tasks."
+  ),
+  arguments = list(
+    name = type_enum(
+      ptr_llm_topics(),
+      "Which topic to fetch."
+    )
+  )
+)
+
+chat <- chat_anthropic(system_prompt = ptr_llm_primer())
+chat$register_tool(ggpaintr_docs)
+```
+
+The pieces: `tool(...)` is ellmer's constructor wrapping the exported R function; `type_enum(ptr_llm_topics(), ...)` constrains the LLM's topic choice to the exact names the package ships; `chat$register_tool(...)` attaches it to the session. If you use this form, refresh the enum whenever the package updates — the helper snapshots the list once at registration time.
+
+## Testing without spending tokens
+
+The ellmer `tool()` object wraps the underlying R function — call it directly for tests or sanity checks, no chat session and no API key involved. This runs at render time:
+
+```{r}
+#| eval: true
+payload <- ptr_llm_topic("level2_module")
+nchar(payload)
+```
+
+`ptr_llm_topics()` returns the canonical list; if you add a topic in a downstream repo, assert the name is present before shipping the registration.
+
+## When to re-register
+
+- **After upgrading ggpaintr** — new topics are not reachable until `ptr_llm_register()` runs again (the enum list is snapshotted).
+- **Switching chat providers** — registration is per-`Chat` object; every new session needs its own registration.
+- **Changing the tool name** — rebuild the chat from scratch; `Chat` objects do not expose a public unregister API in current ellmer.
+
+## Current behavior boundary
+
+- The primer and topic files are bundled with the package and hand-curated; regenerating them from the source documentation is not yet automated.
+- ellmer is a suggested dependency — nothing loads until you call the helper, and `ptr_llm_register()` errors with a clear message if ellmer is not installed.
+- The helper sets only the tool. The system prompt is your responsibility — pass `ptr_llm_primer()` to the `chat_*()` constructor explicitly.
