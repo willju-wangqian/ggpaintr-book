@@ -73,6 +73,7 @@ if (do_code) {
   app$click(selector = ".ptr-code-toggle")
   app$wait_for_idle(timeout = 15 * 1000)
 }
+if (file.exists(image)) unlink(image)  # re-shoot replaces the stale capture
 app$get_screenshot(file = image)
 
 # ---- write pair-hash sidecar ----------------------------------------------
