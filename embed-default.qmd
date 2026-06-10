@@ -1,9 +1,46 @@
-# Embedding with the default layout {#sec-embed-default}
+# Embedding with the Default Layout {#sec-embed-default}
 
-::: callout-note
-**Draft stub.** Scope: dropping ggpaintr into your own Shiny app with the default layout. The self-contained `ptr_ui()` / `ptr_server()` pair. Multi-instance: the `ptr_shared()` coordinator + `ptr_shared_panel()` + `ptr_shared_server()`. Optional CSS restyle.
+L2 is "I already have a Shiny app and want to drop a ggpaintr-driven block somewhere inside it, keeping ggpaintr's default layout." Every L2 function is **self-contained** — it owns its own `.ptr-app` theme scope and bundled asset dependency, so it drops straight into a host page with no scaffolding. This is the self-contained half of the naming convention; the bare pieces (`ptr_ui_page`, `ptr_ui_controls`, `ptr_ui_plot`, …) are L3 (@sec-embed-bare).
 
-Examples follow `book-conventions.md`: each app chunk carries `#| fixture: <slug>` and is mirrored by `tests/fixtures/book-apps/<slug>/app.R`.
-:::
+| L2 function | Role |
+|---|---|
+| `ptr_ui(formula, id = NULL)` / `ptr_server(formula, id = NULL)` | One self-contained default-layout block (controls + plot/code/error), namespaced by `id`. |
+| `ptr_shared(formulas, ...)` → `obj` | The shared **coordinator**: a pure object built once from the full formula set. Multi-instance only. |
+| `ptr_shared_panel(obj)` | The one standalone cross-formula shared panel (self-contained). |
+| `ptr_shared_server(obj)` | The reactive bundle threaded into each module via `shared_state =`. |
 
-<!-- TODO: write "Embedding with the default layout" -->
+There is **no** free-form controls-here / plot-there split at L2: the only default-layout block is the self-contained `ptr_ui()` / `ptr_server()` pair. Placing the controls in one region and the plot in another — or replacing a built-in pane with your own renderer — is L3, covered in @sec-embed-bare and @sec-custom-render. L2 is strictly "default layout, dropped into your app."
+
+## The pair
+
+Controls and outputs live next to each other inside the module's namespace. The `id` is not required if there is only one ggpaintr module in the app:
+
+```{r}
+#| eval: false
+#| fixture: embed-default
+formula <- "ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point()"
+
+ui <- shiny::fluidPage(
+  shiny::titlePanel("My host app"),
+  ptr_ui(formula)
+)
+server <- function(input, output, session) {
+  ptr_server(formula)
+}
+
+shiny::shinyApp(ui, server)
+```
+
+![The default-layout block dropped under a host `titlePanel`. The block brings its own theme scope and assets.](images/embed-default.png)
+
+## What `ptr_server()` gives you
+
+`ptr_server()` returns the app's **state object** — embedders that want to react to it (inject layers with `ptr_gg_extra()`, read the live plot or code via `ptr_extract_plot()` / `ptr_extract_code()`) capture the return value; otherwise the side effects are all that matter. Its `...` are forwarded, so `ui_text =`, `expr_check =`, `safe_to_remove =`, and the shared-binding arguments are all available here exactly as on `ptr_app()`. Boot-state still lives in the formula: write `ppLayerOff(geom_X(), TRUE)` to start a layer unchecked (@sec-customization).
+
+## Several linked blocks
+
+Two or more `ptr_ui()` / `ptr_server()` blocks with a control shared across them is the coordinator pattern — `ptr_shared()` + `ptr_shared_panel()` + `ptr_shared_server()`. The full contract, including the partition rule, is @sec-shared-placeholders; the layout mechanics are @sec-multi-plot.
+
+## Restyling the block
+
+`ptr_ui()` accepts the same `css =` argument as `ptr_app()` — see @sec-customization for the stable class vocabulary and injection rules.
