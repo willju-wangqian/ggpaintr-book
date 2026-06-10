@@ -1,6 +1,6 @@
 # Welcome {.unnumbered}
 
-This is the work-in-progress book for **ggpaintr**, an R package that turns ggplot-like *formula strings* into Shiny apps: placeholder tokens in the formula (`var`, `text`, `num`, `expr`, `upload`) become input widgets automatically.
+This is the book for **ggpaintr**, an R package that turns ggplot-like *formulas* into Shiny apps: placeholder keywords in the formula (`ppVar`, `ppText`, `ppNum`, `ppExpr`, `ppUpload`) become input widgets automatically.
 
 The book teaches **how to use ggpaintr** and **how to extend it**. It is purely user-facing; design ideas live in the package repository, not here.
 
@@ -23,9 +23,10 @@ Readers who know ggplot2 and Shiny basics and want to build, embed, customize, o
 ggpaintr produces **interactive Shiny apps**. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:
 
 - code is shown **verbatim and is not executed** (the book default is `eval: false`);
-- the resulting app UI is shown as a **screenshot or GIF**;
-- a small number of "hero" chapters embed a live shinylive widget you can interact with directly in the browser (see [ADR 0002](docs/adr/0002-hybrid-display.md));
-- every code example is bound by `#| fixture: <slug>` to a tested fixture under `tests/fixtures/book-apps/<slug>/app.R`, and `Rscript dev/book-gate.R` enforces that what you read is what runs (see [`dev/plans/book-workflow.md`](dev/plans/book-workflow.md) and `book-conventions.md`).
+- the resulting app UI is shown as a **screenshot** captured from the booted app;
+- every app example is bound by `#| fixture: <slug>` to a tested fixture under `tests/fixtures/book-apps/<slug>/app.R`, and `Rscript dev/book-gate.R` enforces that what you read is what runs (see [`dev/plans/book-workflow.md`](dev/plans/book-workflow.md) and `book-conventions.md`).
+
+(Live in-browser shinylive widgets were evaluated and deferred: ggpaintr has no webR distribution channel today, so an embedded widget could not run the pinned version this book documents — see ADR 0002's fallback rule and `dev/notes/2026-06-10-shinylive-spike.md`.)
 
 Output that *is* static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.
 

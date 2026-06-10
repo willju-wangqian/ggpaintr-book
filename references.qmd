@@ -1,4 +1,11 @@
+---
+nocite: |
+  @*
+---
+
 # References {.unnumbered}
+
+The packages this book's examples build on:
 
 ::: {#refs}
 :::

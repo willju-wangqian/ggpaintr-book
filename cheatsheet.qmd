@@ -1,8 +1,75 @@
 # Cheatsheet {.unnumbered #sec-cheatsheet}
 
-::: callout-note
-**Draft stub.** One-page quick reference: every placeholder token and
-every entry point (L1/L2/L3) at a glance.
-:::
+A one-page index. Each row names the chapter that teaches it — this page is a map, not a tutorial.
 
-<!-- TODO: build the cheatsheet -->
+## The five built-in placeholders (@sec-placeholders)
+
+| Keyword    | Widget                           | Role     | Folds back as       |
+|------------|----------------------------------|----------|---------------------|
+| `ppVar`    | column picker (data-aware)       | consumer | a column symbol     |
+| `ppText`   | text input                       | value    | a string            |
+| `ppNum`    | numeric input                    | value    | a number            |
+| `ppExpr`   | code box (validated, @sec-safety)| value    | a parsed expression |
+| `ppUpload` | file picker + dataset-name box   | source   | a data frame        |
+
+Seeding: one positional argument is the boot value — `ppVar("wt")`, `ppNum(3)`, `ppExpr(mpg > 15)` (@sec-getting-started). Read literally, never evaluated.
+
+## Structural keywords (@sec-formula-language)
+
+| Form | Effect |
+|------|--------|
+| `ppLayerOff(layer_expr, hide)` | `hide = TRUE` boots the layer unchecked; legal plain R too. |
+| `ppVerbSwitch(.data, verb_expr, switch_on, label)` | Toggleable pipeline stage; `switch_on = FALSE` boots it disabled. First-position-data verbs only. |
+| `keyword(shared = "<key>")` | One widget drives every occurrence of the key (@sec-shared-placeholders). |
+| `spec = list(<widget_id> = <value>)` | Per-run boot override, wins over formula-side defaults. |
+
+## Entry points by level (@sec-use-cases)
+
+| Level | Call | Chapter |
+|-------|------|---------|
+| L1 | `ptr_app(formula, envir, ui_text, css, expr_check, spec, ...)` | @sec-use-cases |
+| L2 | `ptr_ui(formula, id)` + `ptr_server(formula, id)` | @sec-embed-default, @sec-multi-plot |
+| L2 (linked plots) | `ptr_shared(formulas)` → `ptr_shared_panel(obj)` + `ptr_shared_server(obj)` → `ptr_server(..., shared_state = )` | @sec-shared-placeholders |
+| L3 (bare pieces) | `ptr_ui_page()`, `ptr_ui_header()`, `ptr_ui_controls()`, `ptr_ui_plot()`, `ptr_ui_error()`, `ptr_ui_code()`, `ptr_ui_shared_panel()`, `ptr_ui_assets()` | @sec-embed-bare |
+| L3 (combinators) | `ptr_ui_inline_error(plot, error)`, `ptr_ui_toggle_code(plotish, code)` | @sec-embed-bare |
+
+## Reading a running app's state (@sec-custom-render)
+
+| Context | Call |
+|---------|------|
+| Inside `renderX({...})` | `state$runtime()` → `$ok`, `$plot`, `$code_text`, `$error` |
+| Outside reactive contexts | `ptr_extract_plot(state)`, `ptr_extract_code(state)`, `ptr_extract_error(state)` |
+| Inject layers programmatically | `ptr_gg_extra(state, ...)` |
+
+`state` is the return value of `ptr_server()`.
+
+## Extending (@sec-custom-placeholders)
+
+| Constructor | Role |
+|-------------|------|
+| `ptr_define_placeholder_value()` | self-contained value |
+| `ptr_define_placeholder_consumer()` | needs upstream columns (`build_ui` gains `cols`, `data`) |
+| `ptr_define_placeholder_source()` | produces the data (`resolve_data` required; `shortcut = TRUE` for the name box) |
+
+Argument validators: `ptr_arg_string()`, `ptr_arg_numeric()`, `ptr_arg_symbol()`, `ptr_arg_symbol_or_string()`, `ptr_arg_expression()` — element factories take `vector = TRUE`. Plain-R meaning helpers: `embellish_identity()`, `embellish_symbol_to_string()`. Housekeeping: `ptr_clear_placeholder()`.
+
+## Customizing (@sec-customization, @sec-ui-text, @sec-theming-wrappers)
+
+| Surface | Call |
+|---------|------|
+| Copy / labels | `ptr_ui_text(list(shell = , ppUpload = , layer_checkbox = , defaults = , params = , layers = ))` |
+| Low-level copy lookup | `ptr_resolve_ui_text()` |
+| Stylesheet injection | `css =` on `ptr_app()` / `ptr_ui()` / `ptr_shared_panel()` / `ptr_ui_page()`; escape hatch `ptr_ui_assets(css)` |
+| Package options | `ptr_options()` |
+
+## Safety knobs (@sec-safety)
+
+`expr_check = TRUE` (curated denylist + AST walker, the default) / `FALSE` (never on a shared app) / `list(allow_list = )` (widen call heads, keep the floor) / `list(deny_list = )` (replaces the curated list — narrower than the default).
+
+## LLM helpers (@sec-llm)
+
+`ptr_llm_primer()` (system prompt), `ptr_llm_register(chat)` (the `ggpaintr_docs` tool), `ptr_llm_topics()` / `ptr_llm_topic(name)` (inspect the payloads).
+
+## Utilities
+
+`ptr_normalize_column_names(data)` — make local data `ppVar`-safe (@sec-use-cases). `ptr_extract_code(state)` — the script behind the code window (@sec-generated-code).
