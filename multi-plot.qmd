@@ -1,4 +1,4 @@
-# Multi-Plot Apps
+# Multi-Plot Apps {#sec-multi-plot}
 
 ::: callout-note
 **Draft stub.** Scope: several plots in your own Shiny app via ptr_ui()/ptr_server(), with widgets shared across plots.

@@ -126,16 +126,42 @@ scan_ptr_tokens <- function(qmd_files) {
 
 # ---- checks ----------------------------------------------------------------
 
+boot_fixture <- function(slug) {
+  # AppDriver$new() skips (-> errors outside testthat) unless NOT_CRAN is set.
+  Sys.setenv(NOT_CRAN = "true")
+  app <- NULL
+  on.exit(if (!is.null(app)) try(app$stop(), silent = TRUE), add = TRUE)
+  # "Failed to locate globals" warnings at AppDriver construction are benign
+  # (same construction-scoped suppression the package's e2e helper uses).
+  app <- suppressWarnings(shinytest2::AppDriver$new(
+    app_dir      = file.path(FIXTURE_DIR, slug),
+    name         = paste0("gate-", slug),
+    load_timeout = 60 * 1000,
+    timeout      = 30 * 1000,
+    view         = FALSE
+  ))
+  app$wait_for_idle(timeout = 15 * 1000)
+  TRUE
+}
+
 check_boot <- function(fixtures) {
   if (length(fixtures) == 0L) {
     return(list(pass = TRUE, msg = "0/0 fixtures booted", details = character()))
   }
-  # TODO: wire shinytest2 boot here. For now, mark failed if any fixture exists
-  # but the boot driver is not yet implemented, so we don't silently pass.
+  if (!requireNamespace("shinytest2", quietly = TRUE)) {
+    return(list(pass = FALSE,
+                msg = sprintf("0/%d fixtures booted", length(fixtures)),
+                details = "shinytest2 required to boot fixtures; install.packages('shinytest2')"))
+  }
+  fails <- character()
+  for (slug in fixtures) {
+    res <- tryCatch(boot_fixture(slug), error = function(e) conditionMessage(e))
+    if (!isTRUE(res)) fails <- c(fails, sprintf("%s: %s", slug, res))
+  }
   list(
-    pass = FALSE,
-    msg = sprintf("0/%d fixtures booted (TODO: wire shinytest2 driver)", length(fixtures)),
-    details = "dev/book-gate.R::check_boot not yet implemented; see dev/plans/book-workflow.md"
+    pass = length(fails) == 0L,
+    msg = sprintf("%d/%d fixtures booted", length(fixtures) - length(fails), length(fixtures)),
+    details = fails
   )
 }
 

@@ -1,4 +1,4 @@
-# Embedding with the default layout
+# Embedding with the default layout {#sec-embed-default}
 
 ::: callout-note
 **Draft stub.** Scope: dropping ggpaintr into your own Shiny app with the default layout. The self-contained `ptr_ui()` / `ptr_server()` pair. Multi-instance: the `ptr_shared()` coordinator + `ptr_shared_panel()` + `ptr_shared_server()`. Optional CSS restyle.

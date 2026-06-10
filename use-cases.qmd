@@ -1,4 +1,4 @@
-# Use cases
+# Use cases {#sec-use-cases}
 
 ::: callout-note
 **Draft stub.** Scope: detailed, end-to-end use cases. Absorbs (and expands) the package's `ggpaintr-use-cases` vignette once that vignette is e2e-green and drift-audit-clean. Migration is paired with the package PR that drops the vignette content from there per [`dev/plans/book-workflow.md`](dev/plans/book-workflow.md) § "Cross-repo vignette migration".

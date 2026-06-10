@@ -1,4 +1,4 @@
-# Theming and Wrappers
+# Theming and Wrappers {#sec-theming-wrappers}
 
 ::: callout-note
 **Draft stub.** Scope: writing your own theming wrapper, exposing downstream bslib arguments, and CSS assets.

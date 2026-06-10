@@ -1,4 +1,4 @@
-# UI Text and Copy
+# UI Text and Copy {#sec-ui-text}
 
 ::: callout-note
 **Draft stub.** Scope: The ptr_ui_text() override model: shell vs params, alias normalization, merge precedence.

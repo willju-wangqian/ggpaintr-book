@@ -1,4 +1,4 @@
-# Gallery
+# Gallery {#sec-gallery}
 
 ::: callout-note
 **Draft stub.** Scope: a catalogue of representative apps with the formula and a screenshot of each. Absorbs (and expands) the package's `ggpaintr-gallery` vignette once that vignette is e2e-green and drift-audit-clean.

@@ -1,4 +1,4 @@
-# Writing safe formulas
+# Writing safe formulas {#sec-safety}
 
 ::: callout-note
 **Draft stub.** Scope: user-facing safety. What the `expr` placeholder accepts, the allow-list of operations, and how to write formulas that an end user can edit without exposing your app to arbitrary R evaluation. The internal evaluator design is intentionally out of scope — this chapter is about what a *user* of ggpaintr needs to know to ship a safe app.
