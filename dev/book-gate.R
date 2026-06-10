@@ -202,7 +202,18 @@ check_symbols <- function(qmd_files) {
                 msg = sprintf("%d ptr_* refs found, ggpaintr not installed", length(tokens)),
                 details = "install ggpaintr at the pinned SHA before running the gate"))
   }
-  unknown <- setdiff(tokens, exports)
+  # Documented *runtime ids* — Shiny input/output ids the running app emits,
+  # committed surface per the package's id contract (documented in
+  # shared-placeholders.qmd § "How input ids are built") but not NAMESPACE
+  # exports. They are exercised by the boot/shoot pipeline (book-shoot.R
+  # clicks ptr_update_plot / ptr_shared_draw_all). Only ids belong here;
+  # never add a function name to paper over a Symbols failure.
+  RUNTIME_ID_ALLOWLIST <- c(
+    "ptr_plot", "ptr_error", "ptr_code", "ptr_update_plot",
+    "ptr_shared_draw_all", "ptr_shared_errors",
+    "ptr_layer_select", "ptr_layer_tabset", "ptr_layer_content_"
+  )
+  unknown <- setdiff(tokens, c(exports, RUNTIME_ID_ALLOWLIST))
   list(
     pass = length(unknown) == 0L,
     msg = sprintf("%d ptr_* refs resolve", length(tokens) - length(unknown)),

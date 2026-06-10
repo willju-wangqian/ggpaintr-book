@@ -3,13 +3,15 @@
 #
 # Usage:
 #
-#     Rscript dev/book-shoot.R <slug> [--update] [--code]
+#     Rscript dev/book-shoot.R <slug> [--update[=<input-id>]] [--code]
 #
 # --update clicks the app's "Update plot" button (input id ptr_update_plot)
 #   before capturing, so seeded fixtures show a drawn plot instead of the
-#   empty boot pane. --code additionally opens the generated-code window
-#   (selector .ptr-code-toggle). Flags affect only the image; the pair-hash
-#   sidecar always hashes the fixture's app.R.
+#   empty boot pane. Pass --update=<id> for namespaced or coordinator
+#   buttons (e.g. --update=plot_1-ptr_update_plot, --update=ptr_shared_draw_all).
+#   --code additionally opens the generated-code window (selector
+#   .ptr-code-toggle). Flags affect only the image; the pair-hash sidecar
+#   always hashes the fixture's app.R.
 #
 # - Boots tests/fixtures/book-apps/<slug>/app.R in shinytest2 against a real
 #   headless Chromium.
@@ -26,8 +28,14 @@ if (length(args) != 1L) {
   stop("usage: Rscript dev/book-shoot.R <slug> [--update] [--code]", call. = FALSE)
 }
 slug <- args[[1]]
-do_update <- "--update" %in% flags
-do_code   <- "--code" %in% flags
+upd <- flags[startsWith(flags, "--update")]
+do_update <- length(upd) > 0L
+update_id <- if (do_update && grepl("=", upd[[1]], fixed = TRUE)) {
+  sub("^--update=", "", upd[[1]])
+} else {
+  "ptr_update_plot"
+}
+do_code <- "--code" %in% flags
 
 book_root <- rprojroot::find_root(rprojroot::has_file("_quarto.yml"))
 setwd(book_root)
@@ -66,7 +74,7 @@ app <- suppressWarnings(shinytest2::AppDriver$new(
 ))
 app$wait_for_idle(timeout = 15 * 1000)
 if (do_update) {
-  app$click("ptr_update_plot")
+  app$click(update_id)
   app$wait_for_idle(timeout = 15 * 1000)
 }
 if (do_code) {
