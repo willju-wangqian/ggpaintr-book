@@ -27,11 +27,21 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Install Chromium (for shinytest2, used by the gate)
+        uses: browser-actions/setup-chrome@v1
+
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           # DESCRIPTION is a manifest-only file (see its Description field)
           extra-packages: any::sessioninfo
+
+      - name: Book gate (must pass before publish)
+        # The authoritative gate (boot / verbatim / symbols / screenshots /
+        # shinylive) against the ggpaintr pinned in DESCRIPTION's Remotes.
+        # Failing here aborts the job, so gh-pages never receives a book
+        # that contradicts its fixtures. See dev/plans/book-workflow.md.
+        run: Rscript dev/book-gate.R
 
       - name: Render and publish to gh-pages
         uses: quarto-dev/quarto-actions/publish@v2
