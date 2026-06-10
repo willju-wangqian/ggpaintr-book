@@ -1,4 +1,4 @@
-# Cheatsheet {.unnumbered}
+# Cheatsheet {.unnumbered #sec-cheatsheet}
 
 ::: callout-note
 **Draft stub.** One-page quick reference: every placeholder token and

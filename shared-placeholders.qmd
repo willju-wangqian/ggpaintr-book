@@ -1,4 +1,4 @@
-# Shared Placeholders
+# Shared Placeholders {#sec-shared-placeholders}
 
 ::: callout-note
 **Draft stub.** Scope: var(shared=), the ptr_shared() coordinator, section vs panel, and how partition governs ownership.

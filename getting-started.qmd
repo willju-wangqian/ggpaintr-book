@@ -1,11 +1,52 @@
-# Getting Started
+# Getting Started {#sec-getting-started}
 
-::: callout-note
-**Draft stub.** Scope: Your first app with ptr_app() on a literal formula, then adding a single placeholder.
+ggpaintr turns a ggplot2 call into a Shiny app. You write the plot the way you always do, drop a **placeholder keyword** wherever a reader of your app should get to choose a value, and hand the whole expression to `ptr_app()`. Each placeholder becomes an input widget; clicking **Update plot** re-runs the call with the user's choices spliced back in.
 
-Examples follow the Shiny rendering convention (`book-conventions.md`):
-code shown verbatim and not executed, the running UI shown as a
-screenshot/GIF, kept in sync with a tested package fixture.
-:::
+This chapter takes you from zero to a running app, then to an app that boots with sensible defaults. Code in this book is shown verbatim and not executed; the running UI is shown as a screenshot captured from a tested fixture (see the welcome page for how that stays honest).
 
-<!-- TODO: write "Getting Started" -->
+## Your first app
+
+The smallest useful app is one line. `ppVar` marks a spot where the user picks a column:
+
+```{r}
+#| eval: false
+#| fixture: getting-started-first-app
+ptr_app(
+  ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point()
+)
+```
+
+![The generated app at boot: a layer picker, one column dropdown per `ppVar`, and the **Update plot** button. The plot pane stays empty until the first update.](images/getting-started-first-app.png)
+
+Three things are worth noticing before you click anything:
+
+- **There is no `data =` argument to `ptr_app()`.** The bare symbol `mtcars` is resolved in your calling environment, exactly as it would be if you ran the `ggplot()` call directly. The only required argument is the formula itself.
+- **The dropdowns already know the columns.** `ppVar` is *data-aware*: it lists the columns of whatever data flows into it.
+- **Nothing renders yet.** ggpaintr re-draws only when **Update plot** is clicked. Changing a widget stages a value; the button commits it. This keeps a half-typed input from strobing the plot.
+
+Pick `wt` and `mpg`, click **Update plot**, and the scatterplot appears — along with the generated ggplot2 code behind the `</>` toggle, ready to copy back into a script (@sec-generated-code).
+
+## Seeding the widgets
+
+An app that boots with empty pickers makes the user do all the work. Give any placeholder a single positional argument and it becomes the widget's starting value:
+
+```{r}
+#| eval: false
+#| fixture: getting-started-seeded
+ptr_app(
+  ggplot(mtcars, aes(x = ppVar("wt"), y = ppVar("mpg"))) +
+    geom_point(size = ppNum(3), alpha = ppNum(0.6)) +
+    labs(title = ppText("Weight vs. mileage"))
+)
+```
+
+![The seeded app after one click of **Update plot**: `wt` and `mpg` are pre-picked, the size and alpha inputs start at 3 and 0.6, and the title is pre-filled.](images/getting-started-seeded.png)
+
+The seed is read *literally* from the formula text — it is never evaluated as user code. (`ppNum` does accept simple arithmetic like `ppNum(2 * pi)`, folded at build time against a small allowlist; see @sec-placeholders.)
+
+## Where to go next
+
+- @sec-placeholders introduces all five built-in placeholders and the three roles they play.
+- @sec-formula-language covers the formula as a language: pipelines ahead of `ggplot()`, and boot-state toggles like `ppLayerOff`.
+- @sec-generated-code explains the code panel and how empty inputs clean themselves out of the generated code.
+- @sec-gallery shows complete, realistic examples — each one paired with the plain ggplot2 plot it parameterizes.

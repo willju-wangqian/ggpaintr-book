@@ -1,4 +1,4 @@
-# Custom Placeholders
+# Custom Placeholders {#sec-custom-placeholders}
 
 ::: callout-note
 **Draft stub.** Scope: ptr_define_placeholder_value/consumer/source, the process-global registry, and the hooks.

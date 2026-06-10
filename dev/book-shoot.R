@@ -3,7 +3,13 @@
 #
 # Usage:
 #
-#     Rscript dev/book-shoot.R <slug>
+#     Rscript dev/book-shoot.R <slug> [--update] [--code]
+#
+# --update clicks the app's "Update plot" button (input id ptr_update_plot)
+#   before capturing, so seeded fixtures show a drawn plot instead of the
+#   empty boot pane. --code additionally opens the generated-code window
+#   (selector .ptr-code-toggle). Flags affect only the image; the pair-hash
+#   sidecar always hashes the fixture's app.R.
 #
 # - Boots tests/fixtures/book-apps/<slug>/app.R in shinytest2 against a real
 #   headless Chromium.
@@ -12,16 +18,16 @@
 #
 # After any edit to a fixture's app.R, re-run this script for that slug or the
 # gate's Screenshots check will FAIL.
-#
-# Skeleton: the boot/screenshot path is left as TODO until the first fixture
-# lands. The hashing path is fully implemented so the verbatim-discipline
-# scaffolding works even before shinytest2 wiring is complete.
 
 args <- commandArgs(trailingOnly = TRUE)
+flags <- args[startsWith(args, "--")]
+args  <- setdiff(args, flags)
 if (length(args) != 1L) {
-  stop("usage: Rscript dev/book-shoot.R <slug>", call. = FALSE)
+  stop("usage: Rscript dev/book-shoot.R <slug> [--update] [--code]", call. = FALSE)
 }
 slug <- args[[1]]
+do_update <- "--update" %in% flags
+do_code   <- "--code" %in% flags
 
 book_root <- rprojroot::find_root(rprojroot::has_file("_quarto.yml"))
 setwd(book_root)
@@ -40,25 +46,34 @@ if (!requireNamespace("shinytest2", quietly = TRUE)) {
   stop("shinytest2 required; install.packages('shinytest2')", call. = FALSE)
 }
 
-# TODO: real shinytest2 capture. Pseudocode:
-#
-#   app <- shinytest2::AppDriver$new(
-#     app_dir = dirname(fixture),
-#     name    = slug,
-#     load_timeout = 30 * 1000
-#   )
-#   on.exit(app$stop(), add = TRUE)
-#   Sys.sleep(0.5)                                     # let initial render settle
-#   app$get_screenshot(file = image)
-#
-# Until that lands, we touch a placeholder so the sidecar / pair-hash flow
-# remains exercisable.
-
 if (!dir.exists("images")) dir.create("images")
-if (!file.exists(image)) {
-  message(sprintf("[book-shoot] TODO: real shinytest2 capture; writing placeholder PNG at %s", image))
-  png::writePNG(matrix(1, nrow = 1, ncol = 1), target = image)
+
+# AppDriver$new() skips (-> errors outside testthat) unless NOT_CRAN is set.
+Sys.setenv(NOT_CRAN = "true")
+
+app <- NULL
+on.exit(if (!is.null(app)) try(app$stop(), silent = TRUE), add = TRUE)
+# "Failed to locate globals" warnings at AppDriver construction are benign
+# (same construction-scoped suppression the package's e2e helper uses).
+app <- suppressWarnings(shinytest2::AppDriver$new(
+  app_dir      = dirname(fixture),
+  name         = slug,
+  load_timeout = 60 * 1000,
+  timeout      = 30 * 1000,
+  width        = 1200,
+  height       = 900,
+  view         = FALSE
+))
+app$wait_for_idle(timeout = 15 * 1000)
+if (do_update) {
+  app$click("ptr_update_plot")
+  app$wait_for_idle(timeout = 15 * 1000)
 }
+if (do_code) {
+  app$click(selector = ".ptr-code-toggle")
+  app$wait_for_idle(timeout = 15 * 1000)
+}
+app$get_screenshot(file = image)
 
 # ---- write pair-hash sidecar ----------------------------------------------
 

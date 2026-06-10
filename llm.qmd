@@ -1,4 +1,4 @@
-# LLM integration
+# LLM integration {#sec-llm}
 
 ::: callout-note
 **Draft stub.** Scope: ggpaintr's LLM-assisted features for editing formulas. Absorbs the package's `ggpaintr-llm` vignette once that vignette is e2e-green and drift-audit-clean. Covers the user-facing API only — provider configuration, prompt shape, fallback behavior — not the internals of how the assistant is wired.
