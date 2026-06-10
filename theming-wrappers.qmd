@@ -1,7 +1,7 @@
 # Theming and Wrappers
 
 ::: callout-note
-**Draft stub.** Scope: ptr_app_bslib(), exposing downstream bslib arguments, and CSS assets.
+**Draft stub.** Scope: writing your own theming wrapper, exposing downstream bslib arguments, and CSS assets.
 
 Examples follow the Shiny rendering convention (`book-conventions.md`):
 code shown verbatim and not executed, the running UI shown as a

@@ -4,7 +4,7 @@ This file is the harness contract for Claude (and other agents) working in this 
 
 ## What this repo is
 
-A Quarto book that documents ggpaintr from the user's perspective: how to use it, how to extend it, no design ideas. Structured after the ggplot2 book; ships to GitHub Pages. **Separate** from the ggpaintr package (`../ggpaintr-post-add-expr/` on this machine); depends on it via `DESCRIPTION` Remotes pinned to a SHA or tag.
+A Quarto book that documents ggpaintr from the user's perspective: how to use it, how to extend it, no design ideas. Structured after the ggplot2 book; ships to GitHub Pages. **Separate** from the ggpaintr package (`../ggpaintr/` on this machine); depends on it via `DESCRIPTION` Remotes pinned to a SHA or tag.
 
 ## Authoritative gate
 
@@ -36,7 +36,7 @@ When you change anything that touches a fixture, a chunk, prose mentioning a `pt
 - Book owns its own fixtures at `tests/fixtures/book-apps/<slug>/app.R`. See [ADR 0001](docs/adr/0001-book-owns-fixtures.md).
 - Each `app.R` carries a `>>>` / `<<<` marker block (convention stolen from the package's `helper-vignette-apps.R`). The chunk body in the matching `.qmd` chunk tagged `#| fixture: <slug>` must be byte-identical to the marker block.
 - Screenshots live at `images/<slug>.png` with a sidecar `images/<slug>.png.sha` containing the SHA-256 of the fixture's `app.R`. To regenerate after editing a fixture: `Rscript dev/book-shoot.R <slug>`.
-- The book repo never edits files in `../ggpaintr-post-add-expr/`. Cross-repo work happens as paired PRs (see [`dev/plans/book-workflow.md`](dev/plans/book-workflow.md) § "Cross-repo vignette migration").
+- The book repo never edits files in `../ggpaintr/`. Cross-repo work happens as paired PRs (see [`dev/plans/book-workflow.md`](dev/plans/book-workflow.md) § "Cross-repo vignette migration").
 
 ## Pin policy
 

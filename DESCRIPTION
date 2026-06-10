@@ -22,6 +22,16 @@ Imports:
     yaml,
     stringr,
     shinytest2,
-    png
+    png,
+    broom,
+    tidyr,
+    purrr,
+    palmerpenguins,
+    ggpcp,
+    GGally,
+    ggridges,
+    ggrepel,
+    ggalluvial,
+    ggdist
 Remotes:
-    willju-wangqian/ggpaintr@beec43259ef3df7490e08944bb4a79cd8655b0c5
+    willju-wangqian/ggpaintr@76a4126294f6d8ddf762d2d073973b80fff3008b

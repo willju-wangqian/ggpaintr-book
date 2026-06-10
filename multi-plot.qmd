@@ -1,7 +1,7 @@
 # Multi-Plot Apps
 
 ::: callout-note
-**Draft stub.** Scope: ptr_app_grid(): several formulas with widgets shared across plots.
+**Draft stub.** Scope: several plots in your own Shiny app via ptr_ui()/ptr_server(), with widgets shared across plots.
 
 Examples follow the Shiny rendering convention (`book-conventions.md`):
 code shown verbatim and not executed, the running UI shown as a
