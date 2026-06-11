@@ -60,7 +60,7 @@ The name to register and to write in formulas. Required.
 
 The framework does not call `build_ui(node)` bare. It calls it through an injector that *also* passes `label` (the resolved copy from `ui_text_defaults`, possibly overridden by the app's `ui_text`), `selected` (the persisted value, injected **only if your function can receive it**), and `named_args` (the validated named arguments from the formula call). Hence the canonical signature `function(node, label = NULL, selected = NULL, named_args = list(), ...)`:
 
-- You **opt in** to an injected argument by naming it — or by having `...`. If you neither name `selected` nor accept `...`, it is never injected. Naming the ones you use and keeping `...` to swallow the rest is the safe, forward-compatible shape.
+- `selected` and `named_args` are **opt-in**: each is injected only if you name it — or have `...`. If you neither name `selected` nor accept `...`, it is never injected. `label`, by contrast, is *always* passed, so your signature must be able to receive it (name it, or keep `...`). Naming the ones you use and keeping `...` to swallow the rest is the safe, forward-compatible shape.
 - Seed the widget from `selected` — and *only* `selected`. The framework owns the precedence: on the first render it routes the formula's positional default (`ppPercent(40)`) into `selected`; on every later render `selected` is the live input, verbatim. Never read `node$default` yourself and never hardcode a fallback for the empty case — both bypass the seeding layer and snap a user-cleared widget back to the default on the next re-render. When `selected` is empty (`NULL`, `character(0)`, `""`, `NA`), render the widget empty; boot defaults belong in the formula.
 - Use `node$id` — and *only* `node$id` — as the widget id. Do not namespace it yourself; the framework already did.
 
@@ -99,4 +99,4 @@ A named list of copy defaults over `label`, `help`, `placeholder`, and `empty_te
 
 ## Unregistering
 
-`ptr_clear_placeholder("ppPercent")` removes one user-registered keyword; `ptr_clear_placeholder()` removes them all. Seven keywords are protected (clearing one errors): the five built-in placeholders plus the structural `ppLayerOff` / `ppVerbSwitch`. Re-registering an existing keyword overwrites the previous entry with a notice — no need to clear first.
+`ptr_clear_placeholder("ppPercent")` removes one user-registered keyword; `ptr_clear_placeholder()` removes them all. Seven keywords are protected (clearing one errors): the five built-in placeholders plus the structural `ppLayerOff` / `ppVerbSwitch`. Re-registering an existing keyword overwrites the previous entry with a warning — no need to clear first.

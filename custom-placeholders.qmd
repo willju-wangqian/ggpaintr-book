@@ -13,7 +13,7 @@ This chapter builds a working value placeholder out of the three required pieces
 
 ## The need: a widget the built-ins don't have
 
-Suppose your app's viewer should pick a color palette. `ppText` would hand them a free-text box — and `"set1"`, `"Set 1"`, and `"Blues "` all silently break the plot. What you want is a dropdown with exactly four valid choices. No built-in renders that; in about fifteen lines you can:
+Suppose your app's viewer should pick a color palette. `ppText` would hand them a free-text box — and `"set1"`, `"Set 1"`, and `"Blues "` all silently break the plot. What you want is a dropdown with exactly four valid choices. No built-in renders that; in about twenty lines you can:
 
 ```{r}
 #| eval: false
@@ -48,9 +48,9 @@ ptr_app(
 
 **`keyword`** is the name to register and to write in formulas. Required.
 
-**`build_ui`** returns the Shiny control. Its first argument is `node` (required), and `node$id` is the input id you must give your widget — use it, and *only* it, without namespacing it yourself; the framework already did. The other arguments are *injected*: the framework fills `label` (the widget's resolved copy) and `selected` (the value to show — the formula's seed on first render, the user's live input afterwards) when your function names them. Name the ones you use and keep `...` to swallow the rest — that is the safe, forward-compatible shape. Seed the widget from `selected` and only `selected`; when it is empty, render the widget empty rather than inventing a fallback, because a hardcoded fallback snaps a user-cleared widget back to the default on the next re-render. (Boot defaults belong in the formula — @sec-hook-contract shows how a placeholder opts into `ppPalette("Dark2")`-style seeding.)
+**`build_ui`** returns the Shiny control. Its first argument is `node` (required), and `node$id` is the input id you must give your widget — use it, and *only* it, without namespacing it yourself; the framework already did. The other arguments come from the framework: `label` (the widget's resolved copy) is *always* passed, and `selected` (the value to show — the formula's seed on first render, the user's live input afterwards) is injected only when your function can receive it. Name the arguments you use and keep `...` to swallow the rest — that is the safe, forward-compatible shape, and it guarantees the always-passed `label` has somewhere to land. Seed the widget from `selected` and only `selected`; when it is empty, render the widget empty rather than inventing a fallback, because a hardcoded fallback snaps a user-cleared widget back to the default on the next re-render. (Boot defaults belong in the formula — @sec-hook-contract shows how a placeholder opts into `ppPalette("Dark2")`-style seeding.)
 
-**`resolve_expr`** is the way back: `function(value, node, ...)` receives the widget's current value and returns what gets spliced into the plot call. Returning the string `"Set2"` is exactly right here, because `scale_color_brewer(palette = ...)` wants a string. Return `NULL` to contribute nothing — the framework then drops the argument cleanly from the generated code (@sec-generated-code).
+**`resolve_expr`** is the way back: `function(value, node, ...)` receives the widget's current value and returns what gets spliced into the plot call. Returning the string `"Set2"` is exactly right here, because `scale_color_brewer(palette = ...)` takes the palette name as a string. Return `NULL` to contribute nothing — the framework then drops the argument cleanly from the generated code (@sec-generated-code).
 
 That round trip — widget value in, code fragment out — is the entire mental model. Everything else in the constructor's surface is refinement: rejecting bad input before it reaches the plot, accepting seeds and extra arguments from the formula, controlling what the keyword means as plain R, and theming the copy. All of it is @sec-hook-contract.
 
