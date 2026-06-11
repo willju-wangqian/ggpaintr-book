@@ -545,6 +545,6 @@ ptr_app(
 
 - The three-level ladder (all-in-one app → embed → own the layout): @sec-intro, @sec-embed-default, @sec-embed-bare.
 - The shared-placeholder pattern (one widget driving several plots, or several spots in one formula): @sec-shared-placeholders.
-- The custom-placeholder constructors used throughout this gallery, with the full hook contract: @sec-custom-placeholders.
+- The custom-placeholder constructors used throughout this gallery, with the full hook contract: @sec-hook-contract.
 - Driving plotly / ggiraph from a ggpaintr app — the interactive versions of § "Interactive output packages": @sec-custom-render.
 - The safety model behind `ppExpr` and `ppUpload`: @sec-safety.
