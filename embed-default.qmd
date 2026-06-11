@@ -1,5 +1,11 @@
 # Embedding with the Default Layout {#sec-embed-default}
 
+::: {.callout-note}
+## This part assumes Shiny basics
+
+From this chapter on, you write the surrounding Shiny app yourself — `fluidPage()`, a server function, `shinyApp()`. Nothing before this part needed Shiny; if the all-in-one `ptr_app()` covers your use, the earlier parts are all you need.
+:::
+
 L2 is "I already have a Shiny app and want to drop a ggpaintr-driven block somewhere inside it, keeping ggpaintr's default layout." Every L2 function is **self-contained** — it owns its own `.ptr-app` theme scope and bundled asset dependency, so it drops straight into a host page with no scaffolding. This is the self-contained half of the naming convention; the bare pieces (`ptr_ui_page`, `ptr_ui_controls`, `ptr_ui_plot`, …) are L3 (@sec-embed-bare).
 
 | L2 function | Role |

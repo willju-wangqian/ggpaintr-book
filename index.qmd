@@ -2,7 +2,7 @@
 
 This is the book for **ggpaintr**, an R package that turns ggplot-like *formulas* into Shiny apps: placeholder keywords in the formula (`ppVar`, `ppText`, `ppNum`, `ppExpr`, `ppUpload`) become input widgets automatically.
 
-The book teaches **how to use ggpaintr** and **how to extend it**. It is purely user-facing; design ideas live in the package repository, not here.
+The book teaches **how to use ggpaintr** and **how to extend it**. It is purely user-facing; design ideas live in the package repository, not here. New to the package? Start with @sec-intro — it shows the plot-to-app round trip in one page and maps the rest of the book.
 
 ## Version this book documents
 
@@ -16,7 +16,7 @@ When the package cuts a tagged release covering the API in this book, the pin wi
 
 ## Who this is for
 
-Readers who know ggplot2 and Shiny basics and want to build, embed, customize, or extend ggpaintr-driven plotting apps.
+Readers who know ggplot2 and want to build, embed, customize, or extend ggpaintr-driven plotting apps. **No Shiny knowledge is assumed**: the first half of the book never touches it, and the part that embeds ggpaintr inside your own Shiny app (@sec-embed-default) says so when that changes.
 
 ## How the examples work {#sec-examples}
 

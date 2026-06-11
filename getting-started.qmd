@@ -93,4 +93,5 @@ Uploaded data is normalized automatically; the manual call is only for data alre
 - @sec-placeholders introduces all five built-in placeholders and the three roles they play.
 - @sec-formula-language covers the formula as a language: pipelines ahead of `ggplot()`, and boot-state toggles like `ppLayerOff`.
 - @sec-generated-code explains the code panel and how empty inputs clean themselves out of the generated code.
-- @sec-gallery shows complete, realistic examples — each one paired with the plain ggplot2 plot it parameterizes.
+- @sec-custom-placeholders shows how to register widget types of your own — most real apps end up wanting at least one.
+- @sec-gallery (the book's final part) is a collection of complete, realistic examples — each one paired with the plain ggplot2 plot it parameterizes.
