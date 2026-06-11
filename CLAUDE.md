@@ -52,11 +52,11 @@ When you change anything that touches a fixture, a chunk, prose mentioning a `pt
 ## Display modes
 
 - Default: verbatim code chunk + screenshot/GIF (`book-conventions.md` § "The Shiny rendering problem").
-- Shinylive heroes are deferred (NO-GO, see `dev/notes/2026-06-10-shinylive-spike.md`): ggpaintr has no wasm distribution channel, so no chapter sets `shinylive: true` and the gate truthfully reports `Shinylive: 0/0`. The would-be heroes (`getting-started.qmd`, `formula-language.qmd`) are authored screenshot-only under [ADR 0002](docs/adr/0002-hybrid-display.md)'s fallback rule; revisit only if ggpaintr ships wasm builds (CRAN or r-universe).
+- Shinylive heroes are deferred (NO-GO, see `dev/notes/2026-06-10-shinylive-spike.md`): ggpaintr has no wasm distribution channel, so no chapter sets `shinylive: true` and the gate truthfully reports `Shinylive: 0/0`. The would-be heroes (`introduction.qmd`, `getting-started.qmd`, `formula-language.qmd`) are authored screenshot-only under [ADR 0002](docs/adr/0002-hybrid-display.md)'s fallback rule; revisit only if ggpaintr ships wasm builds (CRAN or r-universe).
 
 ## Out of scope
 
-- Internals / design ideas. The book is purely user-facing. The "Internals" part previously in `_quarto.yml` is deleted; safety content moved to the user-facing "Advanced topics" part. If you find yourself writing about *how* ggpaintr does something internally, the chapter does not belong in this book — it belongs in the package's `dev/` notes.
+- Internals / design ideas. The book is purely user-facing. The "Internals" part previously in `_quarto.yml` is deleted; safety content lives in the user-facing "Sharing & advanced" part (named "Advanced topics" before ADR 0003). If you find yourself writing about *how* ggpaintr does something internally, the chapter does not belong in this book — it belongs in the package's `dev/` notes.
 - Behavioral regression testing of ggpaintr. That lives in the package's own e2e suite. The book gate only verifies boot, prose-fixture correspondence, and symbol existence.
 
 ## Pointer documents

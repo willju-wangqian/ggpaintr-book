@@ -3,8 +3,11 @@
 #
 # Usage:
 #
-#     Rscript dev/book-shoot.R <slug> [--update[=<input-id>]] [--code]
+#     Rscript dev/book-shoot.R <slug> [--set=<input-id>=<value>]... [--update[=<input-id>]] [--code]
 #
+# --set sets a Shiny input before capturing (repeatable), e.g.
+#   --set=ptr_layer_select=scale_color_brewer to switch the layer panel so a
+#   non-default layer's widgets are visible in the shot.
 # --update clicks the app's "Update plot" button (input id ptr_update_plot)
 #   before capturing, so seeded fixtures show a drawn plot instead of the
 #   empty boot pane. Pass --update=<id> for namespaced or coordinator
@@ -36,6 +39,7 @@ update_id <- if (do_update && grepl("=", upd[[1]], fixed = TRUE)) {
   "ptr_update_plot"
 }
 do_code <- "--code" %in% flags
+sets <- sub("^--set=", "", flags[startsWith(flags, "--set=")])
 
 book_root <- rprojroot::find_root(rprojroot::has_file("_quarto.yml"))
 setwd(book_root)
@@ -73,6 +77,14 @@ app <- suppressWarnings(shinytest2::AppDriver$new(
   view         = FALSE
 ))
 app$wait_for_idle(timeout = 15 * 1000)
+for (s in sets) {
+  eq <- regexpr("=", s, fixed = TRUE)
+  if (eq < 0) stop(sprintf("--set needs <input-id>=<value>, got: %s", s), call. = FALSE)
+  do.call(app$set_inputs, stats::setNames(
+    list(substring(s, eq + 1L)), substring(s, 1L, eq - 1L)
+  ))
+  app$wait_for_idle(timeout = 15 * 1000)
+}
 if (do_update) {
   app$click(update_id)
   app$wait_for_idle(timeout = 15 * 1000)

@@ -2,6 +2,20 @@
 
 The **formula** is the single source of truth for a ggpaintr app: what gets plotted, which decisions the user gets to make, and — as this chapter shows — which layers and pipeline stages are part of the chart on first paint. `ptr_app()` accepts the formula in two equivalent forms: as bare code (`ptr_app(ggplot(...) + ...)`) or as a string (`ptr_app("ggplot(...) + ...")`). The string form is convenient when the formula is built up programmatically or stored in a file; everything in this chapter works in both. One display caveat: in bare-expression mode R's parser desugars `|>` before the formula is captured, so the generated-code panel shows the nested-call form rather than the pipe you wrote. Stay in string mode (or use `%>%`) if you need `|>` preserved — and since this chapter leans on pipelines, its examples use string mode throughout.
 
+## Two equivalent forms
+
+The string form of the formula works exactly like the bare-code form you saw in @sec-getting-started:
+
+```{r}
+#| eval: false
+#| fixture: use-cases-app-basic
+ptr_app(
+"ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point() + labs(title = ppText)"
+)
+```
+
+![The app built from a string formula: three column pickers and a title input, plus the standard chrome.](images/use-cases-app-basic.png)
+
 ## The tour formula
 
 One string exercising four of the five built-in placeholders:

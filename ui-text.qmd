@@ -59,4 +59,4 @@ ptr_app(
 
 ## Where custom placeholders fit
 
-A custom placeholder's registration-time `ui_text_defaults` (@sec-custom-placeholders) populates its entry in the `defaults` section, so app authors can re-copy *your* widget through the same `ui_text =` machinery without touching your code — the `{param}` interpolation included.
+A custom placeholder's registration-time `ui_text_defaults` (@sec-hook-contract) populates its entry in the `defaults` section, so app authors can re-copy *your* widget through the same `ui_text =` machinery without touching your code — the `{param}` interpolation included.

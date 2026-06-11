@@ -111,4 +111,4 @@ The pipeline validates *shape* (parseable as a recognised tabular format) and *n
 - **Schema.** Nothing requires an upload to carry `Sepal.Length` just because the formula names it. A missing referenced column is a runtime error, not a parse-time rejection.
 - **Size / rate limits.** Shiny's `shiny.maxRequestSize` caps body size (host configuration). Per-user rate limits, file-count caps, and anti-abuse policy are the host's concern.
 
-If you need any of these, layer them above ggpaintr — a custom source placeholder that wraps an upload and enforces a schema (@sec-custom-placeholders) — or below it, at the deployment tier.
+If you need any of these, layer them above ggpaintr — a custom source placeholder that wraps an upload and enforces a schema (@sec-custom-consumer-source) — or below it, at the deployment tier.

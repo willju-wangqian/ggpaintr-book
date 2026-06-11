@@ -1,0 +1,69 @@
+# Introduction {#sec-intro}
+
+You know how to make this plot. What you usually cannot do — without writing a Shiny app by hand — is hand it to someone else and let *them* pick the columns, tweak the smoothing, or retitle it. ggpaintr closes that gap: take the ggplot2 call you already have, mark each choice you want to hand over, and you get a working Shiny app in return. No UI code, no server function, no reactive plumbing.
+
+## From plot to app in one step
+
+Here is an ordinary ggplot2 plot:
+
+```{r}
+#| eval: true
+#| message: false
+library(ggplot2)
+
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "loess", se = FALSE) +
+  labs(title = "Bigger engines, thirstier cars")
+```
+
+Now replace each value a viewer should control with a **placeholder keyword** — `ppVar` for a column, `ppNum` for a number, `ppText` for text — and pass the whole expression to `ptr_app()`:
+
+```{r}
+#| eval: false
+#| fixture: intro-hero
+ptr_app(
+  ggplot(mpg, aes(x = ppVar("displ"), y = ppVar("hwy"), color = ppVar("class"))) +
+    geom_point(alpha = ppNum(0.6)) +
+    geom_smooth(method = ppText("loess"), se = FALSE) +
+    labs(title = ppText("Bigger engines, thirstier cars"))
+)
+```
+
+![The same plot, now an app: every `ppVar` became a column dropdown seeded with your starting choice, and the plot redraws when **Update plot** is clicked. The alpha, smoothing-method, and title widgets live under their own entries in the **Layer** dropdown.](images/intro-hero.png)
+
+Each placeholder became an input widget, the dropdowns already know the columns of `mpg`, and the app can show its viewer the generated ggplot2 code for whatever they built — ready to paste back into a script. That round trip (plot → app → code) is the heart of the package.
+
+You need to know ggplot2 to read this book. You do **not** need to know Shiny — the first half of the book never touches it. The chapters on embedding ggpaintr inside your own Shiny app (@sec-embed-default onward) say so when Shiny knowledge starts to matter.
+
+## Three levels of control
+
+ggpaintr exposes three levels, and choosing the right one up front saves rework. This book's parts follow what you want to do; the levels are the vocabulary used along the way.
+
+| Level | Entry points | Use when | Where in this book |
+|-------|--------------|----------|--------------------|
+| L1 | `ptr_app()` | The built-in chrome — title bar, layer picker, plot pane, code window — is enough. | @sec-getting-started |
+| L2 | `ptr_ui()` / `ptr_server()` | You own the surrounding Shiny app and want ggpaintr plots inside it. | @sec-embed-default |
+| L3 | bare UI pieces (`ptr_ui_page`, `ptr_ui_controls`, …) | You own the page layout, the renderer, or both. | @sec-embed-bare, @sec-custom-render |
+
+L1 is the dominant use case: hand ggpaintr a formula, get back a running Shiny app.
+
+## Make your own placeholders
+
+The built-in placeholders cover columns, numbers, text, expressions, and uploads — but the widget vocabulary is not fixed. Defining your own placeholder takes a keyword, a widget, and a rule for turning the widget's value back into code. The gallery's friendlier alpha control, `ppPercent`, is one in about twenty lines:
+
+![A custom `ppPercent` placeholder rendering as a 0–100 slider; the generated code reads `alpha = 0.4`.](images/gallery-percent.png)
+
+This is where ggpaintr stops being a fixed app generator and becomes a toolkit; @sec-custom-placeholders teaches it early because most real apps want at least one widget the built-ins don't provide.
+
+## When not to use ggpaintr
+
+An honest scoping note, so you can put the book down early if it is not for you:
+
+- **A static plot for a paper or report.** If nobody else needs to change it, plain ggplot2 is the right tool — an app adds nothing.
+- **A full product UI.** ggpaintr generates *plot-controlling* widgets from a formula. If most of your interface is not about the plot — forms, tables, navigation, business logic — write the Shiny app yourself and embed ggpaintr only for the plot parts (@sec-embed-default).
+- **Untrusted public deployment without reading the safety chapter.** Some placeholders accept expressions; @sec-safety covers what is evaluated, what is not, and how to lock an app down before exposing it to strangers.
+
+## How this book is organized
+
+Part I gets you from zero to a running app. Part II covers the formula language and the built-in placeholders. Part III teaches custom placeholders. Part IV embeds ggpaintr in your own Shiny app — Shiny knowledge starts there. Part V restyles the result, Part VI covers safe sharing and the LLM integration, and the final part is a gallery of complete examples to raid (@sec-gallery). The cheatsheet appendix condenses the whole API onto one page.

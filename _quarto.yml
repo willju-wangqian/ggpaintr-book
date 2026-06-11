@@ -14,35 +14,39 @@ book:
     style: docked
   chapters:
     - index.qmd
-    - part: "Foundations"
+    - introduction.qmd
+    - part: "Your first app"
       chapters:
         - getting-started.qmd
-        - formula-language.qmd
+    - part: "Writing formulas"
+      chapters:
         - placeholders.qmd
+        - formula-language.qmd
         - generated-code.qmd
-    - part: "Use cases & gallery"
-      chapters:
-        - use-cases.qmd
-        - gallery.qmd
-        - customization.qmd
-    - part: "Composition"
-      chapters:
-        - shared-placeholders.qmd
-        - multi-plot.qmd
-    - part: "Embedding"
-      chapters:
-        - embed-default.qmd
-        - embed-bare.qmd
-        - custom-render.qmd
-    - part: "Extension"
+    - part: "Custom placeholders"
       chapters:
         - custom-placeholders.qmd
+        - custom-consumer-source.qmd
+        - hook-contract.qmd
+    - part: "ggpaintr in your own Shiny app"
+      chapters:
+        - embed-default.qmd
+        - multi-plot.qmd
+        - shared-placeholders.qmd
+        - embed-bare.qmd
+        - custom-render.qmd
+    - part: "Making it yours"
+      chapters:
+        - customization.qmd
         - theming-wrappers.qmd
         - ui-text.qmd
-    - part: "Advanced topics"
+    - part: "Sharing & advanced"
       chapters:
-        - llm.qmd
         - safety.qmd
+        - llm.qmd
+    - part: "Gallery"
+      chapters:
+        - gallery.qmd
     - references.qmd
   appendices:
     - cheatsheet.qmd
