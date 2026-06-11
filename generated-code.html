@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; The Generated Code and Plot – ggpaintr</title>
+<title>5&nbsp; The Generated Code and Plot – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./use-cases.html" rel="next">
-<link href="./placeholders.html" rel="prev">
+<link href="./custom-placeholders.html" rel="next">
+<link href="./formula-language.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ba3fd630396237bc8a00ec20351520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./generated-code.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./placeholders.html">Writing formulas</a></li><li class="breadcrumb-item"><a href="./generated-code.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,10 +154,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Your first app</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -166,15 +172,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./formula-language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></a>
-  </div>
-</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Writing formulas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
@@ -183,37 +194,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./formula-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./generated-code.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Use cases &amp; gallery</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./gallery.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Gallery</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./customization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Composition</span></a>
+ <span class="menu-text">Custom placeholders</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,14 +217,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./shared-placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></span></a>
+  <a href="./custom-placeholders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Your First Custom Placeholder</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./multi-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></span></a>
+  <a href="./custom-consumer-source.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hook-contract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Hook Contract</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Embedding</span></a>
+ <span class="menu-text">ggpaintr in your own Shiny app</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,19 +247,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multi-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./shared-placeholders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Extension</span></a>
+ <span class="menu-text">Making it yours</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,20 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Placeholders</span></span></a>
+  <a href="./customization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Customization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./theming-wrappers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Theming and Wrappers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Theming and Wrappers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ui-text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">UI Text and Copy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">UI Text and Copy</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced topics</span></a>
+ <span class="menu-text">Sharing &amp; advanced</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -310,14 +316,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
+  <a href="./safety.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
+  <a href="./llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Gallery</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gallery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Gallery</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,13 +353,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
@@ -355,18 +378,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#empty-inputs-clean-themselves-out" id="toc-empty-inputs-clean-themselves-out" class="nav-link active" data-scroll-target="#empty-inputs-clean-themselves-out"><span class="header-section-number">4.1</span> Empty inputs clean themselves out</a></li>
-  <li><a href="#column-names-the-generated-code-can-actually-use" id="toc-column-names-the-generated-code-can-actually-use" class="nav-link" data-scroll-target="#column-names-the-generated-code-can-actually-use"><span class="header-section-number">4.2</span> Column names the generated code can actually use</a></li>
-  <li><a href="#reading-the-plot-and-code-programmatically" id="toc-reading-the-plot-and-code-programmatically" class="nav-link" data-scroll-target="#reading-the-plot-and-code-programmatically"><span class="header-section-number">4.3</span> Reading the plot and code programmatically</a></li>
+  <li><a href="#empty-inputs-clean-themselves-out" id="toc-empty-inputs-clean-themselves-out" class="nav-link active" data-scroll-target="#empty-inputs-clean-themselves-out"><span class="header-section-number">5.1</span> Empty inputs clean themselves out</a></li>
+  <li><a href="#column-names-the-generated-code-can-actually-use" id="toc-column-names-the-generated-code-can-actually-use" class="nav-link" data-scroll-target="#column-names-the-generated-code-can-actually-use"><span class="header-section-number">5.2</span> Column names the generated code can actually use</a></li>
+  <li><a href="#reading-the-plot-and-code-programmatically" id="toc-reading-the-plot-and-code-programmatically" class="nav-link" data-scroll-target="#reading-the-plot-and-code-programmatically"><span class="header-section-number">5.3</span> Reading the plot and code programmatically</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/generated-code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./generated-code.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./placeholders.html">Writing formulas</a></li><li class="breadcrumb-item"><a href="./generated-code.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-generated-code" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></h1>
+<h1 class="title"><span id="sec-generated-code" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></h1>
 </div>
 
 
@@ -383,10 +406,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Every ggpaintr app can show its work. The <code>&lt;/&gt;</code> toggle in the plot pane opens the <strong>generated-code window</strong>: the exact ggplot2 (and dplyr) code that produced the current plot, with every placeholder replaced by the user’s committed input. Two views are offered — <strong>Final code</strong>, the runnable script you can copy straight back into R, and <strong>Spec</strong>, the restore values that reproduce the current widget state via <code>ptr_app(..., spec = )</code> (<a href="formula-language.html" class="quarto-xref"><span>Chapter 2</span></a>). A <strong>Copy</strong> button does what it says.</p>
+<p>Every ggpaintr app can show its work. The <code>&lt;/&gt;</code> toggle in the plot pane opens the <strong>generated-code window</strong>: the exact ggplot2 (and dplyr) code that produced the current plot, with every placeholder replaced by the user’s committed input. Two views are offered — <strong>Final code</strong>, the runnable script you can copy straight back into R, and <strong>Spec</strong>, the restore values that reproduce the current widget state via <code>ptr_app(..., spec = )</code> (<a href="formula-language.html" class="quarto-xref"><span>Chapter 4</span></a>). A <strong>Copy</strong> button does what it says.</p>
 <p>This round trip is the point of ggpaintr for teaching: a student explores with widgets, then walks away with the code that does the same thing without the app.</p>
-<section id="empty-inputs-clean-themselves-out" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="empty-inputs-clean-themselves-out"><span class="header-section-number">4.1</span> Empty inputs clean themselves out</h2>
+<section id="empty-inputs-clean-themselves-out" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="empty-inputs-clean-themselves-out"><span class="header-section-number">5.1</span> Empty inputs clean themselves out</h2>
 <p>A placeholder that resolves to “missing” — an empty <code>ppVar</code> pick, a blank <code>ppText</code>, a cleared <code>ppNum</code> — drops its argument from the generated code. When that leaves an empty call whose name is in ggpaintr’s curated cleanup list, the whole call disappears too:</p>
 <div class="cell" data-fixture="generated-code-cleanup">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"</span></span>
@@ -404,8 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The cleanup list spans ggplot2, dplyr, and the rest of the core tidyverse (tidyr, tibble, purrr, stringr, forcats, lubridate, and more). On the ggplot2 side that includes <code>theme()</code>, <code>labs()</code>, <code>xlab</code> / <code>ylab</code> / <code>ggtitle</code>, <code>facet_wrap</code> / <code>facet_grid</code> / <code>facet_null</code>, <code>xlim</code> / <code>ylim</code> / <code>lims</code>, <code>expand_limits</code>, <code>guides</code>, <code>annotate</code>, and the empty mapping helper <code>aes()</code>; an empty <code>filter()</code>, <code>mutate()</code>, or <code>select()</code> vanishes the same way. Third-party helpers (e.g.&nbsp;<code>pcp_theme()</code> from ggpcp) are <em>not</em> on the list — absence is the “removal safety unknown” signal. Pass <code>safe_to_remove = c("pcp_theme")</code> to opt a specific name into the cleanup pass. A <code>ppExpr</code> whose user typed an expression always wins: whatever was typed is honoured verbatim, even if its top-level name is in <code>safe_to_remove</code>.</p>
 </section>
-<section id="column-names-the-generated-code-can-actually-use" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="column-names-the-generated-code-can-actually-use"><span class="header-section-number">4.2</span> Column names the generated code can actually use</h2>
+<section id="column-names-the-generated-code-can-actually-use" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="column-names-the-generated-code-can-actually-use"><span class="header-section-number">5.2</span> Column names the generated code can actually use</h2>
 <p><code>ppVar</code> placeholders need syntactic, unique column names — <code>Sepal.Length</code> is fine, <code>"Sepal Length"</code> is not. If your local data has spaces, reserved words, or duplicate names, pipe it through <code>ptr_normalize_column_names()</code> before referencing it from a formula. This chunk really runs:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
@@ -423,9 +446,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Uploaded data (<a href="placeholders.html" class="quarto-xref"><span>Chapter 3</span></a>) goes through the same normalization automatically; the manual call is only needed for data already in your R session. <code>?ptr_normalize_column_names</code> documents the exact rules (runs of non-alphanumeric characters become <code>_</code>, duplicates are de-duplicated with <code>_</code>-numbered suffixes, and reserved words get a trailing <code>_</code> — so <code>"first column"</code> becomes <code>first_column</code> and <code>"if"</code> becomes <code>if_</code>, exactly as the chunk above prints).</p>
 </section>
-<section id="reading-the-plot-and-code-programmatically" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="reading-the-plot-and-code-programmatically"><span class="header-section-number">4.3</span> Reading the plot and code programmatically</h2>
-<p>The code window is the interactive face of two exported helpers, <code>ptr_extract_code(state)</code> and <code>ptr_extract_plot(state)</code>, which read the same artifacts off a running app’s state object. They only make sense once you own the server side of the app — that story starts at <a href="embed-default.html" class="quarto-xref"><span>Chapter 10</span></a>, and <a href="custom-render.html" class="quarto-xref"><span>Chapter 12</span></a> uses them to feed plotly and friends.</p>
+<section id="reading-the-plot-and-code-programmatically" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="reading-the-plot-and-code-programmatically"><span class="header-section-number">5.3</span> Reading the plot and code programmatically</h2>
+<p>The code window is the interactive face of two exported helpers, <code>ptr_extract_code(state)</code> and <code>ptr_extract_plot(state)</code>, which read the same artifacts off a running app’s state object. They only make sense once you own the server side of the app — that story starts at <a href="embed-default.html" class="quarto-xref"><span>Chapter 9</span></a>, and <a href="custom-render.html" class="quarto-xref"><span>Chapter 13</span></a> uses them to feed plotly and friends.</p>
 
 
 </section>
@@ -833,13 +856,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./placeholders.html" class="pagination-link" aria-label="The Built-in Placeholders">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span>
+      <a href="./formula-language.html" class="pagination-link" aria-label="The Formula Language">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Formula Language</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./use-cases.html" class="pagination-link" aria-label="Use Cases: the Three Levels">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./custom-placeholders.html" class="pagination-link" aria-label="Your First Custom Placeholder">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Your First Custom Placeholder</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

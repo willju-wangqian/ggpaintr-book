@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Use Cases: the Three Levels – ggpaintr</title>
+<title>8&nbsp; The Hook Contract – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./gallery.html" rel="next">
-<link href="./generated-code.html" rel="prev">
+<link href="./embed-default.html" rel="next">
+<link href="./custom-consumer-source.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ba3fd630396237bc8a00ec20351520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./use-cases.html">Use cases &amp; gallery</a></li><li class="breadcrumb-item"><a href="./use-cases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./custom-placeholders.html">Custom placeholders</a></li><li class="breadcrumb-item"><a href="./hook-contract.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Hook Contract</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,10 +154,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Your first app</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -166,15 +172,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./formula-language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></a>
-  </div>
-</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Writing formulas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
@@ -183,37 +194,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./formula-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./generated-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Use cases &amp; gallery</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./use-cases.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./gallery.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Gallery</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./customization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Composition</span></a>
+ <span class="menu-text">Custom placeholders</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,14 +217,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./shared-placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></span></a>
+  <a href="./custom-placeholders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Your First Custom Placeholder</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./multi-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></span></a>
+  <a href="./custom-consumer-source.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hook-contract.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Hook Contract</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Embedding</span></a>
+ <span class="menu-text">ggpaintr in your own Shiny app</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,19 +247,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multi-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./shared-placeholders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Extension</span></a>
+ <span class="menu-text">Making it yours</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,20 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Placeholders</span></span></a>
+  <a href="./customization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Customization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./theming-wrappers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Theming and Wrappers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Theming and Wrappers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ui-text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">UI Text and Copy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">UI Text and Copy</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced topics</span></a>
+ <span class="menu-text">Sharing &amp; advanced</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -310,14 +316,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
+  <a href="./safety.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
+  <a href="./llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Gallery</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gallery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Gallery</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,13 +353,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
@@ -355,20 +378,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#single-plot-ptr_app" id="toc-single-plot-ptr_app" class="nav-link active" data-scroll-target="#single-plot-ptr_app"><span class="header-section-number">5.1</span> Single plot — <code>ptr_app()</code></a></li>
-  <li><a href="#the-chrome-you-get-for-free" id="toc-the-chrome-you-get-for-free" class="nav-link" data-scroll-target="#the-chrome-you-get-for-free"><span class="header-section-number">5.2</span> The chrome you get for free</a></li>
-  <li><a href="#several-plots-in-one-app" id="toc-several-plots-in-one-app" class="nav-link" data-scroll-target="#several-plots-in-one-app"><span class="header-section-number">5.3</span> Several plots in one app</a></li>
-  <li><a href="#a-different-shell-or-theme" id="toc-a-different-shell-or-theme" class="nav-link" data-scroll-target="#a-different-shell-or-theme"><span class="header-section-number">5.4</span> A different shell or theme</a></li>
-  <li><a href="#local-data-with-non-syntactic-columns" id="toc-local-data-with-non-syntactic-columns" class="nav-link" data-scroll-target="#local-data-with-non-syntactic-columns"><span class="header-section-number">5.5</span> Local data with non-syntactic columns</a></li>
+  <li><a href="#every-argument-at-once" id="toc-every-argument-at-once" class="nav-link active" data-scroll-target="#every-argument-at-once"><span class="header-section-number">8.1</span> Every argument at once</a></li>
+  <li><a href="#keyword" id="toc-keyword" class="nav-link" data-scroll-target="#keyword"><span class="header-section-number">8.2</span> <code>keyword</code></a></li>
+  <li><a href="#build_ui-and-why-its-signature-looks-the-way-it-does" id="toc-build_ui-and-why-its-signature-looks-the-way-it-does" class="nav-link" data-scroll-target="#build_ui-and-why-its-signature-looks-the-way-it-does"><span class="header-section-number">8.3</span> <code>build_ui</code> — and why its signature looks the way it does</a></li>
+  <li><a href="#resolve_expr" id="toc-resolve_expr" class="nav-link" data-scroll-target="#resolve_expr"><span class="header-section-number">8.4</span> <code>resolve_expr</code></a></li>
+  <li><a href="#validate_session_input" id="toc-validate_session_input" class="nav-link" data-scroll-target="#validate_session_input"><span class="header-section-number">8.5</span> <code>validate_session_input</code></a></li>
+  <li><a href="#parse_positional_arg" id="toc-parse_positional_arg" class="nav-link" data-scroll-target="#parse_positional_arg"><span class="header-section-number">8.6</span> <code>parse_positional_arg</code></a></li>
+  <li><a href="#parse_named_args" id="toc-parse_named_args" class="nav-link" data-scroll-target="#parse_named_args"><span class="header-section-number">8.7</span> <code>parse_named_args</code></a></li>
+  <li><a href="#embellish_eval" id="toc-embellish_eval" class="nav-link" data-scroll-target="#embellish_eval"><span class="header-section-number">8.8</span> <code>embellish_eval</code></a></li>
+  <li><a href="#ui_text_defaults" id="toc-ui_text_defaults" class="nav-link" data-scroll-target="#ui_text_defaults"><span class="header-section-number">8.9</span> <code>ui_text_defaults</code></a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">8.10</span> Common pitfalls</a></li>
+  <li><a href="#unregistering" id="toc-unregistering" class="nav-link" data-scroll-target="#unregistering"><span class="header-section-number">8.11</span> Unregistering</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/use-cases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/hook-contract.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./use-cases.html">Use cases &amp; gallery</a></li><li class="breadcrumb-item"><a href="./use-cases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./custom-placeholders.html">Custom placeholders</a></li><li class="breadcrumb-item"><a href="./hook-contract.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Hook Contract</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-use-cases" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></h1>
+<h1 class="title"><span id="sec-hook-contract" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Hook Contract</span></span></h1>
 </div>
 
 
@@ -385,110 +414,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>ggpaintr exposes three levels of control, and choosing the right one up front saves rework. This chapter covers <strong>L1</strong>, the all-in-one entry point, and maps where the other two live:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 35%">
-<col style="width: 25%">
-<col style="width: 22%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Level</th>
-<th>Entry points</th>
-<th>Use when</th>
-<th>Chapter</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>L1</td>
-<td><code>ptr_app()</code></td>
-<td>The built-in chrome — title bar, layer picker, plot pane, code window — is enough.</td>
-<td>this one</td>
-</tr>
-<tr class="even">
-<td>L2</td>
-<td><code>ptr_ui()</code> / <code>ptr_server()</code></td>
-<td>You own the surrounding Shiny app and want ggpaintr plots inside it.</td>
-<td><a href="embed-default.html" class="quarto-xref"><span>Chapter 10</span></a></td>
-</tr>
-<tr class="odd">
-<td>L3</td>
-<td>bare UI pieces (<code>ptr_ui_page</code>, <code>ptr_ui_controls</code>, …)</td>
-<td>You own the page layout, the renderer, or both.</td>
-<td><a href="embed-bare.html" class="quarto-xref"><span>Chapter 11</span></a>, <a href="custom-render.html" class="quarto-xref"><span>Chapter 12</span></a></td>
-</tr>
-</tbody>
-</table>
-<p>L1 is the dominant use case: hand ggpaintr a formula, get back a running Shiny app.</p>
-<section id="single-plot-ptr_app" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="single-plot-ptr_app"><span class="header-section-number">5.1</span> Single plot — <code>ptr_app()</code></h2>
-<p>The string form of the formula works exactly like the bare-code form you saw in <a href="getting-started.html" class="quarto-xref"><span>Chapter 1</span></a>:</p>
-<div class="cell" data-fixture="use-cases-app-basic">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">"ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point() + labs(title = ppText)"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a href="custom-placeholders.html" class="quarto-xref"><span>Chapter 6</span></a> built a placeholder from the three required pieces; this chapter is the reference for <em>everything</em> the constructors accept. All three constructors are thin wrappers over a shared core, so they take an overlapping set of arguments; the running example exercises the <strong>value</strong> constructor in full, and the consumer/source differences are in <a href="custom-consumer-source.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
+<section id="every-argument-at-once" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="every-argument-at-once"><span class="header-section-number">8.1</span> Every argument at once</h2>
+<p>A custom <code>ppPercent</code>: a 0–100 slider whose value is divided by 100 before it reaches the plot. It exercises <strong>every</strong> argument of <code>ptr_define_placeholder_value()</code>; the positional <code>40</code> in the app seeds the slider, the named <code>step = 5</code> is forwarded to <code>build_ui</code>:</p>
+<div class="cell" data-fixture="custom-value">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ppPercent <span class="ot">&lt;-</span> <span class="fu">ptr_define_placeholder_value</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyword =</span> <span class="st">"ppPercent"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">build_ui =</span> <span class="cf">function</span>(node, <span class="at">label =</span> <span class="cn">NULL</span>, <span class="at">selected =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">named_args =</span> <span class="fu">list</span>(), ...) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    step <span class="ot">&lt;-</span> named_args<span class="sc">$</span>step <span class="sc">%||%</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">sliderInput</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      node<span class="sc">$</span>id, <span class="at">label =</span> label <span class="sc">%||%</span> <span class="st">"Percent"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> selected,   <span class="co"># the framework routes ppPercent(40) in here</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">step =</span> step</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve_expr =</span> <span class="cf">function</span>(value, node, ...) {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(value)) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>(value) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">validate_session_input =</span> <span class="cf">function</span>(value, ctx) {</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    v <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(value))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(v) <span class="sc">!=</span> <span class="dv">1</span>L <span class="sc">||</span> <span class="fu">is.na</span>(v) <span class="sc">||</span> v <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">||</span> v <span class="sc">&gt;</span> <span class="dv">100</span>) {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">"Percent must be a single number between 0 and 100."</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">parse_positional_arg =</span> <span class="fu">ptr_arg_numeric</span>(),</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">parse_named_args     =</span> <span class="fu">list</span>(<span class="at">step =</span> <span class="fu">ptr_arg_numeric</span>()),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">embellish_eval       =</span> <span class="cf">function</span>(x, ...) <span class="fu">as.numeric</span>(x) <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui_text_defaults =</span> <span class="fu">list</span>(<span class="at">label =</span> <span class="st">"Percent for {param}"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(<span class="st">"wt"</span>), <span class="at">y =</span> <span class="fu">ppVar</span>(<span class="st">"mpg"</span>))) <span class="sc">+</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fu">ppPercent</span>(<span class="dv">40</span>, <span class="at">step =</span> <span class="dv">5</span>))</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/use-cases-app-basic.png" class="img-fluid figure-img"></p>
-<figcaption>The L1 app: three column pickers and a title input, plus the standard chrome.</figcaption>
+<p><img src="images/custom-value.png" class="img-fluid figure-img"></p>
+<figcaption>The <code>ppPercent</code> app at boot, showing the <code>ggplot</code> layer’s column pickers; the registered slider lives under the <code>geom_point</code> entry of the <strong>Layer</strong> dropdown, and after an update the generated code reads <code>alpha = 0.4</code>.</figcaption>
 </figure>
 </div>
 </section>
-<section id="the-chrome-you-get-for-free" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="the-chrome-you-get-for-free"><span class="header-section-number">5.2</span> The chrome you get for free</h2>
-<p>Every L1 app ships the same furniture, all driven by the formula with no configuration:</p>
-<div class="cell" data-fixture="use-cases-layers">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"ggplot(mpg, aes(displ, hwy)) +</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point(alpha = ppNum(0.5)) +</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">geom_smooth(method = ppText('loess'))"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/use-cases-layers.png" class="img-fluid figure-img"></p>
-<figcaption>A two-layer formula: the <strong>Layer</strong> dropdown switches the widget panel between <code>ggplot</code>, <code>geom_point</code>, and <code>geom_smooth</code>; each layer shows only its own placeholders.</figcaption>
-</figure>
-</div>
+<section id="keyword" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="keyword"><span class="header-section-number">8.2</span> <code>keyword</code></h2>
+<p>The name to register and to write in formulas. Required.</p>
+</section>
+<section id="build_ui-and-why-its-signature-looks-the-way-it-does" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="build_ui-and-why-its-signature-looks-the-way-it-does"><span class="header-section-number">8.3</span> <code>build_ui</code> — and why its signature looks the way it does</h2>
+<p><code>build_ui</code> returns the Shiny control. Its <strong>first argument is <code>node</code></strong> (required) — carrying, among other things, <code>node$id</code> (the input id you must give your widget) and <code>node$default</code> (the literal positional default from the formula, or <code>NULL</code> — exposed for the framework’s own bookkeeping; never read it inside the hook, as explained next).</p>
+<p>The framework does not call <code>build_ui(node)</code> bare. It calls it through an injector that <em>also</em> passes <code>label</code> (the resolved copy from <code>ui_text_defaults</code>, possibly overridden by the app’s <code>ui_text</code>), <code>selected</code> (the persisted value, injected <strong>only if your function can receive it</strong>), and <code>named_args</code> (the validated named arguments from the formula call). Hence the canonical signature <code>function(node, label = NULL, selected = NULL, named_args = list(), ...)</code>:</p>
 <ul>
-<li><strong>The layer picker.</strong> One entry per layer in the formula; selecting a layer shows that layer’s widgets. Layers carrying no placeholder still appear, so the user sees the whole chart’s structure.</li>
-<li><strong>The Data subtab.</strong> When a layer’s data argument is a pipeline (<a href="formula-language.html" class="quarto-xref"><span>Chapter 2</span></a>), its stages get widgets and per-stage toggles here.</li>
-<li><strong>The code window.</strong> The <code>&lt;/&gt;</code> toggle opens the generated code — Final code and Spec views, with a Copy button (<a href="generated-code.html" class="quarto-xref"><span>Chapter 4</span></a>).</li>
-<li><strong>The Update plot button.</strong> Nothing redraws until it is clicked (<a href="placeholders.html" class="quarto-xref"><span>Chapter 3</span></a>).</li>
+<li>You <strong>opt in</strong> to an injected argument by naming it — or by having <code>...</code>. If you neither name <code>selected</code> nor accept <code>...</code>, it is never injected. Naming the ones you use and keeping <code>...</code> to swallow the rest is the safe, forward-compatible shape.</li>
+<li>Seed the widget from <code>selected</code> — and <em>only</em> <code>selected</code>. The framework owns the precedence: on the first render it routes the formula’s positional default (<code>ppPercent(40)</code>) into <code>selected</code>; on every later render <code>selected</code> is the live input, verbatim. Never read <code>node$default</code> yourself and never hardcode a fallback for the empty case — both bypass the seeding layer and snap a user-cleared widget back to the default on the next re-render. When <code>selected</code> is empty (<code>NULL</code>, <code>character(0)</code>, <code>""</code>, <code>NA</code>), render the widget empty; boot defaults belong in the formula.</li>
+<li>Use <code>node$id</code> — and <em>only</em> <code>node$id</code> — as the widget id. Do not namespace it yourself; the framework already did.</li>
 </ul>
 </section>
-<section id="several-plots-in-one-app" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="several-plots-in-one-app"><span class="header-section-number">5.3</span> Several plots in one app</h2>
-<p><code>ptr_app()</code> builds exactly one plot per app. To place several ggpaintr plots in one Shiny app — optionally sharing a control across them — you drop down one level to <code>ptr_ui()</code> / <code>ptr_server()</code> and own the <code>shinyApp()</code> shell yourself. That is a small step, not a leap: <a href="multi-plot.html" class="quarto-xref"><span>Chapter 9</span></a> walks through it, and <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a> covers the shared-widget machinery.</p>
+<section id="resolve_expr" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="resolve_expr"><span class="header-section-number">8.4</span> <code>resolve_expr</code></h2>
+<p><code>function(value, node, ...)</code> → the value (or expression) spliced back into the formula. Return <code>NULL</code> to contribute nothing (an empty field), which drops the argument cleanly (<a href="generated-code.html" class="quarto-xref"><span>Chapter 5</span></a>). Here we divide by 100 so the plot sees a 0–1 alpha.</p>
 </section>
-<section id="a-different-shell-or-theme" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="a-different-shell-or-theme"><span class="header-section-number">5.4</span> A different shell or theme</h2>
-<p>The built-in chrome is deliberately plain. For your own page shell, branding, or theme, write a thin wrapper over the public primitives — the recipe and a worked example are in <a href="theming-wrappers.html" class="quarto-xref"><span>Chapter 14</span></a>, and the stable CSS surface is documented in <a href="customization.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
+<section id="validate_session_input" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="validate_session_input"><span class="header-section-number">8.5</span> <code>validate_session_input</code></h2>
+<p>Optional. <code>function(value, ctx)</code>, run before <code>resolve_expr</code>. Return <code>TRUE</code> or <code>NULL</code> to accept; return a single character string to reject — it surfaces as the inline error message (<code>rlang::abort()</code> also rejects). Any <em>other</em> return value fails closed with a generic “validation failed” — so returning the value itself, a natural-looking mistake, rejects every draw. For mid-typing artifacts that should not flash an error, signal <code>ptr_signal_partial()</code> instead of aborting — it is caught on the live keystroke path but not on the draw path. (<code>ctx</code> earns its keep for consumers: <a href="custom-consumer-source.html" class="quarto-xref"><span>Chapter 7</span></a>.)</p>
 </section>
-<section id="local-data-with-non-syntactic-columns" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="local-data-with-non-syntactic-columns"><span class="header-section-number">5.5</span> Local data with non-syntactic columns</h2>
-<p><code>ppVar</code> placeholders need syntactic, unique column names — <code>Sepal.Length</code> is fine, <code>"Sepal Length"</code> is not, and <code>iris</code> deliberately ships clean. If your local data has spaces, reserved words, or duplicates in its names, pipe it through <code>ptr_normalize_column_names()</code> before referencing it from a formula:</p>
-<div class="cell" data-fixture="use-cases-nonsyntactic">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"first column"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"if"</span>           <span class="ot">=</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="fu">ptr_normalize_column_names</span>(messy)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"ggplot(clean, aes(x = ppVar('first_column'), y = ppVar('if_'))) + geom_point()"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/use-cases-nonsyntactic.png" class="img-fluid figure-img"></p>
-<figcaption>The app runs against the normalized copy: <code>first column</code> became <code>first_column</code>, the reserved <code>if</code> became <code>if_</code>.</figcaption>
-</figure>
-</div>
-<p>Uploaded data is normalized automatically; the manual call is only for data already in your session. The exact rules are in <a href="generated-code.html" class="quarto-xref"><span>Chapter 4</span></a> and <code>?ptr_normalize_column_names</code>.</p>
+<section id="parse_positional_arg" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="parse_positional_arg"><span class="header-section-number">8.6</span> <code>parse_positional_arg</code></h2>
+<p>Declares whether the placeholder accepts a positional default in the formula, and validates it. Pass one of the argument validators — <code>ptr_arg_string()</code>, <code>ptr_arg_numeric()</code>, <code>ptr_arg_symbol()</code>, <code>ptr_arg_symbol_or_string()</code>, <code>ptr_arg_expression()</code>. Each inspects the default <strong>as unevaluated code</strong> (the symbol, string, and expression validators never <code>eval()</code>; <code>ptr_arg_numeric()</code> first walks the AST against an allowlist, then constant-folds it in a sealed environment), so <code>ppPercent(40)</code> is validated to be a numeric literal at translate time. The element factories take <code>vector = TRUE</code> to accept a <code>c(...)</code> of elements — <code>ptr_arg_numeric(vector = TRUE, length = 2)</code>, <code>ptr_arg_symbol(vector = TRUE)</code> for a multi-column default like <code>c(mpg, hp)</code>. Leaving it <code>NULL</code> (the default) <strong>rejects</strong> any positional argument.</p>
+</section>
+<section id="parse_named_args" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="parse_named_args"><span class="header-section-number">8.7</span> <code>parse_named_args</code></h2>
+<p>A fully-named list mapping extra named-argument names to validators, same family as above. It lets the formula write <code>ppPercent(40, step = 5)</code>; validated values arrive in <code>build_ui</code> as <code>named_args</code>. The name <code>shared</code> is reserved (it is the cross-widget binding key, <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 11</span></a>) and may not appear here.</p>
+</section>
+<section id="embellish_eval" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="embellish_eval"><span class="header-section-number">8.8</span> <code>embellish_eval</code></h2>
+<p>The plain-R meaning of the keyword <em>outside</em> <code>ptr_app()</code>. A placeholder-embellished formula must stay valid plain R that still renders the original plot with no app running; <code>embellish_eval</code> supplies that meaning. Each constructor returns this function, so bind it under the keyword name — <code>ppPercent &lt;- ptr_define_placeholder_value("ppPercent", ...)</code>, after which <code>ppPercent(40)</code> is <code>0.4</code> as ordinary R. The meaning is author-controlled, never derived. If omitted, value and consumer keywords default to <code>embellish_identity()</code> (a transparent no-op wrapper); <code>embellish_symbol_to_string()</code> covers the column-selecting consumer case (it returns the referenced column names as strings, so a naked tidyselect formula still works).</p>
+</section>
+<section id="ui_text_defaults" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="ui_text_defaults"><span class="header-section-number">8.9</span> <code>ui_text_defaults</code></h2>
+<p>A named list of copy defaults over <code>label</code>, <code>help</code>, <code>placeholder</code>, and <code>empty_text</code>, with <code>{param}</code> interpolated to the argument name. These are the <em>defaults</em>; an app overrides them through <code>ui_text =</code> (<a href="ui-text.html" class="quarto-xref"><span>Chapter 16</span></a>).</p>
+</section>
+<section id="common-pitfalls" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">8.10</span> Common pitfalls</h2>
+<ul>
+<li><strong>Forgetting <code>inputId = node$id</code>.</strong> The widget renders, the user types, nothing happens — the value never reaches <code>resolve_expr</code>.</li>
+<li><strong>Returning a string when you wanted a symbol.</strong> <code>resolve_expr = function(value, ...) value</code> for a column picker splices <code>"cyl"</code> (a string literal), so <code>geom_point(color = "cyl")</code> paints a constant color. Wrap with <code>rlang::sym(value)</code>.</li>
+<li><strong>Forgetting empty input.</strong> Shiny calls your hooks before the user touches anything. Treat <code>NULL</code>, <code>character(0)</code>, <code>NA</code>, and empty strings as “no value yet” and <code>return(NULL)</code> — the framework prunes the argument.</li>
+<li><strong>Confusing <code>resolve_expr</code> with <code>resolve_data</code>.</strong> For sources: <code>resolve_data</code> produces the actual frame; <code>resolve_expr</code> produces the text in the rendered call (<a href="custom-consumer-source.html" class="quarto-xref"><span>Chapter 7</span></a>).</li>
+<li><strong>Dropping <code>...</code> from a hook signature.</strong> Future framework versions may inject new named arguments; without <code>...</code> the call fails.</li>
+<li><strong>Re-registering inside a reactive.</strong> The registry is process-global; register once at script top level, before <code>ptr_app()</code>.</li>
+</ul>
+</section>
+<section id="unregistering" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="unregistering"><span class="header-section-number">8.11</span> Unregistering</h2>
+<p><code>ptr_clear_placeholder("ppPercent")</code> removes one user-registered keyword; <code>ptr_clear_placeholder()</code> removes them all. Seven keywords are protected (clearing one errors): the five built-in placeholders plus the structural <code>ppLayerOff</code> / <code>ppVerbSwitch</code>. Re-registering an existing keyword overwrites the previous entry with a notice — no need to clear first.</p>
 
 
 </section>
@@ -896,13 +923,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./generated-code.html" class="pagination-link" aria-label="The Generated Code and Plot">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span>
+      <a href="./custom-consumer-source.html" class="pagination-link" aria-label="Consumer and Source Placeholders">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./gallery.html" class="pagination-link" aria-label="Gallery">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Gallery</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./embed-default.html" class="pagination-link" aria-label="Embedding with the Default Layout">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -911,4 +938,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/use-cases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/hook-contract.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

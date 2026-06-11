@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Writing Safe Formulas – ggpaintr</title>
+<title>7&nbsp; Consumer and Source Placeholders – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./llm.html" rel="next">
-<link href="./ui-text.html" rel="prev">
+<link href="./hook-contract.html" rel="next">
+<link href="./custom-placeholders.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./safety.html">Sharing &amp; advanced</a></li><li class="breadcrumb-item"><a href="./safety.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./custom-placeholders.html">Custom placeholders</a></li><li class="breadcrumb-item"><a href="./custom-consumer-source.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-consumer-source.html" class="sidebar-item-text sidebar-link">
+  <a href="./custom-consumer-source.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></span></a>
   </div>
 </li>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./safety.html" class="sidebar-item-text sidebar-link active">
+  <a href="./safety.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
@@ -378,31 +378,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-expr_check-flag" id="toc-the-expr_check-flag" class="nav-link active" data-scroll-target="#the-expr_check-flag"><span class="header-section-number">17.1</span> The <code>expr_check</code> flag</a>
-  <ul class="collapse">
-  <li><a href="#the-three-modes" id="toc-the-three-modes" class="nav-link" data-scroll-target="#the-three-modes"><span class="header-section-number">17.1.1</span> The three modes</a></li>
-  <li><a href="#when-never-to-turn-it-off" id="toc-when-never-to-turn-it-off" class="nav-link" data-scroll-target="#when-never-to-turn-it-off"><span class="header-section-number">17.1.2</span> When (never) to turn it off</a></li>
-  </ul></li>
-  <li><a href="#the-denylist-ast-walker" id="toc-the-denylist-ast-walker" class="nav-link" data-scroll-target="#the-denylist-ast-walker"><span class="header-section-number">17.2</span> The denylist + AST walker</a>
-  <ul class="collapse">
-  <li><a href="#the-denylist-151-entries-treated-as-complete" id="toc-the-denylist-151-entries-treated-as-complete" class="nav-link" data-scroll-target="#the-denylist-151-entries-treated-as-complete"><span class="header-section-number">17.2.1</span> The denylist (151 entries, treated as complete)</a></li>
-  <li><a href="#the-ast-walker" id="toc-the-ast-walker" class="nav-link" data-scroll-target="#the-ast-walker"><span class="header-section-number">17.2.2</span> The AST walker</a></li>
-  </ul></li>
-  <li><a href="#the-upload-trust-model" id="toc-the-upload-trust-model" class="nav-link" data-scroll-target="#the-upload-trust-model"><span class="header-section-number">17.3</span> The upload trust model</a>
-  <ul class="collapse">
-  <li><a href="#accepted-formats" id="toc-accepted-formats" class="nav-link" data-scroll-target="#accepted-formats"><span class="header-section-number">17.3.1</span> Accepted formats</a></li>
-  <li><a href="#normalization-is-automatic" id="toc-normalization-is-automatic" class="nav-link" data-scroll-target="#normalization-is-automatic"><span class="header-section-number">17.3.2</span> Normalization is automatic</a></li>
-  <li><a href="#what-is-and-isnt-validated" id="toc-what-is-and-isnt-validated" class="nav-link" data-scroll-target="#what-is-and-isnt-validated"><span class="header-section-number">17.3.3</span> What is and isn’t validated</a></li>
-  </ul></li>
+  <li><a href="#a-consumer-placeholder-the-delta" id="toc-a-consumer-placeholder-the-delta" class="nav-link active" data-scroll-target="#a-consumer-placeholder-the-delta"><span class="header-section-number">7.1</span> A consumer placeholder — the delta</a></li>
+  <li><a href="#a-source-placeholder-the-delta" id="toc-a-source-placeholder-the-delta" class="nav-link" data-scroll-target="#a-source-placeholder-the-delta"><span class="header-section-number">7.2</span> A source placeholder — the delta</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/safety.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-consumer-source.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./safety.html">Sharing &amp; advanced</a></li><li class="breadcrumb-item"><a href="./safety.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./custom-placeholders.html">Custom placeholders</a></li><li class="breadcrumb-item"><a href="./custom-consumer-source.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-safety" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></h1>
+<h1 class="title"><span id="sec-custom-consumer-source" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></span></h1>
 </div>
 
 
@@ -419,212 +405,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter answers one question: <em>how do I think about sharing a ggpaintr app with untrusted users?</em> For building apps, start at <a href="getting-started.html" class="quarto-xref"><span>Chapter 2</span></a>; for driving ggpaintr from an LLM, <a href="llm.html" class="quarto-xref"><span>Chapter 18</span></a>.</p>
-<p>ggpaintr assumes <em>the formula author is the package user</em> — you — while the <em>placeholder values</em>, including anything typed into a <code>ppExpr</code> box, may come from anywhere. Three boundaries sit between those two trust levels:</p>
-<ol type="1">
-<li><strong><code>expr_check</code></strong> — controls validation of user-typed <code>ppExpr</code> code.</li>
-<li><strong>The denylist + AST walker</strong> — what that validation actually does.</li>
-<li><strong>The upload trust model</strong> — what happens between “user picks a file” and a data frame reaching <code>ggplot()</code>.</li>
-</ol>
-<p>One scope note up front: ggpaintr has not been hardened for adversarial public deployment, and carries no tests for hosting, network, or process-isolation concerns. Those belong to the host environment (shinyapps.io, Posit Connect roles, container limits), not to ggpaintr’s surface.</p>
-<section id="the-expr_check-flag" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="the-expr_check-flag"><span class="header-section-number">17.1</span> The <code>expr_check</code> flag</h2>
-<p><code>ppExpr</code> is the only keyword that accepts arbitrary R code. The other four — <code>ppVar</code>, <code>ppText</code>, <code>ppNum</code>, <code>ppUpload</code> — take atomic values or files, and nothing runs what the user typed as R. <code>expr_check</code> governs two checkpoints: at translation time it validates your <em>entire formula</em> — author code included, so a formula containing <code>geom_point(data = system('id'))</code> aborts at translation under the default — and at run time it decides what happens to whatever lands in a <code>ppExpr</code> box before it reaches the evaluator:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(formula, <span class="at">expr_check =</span> <span class="cn">TRUE</span>)               <span class="co"># default — full denylist + walker</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(formula, <span class="at">expr_check =</span> <span class="cn">FALSE</span>)              <span class="co"># off — formula checks skipped (ppExpr re-screen stays on)</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(formula, <span class="at">expr_check =</span> <span class="fu">list</span>(               <span class="co"># custom</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_list =</span> <span class="fu">c</span>(<span class="st">"ggplot"</span>, <span class="st">"aes"</span>, <span class="st">"geom_point"</span>),  <span class="co"># strict whitelist over EVERY call head in the formula</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">deny_list  =</span> <span class="fu">c</span>(<span class="st">"get"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>expr_check</code> is accepted on every public entry point that builds the formula’s tree — as a named argument on <code>ptr_app()</code>, <code>ptr_ui()</code>, <code>ptr_ui_controls()</code>, and <code>ptr_init_state()</code>, and via <code>ptr_server()</code>’s documented <code>...</code> passthrough to <code>ptr_init_state()</code> — and defaults to <code>TRUE</code> in all of them.</p>
-<section id="the-three-modes" class="level3" data-number="17.1.1">
-<h3 data-number="17.1.1" class="anchored" data-anchor-id="the-three-modes"><span class="header-section-number">17.1.1</span> The three modes</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 54%">
-<col style="width: 16%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><code>expr_check =</code></th>
-<th>Mode</th>
-<th>What gets checked</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>TRUE</code> (or <code>list()</code> with no lists)</td>
-<td>denylist</td>
-<td>The curated 151-entry denylist (below). Any call to, symbol naming, or string literal mentioning a denied name aborts.</td>
-</tr>
-<tr class="even">
-<td><code>FALSE</code></td>
-<td>off</td>
-<td>Skips the translate-time and eval-time checks on the formula. What the user types into a <code>ppExpr</code> box is <em>still</em> screened against the curated denylist when it is substituted into the plot — that re-screen is hardcoded on and cannot be disabled.</td>
-</tr>
-<tr class="odd">
-<td><code>list(deny_list = ...)</code></td>
-<td>denylist</td>
-<td><strong>Replaces</strong> the curated 151 with <em>only</em> the names you list. On its own this <em>weakens</em> the default — there is no “add to the curated list” form.</td>
-</tr>
-<tr class="even">
-<td><code>list(allow_list = ...)</code></td>
-<td>allowlist</td>
-<td>A strict whitelist over <em>every</em> call head in the entire formula — <code>ggplot</code>, <code>aes</code>, each <code>geom_*</code>, everything — not just what lands in a <code>ppExpr</code> box; any head not listed aborts at translation. The curated always-dangerous names (e.g.&nbsp;<code>system</code>) stay blocked as bare symbols or strings regardless. With both lists, the effective allow set is <code>allow_list</code> minus <code>deny_list</code>.</td>
-</tr>
-</tbody>
-</table>
-<p>The thing to internalise: both custom forms <em>replace</em> rather than extend. A bare <code>deny_list</code> discards the other 150 curated names, and <code>allow_list</code> narrows the whole formula to exactly the heads you list — only the bare-symbol/string floor stays curated. There is no “curated list plus or minus one name” form.</p>
+<p>A value placeholder (<a href="custom-placeholders.html" class="quarto-xref"><span>Chapter 6</span></a>) is self-contained: widget in, code fragment out. The other two roles interact with the data flowing through the formula — a <strong>consumer</strong> reads the upstream data’s columns, a <strong>source</strong> produces the data itself. Both use the same constructor surface you already know; this chapter covers only what changes. (The full argument set common to all three constructors is <a href="hook-contract.html" class="quarto-xref"><span>Chapter 8</span></a>.)</p>
+<section id="a-consumer-placeholder-the-delta" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="a-consumer-placeholder-the-delta"><span class="header-section-number">7.1</span> A consumer placeholder — the delta</h2>
+<p><strong><code>build_ui</code> gains two arguments: <code>cols</code> and <code>data</code>.</strong> The injector fills <code>cols</code> with the column names of the data flowing into this point of the pipeline and <code>data</code> with that frame, re-running <code>build_ui</code> whenever the upstream changes:</p>
+<div class="cell" data-fixture="custom-consumer">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>colvars <span class="ot">&lt;-</span> <span class="fu">ptr_define_placeholder_consumer</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyword =</span> <span class="st">"colvars"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">build_ui =</span> <span class="cf">function</span>(node, <span class="at">cols =</span> <span class="fu">character</span>(), <span class="at">data =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">label =</span> <span class="cn">NULL</span>, <span class="at">selected =</span> <span class="fu">character</span>(<span class="dv">0</span>), ...) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">selectInput</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      node<span class="sc">$</span>id, <span class="at">label =</span> label <span class="sc">%||%</span> <span class="st">"Columns"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">choices  =</span> cols,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">selected =</span> <span class="fu">intersect</span>(selected, cols),  <span class="co"># keep only still-valid picks</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">multiple =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve_expr =</span> <span class="cf">function</span>(value, node, ...) {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(value) <span class="sc">==</span> <span class="dv">0</span>L) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    rlang<span class="sc">::</span><span class="fu">call2</span>(<span class="st">"c"</span>, <span class="sc">!!!</span><span class="fu">as.list</span>(value))   <span class="co"># c(col1, col2, ...)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">parse_positional_arg =</span> <span class="fu">ptr_arg_symbol_or_string</span>(),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui_text_defaults =</span> <span class="fu">list</span>(<span class="at">label =</span> <span class="st">"Columns for {param}"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">|&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(colvars) <span class="sc">|&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ppVar, <span class="at">y =</span> ppVar)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-consumer.png" class="img-fluid figure-img"></p>
+<figcaption><code>colvars</code> as a multi-column picker inside a <code>dplyr::select()</code> pipeline stage; the downstream <code>ppVar</code> pickers re-resolve against whatever it selects.</figcaption>
+</figure>
+</div>
+<p>(The example also opts into formula seeding via <code>parse_positional_arg</code> and sets its copy via <code>ui_text_defaults</code> — both part of the shared surface documented in <a href="hook-contract.html" class="quarto-xref"><span>Chapter 8</span></a>.)</p>
+<p><strong>Validation becomes data-aware.</strong> The optional <code>validate_session_input</code> hook (<a href="hook-contract.html" class="quarto-xref"><span>Chapter 8</span></a>) receives a <code>ctx</code> whose <code>ctx$data</code> holds the upstream data frame, so a validator can reject a non-numeric column, range-check chosen values, and so on. (The gallery’s <code>ppVars</code> uses <code>ctx$upstream_cols</code> the same way: <a href="gallery.html" class="quarto-xref"><span>Chapter 19</span></a>.)</p>
 </section>
-<section id="when-never-to-turn-it-off" class="level3" data-number="17.1.2">
-<h3 data-number="17.1.2" class="anchored" data-anchor-id="when-never-to-turn-it-off"><span class="header-section-number">17.1.2</span> When (never) to turn it off</h3>
-<p><code>expr_check = FALSE</code> is for local prototyping with trusted input — you, at the R prompt, on a private dataset. It is never right for any app another person can reach; co-workers on a shared dev server count. Note that <code>FALSE</code> is not a full off switch: it skips the formula checks, but <code>ppExpr</code> input is re-screened against the curated denylist at substitution time no matter what — typing <code>exists("x")</code> into the box still errors even with <code>expr_check = FALSE</code>.</p>
-<p>If a name you trust is blocked in a <code>ppExpr</code> box (e.g.&nbsp;<code>read.csv</code>, because the denylist is conservative), there is currently no supported way to permit it. <code>expr_check = list(allow_list = "read.csv")</code> does not work, twice over: the allowlist is a strict whitelist over the whole formula, so the app aborts at launch because <code>ggplot</code> and friends aren’t listed — and even with every formula head allowlisted, the substitution-time re-screen still applies the curated denylist and blocks <code>read.csv</code> typed into the box. (The abort message states this plainly as of the pinned version: the runtime screen always applies to typed input and cannot be relaxed. Older builds wrongly suggested an <code>allow_list</code> fix here.) The working remedy is to restructure: do the trusted call in ordinary R code outside the formula and hand the result in as data.</p>
-</section>
-</section>
-<section id="the-denylist-ast-walker" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="the-denylist-ast-walker"><span class="header-section-number">17.2</span> The denylist + AST walker</h2>
-<p>The denylist is <em>which</em> names the validator treats as dangerous. The walker is <em>how</em> it hunts for them. Each does only half the job.</p>
-<section id="the-denylist-151-entries-treated-as-complete" class="level3" data-number="17.2.1">
-<h3 data-number="17.2.1" class="anchored" data-anchor-id="the-denylist-151-entries-treated-as-complete"><span class="header-section-number">17.2.1</span> The denylist (151 entries, treated as complete)</h3>
-<p>The curated set of R names categorically unsafe from untrusted input:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 60%">
-<col style="width: 39%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Category</th>
-<th>Representative entries</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>system escape</td>
-<td><code>system</code>, <code>system2</code>, <code>shell</code>, <code>shell.exec</code>, <code>pipe</code></td>
-</tr>
-<tr class="even">
-<td>file I/O</td>
-<td><code>readLines</code>, <code>writeLines</code>, <code>readRDS</code>, <code>read.csv</code>, <code>download.file</code>, <code>unlink</code>, <code>file</code></td>
-</tr>
-<tr class="odd">
-<td>deserialization / workspace I/O</td>
-<td><code>serialize</code>, <code>unserialize</code>, <code>load</code>, <code>save</code></td>
-</tr>
-<tr class="even">
-<td>meta-eval (denylist-bypass vectors)</td>
-<td><code>eval</code>, <code>parse</code>, <code>quote</code>, <code>bquote</code>, <code>do.call</code>, <code>match.fun</code>, <code>get</code>, <code>mget</code>, <code>str2lang</code>, <code>str2expression</code></td>
-</tr>
-<tr class="odd">
-<td>environment / global-state mutation</td>
-<td><code>&lt;&lt;-</code>, <code>-&gt;&gt;</code>, <code>assign</code>, <code>attach</code>, <code>library</code>, <code>loadNamespace</code>, <code>options</code></td>
-</tr>
-<tr class="even">
-<td>dangerous base / native code</td>
-<td><code>on.exit</code>, <code>q</code>, <code>.Internal</code>, <code>.Call</code>, <code>.External</code>, <code>dyn.load</code></td>
-</tr>
-<tr class="odd">
-<td>debugger / introspection</td>
-<td><code>debug</code>, <code>browser</code>, <code>parent.frame</code>, <code>environment</code>, <code>new.env</code></td>
-</tr>
-<tr class="even">
-<td>info disclosure</td>
-<td><code>Sys.getenv</code>, <code>getwd</code>, <code>list.files</code>, <code>Sys.glob</code>, <code>R.home</code></td>
-</tr>
-<tr class="odd">
-<td>meta-dispatch / method injection</td>
-<td><code>exec</code>, <code>getExportedValue</code>, <code>delayedAssign</code>, <code>setClass</code>, <code>setMethod</code>, <code>unlockBinding</code></td>
-</tr>
-<tr class="even">
-<td>delayed / deferred execution</td>
-<td><code>reg.finalizer</code>, <code>addTaskCallback</code>, <code>setHook</code>, <code>packageEvent</code></td>
-</tr>
-</tbody>
-</table>
-<p>The list is <strong>treated as complete</strong> for the maintained branch. R is open enough that no finite enumeration is exhaustive — <code>get("system")()</code> would slip past any pure name-match if the walker did not also descend into string literals, compound heads, and nested calls. New entries land only when a concrete bypass is demonstrated against the <em>walker</em>, not against the list alone.</p>
-<p>There is no “add one name” shortcut. <code>expr_check = list(deny_list = "your_name")</code> <em>replaces</em> the curated 151 with only <code>"your_name"</code>, silently dropping the other 150 protections. If you think the curated list genuinely omits a dangerous name, treat it as a walker/list gap and report it upstream rather than narrowing your own deployment to a one-entry denylist.</p>
-</section>
-<section id="the-ast-walker" class="level3" data-number="17.2.2">
-<h3 data-number="17.2.2" class="anchored" data-anchor-id="the-ast-walker"><span class="header-section-number">17.2.2</span> The AST walker</h3>
-<p>Every <code>ppExpr</code> input passes through a recursive descent that turns the denylist from a list of names into a check with teeth. At each node of the parsed expression:</p>
+<section id="a-source-placeholder-the-delta" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="a-source-placeholder-the-delta"><span class="header-section-number">7.2</span> A source placeholder — the delta</h2>
+<p>A source <em>produces</em> the data, so it sits at the head of a pipeline. Three things differ:</p>
 <ul>
-<li><strong>Bare symbol</strong> → checked by name (catches <code>system</code> typed alone).</li>
-<li><strong>String literal</strong> (length 1 <em>or</em> longer) → every element checked (catches <code>do.call("system", ...)</code> and <code>c("safe", "system")</code> alike).</li>
-<li><strong>Pairlist</strong> (e.g.&nbsp;the formals of an inline <code>function(x)</code>) → recurse into every element.</li>
-<li><strong>Call</strong> → recurse into the head <em>and</em> every argument. A <strong>compound head</strong> (<code>(system)("ls")</code>, <code>base::eval(parsed)</code>) gets its head sub-expression recursed and its deparsed name checked. A <strong>placeholder annotation</strong> (<code>ppNum(shared = "x")</code>) is skipped: that is formula DSL, validated by the parser at translation time, not user code.</li>
-<li><strong>Depth cap</strong> → 100 nested levels; deeper aborts with “simplify it.”</li>
+<li><strong><code>resolve_data</code> replaces <code>resolve_expr</code> as the required producer</strong>: <code>function(value, node, ...)</code> must return a data frame. <code>resolve_expr</code> becomes optional, defaulting to the symbol that names the produced frame in generated code — override it only for different generated code. The two can disagree on purpose: show <code>read.csv("...")</code> in the code while reading uploaded bytes at runtime.</li>
+<li><strong>The plain-R meaning defaults to an abort guard</strong>, not a pass-through — a source has no sensible plain-R meaning until you give it one (see <code>embellish_eval</code> in <a href="hook-contract.html" class="quarto-xref"><span>Chapter 8</span></a>).</li>
+<li><strong><code>shortcut = TRUE</code> adds a framework-owned companion text box</strong> (at <code>node$shortcut_id</code>) into which the user types the <em>name</em> of a data frame to load — the “or type a dataset name” box you saw on <code>ppUpload</code>. The framework owns the box <em>and</em> the lookup: it resolves the typed name itself, via <code>get(name, envir, inherits = TRUE)</code> against the <code>envir</code> passed to <code>ptr_app()</code> / <code>ptr_server()</code>. Because the framework owns that box, your <code>build_ui</code> must render only <code>node$id</code> — or nothing at all.</li>
 </ul>
-<p>Importantly, in <strong>allowlist</strong> mode the floor still holds: a curated name appearing as a bare symbol or string is blocked even if absent from your <code>allow_list</code> — the allowlist governs which <em>call heads</em> are permitted, not whether <code>system</code> may appear as data.</p>
-<p>The walker is what makes the denylist usable. A name-only check would miss every form that builds a function reference from a string — <code>do.call("system", list("ls"))</code>, <code>eval(parse(text = "system('ls')"))</code>, <code>getFromNamespace("system", "base")</code>. The walker recurses through all of them. If you find a string that slips past both the denylist and the walker, file a bug — the walker is the primary safety mechanism and where bypasses get fixed first.</p>
-</section>
-</section>
-<section id="the-upload-trust-model" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="the-upload-trust-model"><span class="header-section-number">17.3</span> The upload trust model</h2>
-<p><code>ppUpload</code> is the second untrusted-input vector. Unlike <code>ppExpr</code>, an upload does not execute user code — it parses user bytes as tabular data.</p>
-<section id="accepted-formats" class="level3" data-number="17.3.1">
-<h3 data-number="17.3.1" class="anchored" data-anchor-id="accepted-formats"><span class="header-section-number">17.3.1</span> Accepted formats</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 49%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Extension</th>
-<th>Reader</th>
-<th>Suggested-dep package</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>.csv</code></td>
-<td><code>utils::read.csv()</code> (<code>UTF-8-BOM</code>)</td>
-<td>base</td>
-</tr>
-<tr class="even">
-<td><code>.tsv</code></td>
-<td><code>utils::read.delim()</code> (<code>UTF-8-BOM</code>)</td>
-<td>base</td>
-</tr>
-<tr class="odd">
-<td><code>.rds</code></td>
-<td><code>base::readRDS()</code></td>
-<td>base</td>
-</tr>
-<tr class="even">
-<td><code>.xlsx</code>, <code>.xls</code></td>
-<td><code>readxl::read_excel()</code></td>
-<td>readxl</td>
-</tr>
-<tr class="odd">
-<td><code>.json</code></td>
-<td><code>jsonlite::fromJSON(flatten = TRUE)</code></td>
-<td>jsonlite</td>
-</tr>
-</tbody>
-</table>
-<p>Any other extension is rejected with no fallback parser. A JSON upload must be an array of records; nested fields are flattened, and any column that remains a nested array or object is rejected.</p>
-<p><code>.rds</code> is the most permissive in what bytes it accepts — an <code>.rds</code> file is an R serialization stream, opaque to ggpaintr until <code>readRDS()</code> runs. It is supported because users with data already in that format expect it; if you serve untrusted users, pair an <code>expr_check</code> policy with a host-level upload filter.</p>
-</section>
-<section id="normalization-is-automatic" class="level3" data-number="17.3.2">
-<h3 data-number="17.3.2" class="anchored" data-anchor-id="normalization-is-automatic"><span class="header-section-number">17.3.2</span> Normalization is automatic</h3>
-<p>Every successful upload passes through <code>ptr_normalize_column_names()</code> (non-data-frame returns from the rds/Excel/JSON readers are coerced and normalized on the same path). Names arriving with spaces, reserved words, or duplicates leave normalized, syntactic, and unique, so downstream <code>ppVar</code> pickers always see a clean column vector (<a href="generated-code.html" class="quarto-xref"><span>Chapter 5</span></a>). The file <em>stem</em> is sanitised too: a stem matching an R reserved word is renamed (<code>if.csv</code> → dataset name <code>if_</code>), not rejected — the upload still succeeds under the safe name.</p>
-</section>
-<section id="what-is-and-isnt-validated" class="level3" data-number="17.3.3">
-<h3 data-number="17.3.3" class="anchored" data-anchor-id="what-is-and-isnt-validated"><span class="header-section-number">17.3.3</span> What is and isn’t validated</h3>
-<p>The pipeline validates <em>shape</em> (parseable as a recognised tabular format) and <em>names</em> (syntactic, unique, non-reserved). It does <strong>not</strong> validate:</p>
-<ul>
-<li><strong>Cell values.</strong> A column may hold any content the parser produces. A bad value fails at render time and surfaces through the app’s error pane; ggpaintr does not inspect cells.</li>
-<li><strong>Schema.</strong> Nothing requires an upload to carry <code>Sepal.Length</code> just because the formula names it. A missing referenced column is a runtime error, not a parse-time rejection.</li>
-<li><strong>Size / rate limits.</strong> Shiny’s <code>shiny.maxRequestSize</code> caps body size (host configuration). Per-user rate limits, file-count caps, and anti-abuse policy are the host’s concern.</li>
-</ul>
-<p>If you need any of these, layer them above ggpaintr — a custom source placeholder that wraps an upload and enforces a schema (<a href="custom-consumer-source.html" class="quarto-xref"><span>Chapter 7</span></a>) — or below it, at the deployment tier.</p>
+<p>This <code>ppDataset</code> lets the user type the name of any data frame in scope. There is less to write than you might expect, because the shortcut machinery is not yours to reimplement: the typed name flows into <code>resolve_expr</code> as <code>value</code> (the default <code>rlang::sym(value)</code> already splices it into the generated code as a bare symbol), while <code>resolve_data</code> — still required, as the role’s producer — receives the <em>primary</em> widget’s value, <code>input[[node$id]]</code>, never the typed name (that reaches your hooks through <code>node</code> if you need it). With no primary widget that value is always <code>NULL</code>, so a no-op hook returning <code>NULL</code> (“no data yet”) is the whole job:</p>
+<div class="cell" data-fixture="custom-source">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_define_placeholder_source</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyword  =</span> <span class="st">"ppDataset"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">shortcut =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">build_ui =</span> <span class="cf">function</span>(node, <span class="at">label =</span> <span class="cn">NULL</span>, ...) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Shortcut-only source: the framework's text box is the sole entry</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># point, so build_ui contributes no widget of its own.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve_data =</span> <span class="cf">function</span>(value, node, ...) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `value` is the primary widget's value -- always NULL here, since</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># build_ui renders nothing. The shortcut lookup is the framework's.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui_text_defaults =</span> <span class="fu">list</span>(<span class="at">label =</span> <span class="st">"Dataset for {param}"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppDataset</span>() <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(<span class="st">"mpg"</span>))) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-source.png" class="img-fluid figure-img"></p>
+<figcaption><code>ppDataset()</code> at the pipeline head: type <code>mtcars</code> into the framework’s text box and the downstream pickers light up.</figcaption>
+</figure>
+</div>
+<p>A source that owns a real widget (a <code>selectInput</code> of dataset names, say) is the same shape with <code>shortcut = FALSE</code> and a <code>build_ui</code> that renders the picker at <code>node$id</code> — there <code>resolve_data</code> does the real work, turning <code>input[[node$id]]</code> into the frame (the example in <code>?ptr_define_placeholder_source</code> is exactly this shape).</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1030,13 +894,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ui-text.html" class="pagination-link" aria-label="UI Text and Copy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">UI Text and Copy</span></span>
+      <a href="./custom-placeholders.html" class="pagination-link" aria-label="Your First Custom Placeholder">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Your First Custom Placeholder</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./llm.html" class="pagination-link" aria-label="Using ggpaintr from an LLM">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./hook-contract.html" class="pagination-link" aria-label="The Hook Contract">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Hook Contract</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1045,4 +909,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/safety.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-consumer-source.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

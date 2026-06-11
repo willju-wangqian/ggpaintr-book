@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; The Formula Language – ggpaintr</title>
+<title>4&nbsp; The Formula Language – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./placeholders.html" rel="next">
-<link href="./getting-started.html" rel="prev">
+<link href="./generated-code.html" rel="next">
+<link href="./placeholders.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ba3fd630396237bc8a00ec20351520dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./formula-language.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Formula Language</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./placeholders.html">Writing formulas</a></li><li class="breadcrumb-item"><a href="./formula-language.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Formula Language</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,10 +154,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Your first app</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -166,15 +172,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./formula-language.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></a>
-  </div>
-</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Writing formulas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
@@ -183,37 +194,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./formula-language.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./generated-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Use cases &amp; gallery</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./gallery.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Gallery</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./customization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Composition</span></a>
+ <span class="menu-text">Custom placeholders</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,14 +217,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./shared-placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></span></a>
+  <a href="./custom-placeholders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Your First Custom Placeholder</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./multi-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></span></a>
+  <a href="./custom-consumer-source.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Consumer and Source Placeholders</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hook-contract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Hook Contract</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Embedding</span></a>
+ <span class="menu-text">ggpaintr in your own Shiny app</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,19 +247,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multi-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./shared-placeholders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Extension</span></a>
+ <span class="menu-text">Making it yours</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,20 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Placeholders</span></span></a>
+  <a href="./customization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Customization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./theming-wrappers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Theming and Wrappers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Theming and Wrappers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ui-text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">UI Text and Copy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">UI Text and Copy</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced topics</span></a>
+ <span class="menu-text">Sharing &amp; advanced</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -310,14 +316,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
+  <a href="./safety.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
+  <a href="./llm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Gallery</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gallery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Gallery</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,13 +353,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
@@ -355,17 +378,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-tour-formula" id="toc-the-tour-formula" class="nav-link active" data-scroll-target="#the-tour-formula"><span class="header-section-number">2.1</span> The tour formula</a></li>
-  <li><a href="#data-pipelines-in-the-formula" id="toc-data-pipelines-in-the-formula" class="nav-link" data-scroll-target="#data-pipelines-in-the-formula"><span class="header-section-number">2.2</span> Data pipelines in the formula</a>
+  <li><a href="#two-equivalent-forms" id="toc-two-equivalent-forms" class="nav-link active" data-scroll-target="#two-equivalent-forms"><span class="header-section-number">4.1</span> Two equivalent forms</a></li>
+  <li><a href="#the-tour-formula" id="toc-the-tour-formula" class="nav-link" data-scroll-target="#the-tour-formula"><span class="header-section-number">4.2</span> The tour formula</a></li>
+  <li><a href="#data-pipelines-in-the-formula" id="toc-data-pipelines-in-the-formula" class="nav-link" data-scroll-target="#data-pipelines-in-the-formula"><span class="header-section-number">4.3</span> Data pipelines in the formula</a>
   <ul class="collapse">
-  <li><a href="#what-is-supported" id="toc-what-is-supported" class="nav-link" data-scroll-target="#what-is-supported"><span class="header-section-number">2.2.1</span> What is supported</a></li>
-  <li><a href="#what-does-not-work-yet" id="toc-what-does-not-work-yet" class="nav-link" data-scroll-target="#what-does-not-work-yet"><span class="header-section-number">2.2.2</span> What does not work yet</a></li>
+  <li><a href="#what-is-supported" id="toc-what-is-supported" class="nav-link" data-scroll-target="#what-is-supported"><span class="header-section-number">4.3.1</span> What is supported</a></li>
+  <li><a href="#what-does-not-work-yet" id="toc-what-does-not-work-yet" class="nav-link" data-scroll-target="#what-does-not-work-yet"><span class="header-section-number">4.3.2</span> What does not work yet</a></li>
   </ul></li>
-  <li><a href="#boot-state-toggles-pplayeroff-and-ppverbswitch" id="toc-boot-state-toggles-pplayeroff-and-ppverbswitch" class="nav-link" data-scroll-target="#boot-state-toggles-pplayeroff-and-ppverbswitch"><span class="header-section-number">2.3</span> Boot-state toggles: <code>ppLayerOff</code> and <code>ppVerbSwitch</code></a>
+  <li><a href="#boot-state-toggles-pplayeroff-and-ppverbswitch" id="toc-boot-state-toggles-pplayeroff-and-ppverbswitch" class="nav-link" data-scroll-target="#boot-state-toggles-pplayeroff-and-ppverbswitch"><span class="header-section-number">4.4</span> Boot-state toggles: <code>ppLayerOff</code> and <code>ppVerbSwitch</code></a>
   <ul class="collapse">
-  <li><a href="#ppverbswitch-extras-label-and-promoting-a-bare-verb" id="toc-ppverbswitch-extras-label-and-promoting-a-bare-verb" class="nav-link" data-scroll-target="#ppverbswitch-extras-label-and-promoting-a-bare-verb"><span class="header-section-number">2.3.1</span> <code>ppVerbSwitch</code> extras: <code>label =</code> and promoting a bare verb</a></li>
-  <li><a href="#the-first-position-data-assumption" id="toc-the-first-position-data-assumption" class="nav-link" data-scroll-target="#the-first-position-data-assumption"><span class="header-section-number">2.3.2</span> The first-position-data assumption</a></li>
-  <li><a href="#spec-overrides-the-formula-side-default-at-boot" id="toc-spec-overrides-the-formula-side-default-at-boot" class="nav-link" data-scroll-target="#spec-overrides-the-formula-side-default-at-boot"><span class="header-section-number">2.3.3</span> <code>spec =</code> overrides the formula-side default at boot</a></li>
+  <li><a href="#ppverbswitch-extras-label-and-promoting-a-bare-verb" id="toc-ppverbswitch-extras-label-and-promoting-a-bare-verb" class="nav-link" data-scroll-target="#ppverbswitch-extras-label-and-promoting-a-bare-verb"><span class="header-section-number">4.4.1</span> <code>ppVerbSwitch</code> extras: <code>label =</code> and promoting a bare verb</a></li>
+  <li><a href="#the-first-position-data-assumption" id="toc-the-first-position-data-assumption" class="nav-link" data-scroll-target="#the-first-position-data-assumption"><span class="header-section-number">4.4.2</span> The first-position-data assumption</a></li>
+  <li><a href="#spec-overrides-the-formula-side-default-at-boot" id="toc-spec-overrides-the-formula-side-default-at-boot" class="nav-link" data-scroll-target="#spec-overrides-the-formula-side-default-at-boot"><span class="header-section-number">4.4.3</span> <code>spec =</code> overrides the formula-side default at boot</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/formula-language.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -373,9 +397,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./formula-language.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Formula Language</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./placeholders.html">Writing formulas</a></li><li class="breadcrumb-item"><a href="./formula-language.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Formula Language</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-formula-language" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></h1>
+<h1 class="title"><span id="sec-formula-language" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Formula Language</span></span></h1>
 </div>
 
 
@@ -393,16 +417,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>The <strong>formula</strong> is the single source of truth for a ggpaintr app: what gets plotted, which decisions the user gets to make, and — as this chapter shows — which layers and pipeline stages are part of the chart on first paint. <code>ptr_app()</code> accepts the formula in two equivalent forms: as bare code (<code>ptr_app(ggplot(...) + ...)</code>) or as a string (<code>ptr_app("ggplot(...) + ...")</code>). The string form is convenient when the formula is built up programmatically or stored in a file; everything in this chapter works in both. One display caveat: in bare-expression mode R’s parser desugars <code>|&gt;</code> before the formula is captured, so the generated-code panel shows the nested-call form rather than the pipe you wrote. Stay in string mode (or use <code>%&gt;%</code>) if you need <code>|&gt;</code> preserved — and since this chapter leans on pipelines, its examples use string mode throughout.</p>
-<section id="the-tour-formula" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="the-tour-formula"><span class="header-section-number">2.1</span> The tour formula</h2>
+<section id="two-equivalent-forms" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="two-equivalent-forms"><span class="header-section-number">4.1</span> Two equivalent forms</h2>
+<p>The string form of the formula works exactly like the bare-code form you saw in <a href="getting-started.html" class="quarto-xref"><span>Chapter 2</span></a>:</p>
+<div class="cell" data-fixture="use-cases-app-basic">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">"ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point() + labs(title = ppText)"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/use-cases-app-basic.png" class="img-fluid figure-img"></p>
+<figcaption>The app built from a string formula: three column pickers and a title input, plus the standard chrome.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-tour-formula" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="the-tour-formula"><span class="header-section-number">4.2</span> The tour formula</h2>
 <p>One string exercising four of the five built-in placeholders:</p>
 <div class="cell" data-fixture="formula-tour">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) +</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point(size = ppNum) +</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">labs(title = ppText) +</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">facet_wrap(ppExpr)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) +</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point(size = ppNum) +</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">labs(title = ppText) +</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">facet_wrap(ppExpr)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -410,21 +449,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>The tour app at boot: three column pickers, a numeric input, a text input, and a code box for the facet expression.</figcaption>
 </figure>
 </div>
-<p>The full grammar reference is split across two help pages: positional-argument seeding lives at <code>?pp_placeholders</code>; the <code>shared = "&lt;id&gt;"</code> annotation (<a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a>) and the empty-call cleanup rule (<a href="generated-code.html" class="quarto-xref"><span>Chapter 4</span></a>) live at <code>?ptr_app</code>.</p>
+<p>The full grammar reference is split across two help pages: positional-argument seeding lives at <code>?pp_placeholders</code>; the <code>shared = "&lt;id&gt;"</code> annotation (<a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 11</span></a>) and the empty-call cleanup rule (<a href="generated-code.html" class="quarto-xref"><span>Chapter 5</span></a>) live at <code>?ptr_app</code>.</p>
 </section>
-<section id="data-pipelines-in-the-formula" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="data-pipelines-in-the-formula"><span class="header-section-number">2.2</span> Data pipelines in the formula</h2>
+<section id="data-pipelines-in-the-formula" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="data-pipelines-in-the-formula"><span class="header-section-number">4.3</span> Data pipelines in the formula</h2>
 <p>A layer’s data argument is allowed to be a pipeline. Both <code>|&gt;</code> and <code>%&gt;%</code> are accepted, and the two can be mixed in the same chain. Each pipeline stage that contains a placeholder gets its own row of widgets under the layer’s <strong>Data</strong> subtab, plus a per-stage enable/disable toggle that rewrites the generated code as if that step were never there. Column pickers downstream of a stage lazily re-resolve their column choices against the current Data-subtab inputs, so changing a filter threshold immediately refreshes the picker below it.</p>
 <div class="cell" data-fixture="formula-pipeline">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"mpg |&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::filter(displ &gt; ppNum) |&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::group_by(class) |&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::filter(dplyr::n() &gt; ppNum) |&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::ungroup() |&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">ggplot(aes(ppVar, ppVar, color = class)) +</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point(alpha = ppNum)"</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">"mpg |&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::filter(displ &gt; ppNum) |&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::group_by(class) |&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::filter(dplyr::n() &gt; ppNum) |&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">dplyr::ungroup() |&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">ggplot(aes(ppVar, ppVar, color = class)) +</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point(alpha = ppNum)"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -432,9 +471,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>A five-stage dplyr pipeline feeding <code>ggplot()</code>. Each placeholder-carrying stage gets widgets and a toggle under the Data subtab.</figcaption>
 </figure>
 </div>
-<p><a href="gallery.html" class="quarto-xref"><span>Chapter 6</span></a> § “Data-cleaning pipelines” shows this same example next to the plain dplyr pipeline it parameterizes.</p>
-<section id="what-is-supported" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="what-is-supported"><span class="header-section-number">2.2.1</span> What is supported</h3>
+<p><a href="gallery.html" class="quarto-xref"><span>Chapter 19</span></a> § “Data-cleaning pipelines” shows this same example next to the plain dplyr pipeline it parameterizes.</p>
+<section id="what-is-supported" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="what-is-supported"><span class="header-section-number">4.3.1</span> What is supported</h3>
 <ul>
 <li><strong>Both pipe operators</strong>, possibly mixed in the same chain: <code>df %&gt;% filter(...) |&gt; ggplot(...)</code>.</li>
 <li><strong>Bare-symbol stage heads</strong>: <code>filter(...)</code>, <code>head(...)</code>, <code>transform(...)</code>.</li>
@@ -445,53 +484,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Placeholders in any stage</strong>: <code>ppVar</code>, <code>ppText</code>, <code>ppNum</code>, <code>ppExpr</code> inside any stage’s call resolve as if that stage were a regular layer call.</li>
 </ul>
 </section>
-<section id="what-does-not-work-yet" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="what-does-not-work-yet"><span class="header-section-number">2.2.2</span> What does not work yet</h3>
+<section id="what-does-not-work-yet" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="what-does-not-work-yet"><span class="header-section-number">4.3.2</span> What does not work yet</h3>
 <p><strong>Anonymous functions as pipe stages.</strong> <code>df |&gt; (\(x) x[x$cyl &gt; 4, ])() |&gt; ggplot(...)</code> is not rejected — the app boots and the lambda runs verbatim in the generated code — but the stage is invisible to the widget machinery: it gets no Data-subtab row and no enable/disable toggle. Worse, never put a placeholder <em>inside</em> the lambda body: something like <code>(\(x) x[x$cyl &gt; ppNum, ])()</code> is silently ignored — no widget appears and no warning is raised. Prefer a named verb, or lift the anonymous function to a named helper in the calling environment and use it as a bare-symbol stage (<code>df |&gt; my_helper(ppNum) |&gt; ggplot(...)</code>), so the stage can carry placeholders and a toggle.</p>
 </section>
 </section>
-<section id="boot-state-toggles-pplayeroff-and-ppverbswitch" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="boot-state-toggles-pplayeroff-and-ppverbswitch"><span class="header-section-number">2.3</span> Boot-state toggles: <code>ppLayerOff</code> and <code>ppVerbSwitch</code></h2>
+<section id="boot-state-toggles-pplayeroff-and-ppverbswitch" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="boot-state-toggles-pplayeroff-and-ppverbswitch"><span class="header-section-number">4.4</span> Boot-state toggles: <code>ppLayerOff</code> and <code>ppVerbSwitch</code></h2>
 <p>If a layer should start <em>unchecked</em> in the layer panel, or a pipeline stage should start <em>disabled</em> (or simply be <em>toggleable</em>), that decision belongs in the same text you wrote the chart against. Two structural keywords carry it inside the formula: <code>ppLayerOff(layer_expr, hide)</code> for layers and <code>ppVerbSwitch(.data, verb_expr, switch_on, label)</code> for pipeline stages. For <code>ppLayerOff</code> the positive sense is <code>hide = TRUE</code> (“boot with this layer off”); for <code>ppVerbSwitch</code> it is <code>switch_on = TRUE</code> (apply the verb — the checkbox boots checked).</p>
 <p>The keywords are also legal R outside <code>ptr_app()</code>, so the same formula text renders correctly under naked ggplot. This chunk is plain R — no app on the stack — and really runs:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ppLayerOff: hide = FALSE adds the layer; hide = TRUE drops it.</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(mpg, wt)) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppLayerOff</span>(<span class="fu">geom_point</span>(), <span class="cn">FALSE</span>) <span class="sc">+</span>     <span class="co"># layer present</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppLayerOff</span>(<span class="fu">geom_smooth</span>(), <span class="cn">TRUE</span>)       <span class="co"># layer absent (returns NULL)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ppLayerOff: hide = FALSE adds the layer; hide = TRUE drops it.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(mpg, wt)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppLayerOff</span>(<span class="fu">geom_point</span>(), <span class="cn">FALSE</span>) <span class="sc">+</span>     <span class="co"># layer present</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppLayerOff</span>(<span class="fu">geom_smooth</span>(), <span class="cn">TRUE</span>)       <span class="co"># layer absent (returns NULL)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="formula-language_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="formula-language_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ppVerbSwitch: switch_on = TRUE applies the verb; switch_on = FALSE skips it.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppVerbSwitch</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>), <span class="at">switch_on =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span>   <span class="co"># filtered</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ppVerbSwitch: switch_on = TRUE applies the verb; switch_on = FALSE skips it.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppVerbSwitch</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>), <span class="at">switch_on =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span>   <span class="co"># filtered</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppVerbSwitch</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>), <span class="at">switch_on =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span>  <span class="co"># bypassed</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppVerbSwitch</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>), <span class="at">switch_on =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span>  <span class="co"># bypassed</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 32</code></pre>
 </div>
 </div>
 <p>The same formula wrapped in <code>ptr_app()</code> boots the matching pieces with the right checkbox state, and the user can toggle them at runtime:</p>
 <div class="cell" data-fixture="formula-toggles">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">"mtcars |&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">ppVerbSwitch(dplyr::filter(mpg &gt; ppNum), switch_on = FALSE) |&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">ggplot(aes(mpg, wt)) +</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point() +</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">ppLayerOff(geom_smooth(method = 'lm'), TRUE)"</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">"mtcars |&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">ppVerbSwitch(dplyr::filter(mpg &gt; ppNum), switch_on = FALSE) |&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">ggplot(aes(mpg, wt)) +</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point() +</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="st">ppLayerOff(geom_smooth(method = 'lm'), TRUE)"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -499,25 +538,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>After one <strong>Update plot</strong>: the scatter draws, the <code>geom_smooth</code> checkbox boots unchecked, and the filter stage’s toggle boots disabled. Flipping either widget re-renders with that piece active.</figcaption>
 </figure>
 </div>
-<section id="ppverbswitch-extras-label-and-promoting-a-bare-verb" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="ppverbswitch-extras-label-and-promoting-a-bare-verb"><span class="header-section-number">2.3.1</span> <code>ppVerbSwitch</code> extras: <code>label =</code> and promoting a bare verb</h3>
+<section id="ppverbswitch-extras-label-and-promoting-a-bare-verb" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="ppverbswitch-extras-label-and-promoting-a-bare-verb"><span class="header-section-number">4.4.1</span> <code>ppVerbSwitch</code> extras: <code>label =</code> and promoting a bare verb</h3>
 <p><code>label =</code> is an optional length-1 string that becomes the checkbox’s head label in the Data subtab; without it the UI falls back to an auto-generated <code>verb()</code> label. And <code>switch_on = TRUE</code> promotes a <em>bare</em> verb — one with no placeholder, which would otherwise get no checkbox at all — into a user-toggleable stage:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"mtcars |&gt; ppVerbSwitch(filter(cyl == 6), switch_on = TRUE, label = 'Six-cylinder only') |&gt; ggplot(aes(mpg, wt)) + geom_point()"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"mtcars |&gt; ppVerbSwitch(filter(cyl == 6), switch_on = TRUE, label = 'Six-cylinder only') |&gt; ggplot(aes(mpg, wt)) + geom_point()"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="the-first-position-data-assumption" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="the-first-position-data-assumption"><span class="header-section-number">2.3.2</span> The first-position-data assumption</h3>
+<section id="the-first-position-data-assumption" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="the-first-position-data-assumption"><span class="header-section-number">4.4.2</span> The first-position-data assumption</h3>
 <p><code>ppVerbSwitch</code> evaluates the verb after inserting <code>.data</code> as the verb call’s <strong>first positional argument</strong> — the same convention <code>|&gt;</code> uses, matching every dplyr and tidyr verb. A verb whose data argument is <em>not</em> in position 1 (think <code>my_fit(formula, data, weights)</code>) would get <code>.data</code> injected ahead of <code>formula</code>, silently shifting every argument. The escape valve is a named one-line wrapper that adapts the signature:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit_first <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, formula, ...) <span class="fu">my_fit</span>(<span class="at">formula =</span> formula, <span class="at">data =</span> .data, ...)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Now it composes:</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># "mtcars |&gt; ppVerbSwitch(fit_first(mpg ~ wt), switch_on = FALSE) |&gt; ggplot(...)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fit_first <span class="ot">&lt;-</span> <span class="cf">function</span>(.data, formula, ...) <span class="fu">my_fit</span>(<span class="at">formula =</span> formula, <span class="at">data =</span> .data, ...)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Now it composes:</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># "mtcars |&gt; ppVerbSwitch(fit_first(mpg ~ wt), switch_on = FALSE) |&gt; ggplot(...)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="spec-overrides-the-formula-side-default-at-boot" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="spec-overrides-the-formula-side-default-at-boot"><span class="header-section-number">2.3.3</span> <code>spec =</code> overrides the formula-side default at boot</h3>
+<section id="spec-overrides-the-formula-side-default-at-boot" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="spec-overrides-the-formula-side-default-at-boot"><span class="header-section-number">4.4.3</span> <code>spec =</code> overrides the formula-side default at boot</h3>
 <p><code>ppLayerOff</code> / <code>ppVerbSwitch</code> set the <em>default</em> boot state. The <code>spec =</code> argument on <code>ptr_app()</code> / <code>ptr_server()</code> carries restore values for any widget — except a <code>ppUpload</code> file input, which cannot be restored from a spec (only its companion text input is settable) — and a <code>spec =</code> entry <strong>overrides the formula-side default</strong> at boot. Round-tripping a saved app state therefore composes cleanly with formula-side toggles: capture <code>state$spec()</code> from a running app, re-launch with it, and a layer the formula boots off can come back on:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(mtcars, aes(mpg, wt)) + geom_point() + ppLayerOff(geom_smooth(), TRUE)"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(<span class="at">geom_smooth_checkbox =</span> <span class="cn">TRUE</span>)  <span class="co"># overrides the formula-side OFF</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(mtcars, aes(mpg, wt)) + geom_point() + ppLayerOff(geom_smooth(), TRUE)"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(<span class="at">geom_smooth_checkbox =</span> <span class="cn">TRUE</span>)  <span class="co"># overrides the formula-side OFF</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The precedence rule is: formula-side default first, then <code>spec =</code> per-widget override. See <code>?ptr_app</code> for the full <code>spec =</code> shape.</p>
 
 
@@ -927,13 +966,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./getting-started.html" class="pagination-link" aria-label="Getting Started">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span>
+      <a href="./placeholders.html" class="pagination-link" aria-label="The Built-in Placeholders">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./placeholders.html" class="pagination-link" aria-label="The Built-in Placeholders">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./generated-code.html" class="pagination-link" aria-label="The Generated Code and Plot">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
