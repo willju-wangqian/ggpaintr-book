@@ -53,4 +53,4 @@ Independence is usually not what you want for the *common* knobs — one x-axis 
 
 ## When to skip all of this
 
-If one plot and the default chrome are enough, stay at L1 (@sec-use-cases). If what you actually want is a different *layout* of the standard pieces — controls left, plot right, code window elsewhere — you may want the bare L3 pieces instead of whole-module embedding: @sec-embed-bare.
+If one plot and the default chrome are enough, stay at L1 (@sec-intro). If what you actually want is a different *layout* of the standard pieces — controls left, plot right, code window elsewhere — you may want the bare L3 pieces instead of whole-module embedding: @sec-embed-bare.

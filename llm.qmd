@@ -4,7 +4,7 @@ Large language models are fluent at writing raw `shiny::fluidPage()` + server sc
 
 This chapter shows how to make any [ellmer](https://ellmer.tidyverse.org/) chat session reach for ggpaintr first, using two exported helpers:
 
-- `ptr_llm_primer()` — the system-prompt preamble that teaches the model the three-level integration model (@sec-use-cases) and the "call the docs tool before writing code" rule.
+- `ptr_llm_primer()` — the system-prompt preamble that teaches the model the three-level integration model (@sec-intro) and the "call the docs tool before writing code" rule.
 - `ptr_llm_register()` — one-line registration of the `ggpaintr_docs` tool that serves focused runnable examples on demand.
 
 The tool is backed by `ptr_llm_topic()`, which returns the content of one bundled topic file. The LLM pulls only the topic it needs, instead of the whole manual loading the context window on every turn.

@@ -23,11 +23,11 @@ Seeding: one positional argument is the boot value — `ppVar("wt")`, `ppNum(3)`
 | `keyword(shared = "<key>")` | One widget drives every occurrence of the key (@sec-shared-placeholders). |
 | `spec = list(<widget_id> = <value>)` | Per-run boot override, wins over formula-side defaults. |
 
-## Entry points by level (@sec-use-cases)
+## Entry points by level (@sec-intro)
 
 | Level | Call | Chapter |
 |-------|------|---------|
-| L1 | `ptr_app(formula, envir, ui_text, expr_check, safe_to_remove, css, spec)` | @sec-use-cases |
+| L1 | `ptr_app(formula, envir, ui_text, expr_check, safe_to_remove, css, spec)` | @sec-intro |
 | L2 | `ptr_ui(formula, id)` + `ptr_server(formula, id)` | @sec-embed-default, @sec-multi-plot |
 | L2 (linked plots) | `ptr_shared(formulas)` → `ptr_shared_panel(obj)` + `ptr_shared_server(obj)` → `ptr_server(..., shared_state = )` | @sec-shared-placeholders |
 | L3 (bare pieces) | `ptr_ui_page()`, `ptr_ui_header()`, `ptr_ui_controls()`, `ptr_ui_plot()`, `ptr_ui_error()`, `ptr_ui_code()`, `ptr_ui_shared_panel()`, `ptr_ui_assets()` | @sec-embed-bare |
@@ -72,4 +72,4 @@ Argument validators: `ptr_arg_string()`, `ptr_arg_numeric()`, `ptr_arg_symbol()`
 
 ## Utilities
 
-`ptr_normalize_column_names(data)` — make local data `ppVar`-safe (@sec-use-cases). `ptr_extract_code(state)` — the script behind the code window (@sec-generated-code).
+`ptr_normalize_column_names(data)` — make local data `ppVar`-safe (@sec-getting-started). `ptr_extract_code(state)` — the script behind the code window (@sec-generated-code).
