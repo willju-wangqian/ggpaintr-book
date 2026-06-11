@@ -6,10 +6,10 @@ The book teaches **how to use ggpaintr** and **how to extend it**. It is purely 
 
 ## Version this book documents
 
-This book is pinned to ggpaintr `@dbdad05` (the current development tip — no tagged release covers this API yet). The pin lives in `DESCRIPTION` `Remotes:` and is enforced by `Rscript dev/book-gate.R`. To follow along with the same version:
+This book is pinned to ggpaintr `@1a28cec` (the current development tip — no tagged release covers this API yet). The pin lives in `DESCRIPTION` `Remotes:` and is enforced by `Rscript dev/book-gate.R`. To follow along with the same version:
 
 ```r
-remotes::install_github("willju-wangqian/ggpaintr@dbdad0563682be061ace725f1845ad9c0dcfa586")
+remotes::install_github("willju-wangqian/ggpaintr@1a28cec32483a35de7e9eb2099fdc1794a8d6243")
 ```
 
 When the package cuts a tagged release covering the API in this book, the pin will move to that tag in a single PR; the install snippet above will update accordingly.

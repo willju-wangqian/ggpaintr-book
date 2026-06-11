@@ -25,9 +25,9 @@ chat$chat("Build a Shiny app where the user picks X and Y columns from mtcars.")
 Under the hood:
 
 - `chat_anthropic()` loads the primer (~4,000 tokens) into the system prompt, which stays in context every turn.
-- `ptr_llm_register()` attaches a single tool named `ggpaintr_docs` to the chat session. The tool's one argument — `name` — is constrained by `type_enum()` to the exact set of topic names returned by `ptr_llm_topics()`, so the LLM cannot request a topic that does not exist.
+- `ptr_llm_register()` attaches a single tool named `ggpaintr_docs` to the chat session. The tool's one argument — `topic` — is constrained by `type_enum()` to the exact set of topic names returned by `ptr_llm_topics()`, so the LLM cannot request a topic that does not exist.
 
-On the first turn the model sees the user's prompt, recognises it as a plot-explorer task, calls `ggpaintr_docs(name = "level1_ptr_app")`, and writes a `ptr_app(...)` snippet rather than raw Shiny.
+On the first turn the model sees the user's prompt, recognises it as a plot-explorer task, calls `ggpaintr_docs(topic = "level1_ptr_app")`, and writes a `ptr_app(...)` snippet rather than raw Shiny.
 
 ## What the primer + tool split buys you
 
@@ -127,7 +127,7 @@ ggpaintr_docs <- tool(
     "Call before writing R code for interactive ggplot tasks."
   ),
   arguments = list(
-    name = type_enum(
+    topic = type_enum(
       ptr_llm_topics(),
       "Which topic to fetch."
     )

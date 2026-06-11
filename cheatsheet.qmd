@@ -68,7 +68,7 @@ Argument validators: `ptr_arg_string()`, `ptr_arg_numeric()`, `ptr_arg_symbol()`
 
 ## LLM helpers (@sec-llm)
 
-`ptr_llm_primer()` (system prompt), `ptr_llm_register(chat)` (the `ggpaintr_docs` tool), `ptr_llm_topics()` / `ptr_llm_topic(name)` (inspect the payloads).
+`ptr_llm_primer()` (system prompt), `ptr_llm_register(chat)` (the `ggpaintr_docs` tool), `ptr_llm_topics()` / `ptr_llm_topic(topic)` (inspect the payloads).
 
 ## Utilities
 
