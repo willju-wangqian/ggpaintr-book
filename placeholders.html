@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Placeholders – ggpaintr</title>
+<title>3&nbsp; The Built-in Placeholders – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./placeholders.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./placeholders.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#placeholders-work-anywhere-in-a-pipeline" id="toc-placeholders-work-anywhere-in-a-pipeline" class="nav-link active" data-scroll-target="#placeholders-work-anywhere-in-a-pipeline"><span class="header-section-number">3.1</span> Placeholders work anywhere in a pipeline</a></li>
+  <li><a href="#seeding-defaults-are-literal-never-evaluated" id="toc-seeding-defaults-are-literal-never-evaluated" class="nav-link" data-scroll-target="#seeding-defaults-are-literal-never-evaluated"><span class="header-section-number">3.2</span> Seeding: defaults are literal, never evaluated</a></li>
+  <li><a href="#ppupload-the-data-comes-from-the-user" id="toc-ppupload-the-data-comes-from-the-user" class="nav-link" data-scroll-target="#ppupload-the-data-comes-from-the-user"><span class="header-section-number">3.3</span> <code>ppUpload</code>: the data comes from the user</a></li>
+  <li><a href="#nothing-renders-until-you-click-update" id="toc-nothing-renders-until-you-click-update" class="nav-link" data-scroll-target="#nothing-renders-until-you-click-update"><span class="header-section-number">3.4</span> Nothing renders until you click Update</a></li>
+  <li><a href="#beyond-the-built-ins" id="toc-beyond-the-built-ins" class="nav-link" data-scroll-target="#beyond-the-built-ins"><span class="header-section-number">3.5</span> Beyond the built-ins</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./placeholders.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./placeholders.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></h1>
+<h1 class="title"><span id="sec-placeholders" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></h1>
 </div>
 
 
@@ -340,23 +385,113 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>A placeholder keyword marks one decision you are delegating to the app’s user. ggpaintr ships five. Each maps to a fixed widget and a fixed way of folding the user’s input back into the formula:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 37%">
+<col style="width: 10%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Keyword</th>
+<th>Widget</th>
+<th>Role</th>
+<th>Folds back as</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ppVar</code></td>
+<td>column picker (data-aware)</td>
+<td>consumer</td>
+<td>a column symbol, e.g.&nbsp;<code>mpg</code></td>
+</tr>
+<tr class="even">
+<td><code>ppText</code></td>
+<td>text input</td>
+<td>value</td>
+<td>a string</td>
+</tr>
+<tr class="odd">
+<td><code>ppNum</code></td>
+<td>numeric input</td>
+<td>value</td>
+<td>a number</td>
+</tr>
+<tr class="even">
+<td><code>ppExpr</code></td>
+<td>code box (validated)</td>
+<td>value</td>
+<td>live code, parsed to an expression</td>
+</tr>
+<tr class="odd">
+<td><code>ppUpload</code></td>
+<td>file picker (+ dataset-name box)</td>
+<td>source</td>
+<td>a data frame</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>role</strong> column matters as soon as you want to define your own placeholders (<a href="custom-placeholders.html" class="quarto-xref"><span>Chapter 13</span></a>):</p>
+<ul>
+<li>A <strong>value</strong> placeholder produces a self-contained value — it needs nothing from the rest of the formula.</li>
+<li>A <strong>consumer</strong> placeholder needs the upstream data’s column names: a <code>ppVar</code> dropdown can only list columns once it knows what data flows into it.</li>
+<li>A <strong>source</strong> placeholder <em>produces</em> the data frame the rest of the formula reads.</li>
+</ul>
+<section id="placeholders-work-anywhere-in-a-pipeline" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="placeholders-work-anywhere-in-a-pipeline"><span class="header-section-number">3.1</span> Placeholders work anywhere in a pipeline</h2>
+<p>A formula can mix all the roles, and placeholders are not confined to the <code>ggplot()</code> call — any pipeline stage ahead of it can carry them too:</p>
+<div class="cell" data-fixture="placeholders-tour">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">ppExpr</span>(mpg <span class="sc">&gt;</span> <span class="dv">15</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ppVar, <span class="at">y =</span> ppVar, <span class="at">color =</span> ppVar)) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> ppNum) <span class="sc">+</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> ppText)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/placeholders-tour.png" class="img-fluid figure-img"></p>
+<figcaption>Four placeholder kinds in one app: the <code>ppExpr</code> code box for the filter (seeded with <code>mpg &gt; 15</code>), three column pickers, a numeric input for point size, and a text input for the title.</figcaption>
+</figure>
 </div>
+<p>Column pickers downstream of a pipeline stage re-resolve their choices against the <em>current</em> upstream inputs, so changing the filter immediately refreshes the pickers below it. The full pipeline story — which stage shapes are supported and which are not — is in <a href="formula-language.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
+</section>
+<section id="seeding-defaults-are-literal-never-evaluated" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="seeding-defaults-are-literal-never-evaluated"><span class="header-section-number">3.2</span> Seeding: defaults are literal, never evaluated</h2>
+<p>Any placeholder takes a single positional argument as its boot value: <code>ppVar("wt")</code> (a string) or <code>ppVar(wt)</code> (a bare name) pre-picks the column, <code>ppNum(3)</code> pre-fills the number, <code>ppText("A title")</code> the text, <code>ppExpr(mpg &gt; 15)</code> the code box. The default is read literally from the formula text; it is <strong>not</strong> evaluated as user code. The one convenience: <code>ppNum</code> accepts simple arithmetic such as <code>ppNum(2 * pi)</code>, folded at build time against a small allowlist of pure functions.</p>
+</section>
+<section id="ppupload-the-data-comes-from-the-user" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="ppupload-the-data-comes-from-the-user"><span class="header-section-number">3.3</span> <code>ppUpload</code>: the data comes from the user</h2>
+<p><code>ppUpload</code> is the source placeholder: it renders a file picker plus a dataset-name box. Seed it with a bare dataset name and the app boots against that data with no upload needed — the upload widget stays available to swap it out:</p>
+<div class="cell" data-fixture="placeholders-upload">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppUpload</span>(iris) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(Sepal.Length), <span class="at">y =</span> <span class="fu">ppVar</span>(Sepal.Width), <span class="at">color =</span> <span class="fu">ppVar</span>(Species))) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: every placeholder token — <code>var</code>, <code>text</code>, <code>num</code>, <code>expr</code>, <code>upload</code> — the widget each generates, named vs positional arguments, and how upload-driven data flows through the app. (Absorbs the former <code>data-and-upload.qmd</code> per the 2026-05-23 TOC consolidation.)</p>
-<p>Examples follow <code>book-conventions.md</code>: each app chunk carries <code>#| fixture: &lt;slug&gt;</code> and is mirrored by <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/placeholders-upload.png" class="img-fluid figure-img"></p>
+<figcaption><code>ppUpload(iris)</code> seeds the app with <code>iris</code>; the seeded column pickers let the first <strong>Update plot</strong> draw immediately. Uploading a file re-points every downstream picker at the new columns.</figcaption>
+</figure>
 </div>
-</div>
-<!-- TODO: write "Placeholders" -->
+<p>Uploaded column names are normalized automatically so that <code>ppVar</code> always sees syntactic, unique names (<a href="generated-code.html" class="quarto-xref"><span>Chapter 4</span></a> covers the same normalization for local data). The trust model behind <code>ppExpr</code> validation and <code>ppUpload</code> parsing — what is checked, what is not — has its own chapter: <a href="safety.html" class="quarto-xref"><span>Chapter 17</span></a>.</p>
+</section>
+<section id="nothing-renders-until-you-click-update" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="nothing-renders-until-you-click-update"><span class="header-section-number">3.4</span> Nothing renders until you click Update</h2>
+<p>Under the default <code>gate_draw = TRUE</code> setting, ggpaintr re-draws only on <strong>Update plot</strong>. Changing a widget stages a new value but does not redraw on its own. (Setting <code>ptr_options(gate_draw = FALSE)</code> before building the app removes the button and re-renders live on every change.) This is deliberate: it keeps a half-typed expression from strobing the plot, and it is the one thing to remember when scripting an app in tests — set the inputs, <em>then</em> click the button.</p>
+</section>
+<section id="beyond-the-built-ins" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="beyond-the-built-ins"><span class="header-section-number">3.5</span> Beyond the built-ins</h2>
+<p>When none of the five fits — you want a slider, a range, a multi-column picker — you register your own placeholder with the same three roles. That is <a href="custom-placeholders.html" class="quarto-xref"><span>Chapter 13</span></a>; the gallery (<a href="gallery.html" class="quarto-xref"><span>Chapter 6</span></a>) uses several custom placeholders in realistic plots if you want to see them in action first.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -776,4 +911,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

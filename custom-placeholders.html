@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a-value-placeholder-every-argument" id="toc-a-value-placeholder-every-argument" class="nav-link active" data-scroll-target="#a-value-placeholder-every-argument"><span class="header-section-number">13.1</span> A value placeholder — every argument</a>
+  <ul class="collapse">
+  <li><a href="#keyword" id="toc-keyword" class="nav-link" data-scroll-target="#keyword"><span class="header-section-number">13.1.1</span> <code>keyword</code></a></li>
+  <li><a href="#build_ui-and-why-its-signature-looks-the-way-it-does" id="toc-build_ui-and-why-its-signature-looks-the-way-it-does" class="nav-link" data-scroll-target="#build_ui-and-why-its-signature-looks-the-way-it-does"><span class="header-section-number">13.1.2</span> <code>build_ui</code> — and why its signature looks the way it does</a></li>
+  <li><a href="#resolve_expr" id="toc-resolve_expr" class="nav-link" data-scroll-target="#resolve_expr"><span class="header-section-number">13.1.3</span> <code>resolve_expr</code></a></li>
+  <li><a href="#validate_session_input" id="toc-validate_session_input" class="nav-link" data-scroll-target="#validate_session_input"><span class="header-section-number">13.1.4</span> <code>validate_session_input</code></a></li>
+  <li><a href="#parse_positional_arg" id="toc-parse_positional_arg" class="nav-link" data-scroll-target="#parse_positional_arg"><span class="header-section-number">13.1.5</span> <code>parse_positional_arg</code></a></li>
+  <li><a href="#parse_named_args" id="toc-parse_named_args" class="nav-link" data-scroll-target="#parse_named_args"><span class="header-section-number">13.1.6</span> <code>parse_named_args</code></a></li>
+  <li><a href="#embellish_eval" id="toc-embellish_eval" class="nav-link" data-scroll-target="#embellish_eval"><span class="header-section-number">13.1.7</span> <code>embellish_eval</code></a></li>
+  <li><a href="#ui_text_defaults" id="toc-ui_text_defaults" class="nav-link" data-scroll-target="#ui_text_defaults"><span class="header-section-number">13.1.8</span> <code>ui_text_defaults</code></a></li>
+  </ul></li>
+  <li><a href="#a-consumer-placeholder-the-delta" id="toc-a-consumer-placeholder-the-delta" class="nav-link" data-scroll-target="#a-consumer-placeholder-the-delta"><span class="header-section-number">13.2</span> A consumer placeholder — the delta</a></li>
+  <li><a href="#a-source-placeholder-the-delta" id="toc-a-source-placeholder-the-delta" class="nav-link" data-scroll-target="#a-source-placeholder-the-delta"><span class="header-section-number">13.3</span> A source placeholder — the delta</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">13.4</span> Common pitfalls</a></li>
+  <li><a href="#unregistering" id="toc-unregistering" class="nav-link" data-scroll-target="#unregistering"><span class="header-section-number">13.5</span> Unregistering</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./custom-placeholders.html">Extension</a></li><li class="breadcrumb-item"><a href="./custom-placeholders.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Placeholders</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Placeholders</span></h1>
+<h1 class="title"><span id="sec-custom-placeholders" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Placeholders</span></span></h1>
 </div>
 
 
@@ -340,23 +395,203 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>The five built-ins are themselves registered through the same public API you are about to use. You define a placeholder by calling one of three constructors, keyed by the role from <a href="placeholders.html" class="quarto-xref"><span>Chapter 3</span></a>:</p>
+<ul>
+<li><code>ptr_define_placeholder_value()</code> — produces a self-contained value;</li>
+<li><code>ptr_define_placeholder_consumer()</code> — needs the upstream data’s column names;</li>
+<li><code>ptr_define_placeholder_source()</code> — produces the data frame the rest of the formula reads.</li>
+</ul>
+<p>All three are thin wrappers over a shared core, so they take an overlapping set of arguments. This chapter covers the <strong>value</strong> constructor in full, then only what is <em>different</em> for consumer and source. A few facts hold for all three:</p>
+<ul>
+<li><strong>The registry is process-global.</strong> Calling a constructor <em>registers</em> the keyword as a side effect (and returns a plain-R function — see <code>embellish_eval</code> below); there is no <code>placeholders =</code> argument to thread anywhere. Register once near the top of your script, then use the keyword in any formula.</li>
+<li>The keyword you register is the keyword you write in the formula. By convention built-ins use the <code>pp</code> prefix, but yours need not.</li>
+</ul>
+<section id="a-value-placeholder-every-argument" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="a-value-placeholder-every-argument"><span class="header-section-number">13.1</span> A value placeholder — every argument</h2>
+<p>A custom <code>ppPercent</code>: a 0–100 slider whose value is divided by 100 before it reaches the plot. It exercises <strong>every</strong> argument of <code>ptr_define_placeholder_value()</code>; the positional <code>40</code> in the app seeds the slider, the named <code>step = 5</code> is forwarded to <code>build_ui</code>:</p>
+<div class="cell" data-fixture="custom-value">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ppPercent <span class="ot">&lt;-</span> <span class="fu">ptr_define_placeholder_value</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyword =</span> <span class="st">"ppPercent"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">build_ui =</span> <span class="cf">function</span>(node, <span class="at">label =</span> <span class="cn">NULL</span>, <span class="at">selected =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">named_args =</span> <span class="fu">list</span>(), ...) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    step <span class="ot">&lt;-</span> named_args<span class="sc">$</span>step <span class="sc">%||%</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">sliderInput</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      node<span class="sc">$</span>id, <span class="at">label =</span> label <span class="sc">%||%</span> <span class="st">"Percent"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> selected,   <span class="co"># the framework routes ppPercent(40) in here</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">step =</span> step</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve_expr =</span> <span class="cf">function</span>(value, node, ...) {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(value)) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>(value) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">validate_session_input =</span> <span class="cf">function</span>(value, ctx) {</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    v <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(value))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(v) <span class="sc">!=</span> <span class="dv">1</span>L <span class="sc">||</span> <span class="fu">is.na</span>(v) <span class="sc">||</span> v <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">||</span> v <span class="sc">&gt;</span> <span class="dv">100</span>) {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">"Percent must be a single number between 0 and 100."</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">parse_positional_arg =</span> <span class="fu">ptr_arg_numeric</span>(),</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">parse_named_args     =</span> <span class="fu">list</span>(<span class="at">step =</span> <span class="fu">ptr_arg_numeric</span>()),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">embellish_eval       =</span> <span class="cf">function</span>(x, ...) <span class="fu">as.numeric</span>(x) <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui_text_defaults =</span> <span class="fu">list</span>(<span class="at">label =</span> <span class="st">"Percent for {param}"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(<span class="st">"wt"</span>), <span class="at">y =</span> <span class="fu">ppVar</span>(<span class="st">"mpg"</span>))) <span class="sc">+</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fu">ppPercent</span>(<span class="dv">40</span>, <span class="at">step =</span> <span class="dv">5</span>))</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-value.png" class="img-fluid figure-img"></p>
+<figcaption>The registered <code>ppPercent</code> rendering as a 0–100 slider; the generated code shows <code>alpha = 0.4</code>.</figcaption>
+</figure>
 </div>
+<section id="keyword" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="keyword"><span class="header-section-number">13.1.1</span> <code>keyword</code></h3>
+<p>The name to register and to write in formulas. Required.</p>
+</section>
+<section id="build_ui-and-why-its-signature-looks-the-way-it-does" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="build_ui-and-why-its-signature-looks-the-way-it-does"><span class="header-section-number">13.1.2</span> <code>build_ui</code> — and why its signature looks the way it does</h3>
+<p><code>build_ui</code> returns the Shiny control. Its <strong>first argument is <code>node</code></strong> (required) — carrying, among other things, <code>node$id</code> (the input id you must give your widget) and <code>node$default</code> (the literal positional default from the formula, or <code>NULL</code> — exposed for the framework’s own bookkeeping; never read it inside the hook, as explained next).</p>
+<p>The framework does not call <code>build_ui(node)</code> bare. It calls it through an injector that <em>also</em> passes <code>label</code> (the resolved copy from <code>ui_text_defaults</code>, possibly overridden by the app’s <code>ui_text</code>), <code>selected</code> (the persisted value, injected <strong>only if your function can receive it</strong>), and <code>named_args</code> (the validated named arguments from the formula call). Hence the canonical signature <code>function(node, label = NULL, selected = NULL, named_args = list(), ...)</code>:</p>
+<ul>
+<li>You <strong>opt in</strong> to an injected argument by naming it — or by having <code>...</code>. If you neither name <code>selected</code> nor accept <code>...</code>, it is never injected. Naming the ones you use and keeping <code>...</code> to swallow the rest is the safe, forward-compatible shape.</li>
+<li>Seed the widget from <code>selected</code> — and <em>only</em> <code>selected</code>. The framework owns the precedence: on the first render it routes the formula’s positional default (<code>ppPercent(40)</code>) into <code>selected</code>; on every later render <code>selected</code> is the live input, verbatim. Never read <code>node$default</code> yourself and never hardcode a fallback for the empty case — both bypass the seeding layer and snap a user-cleared widget back to the default on the next re-render. When <code>selected</code> is empty (<code>NULL</code>, <code>character(0)</code>, <code>""</code>, <code>NA</code>), render the widget empty; boot defaults belong in the formula.</li>
+<li>Use <code>node$id</code> — and <em>only</em> <code>node$id</code> — as the widget id. Do not namespace it yourself; the framework already did.</li>
+</ul>
+</section>
+<section id="resolve_expr" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="resolve_expr"><span class="header-section-number">13.1.3</span> <code>resolve_expr</code></h3>
+<p><code>function(value, node, ...)</code> → the value (or expression) spliced back into the formula. Return <code>NULL</code> to contribute nothing (an empty field), which drops the argument cleanly (<a href="generated-code.html" class="quarto-xref"><span>Chapter 4</span></a>). Here we divide by 100 so the plot sees a 0–1 alpha.</p>
+</section>
+<section id="validate_session_input" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="validate_session_input"><span class="header-section-number">13.1.4</span> <code>validate_session_input</code></h3>
+<p>Optional. <code>function(value, ctx)</code>, run before <code>resolve_expr</code>. Return <code>TRUE</code> or <code>NULL</code> to accept; return a single character string to reject — it surfaces as the inline error message (<code>rlang::abort()</code> also rejects). Any <em>other</em> return value fails closed with a generic “validation failed” — so returning the value itself, a natural-looking mistake, rejects every draw. For mid-typing artifacts that should not flash an error, signal <code>ptr_signal_partial()</code> instead of aborting — it is caught on the live keystroke path but not on the draw path. (<code>ctx</code> earns its keep for consumers, below.)</p>
+</section>
+<section id="parse_positional_arg" class="level3" data-number="13.1.5">
+<h3 data-number="13.1.5" class="anchored" data-anchor-id="parse_positional_arg"><span class="header-section-number">13.1.5</span> <code>parse_positional_arg</code></h3>
+<p>Declares whether the placeholder accepts a positional default in the formula, and validates it. Pass one of the argument validators — <code>ptr_arg_string()</code>, <code>ptr_arg_numeric()</code>, <code>ptr_arg_symbol()</code>, <code>ptr_arg_symbol_or_string()</code>, <code>ptr_arg_expression()</code>. Each inspects the default <strong>as unevaluated code</strong> (the symbol, string, and expression validators never <code>eval()</code>; <code>ptr_arg_numeric()</code> first walks the AST against an allowlist, then constant-folds it in a sealed environment), so <code>ppPercent(40)</code> is validated to be a numeric literal at translate time. The element factories take <code>vector = TRUE</code> to accept a <code>c(...)</code> of elements — <code>ptr_arg_numeric(vector = TRUE, length = 2)</code>, <code>ptr_arg_symbol(vector = TRUE)</code> for a multi-column default like <code>c(mpg, hp)</code>. Leaving it <code>NULL</code> (the default) <strong>rejects</strong> any positional argument.</p>
+</section>
+<section id="parse_named_args" class="level3" data-number="13.1.6">
+<h3 data-number="13.1.6" class="anchored" data-anchor-id="parse_named_args"><span class="header-section-number">13.1.6</span> <code>parse_named_args</code></h3>
+<p>A fully-named list mapping extra named-argument names to validators, same family as above. It lets the formula write <code>ppPercent(40, step = 5)</code>; validated values arrive in <code>build_ui</code> as <code>named_args</code>. The name <code>shared</code> is reserved (it is the cross-widget binding key, <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a>) and may not appear here.</p>
+</section>
+<section id="embellish_eval" class="level3" data-number="13.1.7">
+<h3 data-number="13.1.7" class="anchored" data-anchor-id="embellish_eval"><span class="header-section-number">13.1.7</span> <code>embellish_eval</code></h3>
+<p>The plain-R meaning of the keyword <em>outside</em> <code>ptr_app()</code>. A placeholder-embellished formula must stay valid plain R that still renders the original plot with no app running; <code>embellish_eval</code> supplies that meaning. Each constructor returns this function, so bind it under the keyword name — <code>ppPercent &lt;- ptr_define_placeholder_value("ppPercent", ...)</code>, after which <code>ppPercent(40)</code> is <code>0.4</code> as ordinary R. The meaning is author-controlled, never derived. If omitted, value and consumer keywords default to <code>embellish_identity()</code> (a transparent no-op wrapper); <code>embellish_symbol_to_string()</code> covers the column-selecting consumer case (it returns the referenced column names as strings, so a naked tidyselect formula still works).</p>
+</section>
+<section id="ui_text_defaults" class="level3" data-number="13.1.8">
+<h3 data-number="13.1.8" class="anchored" data-anchor-id="ui_text_defaults"><span class="header-section-number">13.1.8</span> <code>ui_text_defaults</code></h3>
+<p>A named list of copy defaults over <code>label</code>, <code>help</code>, <code>placeholder</code>, and <code>empty_text</code>, with <code>{param}</code> interpolated to the argument name. These are the <em>defaults</em>; an app overrides them through <code>ui_text =</code> (<a href="ui-text.html" class="quarto-xref"><span>Chapter 15</span></a>).</p>
+</section>
+</section>
+<section id="a-consumer-placeholder-the-delta" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="a-consumer-placeholder-the-delta"><span class="header-section-number">13.2</span> A consumer placeholder — the delta</h2>
+<p>Everything above applies; two things change.</p>
+<p><strong><code>build_ui</code> gains two arguments: <code>cols</code> and <code>data</code>.</strong> The injector fills <code>cols</code> with the column names of the data flowing into this point of the pipeline and <code>data</code> with that frame, re-running <code>build_ui</code> whenever the upstream changes:</p>
+<div class="cell" data-fixture="custom-consumer">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>colvars <span class="ot">&lt;-</span> <span class="fu">ptr_define_placeholder_consumer</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyword =</span> <span class="st">"colvars"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">build_ui =</span> <span class="cf">function</span>(node, <span class="at">cols =</span> <span class="fu">character</span>(), <span class="at">data =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">label =</span> <span class="cn">NULL</span>, <span class="at">selected =</span> <span class="fu">character</span>(<span class="dv">0</span>), ...) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">selectInput</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      node<span class="sc">$</span>id, <span class="at">label =</span> label <span class="sc">%||%</span> <span class="st">"Columns"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">choices  =</span> cols,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">selected =</span> <span class="fu">intersect</span>(selected, cols),  <span class="co"># keep only still-valid picks</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">multiple =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve_expr =</span> <span class="cf">function</span>(value, node, ...) {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(value) <span class="sc">==</span> <span class="dv">0</span>L) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    rlang<span class="sc">::</span><span class="fu">call2</span>(<span class="st">"c"</span>, <span class="sc">!!!</span><span class="fu">as.list</span>(value))   <span class="co"># c(col1, col2, ...)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">parse_positional_arg =</span> <span class="fu">ptr_arg_symbol_or_string</span>(),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui_text_defaults =</span> <span class="fu">list</span>(<span class="at">label =</span> <span class="st">"Columns for {param}"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">|&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(colvars) <span class="sc">|&gt;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ppVar, <span class="at">y =</span> ppVar)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: ptr_define_placeholder_value/consumer/source, the process-global registry, and the hooks.</p>
-<p>Examples follow the Shiny rendering convention (<code>book-conventions.md</code>): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-consumer.png" class="img-fluid figure-img"></p>
+<figcaption><code>colvars</code> as a multi-column picker inside a <code>dplyr::select()</code> pipeline stage; the downstream <code>ppVar</code> pickers re-resolve against whatever it selects.</figcaption>
+</figure>
 </div>
+<p><strong><code>validate_session_input</code>’s <code>ctx</code> is now useful.</strong> <code>ctx$data</code> holds the upstream data frame, so a validator can do data-aware checks — reject a non-numeric column, range-check chosen values, and so on. (The gallery’s <code>ppVars</code> uses <code>ctx$upstream_cols</code> the same way: <a href="gallery.html" class="quarto-xref"><span>Chapter 6</span></a>.)</p>
+</section>
+<section id="a-source-placeholder-the-delta" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="a-source-placeholder-the-delta"><span class="header-section-number">13.3</span> A source placeholder — the delta</h2>
+<p>A source <em>produces</em> the data, so it sits at the head of a pipeline. Three things differ:</p>
+<ul>
+<li><strong><code>resolve_data</code> replaces <code>resolve_expr</code> as the required producer</strong>: <code>function(value, node, ...)</code> must return a data frame. <code>resolve_expr</code> becomes optional, defaulting to the symbol that names the produced frame in generated code — override it only for different generated code. The two can disagree on purpose: show <code>read.csv("...")</code> in the code while reading uploaded bytes at runtime.</li>
+<li><strong><code>embellish_eval</code> defaults to an abort guard</strong>, not identity — a source has no sensible plain-R meaning until you give it one.</li>
+<li><strong><code>shortcut = TRUE</code> adds a framework-owned companion text box</strong> (at <code>node$shortcut_id</code>) into which the user types the <em>name</em> of a data frame to load — the “or type a dataset name” box you saw on <code>ppUpload</code>. The framework owns the box <em>and</em> the lookup: it resolves the typed name itself, via <code>get(name, envir, inherits = TRUE)</code> against the <code>envir</code> passed to <code>ptr_app()</code> / <code>ptr_server()</code>. Because the framework owns that box, your <code>build_ui</code> must render only <code>node$id</code> — or nothing at all.</li>
+</ul>
+<p>This <code>ppDataset</code> lets the user type the name of any data frame in scope. There is less to write than you might expect, because the shortcut machinery is not yours to reimplement: the typed name flows into <code>resolve_expr</code> as <code>value</code> (the default <code>rlang::sym(value)</code> already splices it into the generated code as a bare symbol), while <code>resolve_data</code> — still required, as the role’s producer — receives the <em>primary</em> widget’s value, <code>input[[node$id]]</code>, never the typed name (that reaches your hooks through <code>node</code> if you need it). With no primary widget that value is always <code>NULL</code>, so a no-op hook returning <code>NULL</code> (“no data yet”) is the whole job:</p>
+<div class="cell" data-fixture="custom-source">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_define_placeholder_source</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyword  =</span> <span class="st">"ppDataset"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">shortcut =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">build_ui =</span> <span class="cf">function</span>(node, <span class="at">label =</span> <span class="cn">NULL</span>, ...) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Shortcut-only source: the framework's text box is the sole entry</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># point, so build_ui contributes no widget of its own.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve_data =</span> <span class="cf">function</span>(value, node, ...) {</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `value` is the primary widget's value -- always NULL here, since</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># build_ui renders nothing. The shortcut lookup is the framework's.</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui_text_defaults =</span> <span class="fu">list</span>(<span class="at">label =</span> <span class="st">"Dataset for {param}"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ppDataset</span>() <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(<span class="st">"mpg"</span>))) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<!-- TODO: write "Custom Placeholders" -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-source.png" class="img-fluid figure-img"></p>
+<figcaption><code>ppDataset()</code> at the pipeline head: type <code>mtcars</code> into the framework’s text box and the downstream pickers light up.</figcaption>
+</figure>
+</div>
+<p>A source that owns a real widget (a <code>selectInput</code> of dataset names, say) is the same shape with <code>shortcut = FALSE</code> and a <code>build_ui</code> that renders the picker at <code>node$id</code> — there <code>resolve_data</code> does the real work, turning <code>input[[node$id]]</code> into the frame (the example in <code>?ptr_define_placeholder_source</code> is exactly this shape).</p>
+</section>
+<section id="common-pitfalls" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">13.4</span> Common pitfalls</h2>
+<ul>
+<li><strong>Forgetting <code>inputId = node$id</code>.</strong> The widget renders, the user types, nothing happens — the value never reaches <code>resolve_expr</code>.</li>
+<li><strong>Returning a string when you wanted a symbol.</strong> <code>resolve_expr = function(value, ...) value</code> for a column picker splices <code>"cyl"</code> (a string literal), so <code>geom_point(color = "cyl")</code> paints a constant color. Wrap with <code>rlang::sym(value)</code>.</li>
+<li><strong>Forgetting empty input.</strong> Shiny calls your hooks before the user touches anything. Treat <code>NULL</code>, <code>character(0)</code>, <code>NA</code>, and empty strings as “no value yet” and <code>return(NULL)</code> — the framework prunes the argument.</li>
+<li><strong>Confusing <code>resolve_expr</code> with <code>resolve_data</code>.</strong> For sources: <code>resolve_data</code> produces the actual frame; <code>resolve_expr</code> produces the text in the rendered call.</li>
+<li><strong>Dropping <code>...</code> from a hook signature.</strong> Future framework versions may inject new named arguments; without <code>...</code> the call fails.</li>
+<li><strong>Re-registering inside a reactive.</strong> The registry is process-global; register once at script top level, before <code>ptr_app()</code>.</li>
+</ul>
+</section>
+<section id="unregistering" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="unregistering"><span class="header-section-number">13.5</span> Unregistering</h2>
+<p><code>ptr_clear_placeholder("ppPercent")</code> removes one user-registered keyword; <code>ptr_clear_placeholder()</code> removes them all. Seven keywords are protected (clearing one errors): the five built-in placeholders plus the structural <code>ppLayerOff</code> / <code>ppVerbSwitch</code>. Re-registering an existing keyword overwrites the previous entry with a notice — no need to clear first.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -761,8 +996,8 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./custom-render.html" class="pagination-link" aria-label="Custom rendering">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span>
+      <a href="./custom-render.html" class="pagination-link" aria-label="Custom Rendering">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -776,4 +1011,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

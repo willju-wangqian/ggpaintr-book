@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#empty-inputs-clean-themselves-out" id="toc-empty-inputs-clean-themselves-out" class="nav-link active" data-scroll-target="#empty-inputs-clean-themselves-out"><span class="header-section-number">4.1</span> Empty inputs clean themselves out</a></li>
+  <li><a href="#column-names-the-generated-code-can-actually-use" id="toc-column-names-the-generated-code-can-actually-use" class="nav-link" data-scroll-target="#column-names-the-generated-code-can-actually-use"><span class="header-section-number">4.2</span> Column names the generated code can actually use</a></li>
+  <li><a href="#reading-the-plot-and-code-programmatically" id="toc-reading-the-plot-and-code-programmatically" class="nav-link" data-scroll-target="#reading-the-plot-and-code-programmatically"><span class="header-section-number">4.3</span> Reading the plot and code programmatically</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/generated-code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Foundations</a></li><li class="breadcrumb-item"><a href="./generated-code.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></h1>
+<h1 class="title"><span id="sec-generated-code" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Generated Code and Plot</span></span></h1>
 </div>
 
 
@@ -340,23 +383,52 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Every ggpaintr app can show its work. The <code>&lt;/&gt;</code> toggle in the plot pane opens the <strong>generated-code window</strong>: the exact ggplot2 (and dplyr) code that produced the current plot, with every placeholder replaced by the user’s committed input. Two views are offered — <strong>Final code</strong>, the runnable script you can copy straight back into R, and <strong>Spec</strong>, the restore values that reproduce the current widget state via <code>ptr_app(..., spec = )</code> (<a href="formula-language.html" class="quarto-xref"><span>Chapter 2</span></a>). A <strong>Copy</strong> button does what it says.</p>
+<p>This round trip is the point of ggpaintr for teaching: a student explores with widgets, then walks away with the code that does the same thing without the app.</p>
+<section id="empty-inputs-clean-themselves-out" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="empty-inputs-clean-themselves-out"><span class="header-section-number">4.1</span> Empty inputs clean themselves out</h2>
+<p>A placeholder that resolves to “missing” — an empty <code>ppVar</code> pick, a blank <code>ppText</code>, a cleared <code>ppNum</code> — drops its argument from the generated code. When that leaves an empty call whose name is in ggpaintr’s curated cleanup list, the whole call disappears too:</p>
+<div class="cell" data-fixture="generated-code-cleanup">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">ggplot(iris, aes(x = ppVar('Sepal.Length'), y = ppVar('Sepal.Width'))) +</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point() +</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">labs(title = ppText) +</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">facet_wrap(ppExpr)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/generated-code-cleanup.png" class="img-fluid figure-img"></p>
+<figcaption>The code window after an update with the title and facet left empty: the generated code is just <code>ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()</code> — the empty <code>labs()</code> and <code>facet_wrap()</code> vanished.</figcaption>
+</figure>
+</div>
+<p>The cleanup list spans ggplot2, dplyr, and the rest of the core tidyverse (tidyr, tibble, purrr, stringr, forcats, lubridate, and more). On the ggplot2 side that includes <code>theme()</code>, <code>labs()</code>, <code>xlab</code> / <code>ylab</code> / <code>ggtitle</code>, <code>facet_wrap</code> / <code>facet_grid</code> / <code>facet_null</code>, <code>xlim</code> / <code>ylim</code> / <code>lims</code>, <code>expand_limits</code>, <code>guides</code>, <code>annotate</code>, and the empty mapping helper <code>aes()</code>; an empty <code>filter()</code>, <code>mutate()</code>, or <code>select()</code> vanishes the same way. Third-party helpers (e.g.&nbsp;<code>pcp_theme()</code> from ggpcp) are <em>not</em> on the list — absence is the “removal safety unknown” signal. Pass <code>safe_to_remove = c("pcp_theme")</code> to opt a specific name into the cleanup pass. A <code>ppExpr</code> whose user typed an expression always wins: whatever was typed is honoured verbatim, even if its top-level name is in <code>safe_to_remove</code>.</p>
+</section>
+<section id="column-names-the-generated-code-can-actually-use" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="column-names-the-generated-code-can-actually-use"><span class="header-section-number">4.2</span> Column names the generated code can actually use</h2>
+<p><code>ppVar</code> placeholders need syntactic, unique column names — <code>Sepal.Length</code> is fine, <code>"Sepal Length"</code> is not. If your local data has spaces, reserved words, or duplicate names, pipe it through <code>ptr_normalize_column_names()</code> before referencing it from a formula. This chunk really runs:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"first column"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"if"</span>           <span class="ot">=</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="fu">ptr_normalize_column_names</span>(messy)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "first_column" "if_"         </code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: How the formula plus current inputs become runnable ggplot2 code and the rendered plot.</p>
-<p>Examples follow the Shiny rendering convention (<code>book-conventions.md</code>): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.</p>
-</div>
-</div>
-<!-- TODO: write "The Generated Code and Plot" -->
+<p>Uploaded data (<a href="placeholders.html" class="quarto-xref"><span>Chapter 3</span></a>) goes through the same normalization automatically; the manual call is only needed for data already in your R session. <code>?ptr_normalize_column_names</code> documents the exact rules (runs of non-alphanumeric characters become <code>_</code>, duplicates are de-duplicated with <code>_</code>-numbered suffixes, and reserved words get a trailing <code>_</code> — so <code>"first column"</code> becomes <code>first_column</code> and <code>"if"</code> becomes <code>if_</code>, exactly as the chunk above prints).</p>
+</section>
+<section id="reading-the-plot-and-code-programmatically" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="reading-the-plot-and-code-programmatically"><span class="header-section-number">4.3</span> Reading the plot and code programmatically</h2>
+<p>The code window is the interactive face of two exported helpers, <code>ptr_extract_code(state)</code> and <code>ptr_extract_plot(state)</code>, which read the same artifacts off a running app’s state object. They only make sense once you own the server side of the app — that story starts at <a href="embed-default.html" class="quarto-xref"><span>Chapter 10</span></a>, and <a href="custom-render.html" class="quarto-xref"><span>Chapter 12</span></a> uses them to feed plotly and friends.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -761,13 +833,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./placeholders.html" class="pagination-link" aria-label="Placeholders">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span>
+      <a href="./placeholders.html" class="pagination-link" aria-label="The Built-in Placeholders">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./use-cases.html" class="pagination-link" aria-label="Use cases">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./use-cases.html" class="pagination-link" aria-label="Use Cases: the Three Levels">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -776,4 +848,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/generated-code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/generated-code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

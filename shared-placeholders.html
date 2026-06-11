@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#one-instance-no-coordinator-ever" id="toc-one-instance-no-coordinator-ever" class="nav-link active" data-scroll-target="#one-instance-no-coordinator-ever"><span class="header-section-number">8.1</span> One instance: no coordinator, ever</a></li>
+  <li><a href="#multiple-instances-the-shared-trio" id="toc-multiple-instances-the-shared-trio" class="nav-link" data-scroll-target="#multiple-instances-the-shared-trio"><span class="header-section-number">8.2</span> Multiple instances: the shared trio</a></li>
+  <li><a href="#the-partition-in-action" id="toc-the-partition-in-action" class="nav-link" data-scroll-target="#the-partition-in-action"><span class="header-section-number">8.3</span> The partition in action</a></li>
+  <li><a href="#how-input-ids-are-built-and-how-to-avoid-colliding-with-them" id="toc-how-input-ids-are-built-and-how-to-avoid-colliding-with-them" class="nav-link" data-scroll-target="#how-input-ids-are-built-and-how-to-avoid-colliding-with-them"><span class="header-section-number">8.4</span> How input ids are built — and how to avoid colliding with them</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/shared-placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./shared-placeholders.html">Composition</a></li><li class="breadcrumb-item"><a href="./shared-placeholders.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></h1>
+<h1 class="title"><span id="sec-shared-placeholders" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shared Placeholders</span></span></h1>
 </div>
 
 
@@ -340,23 +384,150 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>A placeholder annotated <code>keyword(shared = "&lt;key&gt;")</code> is driven by <strong>one</strong> widget in lockstep wherever that key appears — across <code>aes()</code>, pipeline stages, and (in the multi-plot case) across formulas. <em>Where</em> that widget surfaces is decided per key by how many formulas reference it — the <strong>partition rule</strong>:</p>
+<blockquote class="blockquote">
+<p>A shared key referenced in <strong>exactly one</strong> formula → that formula’s inline <strong>shared section</strong>, rendered inside its own control panel. A shared key referenced in <strong>two or more</strong> formulas → the one standalone <strong>shared panel</strong>.</p>
+</blockquote>
+<p>Example: <code>f1 = sharedA + sharedA + sharedB</code>, <code>f2 = sharedC + sharedC + sharedB</code> ⟹ f1’s inline section holds <code>sharedA</code>, f2’s holds <code>sharedC</code>, the standalone panel holds <code>sharedB</code>.</p>
+<p>The practical consequence is a hard split by <strong>instance count</strong>.</p>
+<section id="one-instance-no-coordinator-ever" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="one-instance-no-coordinator-ever"><span class="header-section-number">8.1</span> One instance: no coordinator, ever</h2>
+<p>With a single ggpaintr instance every shared key is formula-local by definition, so it auto-renders in that instance’s inline shared section. The single-instance realization is plain L1 <code>ptr_app()</code> — write the annotation and you are done:</p>
+<div class="cell" data-fixture="shared-inline">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(iris, aes(x = ppVar(shared = 'col'), y = ppVar - ppVar(shared = 'col'),</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">                    color = Species)) + geom_point()"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shared-inline.png" class="img-fluid figure-img"></p>
+<figcaption>One key, used twice in one formula: a single picker in the inline <strong>Shared controls</strong> section drives both occurrences. No coordinator involved.</figcaption>
+</figure>
 </div>
+<p>Bare <code>ptr_server()</code> on a <code>shared = "..."</code> formula behaves the same way: it self-binds every declared key under its own namespace and renders the widgets inline, exactly like <code>ptr_app()</code> does.</p>
+</section>
+<section id="multiple-instances-the-shared-trio" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="multiple-instances-the-shared-trio"><span class="header-section-number">8.2</span> Multiple instances: the shared trio</h2>
+<p>When you embed two or more ggpaintr blocks (<a href="multi-plot.html" class="quarto-xref"><span>Chapter 9</span></a>) and want one widget to drive several of them, build the coordinator once and feed it to the three consumers. The contract:</p>
+<ul>
+<li><code>ptr_shared(formulas, ...)</code> → <code>obj</code>. Pass the <strong>same list of formula strings</strong> you will hand to the modules. Widgets for shared keys are auto-built from each key’s placeholder kind — a <code>ppVar(shared = "...")</code> gets a column picker, a <code>ppNum</code> a numeric input, and a registered custom placeholder its own <code>build_ui</code>. <code>obj</code> carries the computed partition (<code>obj$panel_keys</code>, plus the per-formula local keys) and is pure and non-reactive, so the UI and server can never disagree about which key lives where.</li>
+<li><code>ptr_shared_panel(obj, css = NULL)</code> — the <strong>one</strong> standalone panel, holding exactly <code>obj</code>’s cross-formula keys. Self-contained; place it once, wherever you want on the page.</li>
+<li><code>ptr_shared_server(obj)</code> — call <strong>once at the top level</strong> of your server (never inside <code>moduleServer()</code>). Returns the shared-state bundle.</li>
+<li><code>ptr_server(formula, id, shared_state = &lt;bundle&gt;)</code> — pass the bundle to every per-plot module. Each module renders its own formula-local keys inline and reads the panel keys from the bundle.</li>
+</ul>
+<div class="cell" data-fixture="shared-trio">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Length, fill = Species)) + geom_boxplot()"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Width,  fill = Species)) + geom_violin()"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">ptr_shared</span>(<span class="at">formulas =</span> plots)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">fluidPage</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">titlePanel</span>(<span class="st">"My host app"</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_shared_panel</span>(obj),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">fluidRow</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">6</span>, <span class="fu">ptr_ui</span>(plots[[<span class="dv">1</span>]], <span class="st">"plot_1"</span>, <span class="at">shared =</span> obj)),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">6</span>, <span class="fu">ptr_ui</span>(plots[[<span class="dv">2</span>]], <span class="st">"plot_2"</span>, <span class="at">shared =</span> obj))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  sh <span class="ot">&lt;-</span> <span class="fu">ptr_shared_server</span>(obj)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(plots[[<span class="dv">1</span>]], <span class="st">"plot_1"</span>, <span class="at">shared_state =</span> sh)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(plots[[<span class="dv">2</span>]], <span class="st">"plot_2"</span>, <span class="at">shared_state =</span> sh)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: var(shared=), the ptr_shared() coordinator, section vs panel, and how partition governs ownership.</p>
-<p>Examples follow the Shiny rendering convention (<code>book-conventions.md</code>): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shared-trio.png" class="img-fluid figure-img"></p>
+<figcaption><code>metric</code> is referenced by both formulas, so its picker lives in the standalone shared panel on top; picking a column and clicking <strong>Draw all</strong> redraws both plots in lockstep.</figcaption>
+</figure>
 </div>
+<p><code>ptr_shared_panel()</code> emits a <strong>Draw all</strong> button (top-level input id <code>ptr_shared_draw_all</code>) whenever the coordinator spans two or more formulas and the <code>gate_draw</code> setting is on (the default; <code>ptr_options(gate_draw = FALSE)</code> drops the button and each panel re-renders live instead); the per-module <strong>Update plot</strong> buttons still work independently. Building <code>ptr_shared()</code> from a <code>formulas</code> list that declares no <code>shared = "..."</code> annotation is an error — drop the coordinator and use the plain module path if nothing is shared.</p>
+</section>
+<section id="the-partition-in-action" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="the-partition-in-action"><span class="header-section-number">8.3</span> The partition in action</h2>
+<p>Mix a cross-formula key with formula-local ones and the rule sorts every widget into the right place:</p>
+<div class="cell" data-fixture="shared-partition">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(iris, aes(x = ppVar(shared = 'ax1'), y = ppVar - ppVar(shared = 'ax1'),</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">                    color = Species)) + geom_point(size = ppNum(shared = 'sz'))"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(iris, aes(x = ppVar(shared = 'ax2'), y = Sepal.Width,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">                    color = Species)) + geom_point(size = ppNum(shared = 'sz'))"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">ptr_shared</span>(<span class="at">formulas =</span> plots)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sz → both formulas → standalone panel.  ax1 → only plot_1's inline section.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ax2 → only plot_2's inline section.</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">fluidPage</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_shared_panel</span>(obj),             <span class="co"># holds sz only</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">fluidRow</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">6</span>, <span class="fu">ptr_ui</span>(plots[[<span class="dv">1</span>]], <span class="st">"plot_1"</span>, <span class="at">shared =</span> obj)),  <span class="co"># ax1 inline</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">6</span>, <span class="fu">ptr_ui</span>(plots[[<span class="dv">2</span>]], <span class="st">"plot_2"</span>, <span class="at">shared =</span> obj))   <span class="co"># ax2 inline</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  sh <span class="ot">&lt;-</span> <span class="fu">ptr_shared_server</span>(obj)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(plots[[<span class="dv">1</span>]], <span class="st">"plot_1"</span>, <span class="at">shared_state =</span> sh)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(plots[[<span class="dv">2</span>]], <span class="st">"plot_2"</span>, <span class="at">shared_state =</span> sh)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<!-- TODO: write "Shared Placeholders" -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/shared-partition.png" class="img-fluid figure-img"></p>
+<figcaption>The standalone panel owns the cross-formula <code>sz</code>; each plot’s inline shared section owns its formula-local axis key (<code>ax1</code> left, <code>ax2</code> right).</figcaption>
+</figure>
+</div>
+</section>
+<section id="how-input-ids-are-built-and-how-to-avoid-colliding-with-them" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="how-input-ids-are-built-and-how-to-avoid-colliding-with-them"><span class="header-section-number">8.4</span> How input ids are built — and how to avoid colliding with them</h2>
+<p>The framework names every widget it emits from the formula’s syntax, so the same formula always produces the same ids. When you mix ggpaintr UI with your own widgets in the same Shiny namespace, the cleanest fix is to wrap the embed in <code>ptr_ui()</code> / <code>ptr_server()</code> with a unique <code>id</code> — everything ggpaintr emits then lives under <code>&lt;id&gt;-…</code> and your top-level inputs cannot collide. If you can’t namespace, the surface to avoid:</p>
+<p><strong>Layer names.</strong> Each top-level call in the formula contributes a layer name equal to the function being called (<code>ggplot</code>, <code>geom_point</code>, <code>facet_wrap</code>, …). Repeats get <code>-2</code>, <code>-3</code>, … suffixes: <code>geom_point() + geom_point()</code> yields <code>geom_point</code>, <code>geom_point-2</code>.</p>
+<p><strong>Per-placeholder input ids</strong> follow <code>&lt;layer&gt;_&lt;path&gt;_&lt;keyword&gt;_NA</code>, where <code>&lt;path&gt;</code> is the underscore-joined positional index path into the call. <code>aes(x = ppVar, y = ppVar)</code> inside the <code>ggplot()</code> layer yields <code>ggplot_1_1_ppVar_NA</code> and <code>ggplot_1_2_ppVar_NA</code>. A shared annotation never gets a layer-derived id: <code>ppVar(shared = "x_col")</code> is bound at the canonical <code>shared_x_col</code>. Every shared key owns <code>shared_&lt;key&gt;</code> (and, when the key sits on a piped stage, <code>shared_&lt;key&gt;_stage_enabled</code>), so treat those as part of the collision surface too.</p>
+<p><strong>Layer-derived ids:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 79%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;layer&gt;_checkbox</code></td>
+<td>“include this layer” toggle (no checkbox on <code>ggplot</code>)</td>
+</tr>
+<tr class="even">
+<td><code>&lt;layer&gt;_&lt;path&gt;_stage_enabled</code></td>
+<td>per-stage toggle on piped data-arg pipelines</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;placeholder-id&gt;_ui</code></td>
+<td><code>renderUI</code> container for any placeholder (value, source, or consumer)</td>
+</tr>
+<tr class="even">
+<td><code>&lt;layer&gt;_subtab</code>, <code>ptr_layer_content_&lt;layer&gt;</code></td>
+<td>internal layer-nav and panel-container ids</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top-level package-owned ids.</strong> The framework writes to a fixed set of <code>ptr_</code>-prefixed top-level ids that are <strong>not</strong> user-configurable: <code>ptr_plot</code>, <code>ptr_error</code>, <code>ptr_code</code>, <code>ptr_code_mode</code>, <code>ptr_update_plot</code>, the panel ids <code>ptr_shared_draw_all</code> / <code>ptr_shared_errors</code>, and the layer-nav inputs <code>ptr_layer_select</code> / <code>ptr_layer_tabset</code>. Treat the whole <code>ptr_</code> prefix as reserved. When <code>ptr_shared(id = "&lt;id&gt;")</code> is supplied, every coordinator-owned id is carried under an <code>&lt;id&gt;-</code> prefix, so two coordinators can coexist in one session.</p>
+<blockquote class="blockquote">
+<p>Rule of thumb: in a host app’s top-level namespace, don’t author Shiny inputs or outputs whose ids start with <code>ptr_</code> or <code>shared_</code>, or match <code>&lt;layer-name-from-your-formula&gt;_…</code>. If that feels brittle, wrap the embed with a unique <code>id</code> and the collision surface disappears entirely.</p>
+</blockquote>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -776,4 +947,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/shared-placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/shared-placeholders.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

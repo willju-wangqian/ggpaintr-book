@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#one-plot-inside-your-own-app" id="toc-one-plot-inside-your-own-app" class="nav-link active" data-scroll-target="#one-plot-inside-your-own-app"><span class="header-section-number">9.1</span> One plot inside your own app</a></li>
+  <li><a href="#several-plots-laid-out-your-way" id="toc-several-plots-laid-out-your-way" class="nav-link" data-scroll-target="#several-plots-laid-out-your-way"><span class="header-section-number">9.2</span> Several plots, laid out your way</a></li>
+  <li><a href="#sharing-one-control-across-several-plots" id="toc-sharing-one-control-across-several-plots" class="nav-link" data-scroll-target="#sharing-one-control-across-several-plots"><span class="header-section-number">9.3</span> Sharing one control across several plots</a></li>
+  <li><a href="#when-to-skip-all-of-this" id="toc-when-to-skip-all-of-this" class="nav-link" data-scroll-target="#when-to-skip-all-of-this"><span class="header-section-number">9.4</span> When to skip all of this</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/multi-plot.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./shared-placeholders.html">Composition</a></li><li class="breadcrumb-item"><a href="./multi-plot.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></h1>
+<h1 class="title"><span id="sec-multi-plot" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-Plot Apps</span></span></h1>
 </div>
 
 
@@ -340,23 +384,57 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p><code>ptr_app()</code> builds exactly one plot per app. To place a ggpaintr plot inside your <em>own</em> app — alongside other UI, several plots at once, controls of your own — you drop down one level to <code>ptr_ui()</code> / <code>ptr_server()</code> and own the <code>shinyApp()</code> shell yourself.</p>
+<section id="one-plot-inside-your-own-app" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="one-plot-inside-your-own-app"><span class="header-section-number">9.1</span> One plot inside your own app</h2>
+<p>You write the <code>fluidPage</code> and the server function. Put <code>ptr_ui(formula, id)</code> where the plot’s controls and output should go, and <code>ptr_server(formula, id)</code> in the server with a <strong>matching <code>id</code></strong>. <code>ptr_server()</code> namespaces itself — call it <em>bare</em>, never wrapped in your own <code>moduleServer()</code>.</p>
+<p>Both functions take the formula the same way <code>ptr_app()</code> does: pass the <code>ggplot()</code> call directly, or — to write it once and hand the <em>same</em> formula to both — store it with <code>rlang::expr()</code> and splice it in with <code>!!</code>. (The string form still works as a fallback.)</p>
+<div class="cell" data-fixture="multi-plot-module">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">expr</span>(<span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(<span class="st">"wt"</span>), <span class="at">y =</span> <span class="fu">ppVar</span>(<span class="st">"mpg"</span>))) <span class="sc">+</span> <span class="fu">geom_point</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">fluidPage</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">h3</span>(<span class="st">"My dashboard"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui</span>(<span class="sc">!!</span>f, <span class="st">"plot1"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(<span class="sc">!!</span>f, <span class="st">"plot1"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/multi-plot-module.png" class="img-fluid figure-img"></p>
+<figcaption>A ggpaintr plot living inside a host <code>fluidPage</code>, drawn after one update. Everything ggpaintr emits is namespaced under <code>plot1-</code>.</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: ptr_app_grid(): several formulas with widgets shared across plots.</p>
-<p>Examples follow the Shiny rendering convention (<code>book-conventions.md</code>): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.</p>
-</div>
-</div>
-<!-- TODO: write "Multi-Plot Apps" -->
+<p>The <code>id</code> (<code>"plot1"</code>) is the namespace shared by the UI and the server; they must agree on it. Omitting it (<code>id = NULL</code>) gives bare, un-namespaced ids — fine for a single plot, and the reason namespacing matters is in <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a> § “How input ids are built”.</p>
+</section>
+<section id="several-plots-laid-out-your-way" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="several-plots-laid-out-your-way"><span class="header-section-number">9.2</span> Several plots, laid out your way</h2>
+<p>There is no special grid entry point: tiles are plain Shiny layout. <code>fluidRow()</code> + <code>column()</code> around two <code>ptr_ui()</code> calls gives side-by-side plots; each gets its own <code>ptr_server()</code> call:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">fluidPage</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">fluidRow</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">6</span>, <span class="fu">ptr_ui</span>(<span class="st">"ggplot(iris, aes(ppVar, Sepal.Length)) + geom_boxplot()"</span>, <span class="st">"left"</span>)),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">6</span>, <span class="fu">ptr_ui</span>(<span class="st">"ggplot(iris, aes(ppVar, Sepal.Width)) + geom_violin()"</span>,  <span class="st">"right"</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(<span class="st">"ggplot(iris, aes(ppVar, Sepal.Length)) + geom_boxplot()"</span>, <span class="st">"left"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(<span class="st">"ggplot(iris, aes(ppVar, Sepal.Width)) + geom_violin()"</span>,  <span class="st">"right"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each plot is fully independent: its own widgets, its own <strong>Update plot</strong> button, its own generated code.</p>
+</section>
+<section id="sharing-one-control-across-several-plots" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="sharing-one-control-across-several-plots"><span class="header-section-number">9.3</span> Sharing one control across several plots</h2>
+<p>Independence is usually not what you want for the <em>common</em> knobs — one x-axis picker or one size slider should drive every plot at once. That is the shared-placeholder mechanism: annotate the placeholder with <code>shared = "&lt;key&gt;"</code> in every formula that should listen, build one coordinator object with <code>ptr_shared()</code>, and hand it to the UI and server pieces. The complete contract — including the partition rule that decides which widget renders where — is the subject of <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a>; its worked example is exactly the two-plot layout above with a shared size slider.</p>
+</section>
+<section id="when-to-skip-all-of-this" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="when-to-skip-all-of-this"><span class="header-section-number">9.4</span> When to skip all of this</h2>
+<p>If one plot and the default chrome are enough, stay at L1 (<a href="use-cases.html" class="quarto-xref"><span>Chapter 5</span></a>). If what you actually want is a different <em>layout</em> of the standard pieces — controls left, plot right, code window elsewhere — you may want the bare L3 pieces instead of whole-module embedding: <a href="embed-bare.html" class="quarto-xref"><span>Chapter 11</span></a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -766,8 +844,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./embed-default.html" class="pagination-link" aria-label="Embedding with the default layout">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./embed-default.html" class="pagination-link" aria-label="Embedding with the Default Layout">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -776,4 +854,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/multi-plot.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/multi-plot.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

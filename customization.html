@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#boot-state-belongs-in-the-formula" id="toc-boot-state-belongs-in-the-formula" class="nav-link active" data-scroll-target="#boot-state-belongs-in-the-formula"><span class="header-section-number">7.1</span> Boot state belongs in the formula</a></li>
+  <li><a href="#styling-with-css" id="toc-styling-with-css" class="nav-link" data-scroll-target="#styling-with-css"><span class="header-section-number">7.2</span> Styling with CSS</a>
+  <ul class="collapse">
+  <li><a href="#surface-1-class-hooks-ggpaintr-already-emits" id="toc-surface-1-class-hooks-ggpaintr-already-emits" class="nav-link" data-scroll-target="#surface-1-class-hooks-ggpaintr-already-emits"><span class="header-section-number">7.2.1</span> Surface 1 — class hooks ggpaintr already emits</a></li>
+  <li><a href="#surface-2-injecting-your-own-stylesheet-with-css" id="toc-surface-2-injecting-your-own-stylesheet-with-css" class="nav-link" data-scroll-target="#surface-2-injecting-your-own-stylesheet-with-css"><span class="header-section-number">7.2.2</span> Surface 2 — injecting your own stylesheet with <code>css =</code></a></li>
+  <li><a href="#what-is-not-stable-surface" id="toc-what-is-not-stable-surface" class="nav-link" data-scroll-target="#what-is-not-stable-surface"><span class="header-section-number">7.2.3</span> What is <em>not</em> stable surface</a></li>
+  </ul></li>
+  <li><a href="#beyond-css" id="toc-beyond-css" class="nav-link" data-scroll-target="#beyond-css"><span class="header-section-number">7.3</span> Beyond CSS</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/customization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./use-cases.html">Use cases &amp; gallery</a></li><li class="breadcrumb-item"><a href="./customization.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customization</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customization</span></h1>
+<h1 class="title"><span id="sec-customization" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customization</span></span></h1>
 </div>
 
 
@@ -340,23 +388,128 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>This chapter covers the <em>user-facing</em> customization surface: where boot-state defaults live, and how to restyle the default shell with CSS. The deeper levers each have their own chapter — rewriting every label and copy string is <a href="ui-text.html" class="quarto-xref"><span>Chapter 15</span></a>, packaging a styled shell as a reusable function is <a href="theming-wrappers.html" class="quarto-xref"><span>Chapter 14</span></a>, and adding new widget types is <a href="custom-placeholders.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
+<section id="boot-state-belongs-in-the-formula" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="boot-state-belongs-in-the-formula"><span class="header-section-number">7.1</span> Boot state belongs in the formula</h2>
+<p>Older ggpaintr exposed a per-call <code>checkbox_defaults =</code> argument (and a global <code>checkbox_default_all_other_layer</code> option) to start layers unchecked. Both are gone: the formula-side keywords <code>ppLayerOff()</code> and <code>ppVerbSwitch()</code> (<a href="formula-language.html" class="quarto-xref"><span>Chapter 2</span></a>) carry that information inside the chart text itself, so the source of truth for “what starts off?” is the same string you wrote the chart against. If you are migrating old code, three mechanical conversions cover every prior use:</p>
+<ol type="1">
+<li><strong>Direct entries</strong> — start one named layer off:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Old</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point() + geom_smooth()"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">checkbox_defaults =</span> <span class="fu">list</span>(<span class="at">geom_smooth =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># New</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point() + ppLayerOff(geom_smooth(), TRUE)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li><strong>Duplicate-group expansion</strong> — a vector at a bare base name used to address every same-name instance; now wrap exactly the instance you mean:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Old (apply c(TRUE, FALSE) across two geom_point() layers)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"ggplot(...) + geom_point() + geom_point()"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">checkbox_defaults =</span> <span class="fu">list</span>(<span class="at">geom_point =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># New</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"ggplot(...) + geom_point() + ppLayerOff(geom_point(), TRUE)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li><strong>Opt-in mode</strong> — code that relied on the removed global option wraps every should-start-off layer in <code>ppLayerOff(..., TRUE)</code> explicitly.</li>
+</ol>
+<p>Per-run overrides of these defaults go through <code>spec =</code> (<a href="formula-language.html" class="quarto-xref"><span>Chapter 2</span></a>).</p>
+</section>
+<section id="styling-with-css" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="styling-with-css"><span class="header-section-number">7.2</span> Styling with CSS</h2>
+<p>ggpaintr ships a bundled stylesheet and a BEM-style class vocabulary under the <code>ptr-</code> prefix. Two surfaces, in order of invasiveness.</p>
+<section id="surface-1-class-hooks-ggpaintr-already-emits" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="surface-1-class-hooks-ggpaintr-already-emits"><span class="header-section-number">7.2.1</span> Surface 1 — class hooks ggpaintr already emits</h3>
+<p>Every region of the default shell carries a class you can target from your own CSS. These classes are the practical styling hook today, but the package does not document them as a stability contract — the documented theming surface is the <code>--ptr-*</code> CSS custom-property tokens on <code>.ptr-app</code>. Pin your ggpaintr version if a theme leans on the class names:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 33%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Region</th>
+<th>Block</th>
+<th>Notable elements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Outer shell</td>
+<td><code>.ptr-app</code></td>
+<td><code>.ptr-app__header</code>, <code>.ptr-app__mark</code>, <code>.ptr-app__title</code></td>
+</tr>
+<tr class="even">
+<td>Plot card</td>
+<td><code>.ptr-card</code></td>
+<td><code>.ptr-card--plot</code>, <code>.ptr-card__head</code>, <code>.ptr-card__title</code>, <code>.ptr-card__body</code></td>
+</tr>
+<tr class="odd">
+<td>Output area</td>
+<td><code>.ptr-output</code></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Generated-code window</td>
+<td><code>.ptr-code-window</code></td>
+<td><code>.ptr-code-window__head</code>, <code>.ptr-code-window__title</code>, <code>.ptr-code-window__actions</code>, <code>.ptr-code-window__close</code>, <code>.ptr-code-window__body</code>, <code>.ptr-copy-btn</code>, <code>.ptr-code-toggle</code>, <code>.ptr-icon-btn</code></td>
+</tr>
+<tr class="odd">
+<td>Shared-controls panel</td>
+<td><code>.ptr-shared-panel</code></td>
+<td><code>.ptr-shared-panel__title</code>, <code>.ptr-shared-panel__help</code>, <code>.ptr-shared-panel__tip</code></td>
+</tr>
+<tr class="even">
+<td>Pipeline stage rows</td>
+<td><code>.ptr-stage</code></td>
+<td><code>.ptr-stage-head</code>, <code>.ptr-stage-fields</code>, <code>.ptr-stage-row</code></td>
+</tr>
+<tr class="odd">
+<td>Inline errors</td>
+<td><code>.ptr-alert</code></td>
+<td><code>.ptr-alert--error</code>, <code>.ptr-alert__detail</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="surface-2-injecting-your-own-stylesheet-with-css" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="surface-2-injecting-your-own-stylesheet-with-css"><span class="header-section-number">7.2.2</span> Surface 2 — injecting your own stylesheet with <code>css =</code></h3>
+<p>Every self-contained entry point (<code>ptr_app()</code>, <code>ptr_ui()</code>, <code>ptr_shared_panel()</code>) accepts a <code>css =</code> argument — as does the optional L3 page shell <code>ptr_ui_page()</code>, and the <code>ptr_ui_assets(css = )</code> escape hatch for roots that bypass <code>ptr_ui_page()</code> (<a href="embed-bare.html" class="quarto-xref"><span>Chapter 11</span></a>). It takes a character vector of paths to <code>.css</code> files; each is registered as a static resource and linked <strong>after</strong> the bundled stylesheet, so your rules win at equal specificity. Relative <code>url(...)</code> references resolve against each file’s own directory, so images can ship next to the stylesheet.</p>
+<p>A minimal theme that recolours the title bar and tightens the card padding:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* my-theme.css */</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.ptr-app__header</span> { <span class="kw">background</span><span class="ch">:</span> <span class="cn">#1f2937</span><span class="op">;</span> <span class="kw">color</span><span class="ch">:</span> <span class="cn">#f9fafb</span><span class="op">;</span> }</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.ptr-app__title</span>  { <span class="kw">font-family</span><span class="ch">:</span> <span class="st">"Inter"</span><span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span> <span class="kw">letter-spacing</span><span class="ch">:</span> <span class="dv">-0.01</span><span class="dt">em</span><span class="op">;</span> }</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.ptr-card__body</span>  { <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.5</span><span class="dt">rem</span> <span class="dv">0.75</span><span class="dt">rem</span><span class="op">;</span> }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-fixture="customization-css">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(mtcars, aes(ppVar('wt'), ppVar('mpg'))) + geom_point()"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">css =</span> <span class="st">"my-theme.css"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/customization-css.png" class="img-fluid figure-img"></p>
+<figcaption>The same app with <code>my-theme.css</code> injected: dark header, tightened plot card. Everything else is the bundled stylesheet.</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: re-styling, re-labelling, re-arranging — the user-facing customization surface. Absorbs the package’s <code>ggpaintr-customization</code> vignette in full once that vignette is e2e-green and drift-audit-clean; the package drops its copy in the paired PR. Covers UI text, CSS hooks, widget defaults, and theming wrappers from a user perspective; the extension-author perspective on the same surfaces is in <a href="./custom-placeholders.html">Custom placeholders</a> and <a href="./theming-wrappers.html">Theming wrappers</a>.</p>
-<p>Examples follow <code>book-conventions.md</code>: each app chunk carries <code>#| fixture: &lt;slug&gt;</code> and is mirrored by <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>.</p>
-</div>
-</div>
-<!-- TODO: write "Customization" -->
+<p><code>css =</code> validates each path at construction time — missing files and non-<code>.css</code> extensions abort with a clear message, so typos surface before the first browser load.</p>
+</section>
+<section id="what-is-not-stable-surface" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="what-is-not-stable-surface"><span class="header-section-number">7.2.3</span> What is <em>not</em> stable surface</h3>
+<ul>
+<li>Internal markup details — element order, nesting depth, descendant tag names — may change between releases even when class names stay. Style by class, not by structural selectors like <code>.ptr-card &gt; div:nth-child(2)</code>.</li>
+<li>Classes emitted by upstream Shiny, shinyWidgets, and bslib (<code>.shiny-input-container</code>, <code>.selectize-control</code>, <code>.form-control</code>, …) belong to those packages; their stability is governed there.</li>
+<li>Anything matching <code>ptr_</code> with an underscore is an <strong>id</strong> (Shiny input/output id), not a class; styling against ids is possible but brittle, since ids are namespaced by host modules (<a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a>).</li>
+</ul>
+</section>
+</section>
+<section id="beyond-css" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="beyond-css"><span class="header-section-number">7.3</span> Beyond CSS</h2>
+<p>If you find yourself passing the same <code>css =</code> and <code>ui_text =</code> to every app, package the combination as a wrapper function — that recipe, including how wrappers compose, is <a href="theming-wrappers.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -776,4 +929,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/customization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/customization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

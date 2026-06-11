@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Wang Qian Ju">
-<meta name="dcterms.date" content="2026-05-23">
+<meta name="dcterms.date" content="2026-06-11">
 
 <title>ggpaintr</title>
 <style>
@@ -77,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -202,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -254,19 +254,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -312,13 +312,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 23, 2026</p>
+      <p class="date">June 11, 2026</p>
     </div>
   </div>
   
@@ -403,12 +403,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
-<p>This is the work-in-progress book for <strong>ggpaintr</strong>, an R package that turns ggplot-like <em>formula strings</em> into Shiny apps: placeholder tokens in the formula (<code>var</code>, <code>text</code>, <code>num</code>, <code>expr</code>, <code>upload</code>) become input widgets automatically.</p>
+<p>This is the book for <strong>ggpaintr</strong>, an R package that turns ggplot-like <em>formulas</em> into Shiny apps: placeholder keywords in the formula (<code>ppVar</code>, <code>ppText</code>, <code>ppNum</code>, <code>ppExpr</code>, <code>ppUpload</code>) become input widgets automatically.</p>
 <p>The book teaches <strong>how to use ggpaintr</strong> and <strong>how to extend it</strong>. It is purely user-facing; design ideas live in the package repository, not here.</p>
 <section id="version-this-book-documents" class="level2">
 <h2 class="anchored" data-anchor-id="version-this-book-documents">Version this book documents</h2>
-<p>This book is pinned to ggpaintr <code>@beec4325</code> (the post-ADR-0006 / post-ADR-0010 development tip — no tagged release covers this API yet). The pin lives in <code>DESCRIPTION</code> <code>Remotes:</code> and is enforced by <code>Rscript dev/book-gate.R</code>. To follow along with the same version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"willju-wangqian/ggpaintr@beec43259ef3df7490e08944bb4a79cd8655b0c5"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This book is pinned to ggpaintr <code>@1a28cec</code> (the current development tip — no tagged release covers this API yet). The pin lives in <code>DESCRIPTION</code> <code>Remotes:</code> and is enforced by <code>Rscript dev/book-gate.R</code>. To follow along with the same version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"willju-wangqian/ggpaintr@1a28cec32483a35de7e9eb2099fdc1794a8d6243"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When the package cuts a tagged release covering the API in this book, the pin will move to that tag in a single PR; the install snippet above will update accordingly.</p>
 </section>
 <section id="who-this-is-for" class="level2">
@@ -420,10 +420,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>ggpaintr produces <strong>interactive Shiny apps</strong>. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:</p>
 <ul>
 <li>code is shown <strong>verbatim and is not executed</strong> (the book default is <code>eval: false</code>);</li>
-<li>the resulting app UI is shown as a <strong>screenshot or GIF</strong>;</li>
-<li>a small number of “hero” chapters embed a live shinylive widget you can interact with directly in the browser (see <a href="docs/adr/0002-hybrid-display.md">ADR 0002</a>);</li>
-<li>every code example is bound by <code>#| fixture: &lt;slug&gt;</code> to a tested fixture under <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>, and <code>Rscript dev/book-gate.R</code> enforces that what you read is what runs (see <a href="dev/plans/book-workflow.md"><code>dev/plans/book-workflow.md</code></a> and <code>book-conventions.md</code>).</li>
+<li>the resulting app UI is shown as a <strong>screenshot</strong> captured from the booted app;</li>
+<li>every app example is bound by <code>#| fixture: &lt;slug&gt;</code> to a tested fixture under <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>, and <code>Rscript dev/book-gate.R</code> enforces that what you read is what runs (see <a href="dev/plans/book-workflow.md"><code>dev/plans/book-workflow.md</code></a> and <code>book-conventions.md</code>).</li>
 </ul>
+<p>(Live in-browser shinylive widgets were evaluated and deferred: ggpaintr has no webR distribution channel today, so an embedded widget could not run the pinned version this book documents — see ADR 0002’s fallback rule and <code>dev/notes/2026-06-10-shinylive-spike.md</code>.)</p>
 <p>Output that <em>is</em> static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.</p>
 </section>
 <section id="source" class="level2">

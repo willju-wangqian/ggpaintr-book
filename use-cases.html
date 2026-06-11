@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Use cases – ggpaintr</title>
+<title>5&nbsp; Use Cases: the Three Levels – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./use-cases.html">Use cases &amp; gallery</a></li><li class="breadcrumb-item"><a href="./use-cases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./use-cases.html">Use cases &amp; gallery</a></li><li class="breadcrumb-item"><a href="./use-cases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#single-plot-ptr_app" id="toc-single-plot-ptr_app" class="nav-link active" data-scroll-target="#single-plot-ptr_app"><span class="header-section-number">5.1</span> Single plot — <code>ptr_app()</code></a></li>
+  <li><a href="#the-chrome-you-get-for-free" id="toc-the-chrome-you-get-for-free" class="nav-link" data-scroll-target="#the-chrome-you-get-for-free"><span class="header-section-number">5.2</span> The chrome you get for free</a></li>
+  <li><a href="#several-plots-in-one-app" id="toc-several-plots-in-one-app" class="nav-link" data-scroll-target="#several-plots-in-one-app"><span class="header-section-number">5.3</span> Several plots in one app</a></li>
+  <li><a href="#a-different-shell-or-theme" id="toc-a-different-shell-or-theme" class="nav-link" data-scroll-target="#a-different-shell-or-theme"><span class="header-section-number">5.4</span> A different shell or theme</a></li>
+  <li><a href="#local-data-with-non-syntactic-columns" id="toc-local-data-with-non-syntactic-columns" class="nav-link" data-scroll-target="#local-data-with-non-syntactic-columns"><span class="header-section-number">5.5</span> Local data with non-syntactic columns</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/use-cases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./use-cases.html">Use cases &amp; gallery</a></li><li class="breadcrumb-item"><a href="./use-cases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./use-cases.html">Use cases &amp; gallery</a></li><li class="breadcrumb-item"><a href="./use-cases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></h1>
+<h1 class="title"><span id="sec-use-cases" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></h1>
 </div>
 
 
@@ -340,23 +385,113 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>ggpaintr exposes three levels of control, and choosing the right one up front saves rework. This chapter covers <strong>L1</strong>, the all-in-one entry point, and maps where the other two live:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 35%">
+<col style="width: 25%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Entry points</th>
+<th>Use when</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1</td>
+<td><code>ptr_app()</code></td>
+<td>The built-in chrome — title bar, layer picker, plot pane, code window — is enough.</td>
+<td>this one</td>
+</tr>
+<tr class="even">
+<td>L2</td>
+<td><code>ptr_ui()</code> / <code>ptr_server()</code></td>
+<td>You own the surrounding Shiny app and want ggpaintr plots inside it.</td>
+<td><a href="embed-default.html" class="quarto-xref"><span>Chapter 10</span></a></td>
+</tr>
+<tr class="odd">
+<td>L3</td>
+<td>bare UI pieces (<code>ptr_ui_page</code>, <code>ptr_ui_controls</code>, …)</td>
+<td>You own the page layout, the renderer, or both.</td>
+<td><a href="embed-bare.html" class="quarto-xref"><span>Chapter 11</span></a>, <a href="custom-render.html" class="quarto-xref"><span>Chapter 12</span></a></td>
+</tr>
+</tbody>
+</table>
+<p>L1 is the dominant use case: hand ggpaintr a formula, get back a running Shiny app.</p>
+<section id="single-plot-ptr_app" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="single-plot-ptr_app"><span class="header-section-number">5.1</span> Single plot — <code>ptr_app()</code></h2>
+<p>The string form of the formula works exactly like the bare-code form you saw in <a href="getting-started.html" class="quarto-xref"><span>Chapter 1</span></a>:</p>
+<div class="cell" data-fixture="use-cases-app-basic">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">"ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point() + labs(title = ppText)"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/use-cases-app-basic.png" class="img-fluid figure-img"></p>
+<figcaption>The L1 app: three column pickers and a title input, plus the standard chrome.</figcaption>
+</figure>
 </div>
+</section>
+<section id="the-chrome-you-get-for-free" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-chrome-you-get-for-free"><span class="header-section-number">5.2</span> The chrome you get for free</h2>
+<p>Every L1 app ships the same furniture, all driven by the formula with no configuration:</p>
+<div class="cell" data-fixture="use-cases-layers">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"ggplot(mpg, aes(displ, hwy)) +</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">geom_point(alpha = ppNum(0.5)) +</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">geom_smooth(method = ppText('loess'))"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: detailed, end-to-end use cases. Absorbs (and expands) the package’s <code>ggpaintr-use-cases</code> vignette once that vignette is e2e-green and drift-audit-clean. Migration is paired with the package PR that drops the vignette content from there per <a href="dev/plans/book-workflow.md"><code>dev/plans/book-workflow.md</code></a> § “Cross-repo vignette migration”.</p>
-<p>Examples follow <code>book-conventions.md</code>: each app chunk carries <code>#| fixture: &lt;slug&gt;</code> and is mirrored by <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/use-cases-layers.png" class="img-fluid figure-img"></p>
+<figcaption>A two-layer formula: the <strong>Layer</strong> dropdown switches the widget panel between <code>ggplot</code>, <code>geom_point</code>, and <code>geom_smooth</code>; each layer shows only its own placeholders.</figcaption>
+</figure>
 </div>
+<ul>
+<li><strong>The layer picker.</strong> One entry per layer in the formula; selecting a layer shows that layer’s widgets. Layers carrying no placeholder still appear, so the user sees the whole chart’s structure.</li>
+<li><strong>The Data subtab.</strong> When a layer’s data argument is a pipeline (<a href="formula-language.html" class="quarto-xref"><span>Chapter 2</span></a>), its stages get widgets and per-stage toggles here.</li>
+<li><strong>The code window.</strong> The <code>&lt;/&gt;</code> toggle opens the generated code — Final code and Spec views, with a Copy button (<a href="generated-code.html" class="quarto-xref"><span>Chapter 4</span></a>).</li>
+<li><strong>The Update plot button.</strong> Nothing redraws until it is clicked (<a href="placeholders.html" class="quarto-xref"><span>Chapter 3</span></a>).</li>
+</ul>
+</section>
+<section id="several-plots-in-one-app" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="several-plots-in-one-app"><span class="header-section-number">5.3</span> Several plots in one app</h2>
+<p><code>ptr_app()</code> builds exactly one plot per app. To place several ggpaintr plots in one Shiny app — optionally sharing a control across them — you drop down one level to <code>ptr_ui()</code> / <code>ptr_server()</code> and own the <code>shinyApp()</code> shell yourself. That is a small step, not a leap: <a href="multi-plot.html" class="quarto-xref"><span>Chapter 9</span></a> walks through it, and <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a> covers the shared-widget machinery.</p>
+</section>
+<section id="a-different-shell-or-theme" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="a-different-shell-or-theme"><span class="header-section-number">5.4</span> A different shell or theme</h2>
+<p>The built-in chrome is deliberately plain. For your own page shell, branding, or theme, write a thin wrapper over the public primitives — the recipe and a worked example are in <a href="theming-wrappers.html" class="quarto-xref"><span>Chapter 14</span></a>, and the stable CSS surface is documented in <a href="customization.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
+</section>
+<section id="local-data-with-non-syntactic-columns" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="local-data-with-non-syntactic-columns"><span class="header-section-number">5.5</span> Local data with non-syntactic columns</h2>
+<p><code>ppVar</code> placeholders need syntactic, unique column names — <code>Sepal.Length</code> is fine, <code>"Sepal Length"</code> is not, and <code>iris</code> deliberately ships clean. If your local data has spaces, reserved words, or duplicates in its names, pipe it through <code>ptr_normalize_column_names()</code> before referencing it from a formula:</p>
+<div class="cell" data-fixture="use-cases-nonsyntactic">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"first column"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"if"</span>           <span class="ot">=</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="fu">ptr_normalize_column_names</span>(messy)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_app</span>(<span class="st">"ggplot(clean, aes(x = ppVar('first_column'), y = ppVar('if_'))) + geom_point()"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<!-- TODO: write "Use cases" -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/use-cases-nonsyntactic.png" class="img-fluid figure-img"></p>
+<figcaption>The app runs against the normalized copy: <code>first column</code> became <code>first_column</code>, the reserved <code>if</code> became <code>if_</code>.</figcaption>
+</figure>
+</div>
+<p>Uploaded data is normalized automatically; the manual call is only for data already in your session. The exact rules are in <a href="generated-code.html" class="quarto-xref"><span>Chapter 4</span></a> and <code>?ptr_normalize_column_names</code>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -776,4 +911,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/use-cases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/use-cases.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

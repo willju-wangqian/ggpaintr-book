@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; LLM integration – ggpaintr</title>
+<title>16&nbsp; Using ggpaintr from an LLM – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llm.html">Advanced topics</a></li><li class="breadcrumb-item"><a href="./llm.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llm.html">Advanced topics</a></li><li class="breadcrumb-item"><a href="./llm.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#quick-start-three-lines-of-setup" id="toc-quick-start-three-lines-of-setup" class="nav-link active" data-scroll-target="#quick-start-three-lines-of-setup"><span class="header-section-number">16.1</span> Quick start — three lines of setup</a></li>
+  <li><a href="#what-the-primer-tool-split-buys-you" id="toc-what-the-primer-tool-split-buys-you" class="nav-link" data-scroll-target="#what-the-primer-tool-split-buys-you"><span class="header-section-number">16.2</span> What the primer + tool split buys you</a></li>
+  <li><a href="#the-available-topics" id="toc-the-available-topics" class="nav-link" data-scroll-target="#the-available-topics"><span class="header-section-number">16.3</span> The available topics</a></li>
+  <li><a href="#inspecting-what-the-llm-will-see" id="toc-inspecting-what-the-llm-will-see" class="nav-link" data-scroll-target="#inspecting-what-the-llm-will-see"><span class="header-section-number">16.4</span> Inspecting what the LLM will see</a></li>
+  <li><a href="#provider-swap-and-model-choice" id="toc-provider-swap-and-model-choice" class="nav-link" data-scroll-target="#provider-swap-and-model-choice"><span class="header-section-number">16.5</span> Provider swap and model choice</a></li>
+  <li><a href="#manual-registration-what-the-helper-does" id="toc-manual-registration-what-the-helper-does" class="nav-link" data-scroll-target="#manual-registration-what-the-helper-does"><span class="header-section-number">16.6</span> Manual registration — what the helper does</a></li>
+  <li><a href="#testing-without-spending-tokens" id="toc-testing-without-spending-tokens" class="nav-link" data-scroll-target="#testing-without-spending-tokens"><span class="header-section-number">16.7</span> Testing without spending tokens</a></li>
+  <li><a href="#when-to-re-register" id="toc-when-to-re-register" class="nav-link" data-scroll-target="#when-to-re-register"><span class="header-section-number">16.8</span> When to re-register</a></li>
+  <li><a href="#current-behavior-boundary" id="toc-current-behavior-boundary" class="nav-link" data-scroll-target="#current-behavior-boundary"><span class="header-section-number">16.9</span> Current behavior boundary</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/llm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llm.html">Advanced topics</a></li><li class="breadcrumb-item"><a href="./llm.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llm.html">Advanced topics</a></li><li class="breadcrumb-item"><a href="./llm.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></h1>
+<h1 class="title"><span id="sec-llm" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></h1>
 </div>
 
 
@@ -340,23 +389,259 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Large language models are fluent at writing raw <code>shiny::fluidPage()</code> + server scaffolding from memory. They are <em>not</em> fluent at writing ggpaintr, because every model today has zero prior exposure to this package. Without help, a user asking “build me a Shiny app where I can pick columns from iris and see a scatter plot” gets hundreds of lines of hand-rolled Shiny that the <code>ptr_app()</code> one-liner would have covered.</p>
+<p>This chapter shows how to make any <a href="https://ellmer.tidyverse.org/">ellmer</a> chat session reach for ggpaintr first, using two exported helpers:</p>
+<ul>
+<li><code>ptr_llm_primer()</code> — the system-prompt preamble that teaches the model the three-level integration model (<a href="use-cases.html" class="quarto-xref"><span>Chapter 5</span></a>) and the “call the docs tool before writing code” rule.</li>
+<li><code>ptr_llm_register()</code> — one-line registration of the <code>ggpaintr_docs</code> tool that serves focused runnable examples on demand.</li>
+</ul>
+<p>The tool is backed by <code>ptr_llm_topic()</code>, which returns the content of one bundled topic file. The LLM pulls only the topic it needs, instead of the whole manual loading the context window on every turn.</p>
+<section id="quick-start-three-lines-of-setup" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="quick-start-three-lines-of-setup"><span class="header-section-number">16.1</span> Quick start — three lines of setup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>())</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Build a Shiny app where the user picks X and Y columns from mtcars."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<p>Under the hood:</p>
+<ul>
+<li><code>chat_anthropic()</code> loads the primer (~4,000 tokens) into the system prompt, which stays in context every turn.</li>
+<li><code>ptr_llm_register()</code> attaches a single tool named <code>ggpaintr_docs</code> to the chat session. The tool’s one argument — <code>topic</code> — is constrained by <code>type_enum()</code> to the exact set of topic names returned by <code>ptr_llm_topics()</code>, so the LLM cannot request a topic that does not exist.</li>
+</ul>
+<p>On the first turn the model sees the user’s prompt, recognises it as a plot-explorer task, calls <code>ggpaintr_docs(topic = "level1_ptr_app")</code>, and writes a <code>ptr_app(...)</code> snippet rather than raw Shiny.</p>
+</section>
+<section id="what-the-primer-tool-split-buys-you" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="what-the-primer-tool-split-buys-you"><span class="header-section-number">16.2</span> What the primer + tool split buys you</h2>
+<p>A common alternative is to stuff the entire manual into the system prompt. That works but wastes tokens: every chat turn pays for the full manual whether or not it is relevant. The primer/tool split is a lightweight form of retrieval:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 40%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>When it loads</th>
+<th>What it teaches</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primer</td>
+<td>Every turn (~4,000 tokens)</td>
+<td>ggpaintr exists; 3-level model; decision rule.</td>
+</tr>
+<tr class="even">
+<td><code>ggpaintr_docs(topic)</code></td>
+<td>On demand</td>
+<td>One focused runnable example (~500–2,800 tokens).</td>
+</tr>
+</tbody>
+</table>
+<p>The primer carries an explicit rule — <em>“Before writing R code for an interactive plot task, call <code>ggpaintr_docs(topic)</code> to fetch the runnable example”</em> — and that rule plus the enum-constrained argument is what makes the LLM reliably reach for the tool instead of hallucinating an API.</p>
+</section>
+<section id="the-available-topics" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="the-available-topics"><span class="header-section-number">16.3</span> The available topics</h2>
+<p>This chunk runs against the pinned ggpaintr at render time, so the list below is the canonical one:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_topics</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "custom_placeholder"   "formula_syntax"       "level1_ptr_app"      
+ [4] "level1_ptr_options"   "level2_custom_ids"    "level2_module"       
+ [7] "level2_shared"        "level2_ui_text"       "level3_custom_render"
+[10] "level3_gg_extra"      "level3_layout"        "overview"            </code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: ggpaintr’s LLM-assisted features for editing formulas. Absorbs the package’s <code>ggpaintr-llm</code> vignette once that vignette is e2e-green and drift-audit-clean. Covers the user-facing API only — provider configuration, prompt shape, fallback behavior — not the internals of how the assistant is wired.</p>
-<p>Examples follow <code>book-conventions.md</code>: each app chunk carries <code>#| fixture: &lt;slug&gt;</code> and is mirrored by <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>. LLM-backed fixtures need either a mocked provider or skip-on-no-key handling; the gate must boot them either way.</p>
+<p>A short guide to each:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>When the LLM should call it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>overview</code></td>
+<td>First orientation — the 3-level model and decision rule.</td>
+</tr>
+<tr class="even">
+<td><code>formula_syntax</code></td>
+<td>Which placeholder keyword goes where; pipelines; <code>shared = "..."</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>level1_ptr_app</code></td>
+<td>Quick turn-key single-plot app (<code>ptr_app()</code>).</td>
+</tr>
+<tr class="even">
+<td><code>level1_ptr_options</code></td>
+<td>Package-global settings: verbosity, layer-checkbox default.</td>
+</tr>
+<tr class="odd">
+<td><code>level2_module</code></td>
+<td>Embed the default-layout block (<code>ptr_ui()</code> / <code>ptr_server()</code>) in the user’s own Shiny app.</td>
+</tr>
+<tr class="even">
+<td><code>level2_custom_ids</code></td>
+<td>Id collisions, the <code>ptr_</code> reserved prefix, generated-id grammar.</td>
+</tr>
+<tr class="odd">
+<td><code>level2_shared</code></td>
+<td>Multiple instances + the shared-coordinator trio for cross-instance widgets.</td>
+</tr>
+<tr class="even">
+<td><code>level2_ui_text</code></td>
+<td>Override labels, help, placeholders; multi-section cascade.</td>
+</tr>
+<tr class="odd">
+<td><code>level3_custom_render</code></td>
+<td>Own <code>renderPlot()</code> / <code>renderPlotly()</code> reading <code>state$runtime()</code>.</td>
+</tr>
+<tr class="even">
+<td><code>level3_layout</code></td>
+<td>Own the layout — bare pieces, the two combinators, the optional <code>ptr_ui_page()</code> shell.</td>
+</tr>
+<tr class="odd">
+<td><code>level3_gg_extra</code></td>
+<td>Round-trip host layers into the generated code pane.</td>
+</tr>
+<tr class="even">
+<td><code>custom_placeholder</code></td>
+<td>Date pickers, sliders, any widget not in the five built-ins.</td>
+</tr>
+</tbody>
+</table>
+<p>Topics whose example is a standalone runnable app open with a <code>library()</code> preamble; fragment-style topics (<code>overview</code>, <code>level2_custom_ids</code>, <code>level3_custom_render</code>, <code>level3_layout</code>) do not, by design.</p>
+</section>
+<section id="inspecting-what-the-llm-will-see" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="inspecting-what-the-llm-will-see"><span class="header-section-number">16.4</span> Inspecting what the LLM will see</h2>
+<p>You can read any topic directly, without booting a chat session — useful for integration tests or checking content before release. These run at render time:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">substr</span>(<span class="fu">ptr_llm_primer</span>(), <span class="dv">1</span>, <span class="dv">400</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># ggpaintr — R package for generating ggplot Shiny apps from formula strings
+
+**Use ggpaintr — do NOT write raw Shiny — when the user asks in R for:** an interactive ggplot explorer, a dashboard with widgets tied to a ggplot, letting a user pick columns/labels/sizes for a plot, uploading a CSV / TSV / RDS / Excel / JSON file and plotting it. Raw `shiny::fluidPage()` for plot exploration is the wro 
+...</code></pre>
 </div>
 </div>
-<!-- TODO: write "LLM integration" -->
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">substr</span>(<span class="fu">ptr_llm_topic</span>(<span class="st">"level1_ptr_app"</span>), <span class="dv">1</span>, <span class="dv">600</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Level 1 — turn-key app with `ptr_app()`
+
+Use when: the user wants an interactive ggplot explorer and does not need to own the Shiny UI. No Shiny code is written.
+
+## Signature
+
+```r
+ptr_app(
+  formula,
+  envir          = parent.frame(),
+  ui_text        = NULL,
+  expr_check     = TRUE,
+  safe_to_remove = character(),
+  css            = NULL,
+  spec           = NULL
+)
+```
+
+There is no `placeholders =` argument: custom placeholder keywords are registered against a **process-global** registry via `ptr_define_placeholder_value()` / `_consumer()` / `_source()` before the app launches (see `custom 
+...</code></pre>
+</div>
+</div>
+</section>
+<section id="provider-swap-and-model-choice" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="provider-swap-and-model-choice"><span class="header-section-number">16.5</span> Provider swap and model choice</h2>
+<p>The tool definition is provider-neutral — the same registration line works with every chat constructor ellmer exports:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anthropic</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>(),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">model =</span> <span class="st">"claude-sonnet-4-6"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>(),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">"gpt-4o-mini"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Google</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_google_gemini</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>())</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Local (ollama)</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_ollama</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>(),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">"llama3.1"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The primer is small; any model that supports tool calling will work. For fast iteration on the registration itself, a small, cheap model is a reasonable default.</p>
+</section>
+<section id="manual-registration-what-the-helper-does" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="manual-registration-what-the-helper-does"><span class="header-section-number">16.6</span> Manual registration — what the helper does</h2>
+<p><code>ptr_llm_register()</code> is a thin convenience wrapper. To customise the tool (different name, tighter description, extra arguments), do it by hand:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ggpaintr_docs <span class="ot">&lt;-</span> <span class="fu">tool</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  ptr_llm_topic,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name        =</span> <span class="st">"ggpaintr_docs"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">description =</span> <span class="fu">paste</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fetch a runnable ggpaintr example for one integration topic."</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Call before writing R code for interactive ggplot tasks."</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">arguments =</span> <span class="fu">list</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">topic =</span> <span class="fu">type_enum</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_llm_topics</span>(),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Which topic to fetch."</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>())</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">register_tool</span>(ggpaintr_docs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The pieces: <code>tool(...)</code> is ellmer’s constructor wrapping the exported R function; <code>type_enum(ptr_llm_topics(), ...)</code> constrains the LLM’s topic choice to the exact names the package ships; <code>chat$register_tool(...)</code> attaches it to the session. If you use this form, refresh the enum whenever the package updates — the helper snapshots the list once at registration time.</p>
+</section>
+<section id="testing-without-spending-tokens" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="testing-without-spending-tokens"><span class="header-section-number">16.7</span> Testing without spending tokens</h2>
+<p>The ellmer <code>tool()</code> object wraps the underlying R function — call it directly for tests or sanity checks, no chat session and no API key involved. This runs at render time:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>payload <span class="ot">&lt;-</span> <span class="fu">ptr_llm_topic</span>(<span class="st">"level2_module"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(payload)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5268</code></pre>
+</div>
+</div>
+<p><code>ptr_llm_topics()</code> returns the canonical list; if you add a topic in a downstream repo, assert the name is present before shipping the registration.</p>
+</section>
+<section id="when-to-re-register" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="when-to-re-register"><span class="header-section-number">16.8</span> When to re-register</h2>
+<ul>
+<li><strong>After upgrading ggpaintr</strong> — new topics are not reachable until <code>ptr_llm_register()</code> runs again (the enum list is snapshotted).</li>
+<li><strong>Switching chat providers</strong> — registration is per-<code>Chat</code> object; every new session needs its own registration.</li>
+<li><strong>Changing the tool name</strong> — drop the old tool with <code>chat$set_tools()</code> (inspect what is attached via <code>chat$get_tools()</code>) and register the new one; ellmer has no dedicated <code>unregister_tool()</code>, but you do not need to rebuild the chat.</li>
+</ul>
+</section>
+<section id="current-behavior-boundary" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="current-behavior-boundary"><span class="header-section-number">16.9</span> Current behavior boundary</h2>
+<ul>
+<li>The primer and topic files are bundled with the package. Their factual blocks — signatures, the token table, the topic index — are regenerated from live introspection by the package’s <code>dev/build-llm.R</code> (lint / generate / verify modes); the surrounding prose is still hand-curated.</li>
+<li>ellmer is a suggested dependency — nothing loads until you call the helper, and <code>ptr_llm_register()</code> errors with a clear message if ellmer is not installed.</li>
+<li>The helper sets only the tool. The system prompt is your responsibility — pass <code>ptr_llm_primer()</code> to the <code>chat_*()</code> constructor explicitly.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -766,8 +1051,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./safety.html" class="pagination-link" aria-label="Writing safe formulas">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./safety.html" class="pagination-link" aria-label="Writing Safe Formulas">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -776,4 +1061,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/llm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/llm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

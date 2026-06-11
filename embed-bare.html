@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Embedding with bare pieces – ggpaintr</title>
+<title>11&nbsp; Embedding with Bare Pieces – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-bare.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-bare.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-bare-pieces-and-combinators" id="toc-the-bare-pieces-and-combinators" class="nav-link active" data-scroll-target="#the-bare-pieces-and-combinators"><span class="header-section-number">11.1</span> The bare pieces and combinators</a></li>
+  <li><a href="#a-fully-hand-laid-out-page" id="toc-a-fully-hand-laid-out-page" class="nav-link" data-scroll-target="#a-fully-hand-laid-out-page"><span class="header-section-number">11.2</span> A fully hand-laid-out page</a></li>
+  <li><a href="#the-familiar-slide-out-code-window" id="toc-the-familiar-slide-out-code-window" class="nav-link" data-scroll-target="#the-familiar-slide-out-code-window"><span class="header-section-number">11.3</span> The familiar slide-out code window</a></li>
+  <li><a href="#custom-or-navbarpage-roots-decompose-by-hand" id="toc-custom-or-navbarpage-roots-decompose-by-hand" class="nav-link" data-scroll-target="#custom-or-navbarpage-roots-decompose-by-hand"><span class="header-section-number">11.4</span> Custom or <code>navbarPage</code> roots — decompose by hand</a></li>
+  <li><a href="#placing-individual-placeholder-widgets" id="toc-placing-individual-placeholder-widgets" class="nav-link" data-scroll-target="#placing-individual-placeholder-widgets"><span class="header-section-number">11.5</span> Placing individual placeholder widgets</a></li>
+  <li><a href="#swapping-a-pane-for-your-own-renderer" id="toc-swapping-a-pane-for-your-own-renderer" class="nav-link" data-scroll-target="#swapping-a-pane-for-your-own-renderer"><span class="header-section-number">11.6</span> Swapping a pane for your own renderer</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/embed-bare.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-bare.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-bare.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></h1>
+<h1 class="title"><span id="sec-embed-bare" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></h1>
 </div>
 
 
@@ -340,23 +386,182 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>L3 is the level finer than L2: instead of one self-contained default-layout block, <strong>every piece of ggpaintr’s UI has its own bare exported function</strong> — emitting only its widgets, no wrapper, no assets — so you can pick exactly the pieces you want and place each one anywhere in your own Shiny. <strong>L3 is a UI-side split only.</strong> The server side does not change: you still call the single <code>ptr_server(formula, id)</code> exactly as at L2. The pieces write to and read from the same canonical ids it already targets, so a piece you never place is simply a no-op.</p>
+<section id="the-bare-pieces-and-combinators" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-bare-pieces-and-combinators"><span class="header-section-number">11.1</span> The bare pieces and combinators</h2>
+<p>The pieces are deliberately orthogonal — an <code>id</code> (and, where relevant, a <code>formula</code>) plus at most a few cosmetic arguments such as <code>style =</code>, <code>page =</code>, or <code>css =</code>. There are no <code>error=</code> / <code>code_toggle=</code> flags on <code>ptr_ui_plot()</code>; layered behaviour is added by <strong>combinators</strong> that wrap already-built pieces:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it emits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ptr_ui_page(..., page, css)</code></td>
+<td>The optional page shell: a Bootstrap-3 page + the single <code>.ptr-app</code> theme scope + the deduped asset bundle, wrapping the pieces you pass</td>
+</tr>
+<tr class="even">
+<td><code>ptr_ui_header(title)</code></td>
+<td>The branded header bar</td>
+</tr>
+<tr class="odd">
+<td><code>ptr_ui_controls(formula, id = NULL, ...)</code></td>
+<td>The generated control widgets (layer picker, per-layer panels, <strong>Update plot</strong>, inline shared section)</td>
+</tr>
+<tr class="even">
+<td><code>ptr_ui_plot(id)</code></td>
+<td>The bare plot card — no error slot, no toggle</td>
+</tr>
+<tr class="odd">
+<td><code>ptr_ui_error(id)</code></td>
+<td>The bare inline error slot</td>
+</tr>
+<tr class="even">
+<td><code>ptr_ui_code(id, style)</code></td>
+<td>The bare generated-code pane; <code>style = "panel"</code> (plain, always visible — default) or <code>"window"</code></td>
+</tr>
+<tr class="odd">
+<td><code>ptr_ui_inline_error(plot, error)</code></td>
+<td><strong>Combinator</strong>: nests an error piece inside a plot piece’s card body</td>
+</tr>
+<tr class="even">
+<td><code>ptr_ui_toggle_code(plotish, code)</code></td>
+<td><strong>Combinator</strong>: wraps a plot-ish piece + code piece into the <code>&lt;/&gt;</code> slide-out layout</td>
+</tr>
+<tr class="odd">
+<td><code>ptr_ui_shared_panel(obj)</code></td>
+<td>The bare cross-formula shared panel (L3 counterpart of <code>ptr_shared_panel()</code>)</td>
+</tr>
+<tr class="even">
+<td><code>ptr_ui_assets(css)</code></td>
+<td>The CSS/JS bundle — <strong>escape hatch only</strong>, for roots <code>ptr_ui_page()</code> can’t cover</td>
+</tr>
+</tbody>
+</table>
+<p>Two facts shape how the pieces behave:</p>
+<ol type="1">
+<li><strong><code>ptr_ui_page()</code> is the only scaffolding to remember — and it is optional.</strong> The controls need Bootstrap’s CSS/JS, which Shiny loads only when the outermost UI object is a Bootstrap page builder; and the bundled theme is scoped under a single <code>.ptr-app</code>. <code>ptr_ui_page()</code> resolves both at once: it <em>is</em> the Bootstrap page and owns the theme scope plus the deduped assets. Write your own bare Shiny root instead and you own that scaffolding — the <code>navbarPage</code> recipe below shows exactly what to reproduce.</li>
+<li><strong>Combinators add behaviour; flags do not.</strong> A standalone <code>ptr_ui_code()</code> is a plain, always-visible panel needing no wiring. The inline error and the draggable slide-out code window come from composing pieces through the two combinators — pure DOM-structure helpers with no server coupling.</li>
+</ol>
+<p>Ids must line up: pass the same <code>id</code> to every piece and to <code>ptr_server(formula, id)</code>. A single embedding needs no <code>id</code> at all; you never write your own <code>shiny::moduleServer()</code>. Hand-placing pieces makes id collisions most likely, so keep the whole <code>ptr_</code>-prefixed top-level id set reserved — the full list lives in <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a> § “How input ids are built”.</p>
+</section>
+<section id="a-fully-hand-laid-out-page" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="a-fully-hand-laid-out-page"><span class="header-section-number">11.2</span> A fully hand-laid-out page</h2>
+<p>Header, controls, plot, error, and code each in their own region:</p>
+<div class="cell" data-fixture="embed-bare-pieces">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">ptr_ui_page</span>(                          <span class="co"># Bootstrap page + single .ptr-app + assets</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui_header</span>(<span class="st">"Iris explorer"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">fluidRow</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">4</span>, <span class="fu">ptr_ui_controls</span>(<span class="at">formula =</span> formula)),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">8</span>, <span class="fu">ptr_ui_plot</span>())         <span class="co"># bare plot card; error placed below</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui_error</span>(),                           <span class="co"># error banner in its own row</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui_code</span>()                             <span class="co"># plain, always-visible code card</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(formula)   <span class="co"># binds ptr_plot / ptr_error / ptr_code</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/embed-bare-pieces.png" class="img-fluid figure-img"></p>
+<figcaption>Bare pieces, hand-placed: controls left, plot right, error row and always-visible code card below.</figcaption>
+</figure>
 </div>
+<p>Swap the page builder with <code>page =</code> for a different Bootstrap-3 root — <code>ptr_ui_page(..., page = shiny::fillPage)</code> for edge-to-edge, for instance. The contract is any BS3 page builder whose <code>...</code> are tag children: <code>fluidPage</code> (default), <code>fixedPage</code>, <code>fillPage</code>, <code>bootstrapPage</code>, <code>basicPage</code>. It is <strong>not</strong> <code>navbarPage</code> (which takes a positional <code>title</code> plus <code>tabPanel()</code> children) and <strong>not</strong> a bslib/BS5 page (the bundled CSS is Bootstrap-3-scoped). For those roots, decompose by hand (below).</p>
+<p>All three panes — plot, error, code — are empty until the first <strong>Update plot</strong> click, exactly as in the bundled app. And <code>ptr_ui_code()</code> already renders its own bordered card with a “Generated code” header — drop it straight into the layout; don’t bury it in a collapsed <code>tags$details()</code>, or only the disclosure summary shows.</p>
+</section>
+<section id="the-familiar-slide-out-code-window" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="the-familiar-slide-out-code-window"><span class="header-section-number">11.3</span> The familiar slide-out code window</h2>
+<p>Want the <code>&lt;/&gt;</code> slide-out and inline error while owning the surrounding layout? Compose with the two combinators — this nested call is byte-for-byte the output block <code>ptr_ui()</code> renders internally. <code>ptr_app()</code> wires the same behaviour but builds its slide-out window slightly differently (its code-mode toggle sits in the window head), so only cosmetics differ from that path:</p>
+<div class="cell" data-fixture="embed-bare-toggle">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">ptr_ui_page</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui_header</span>(<span class="st">"Iris explorer"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">sidebarLayout</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">sidebarPanel</span>(<span class="fu">ptr_ui_controls</span>(<span class="at">formula =</span> formula)),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">mainPanel</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_ui_toggle_code</span>(                                   <span class="co"># &lt;/&gt; slide-out toggle ...</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ptr_ui_inline_error</span>(<span class="fu">ptr_ui_plot</span>(), <span class="fu">ptr_ui_error</span>()), <span class="co"># ... around plot + inline error</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ptr_ui_code</span>()                                       <span class="co"># ... wrapped as the slide-out window</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(formula)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: owning the layout. Bare UI pieces (<code>ptr_ui_controls</code>, <code>ptr_ui_plot</code>, <code>ptr_ui_error</code>, <code>ptr_ui_code</code>, <code>ptr_ui_header</code>, <code>ptr_ui_shared_panel</code>) and the combinators (<code>ptr_ui_inline_error</code>, <code>ptr_ui_toggle_code</code>). The optional <code>ptr_ui_page</code> shell. Per ADR 0006, the server side is the single public <code>ptr_server()</code> — there is no separate “L3 server”.</p>
-<p>Examples follow <code>book-conventions.md</code>: each app chunk carries <code>#| fixture: &lt;slug&gt;</code> and is mirrored by <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/embed-bare-toggle.png" class="img-fluid figure-img"></p>
+<figcaption>The combinator recipe inside a <code>sidebarLayout</code>: plot card with inline error slot, code window behind the <code>&lt;/&gt;</code> toggle.</figcaption>
+</figure>
 </div>
+</section>
+<section id="custom-or-navbarpage-roots-decompose-by-hand" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="custom-or-navbarpage-roots-decompose-by-hand"><span class="header-section-number">11.4</span> Custom or <code>navbarPage</code> roots — decompose by hand</h2>
+<p>For the roots <code>ptr_ui_page()</code> deliberately does not cover, hand-build what it expands to — a Bootstrap page, <code>ptr_ui_assets()</code> once (its <strong>only</strong> sanctioned use), and one <code>div(class = "ptr-app")</code> around the pieces:</p>
+<div class="cell" data-fixture="embed-navbar">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">navbarPage</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Iris explorer"</span>,                            <span class="co"># navbarPage needs a positional title</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">tabPanel</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Plot"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ptr_ui_assets</span>(),                          <span class="co"># the bundle, once (self-deduping) — escape hatch</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">div</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">class =</span> <span class="st">"ptr-app"</span>,                      <span class="co"># the single theme scope</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      shiny<span class="sc">::</span><span class="fu">sidebarLayout</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        shiny<span class="sc">::</span><span class="fu">sidebarPanel</span>(<span class="fu">ptr_ui_controls</span>(<span class="at">formula =</span> formula)),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        shiny<span class="sc">::</span><span class="fu">mainPanel</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ptr_ui_toggle_code</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">ptr_ui_inline_error</span>(<span class="fu">ptr_ui_plot</span>(), <span class="fu">ptr_ui_error</span>()),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">ptr_ui_code</span>()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">tabPanel</span>(<span class="st">"About"</span>, <span class="st">"Built with ggpaintr."</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(formula)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<!-- TODO: write "Embedding with bare pieces" -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/embed-navbar.png" class="img-fluid figure-img"></p>
+<figcaption>The same composition living in one tab of a <code>navbarPage</code>, with the assets and theme scope reproduced by hand.</figcaption>
+</figure>
+</div>
+<p>This is exactly the body of <code>ptr_ui_page()</code> — <code>page(ptr_ui_assets(css), div(class = "ptr-app", ...))</code> — inlined into the one tab, so it doubles as a transparent view of what the shell does for you. Keep <code>ptr_ui_assets()</code> and the <code>.ptr-app</code> wrapper <em>inside</em> each tab that hosts ggpaintr pieces; the bundle is self-deduping, so repeating it costs nothing.</p>
+</section>
+<section id="placing-individual-placeholder-widgets" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="placing-individual-placeholder-widgets"><span class="header-section-number">11.5</span> Placing individual placeholder widgets</h2>
+<p><code>ptr_ui_controls()</code> is the whole controls panel and is the supported way to render the generated widgets. ggpaintr does not expose a public accessor for the parsed node tree, so hand-placing <em>individual</em> placeholder widgets is not a supported workflow. To add custom widget <em>types</em>, register them instead — <a href="custom-placeholders.html" class="quarto-xref"><span>Chapter 13</span></a>.</p>
+</section>
+<section id="swapping-a-pane-for-your-own-renderer" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="swapping-a-pane-for-your-own-renderer"><span class="header-section-number">11.6</span> Swapping a pane for your own renderer</h2>
+<p>Never place <code>ptr_ui_plot()</code> and put a <code>plotly::plotlyOutput()</code> there instead — that is the custom-renderer pattern, and it gets its own chapter: <a href="custom-render.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -761,13 +966,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./embed-default.html" class="pagination-link" aria-label="Embedding with the default layout">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span>
+      <a href="./embed-default.html" class="pagination-link" aria-label="Embedding with the Default Layout">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./custom-render.html" class="pagination-link" aria-label="Custom rendering">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./custom-render.html" class="pagination-link" aria-label="Custom Rendering">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -776,4 +981,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/embed-bare.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/embed-bare.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

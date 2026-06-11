@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Custom rendering – ggpaintr</title>
+<title>12&nbsp; Custom Rendering – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./custom-render.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./custom-render.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-canonical-pattern" id="toc-the-canonical-pattern" class="nav-link active" data-scroll-target="#the-canonical-pattern"><span class="header-section-number">12.1</span> The canonical pattern</a></li>
+  <li><a href="#two-reading-paths-off-the-state" id="toc-two-reading-paths-off-the-state" class="nav-link" data-scroll-target="#two-reading-paths-off-the-state"><span class="header-section-number">12.2</span> Two reading paths off the state</a></li>
+  <li><a href="#custom-plot-renderer" id="toc-custom-plot-renderer" class="nav-link" data-scroll-target="#custom-plot-renderer"><span class="header-section-number">12.3</span> Custom plot renderer</a></li>
+  <li><a href="#custom-code-panel" id="toc-custom-code-panel" class="nav-link" data-scroll-target="#custom-code-panel"><span class="header-section-number">12.4</span> Custom code panel</a></li>
+  <li><a href="#custom-error-ui" id="toc-custom-error-ui" class="nav-link" data-scroll-target="#custom-error-ui"><span class="header-section-number">12.5</span> Custom error UI</a></li>
+  <li><a href="#programmatic-layer-injection-ptr_gg_extra" id="toc-programmatic-layer-injection-ptr_gg_extra" class="nav-link" data-scroll-target="#programmatic-layer-injection-ptr_gg_extra"><span class="header-section-number">12.6</span> Programmatic layer injection — <code>ptr_gg_extra()</code></a></li>
+  <li><a href="#shared-widgets-driving-custom-renderers" id="toc-shared-widgets-driving-custom-renderers" class="nav-link" data-scroll-target="#shared-widgets-driving-custom-renderers"><span class="header-section-number">12.7</span> Shared widgets driving custom renderers</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-render.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./custom-render.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./custom-render.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></h1>
+<h1 class="title"><span id="sec-custom-render" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></h1>
 </div>
 
 
@@ -340,23 +387,172 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>“I want my own renderer.” <code>ptr_server()</code> <strong>returns</strong> the app’s state, so you can swap ggpaintr’s plot pane for plotly, ggiraph, or any custom host. The runtime stays inside ggpaintr; you replace only the <em>output</em>. This is a UI-side swap — you place your own output widget — not a separate server pattern.</p>
+<section id="the-canonical-pattern" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="the-canonical-pattern"><span class="header-section-number">12.1</span> The canonical pattern</h2>
+<p>Place your output widget at <code>shiny::NS(id)(...)</code> in the UI next to <code>ptr_ui_controls(formula, id)</code>, call the single <code>ptr_server(formula, id)</code> in your plain <code>server</code> function (it namespaces internally — you do <strong>not</strong> write a <code>moduleServer</code>), and bind your widget off the returned state:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UI:     plotly::plotlyOutput(shiny::NS("plot1")("my_plot"))</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#         + ptr_ui_controls(formula, "plot1")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># server: state &lt;- ptr_server(formula, "plot1")</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#         output[[shiny::NS("plot1")("my_plot")]] &lt;-</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#           plotly::renderPlotly(state$runtime()$plot)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because <code>ptr_server()</code> returns to your <strong>top-level</strong> server, Shiny does not auto-namespace your <code>output</code> assignment — wrap the id with <code>shiny::NS(id)()</code>, the same expression you used on the UI side. (Single embedding: omit the <code>id</code> and the <code>NS()</code> wrapper.)</p>
+</section>
+<section id="two-reading-paths-off-the-state" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="two-reading-paths-off-the-state"><span class="header-section-number">12.2</span> Two reading paths off the state</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Inside <code>renderX({...})</code> / <code>reactive({...})</code> / <code>observeEvent({...})</code></th>
+<th>Outside reactive contexts (download handlers, snapshots)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Read <code>state$runtime()</code> and unpack its slots (<code>$ok</code>, <code>$plot</code>, <code>$code_text</code>, <code>$error</code>). This takes the reactive dependency that wires re-renders to <strong>Update plot</strong> clicks.</td>
+<td>Call <code>ptr_extract_plot(state)</code> / <code>ptr_extract_code(state)</code> / <code>ptr_extract_error(state)</code>. These wrap <code>shiny::isolate()</code> — current value, no reactive dependency.</td>
+</tr>
+</tbody>
+</table>
+<p>Mixing them — <code>ptr_extract_plot(state)</code> inside <code>renderPlotly({...})</code> — silently breaks reactivity: the block fires once on mount and never again. Stick to <code>state$runtime()</code> inside reactive blocks.</p>
+</section>
+<section id="custom-plot-renderer" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="custom-plot-renderer"><span class="header-section-number">12.3</span> Custom plot renderer</h2>
+<p>Render <code>ptr_ui_controls()</code> for the widgets, place your own output container, and never place <code>ptr_ui_plot()</code> — with no UI slot bound to it, the built-in plot output stays inert, so there is no bundled pane at all:</p>
+<div class="cell" data-fixture="custom-render-plotly">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">ptr_ui_page</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">fluidRow</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">5</span>, <span class="fu">ptr_ui_controls</span>(formula, <span class="st">"plot1"</span>)),      <span class="co"># widgets only</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="dv">7</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot1"</span>)(<span class="st">"custom_plot"</span>), <span class="co"># your own output</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">height =</span> <span class="st">"500px"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ptr_ui_toggle_code</span>(<span class="fu">ptr_ui_code</span>(<span class="st">"plot1"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  state <span class="ot">&lt;-</span> <span class="fu">ptr_server</span>(formula, <span class="st">"plot1"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  output[[shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot1"</span>)(<span class="st">"custom_plot"</span>)]] <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> state<span class="sc">$</span><span class="fu">runtime</span>()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">req</span>(<span class="fu">isTRUE</span>(res<span class="sc">$</span>ok), res<span class="sc">$</span>plot)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    plotly<span class="sc">::</span><span class="fu">ggplotly</span>(res<span class="sc">$</span>plot)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-render-plotly.png" class="img-fluid figure-img"></p>
+<figcaption>ggpaintr’s controls driving a plotly output instead of the bundled plot pane. The <code>&lt;/&gt;</code> toggle still serves the generated code.</figcaption>
+</figure>
 </div>
+<p><code>req(isTRUE(res$ok), res$plot)</code> keeps the panel quiet between draws and on transient error states. The gallery’s plotly and ggiraph originals (<a href="gallery.html" class="quarto-xref"><span>Chapter 6</span></a> § “Interactive output packages”) are the graphics this pattern brings to life.</p>
+<p>If you would rather keep ggpaintr’s chrome <em>and</em> add a second custom view, capture the module’s state and render a second output off it — <code>ptr_ui(formula, "p")</code> in the UI plus <code>state &lt;- ptr_server(formula, "p")</code> in the server — but <code>ptr_ui()</code> always renders the bundled plot pane alongside your custom one. Use the bare-piece composition above when you want exactly one (custom) plot.</p>
+</section>
+<section id="custom-code-panel" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="custom-code-panel"><span class="header-section-number">12.4</span> Custom code panel</h2>
+<p>Bind to <code>state$runtime()</code> inside <code>renderText({...})</code> and pull <code>code_text</code> off it — in the same <code>server</code> function, after <code>state &lt;- ptr_server(formula, "plot1")</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>output[[shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot1"</span>)(<span class="st">"my_code"</span>)]] <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">renderText</span>({</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  state<span class="sc">$</span><span class="fu">runtime</span>()<span class="sc">$</span>code_text <span class="sc">%||%</span> <span class="st">""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Be aware that <code>code_text</code> holds only the substituted formula code — any <code>ptr_gg_extra()</code> extras (see below) are folded into the plot, never into this slot, so the panel above silently drops them. If your panel must show extras too, keep a <code>state$runtime()</code> read for the reactive dependency and return <code>ptr_extract_code(state)</code> instead — that accessor appends the extras text on top, exactly like the bundled code panel does.</p>
+<p>For non-reactive contexts (a download handler, a snapshot test), the public accessor is <code>ptr_extract_code(state)</code>. It returns a single string and includes any <code>ptr_gg_extra()</code> expressions captured on the state.</p>
+</section>
+<section id="custom-error-ui" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="custom-error-ui"><span class="header-section-number">12.5</span> Custom error UI</h2>
+<p><code>state$runtime()$error</code> is the latest runtime error string, or <code>NULL</code> when the last cycle succeeded:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>output[[shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot1"</span>)(<span class="st">"my_status"</span>)]] <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">renderUI</span>({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  msg <span class="ot">&lt;-</span> state<span class="sc">$</span><span class="fu">runtime</span>()<span class="sc">$</span>error</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(msg)) shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">div</span>(<span class="at">class =</span> <span class="st">"status-ok"</span>, <span class="st">"Plot is up to date"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>              shiny<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">div</span>(<span class="at">class =</span> <span class="st">"status-error"</span>, msg)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>ptr_extract_error(state)</code> is the non-reactive counterpart.</p>
+</section>
+<section id="programmatic-layer-injection-ptr_gg_extra" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="programmatic-layer-injection-ptr_gg_extra"><span class="header-section-number">12.6</span> Programmatic layer injection — <code>ptr_gg_extra()</code></h2>
+<p><code>ptr_gg_extra(state, ...)</code> evaluates one or more ggplot2 expressions and attaches the results as “extras” on the state. The runtime folds them into the rendered plot on the next cycle; in the generated code they never enter <code>state$runtime()$code_text</code> — the extras text is appended on top only by <code>ptr_extract_code(state)</code> and the bundled code panel. Each call replaces the previously captured extras — pass everything you want layered on in a single call:</p>
+<div class="cell" data-fixture="custom-render-extra">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">"ggplot(mtcars, aes(x = mpg, y = hp)) + geom_point()"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">fluidPage</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">actionButton</span>(<span class="st">"add_log"</span>, <span class="st">"Toggle log-scale"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui</span>(formula)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  state <span class="ot">&lt;-</span> <span class="fu">ptr_server</span>(formula)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">observeEvent</span>(input<span class="sc">$</span>add_log, {</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ptr_gg_extra</span>(state, ggplot2<span class="sc">::</span><span class="fu">scale_x_log10</span>())</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: rendering the plot in your own output widget (plotly, ggiraph, a custom htmlwidget). The canonical pattern per ADR 0006: <code>state &lt;- ptr_server(formula, id)</code> in your host server, place your own widget at <code>shiny::NS(id)("my_plot")</code> in the UI, and read <code>state$runtime()$plot</code>. Also covers <code>ptr_gg_extra()</code> programmatic layer injection.</p>
-<p>Examples follow <code>book-conventions.md</code>: each app chunk carries <code>#| fixture: &lt;slug&gt;</code> and is mirrored by <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-render-extra.png" class="img-fluid figure-img"></p>
+<figcaption>A host button injecting <code>scale_x_log10()</code> into the next draw via <code>ptr_gg_extra()</code>.</figcaption>
+</figure>
 </div>
+<p>Eval errors from the captured expressions leave the existing extras untouched (atomic update), and extras are suppressed automatically while the underlying runtime reports a failure — on the custom-renderer path (<code>state$runtime()</code> reads and the <code>ptr_extract_plot()</code> / <code>ptr_extract_code()</code> / <code>ptr_extract_error()</code> accessors), stale extras from a prior successful draw never surface during an error state. The bundled panes behave differently: their retain-on-error fallback keeps the last successful plot and code on screen — extras included — while the error pane shows the new diagnostic.</p>
+</section>
+<section id="shared-widgets-driving-custom-renderers" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="shared-widgets-driving-custom-renderers"><span class="header-section-number">12.7</span> Shared widgets driving custom renderers</h2>
+<p>The multi-instance coordinator (<a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a>) composes with custom outputs: one <code>ptr_shared_server(obj)</code> bundle feeds every per-plot <code>ptr_server()</code>, and each returned state feeds its own <code>renderPlotly()</code>. The cross-formula key lives in the bare <code>ptr_ui_shared_panel(obj)</code>; its keys are excluded from each <code>ptr_ui_controls(formula, id, shared = obj)</code>:</p>
+<div class="cell" data-fixture="custom-render-shared">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Length, fill = Species)) + geom_boxplot()"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Width,  fill = Species)) + geom_violin()"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">ptr_shared</span>(<span class="at">formulas =</span> plots)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">ptr_ui_page</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui_shared_panel</span>(obj),                                  <span class="co"># cross-formula panel (bare, L3)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">fluidRow</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">3</span>, <span class="fu">ptr_ui_controls</span>(plots[[<span class="dv">1</span>]], <span class="st">"plot_1"</span>, <span class="at">shared =</span> obj)),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">9</span>, plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot_1"</span>)(<span class="st">"custom"</span>)))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">fluidRow</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">3</span>, <span class="fu">ptr_ui_controls</span>(plots[[<span class="dv">2</span>]], <span class="st">"plot_2"</span>, <span class="at">shared =</span> obj)),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">column</span>(<span class="dv">9</span>, plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot_2"</span>)(<span class="st">"custom"</span>)))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  sh <span class="ot">&lt;-</span> <span class="fu">ptr_shared_server</span>(obj)                               <span class="co"># top level, once</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  state1 <span class="ot">&lt;-</span> <span class="fu">ptr_server</span>(plots[[<span class="dv">1</span>]], <span class="st">"plot_1"</span>, <span class="at">shared_state =</span> sh)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  state2 <span class="ot">&lt;-</span> <span class="fu">ptr_server</span>(plots[[<span class="dv">2</span>]], <span class="st">"plot_2"</span>, <span class="at">shared_state =</span> sh)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  output[[shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot_1"</span>)(<span class="st">"custom"</span>)]] <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> state1<span class="sc">$</span><span class="fu">runtime</span>(); shiny<span class="sc">::</span><span class="fu">req</span>(<span class="fu">isTRUE</span>(res<span class="sc">$</span>ok), res<span class="sc">$</span>plot)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    plotly<span class="sc">::</span><span class="fu">ggplotly</span>(res<span class="sc">$</span>plot)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  output[[shiny<span class="sc">::</span><span class="fu">NS</span>(<span class="st">"plot_2"</span>)(<span class="st">"custom"</span>)]] <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> state2<span class="sc">$</span><span class="fu">runtime</span>(); shiny<span class="sc">::</span><span class="fu">req</span>(<span class="fu">isTRUE</span>(res<span class="sc">$</span>ok), res<span class="sc">$</span>plot)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    plotly<span class="sc">::</span><span class="fu">ggplotly</span>(res<span class="sc">$</span>plot)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<!-- TODO: write "Custom rendering" -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/custom-render-shared.png" class="img-fluid figure-img"></p>
+<figcaption>One shared metric picker on top; each plot’s state drives its own plotly output.</figcaption>
+</figure>
+</div>
+<p>Because each <code>ptr_server()</code> call is at the top level, writing <code>output$custom</code> would bind to the bare id <code>"custom"</code>, not the namespaced <code>"plot_1-custom"</code> the UI expects — use <code>output[[shiny::NS(id)(name)]]</code>, the same id expression as on the UI side.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -761,8 +957,8 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./embed-bare.html" class="pagination-link" aria-label="Embedding with bare pieces">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span>
+      <a href="./embed-bare.html" class="pagination-link" aria-label="Embedding with Bare Pieces">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -776,4 +972,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-render.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/custom-render.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

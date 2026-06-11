@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Embedding with the default layout – ggpaintr</title>
+<title>10&nbsp; Embedding with the Default Layout – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,10 +76,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4bb44ce45f47475930e66688cd31393d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c7820cb0aa0c7dea6d5a588b2e01b4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-default.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-default.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./placeholders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Placeholders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Built-in Placeholders</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./use-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use cases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Use Cases: the Three Levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,19 +253,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-default.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./embed-bare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom rendering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./llm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">LLM integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./safety.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing safe formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,15 +350,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-pair" id="toc-the-pair" class="nav-link active" data-scroll-target="#the-pair"><span class="header-section-number">10.1</span> The pair</a></li>
+  <li><a href="#what-ptr_server-gives-you" id="toc-what-ptr_server-gives-you" class="nav-link" data-scroll-target="#what-ptr_server-gives-you"><span class="header-section-number">10.2</span> What <code>ptr_server()</code> gives you</a></li>
+  <li><a href="#several-linked-blocks" id="toc-several-linked-blocks" class="nav-link" data-scroll-target="#several-linked-blocks"><span class="header-section-number">10.3</span> Several linked blocks</a></li>
+  <li><a href="#restyling-the-block" id="toc-restyling-the-block" class="nav-link" data-scroll-target="#restyling-the-block"><span class="header-section-number">10.4</span> Restyling the block</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/embed-default.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-default.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">Embedding</a></li><li class="breadcrumb-item"><a href="./embed-default.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the default layout</span></h1>
+<h1 class="title"><span id="sec-embed-default" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Embedding with the Default Layout</span></span></h1>
 </div>
 
 
@@ -340,23 +384,75 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>L2 is “I already have a Shiny app and want to drop a ggpaintr-driven block somewhere inside it, keeping ggpaintr’s default layout.” Every L2 function is <strong>self-contained</strong> — it owns its own <code>.ptr-app</code> theme scope and bundled asset dependency, so it drops straight into a host page with no scaffolding. This is the self-contained half of the naming convention; the bare pieces (<code>ptr_ui_page</code>, <code>ptr_ui_controls</code>, <code>ptr_ui_plot</code>, …) are L3 (<a href="embed-bare.html" class="quarto-xref"><span>Chapter 11</span></a>).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>L2 function</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ptr_ui(formula, id = NULL)</code> / <code>ptr_server(formula, id = NULL)</code></td>
+<td>One self-contained default-layout block (controls + plot/code/error), namespaced by <code>id</code>.</td>
+</tr>
+<tr class="even">
+<td><code>ptr_shared(formulas, ...)</code> → <code>obj</code></td>
+<td>The shared <strong>coordinator</strong>: a pure object built once from the full formula set. Multi-instance only.</td>
+</tr>
+<tr class="odd">
+<td><code>ptr_shared_panel(obj)</code></td>
+<td>The one standalone cross-formula shared panel (self-contained).</td>
+</tr>
+<tr class="even">
+<td><code>ptr_shared_server(obj)</code></td>
+<td>The reactive bundle threaded into each module via <code>shared_state =</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>There is <strong>no</strong> free-form controls-here / plot-there split at L2: the only default-layout block is the self-contained <code>ptr_ui()</code> / <code>ptr_server()</code> pair. Placing the controls in one region and the plot in another — or replacing a built-in pane with your own renderer — is L3, covered in <a href="embed-bare.html" class="quarto-xref"><span>Chapter 11</span></a> and <a href="custom-render.html" class="quarto-xref"><span>Chapter 12</span></a>. L2 is strictly “default layout, dropped into your app.”</p>
+<section id="the-pair" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="the-pair"><span class="header-section-number">10.1</span> The pair</h2>
+<p>Controls and outputs live next to each other inside the module’s namespace. The <code>id</code> is not required if there is only one ggpaintr module in the app:</p>
+<div class="cell" data-fixture="embed-default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">"ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point()"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">fluidPage</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">titlePanel</span>(<span class="st">"My host app"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ui</span>(formula)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(formula)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/embed-default.png" class="img-fluid figure-img"></p>
+<figcaption>The default-layout block dropped under a host <code>titlePanel</code>. The block brings its own theme scope and assets.</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Draft stub.</strong> Scope: dropping ggpaintr into your own Shiny app with the default layout. The self-contained <code>ptr_ui()</code> / <code>ptr_server()</code> pair. Multi-instance: the <code>ptr_shared()</code> coordinator + <code>ptr_shared_panel()</code> + <code>ptr_shared_server()</code>. Optional CSS restyle.</p>
-<p>Examples follow <code>book-conventions.md</code>: each app chunk carries <code>#| fixture: &lt;slug&gt;</code> and is mirrored by <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>.</p>
-</div>
-</div>
-<!-- TODO: write "Embedding with the default layout" -->
+</section>
+<section id="what-ptr_server-gives-you" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="what-ptr_server-gives-you"><span class="header-section-number">10.2</span> What <code>ptr_server()</code> gives you</h2>
+<p><code>ptr_server()</code> returns the app’s <strong>state object</strong> — embedders that want to react to it (inject layers with <code>ptr_gg_extra()</code>, or read the live plot and code via <code>state$runtime()$plot</code> / <code>state$runtime()$code_text</code> inside a reactive context) capture the return value; otherwise the side effects are all that matter. The one-shot readers <code>ptr_extract_plot()</code> / <code>ptr_extract_code()</code> are <code>isolate()</code>-wrapped — reserve them for non-reactive contexts (download handlers, tests), not <code>render*{}</code> blocks. Its <code>...</code> are forwarded, so <code>ui_text =</code>, <code>expr_check =</code>, and <code>safe_to_remove =</code> are available here exactly as on <code>ptr_app()</code>; the shared-binding arguments (<code>shared_state =</code> and friends) are also accepted, going beyond what <code>ptr_app()</code> offers. Boot-state still lives in the formula: write <code>ppLayerOff(geom_X(), TRUE)</code> to start a layer unchecked (<a href="customization.html" class="quarto-xref"><span>Chapter 7</span></a>).</p>
+</section>
+<section id="several-linked-blocks" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="several-linked-blocks"><span class="header-section-number">10.3</span> Several linked blocks</h2>
+<p>Two or more <code>ptr_ui()</code> / <code>ptr_server()</code> blocks with a control shared across them is the coordinator pattern — <code>ptr_shared()</code> + <code>ptr_shared_panel()</code> + <code>ptr_shared_server()</code>. The full contract, including the partition rule, is <a href="shared-placeholders.html" class="quarto-xref"><span>Chapter 8</span></a>; the layout mechanics are <a href="multi-plot.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+</section>
+<section id="restyling-the-block" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="restyling-the-block"><span class="header-section-number">10.4</span> Restyling the block</h2>
+<p><code>ptr_ui()</code> accepts the same <code>css =</code> argument as <code>ptr_app()</code> — see <a href="customization.html" class="quarto-xref"><span>Chapter 7</span></a> for the stable class vocabulary and injection rules.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -766,8 +862,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./embed-bare.html" class="pagination-link" aria-label="Embedding with bare pieces">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with bare pieces</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./embed-bare.html" class="pagination-link" aria-label="Embedding with Bare Pieces">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Embedding with Bare Pieces</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -776,4 +872,4 @@ Note
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/embed-default.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/embed-default.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

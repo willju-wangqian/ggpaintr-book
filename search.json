@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "ggpaintr",
     "section": "",
-    "text": "Welcome\nThis is the work-in-progress book for ggpaintr, an R package that turns ggplot-like formula strings into Shiny apps: placeholder tokens in the formula (var, text, num, expr, upload) become input widgets automatically.\nThe book teaches how to use ggpaintr and how to extend it. It is purely user-facing; design ideas live in the package repository, not here.",
+    "text": "Welcome\nThis is the book for ggpaintr, an R package that turns ggplot-like formulas into Shiny apps: placeholder keywords in the formula (ppVar, ppText, ppNum, ppExpr, ppUpload) become input widgets automatically.\nThe book teaches how to use ggpaintr and how to extend it. It is purely user-facing; design ideas live in the package repository, not here.",
     "crumbs": [
       "Welcome"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#version-this-book-documents",
     "title": "ggpaintr",
     "section": "Version this book documents",
-    "text": "Version this book documents\nThis book is pinned to ggpaintr @beec4325 (the post-ADR-0006 / post-ADR-0010 development tip — no tagged release covers this API yet). The pin lives in DESCRIPTION Remotes: and is enforced by Rscript dev/book-gate.R. To follow along with the same version:\nremotes::install_github(\"willju-wangqian/ggpaintr@beec43259ef3df7490e08944bb4a79cd8655b0c5\")\nWhen the package cuts a tagged release covering the API in this book, the pin will move to that tag in a single PR; the install snippet above will update accordingly.",
+    "text": "Version this book documents\nThis book is pinned to ggpaintr @1a28cec (the current development tip — no tagged release covers this API yet). The pin lives in DESCRIPTION Remotes: and is enforced by Rscript dev/book-gate.R. To follow along with the same version:\nremotes::install_github(\"willju-wangqian/ggpaintr@1a28cec32483a35de7e9eb2099fdc1794a8d6243\")\nWhen the package cuts a tagged release covering the API in this book, the pin will move to that tag in a single PR; the install snippet above will update accordingly.",
     "crumbs": [
       "Welcome"
     ]
@@ -34,7 +34,7 @@
     "href": "index.html#sec-examples",
     "title": "ggpaintr",
     "section": "How the examples work",
-    "text": "How the examples work\nggpaintr produces interactive Shiny apps. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:\n\ncode is shown verbatim and is not executed (the book default is eval: false);\nthe resulting app UI is shown as a screenshot or GIF;\na small number of “hero” chapters embed a live shinylive widget you can interact with directly in the browser (see ADR 0002);\nevery code example is bound by #| fixture: &lt;slug&gt; to a tested fixture under tests/fixtures/book-apps/&lt;slug&gt;/app.R, and Rscript dev/book-gate.R enforces that what you read is what runs (see dev/plans/book-workflow.md and book-conventions.md).\n\nOutput that is static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.",
+    "text": "How the examples work\nggpaintr produces interactive Shiny apps. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:\n\ncode is shown verbatim and is not executed (the book default is eval: false);\nthe resulting app UI is shown as a screenshot captured from the booted app;\nevery app example is bound by #| fixture: &lt;slug&gt; to a tested fixture under tests/fixtures/book-apps/&lt;slug&gt;/app.R, and Rscript dev/book-gate.R enforces that what you read is what runs (see dev/plans/book-workflow.md and book-conventions.md).\n\n(Live in-browser shinylive widgets were evaluated and deferred: ggpaintr has no webR distribution channel today, so an embedded widget could not run the pinned version this book documents — see ADR 0002’s fallback rule and dev/notes/2026-06-10-shinylive-spike.md.)\nOutput that is static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.",
     "crumbs": [
       "Welcome"
     ]
@@ -54,7 +54,40 @@
     "href": "getting-started.html",
     "title": "1  Getting Started",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: Your first app with ptr_app() on a literal formula, then adding a single placeholder.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "1.1 Your first app\nggpaintr turns a ggplot2 call into a Shiny app. You write the plot the way you always do, drop a placeholder keyword wherever a reader of your app should get to choose a value, and hand the whole expression to ptr_app(). Each placeholder becomes an input widget; clicking Update plot re-runs the call with the user’s choices spliced back in.\nThis chapter takes you from zero to a running app, then to an app that boots with sensible defaults. Code in this book is shown verbatim and not executed; the running UI is shown as a screenshot captured from a tested fixture (see the welcome page for how that stays honest).\nThe smallest useful app is one line. ppVar marks a spot where the user picks a column:\nptr_app(\n  ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point()\n)\nThree things are worth noticing before you click anything:\nPick wt and mpg, click Update plot, and the scatterplot appears — along with the generated ggplot2 code behind the &lt;/&gt; toggle, ready to copy back into a script (Chapter 4).",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#your-first-app",
+    "href": "getting-started.html#your-first-app",
+    "title": "1  Getting Started",
+    "section": "",
+    "text": "The generated app at boot: a layer picker, one column dropdown per ppVar, and the Update plot button. The plot pane stays empty until the first update.\n\n\n\n\nThere is no data = argument to ptr_app(). The bare symbol mtcars is resolved in your calling environment, exactly as it would be if you ran the ggplot() call directly. The only required argument is the formula itself.\nThe dropdowns already know the columns. ppVar is data-aware: it lists the columns of whatever data flows into it.\nNothing renders yet. By default, ggpaintr re-draws only when Update plot is clicked. Changing a widget stages a value; the button commits it. This keeps a half-typed input from strobing the plot.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#seeding-the-widgets",
+    "href": "getting-started.html#seeding-the-widgets",
+    "title": "1  Getting Started",
+    "section": "1.2 Seeding the widgets",
+    "text": "1.2 Seeding the widgets\nAn app that boots with empty pickers makes the user do all the work. Give any placeholder a single positional argument and it becomes the widget’s starting value:\n\nptr_app(\n  ggplot(mtcars, aes(x = ppVar(\"wt\"), y = ppVar(\"mpg\"))) +\n    geom_point(size = ppNum(3), alpha = ppNum(0.6)) +\n    labs(title = ppText(\"Weight vs. mileage\"))\n)\n\n\n\n\nThe seeded app after one click of Update plot: wt and mpg are pre-picked, the size and alpha inputs start at 3 and 0.6, and the title is pre-filled.\n\n\nThe seed is read literally from the formula text — it is never evaluated as user code. (ppNum does accept simple arithmetic like ppNum(2 * pi), folded at build time against a small allowlist; see Chapter 3.)",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#where-to-go-next",
+    "href": "getting-started.html#where-to-go-next",
+    "title": "1  Getting Started",
+    "section": "1.3 Where to go next",
+    "text": "1.3 Where to go next\n\nChapter 3 introduces all five built-in placeholders and the three roles they play.\nChapter 2 covers the formula as a language: pipelines ahead of ggplot(), and boot-state toggles like ppLayerOff.\nChapter 4 explains the code panel and how empty inputs clean themselves out of the generated code.\nChapter 6 shows complete, realistic examples — each one paired with the plain ggplot2 plot it parameterizes.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
@@ -65,7 +98,40 @@
     "href": "formula-language.html",
     "title": "2  The Formula Language",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: Which ggplot-like strings ggpaintr accepts: pipelines, layers, aesthetics, and what is literal vs a placeholder.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "2.1 The tour formula\nThe formula is the single source of truth for a ggpaintr app: what gets plotted, which decisions the user gets to make, and — as this chapter shows — which layers and pipeline stages are part of the chart on first paint. ptr_app() accepts the formula in two equivalent forms: as bare code (ptr_app(ggplot(...) + ...)) or as a string (ptr_app(\"ggplot(...) + ...\")). The string form is convenient when the formula is built up programmatically or stored in a file; everything in this chapter works in both. One display caveat: in bare-expression mode R’s parser desugars |&gt; before the formula is captured, so the generated-code panel shows the nested-call form rather than the pipe you wrote. Stay in string mode (or use %&gt;%) if you need |&gt; preserved — and since this chapter leans on pipelines, its examples use string mode throughout.\nOne string exercising four of the five built-in placeholders:\nptr_app(\"\nggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) +\ngeom_point(size = ppNum) +\nlabs(title = ppText) +\nfacet_wrap(ppExpr)\n\")\nThe full grammar reference is split across two help pages: positional-argument seeding lives at ?pp_placeholders; the shared = \"&lt;id&gt;\" annotation (Chapter 8) and the empty-call cleanup rule (Chapter 4) live at ?ptr_app.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Formula Language</span>"
+    ]
+  },
+  {
+    "objectID": "formula-language.html#the-tour-formula",
+    "href": "formula-language.html#the-tour-formula",
+    "title": "2  The Formula Language",
+    "section": "",
+    "text": "The tour app at boot: three column pickers, a numeric input, a text input, and a code box for the facet expression.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Formula Language</span>"
+    ]
+  },
+  {
+    "objectID": "formula-language.html#data-pipelines-in-the-formula",
+    "href": "formula-language.html#data-pipelines-in-the-formula",
+    "title": "2  The Formula Language",
+    "section": "2.2 Data pipelines in the formula",
+    "text": "2.2 Data pipelines in the formula\nA layer’s data argument is allowed to be a pipeline. Both |&gt; and %&gt;% are accepted, and the two can be mixed in the same chain. Each pipeline stage that contains a placeholder gets its own row of widgets under the layer’s Data subtab, plus a per-stage enable/disable toggle that rewrites the generated code as if that step were never there. Column pickers downstream of a stage lazily re-resolve their column choices against the current Data-subtab inputs, so changing a filter threshold immediately refreshes the picker below it.\n\nptr_app(\n\"mpg |&gt;\ndplyr::filter(displ &gt; ppNum) |&gt;\ndplyr::group_by(class) |&gt;\ndplyr::filter(dplyr::n() &gt; ppNum) |&gt;\ndplyr::ungroup() |&gt;\nggplot(aes(ppVar, ppVar, color = class)) +\ngeom_point(alpha = ppNum)\"\n)\n\n\n\n\nA five-stage dplyr pipeline feeding ggplot(). Each placeholder-carrying stage gets widgets and a toggle under the Data subtab.\n\n\nChapter 6 § “Data-cleaning pipelines” shows this same example next to the plain dplyr pipeline it parameterizes.\n\n2.2.1 What is supported\n\nBoth pipe operators, possibly mixed in the same chain: df %&gt;% filter(...) |&gt; ggplot(...).\nBare-symbol stage heads: filter(...), head(...), transform(...).\nNamespaced stage heads: dplyr::filter(...), tidyr::pivot_longer(...).\nParenthesised heads: (filter)(...).\nppUpload as the pipeline head: ppUpload |&gt; dplyr::filter(...) |&gt; ggplot(...) — every downstream stage and placeholder resolves against the uploaded data.\nPer-layer pipelines on multi-layer formulas: each layer can have its own data-arg pipeline; the Data subtabs are scoped per layer.\nPlaceholders in any stage: ppVar, ppText, ppNum, ppExpr inside any stage’s call resolve as if that stage were a regular layer call.\n\n\n\n2.2.2 What does not work yet\nAnonymous functions as pipe stages. df |&gt; (\\(x) x[x$cyl &gt; 4, ])() |&gt; ggplot(...) is not rejected — the app boots and the lambda runs verbatim in the generated code — but the stage is invisible to the widget machinery: it gets no Data-subtab row and no enable/disable toggle. Worse, never put a placeholder inside the lambda body: something like (\\(x) x[x$cyl &gt; ppNum, ])() is silently ignored — no widget appears and no warning is raised. Prefer a named verb, or lift the anonymous function to a named helper in the calling environment and use it as a bare-symbol stage (df |&gt; my_helper(ppNum) |&gt; ggplot(...)), so the stage can carry placeholders and a toggle.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Formula Language</span>"
+    ]
+  },
+  {
+    "objectID": "formula-language.html#boot-state-toggles-pplayeroff-and-ppverbswitch",
+    "href": "formula-language.html#boot-state-toggles-pplayeroff-and-ppverbswitch",
+    "title": "2  The Formula Language",
+    "section": "2.3 Boot-state toggles: ppLayerOff and ppVerbSwitch",
+    "text": "2.3 Boot-state toggles: ppLayerOff and ppVerbSwitch\nIf a layer should start unchecked in the layer panel, or a pipeline stage should start disabled (or simply be toggleable), that decision belongs in the same text you wrote the chart against. Two structural keywords carry it inside the formula: ppLayerOff(layer_expr, hide) for layers and ppVerbSwitch(.data, verb_expr, switch_on, label) for pipeline stages. For ppLayerOff the positive sense is hide = TRUE (“boot with this layer off”); for ppVerbSwitch it is switch_on = TRUE (apply the verb — the checkbox boots checked).\nThe keywords are also legal R outside ptr_app(), so the same formula text renders correctly under naked ggplot. This chunk is plain R — no app on the stack — and really runs:\n\nlibrary(ggpaintr)\nlibrary(ggplot2)\n\n# ppLayerOff: hide = FALSE adds the layer; hide = TRUE drops it.\nggplot(mtcars, aes(mpg, wt)) +\n  ppLayerOff(geom_point(), FALSE) +     # layer present\n  ppLayerOff(geom_smooth(), TRUE)       # layer absent (returns NULL)\n\n\n\n\n\n\n\n# ppVerbSwitch: switch_on = TRUE applies the verb; switch_on = FALSE skips it.\nmtcars |&gt;\n  ppVerbSwitch(dplyr::filter(mpg &gt; 20), switch_on = TRUE) |&gt;   # filtered\n  nrow()\n\n[1] 14\n\nmtcars |&gt;\n  ppVerbSwitch(dplyr::filter(mpg &gt; 20), switch_on = FALSE) |&gt;  # bypassed\n  nrow()\n\n[1] 32\n\n\nThe same formula wrapped in ptr_app() boots the matching pieces with the right checkbox state, and the user can toggle them at runtime:\n\nptr_app(\n\"mtcars |&gt;\nppVerbSwitch(dplyr::filter(mpg &gt; ppNum), switch_on = FALSE) |&gt;\nggplot(aes(mpg, wt)) +\ngeom_point() +\nppLayerOff(geom_smooth(method = 'lm'), TRUE)\"\n)\n\n\n\n\nAfter one Update plot: the scatter draws, the geom_smooth checkbox boots unchecked, and the filter stage’s toggle boots disabled. Flipping either widget re-renders with that piece active.\n\n\n\n2.3.1 ppVerbSwitch extras: label = and promoting a bare verb\nlabel = is an optional length-1 string that becomes the checkbox’s head label in the Data subtab; without it the UI falls back to an auto-generated verb() label. And switch_on = TRUE promotes a bare verb — one with no placeholder, which would otherwise get no checkbox at all — into a user-toggleable stage:\nptr_app(\"mtcars |&gt; ppVerbSwitch(filter(cyl == 6), switch_on = TRUE, label = 'Six-cylinder only') |&gt; ggplot(aes(mpg, wt)) + geom_point()\")\n\n\n2.3.2 The first-position-data assumption\nppVerbSwitch evaluates the verb after inserting .data as the verb call’s first positional argument — the same convention |&gt; uses, matching every dplyr and tidyr verb. A verb whose data argument is not in position 1 (think my_fit(formula, data, weights)) would get .data injected ahead of formula, silently shifting every argument. The escape valve is a named one-line wrapper that adapts the signature:\nfit_first &lt;- function(.data, formula, ...) my_fit(formula = formula, data = .data, ...)\n# Now it composes:\n# \"mtcars |&gt; ppVerbSwitch(fit_first(mpg ~ wt), switch_on = FALSE) |&gt; ggplot(...)\"\n\n\n2.3.3 spec = overrides the formula-side default at boot\nppLayerOff / ppVerbSwitch set the default boot state. The spec = argument on ptr_app() / ptr_server() carries restore values for any widget — except a ppUpload file input, which cannot be restored from a spec (only its companion text input is settable) — and a spec = entry overrides the formula-side default at boot. Round-tripping a saved app state therefore composes cleanly with formula-side toggles: capture state$spec() from a running app, re-launch with it, and a layer the formula boots off can come back on:\nptr_app(\n  \"ggplot(mtcars, aes(mpg, wt)) + geom_point() + ppLayerOff(geom_smooth(), TRUE)\",\n  spec = list(geom_smooth_checkbox = TRUE)  # overrides the formula-side OFF\n)\nThe precedence rule is: formula-side default first, then spec = per-widget override. See ?ptr_app for the full spec = shape.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Formula Language</span>"
@@ -74,12 +140,67 @@
   {
     "objectID": "placeholders.html",
     "href": "placeholders.html",
-    "title": "3  Placeholders",
+    "title": "3  The Built-in Placeholders",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: every placeholder token — var, text, num, expr, upload — the widget each generates, named vs positional arguments, and how upload-driven data flows through the app. (Absorbs the former data-and-upload.qmd per the 2026-05-23 TOC consolidation.)\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "3.1 Placeholders work anywhere in a pipeline\nA placeholder keyword marks one decision you are delegating to the app’s user. ggpaintr ships five. Each maps to a fixed widget and a fixed way of folding the user’s input back into the formula:\nThe role column matters as soon as you want to define your own placeholders (Chapter 13):\nA formula can mix all the roles, and placeholders are not confined to the ggplot() call — any pipeline stage ahead of it can carry them too:\nptr_app(\n  mtcars |&gt;\n    dplyr::filter(ppExpr(mpg &gt; 15)) |&gt;\n    ggplot(aes(x = ppVar, y = ppVar, color = ppVar)) +\n    geom_point(size = ppNum) +\n    labs(title = ppText)\n)\nColumn pickers downstream of a pipeline stage re-resolve their choices against the current upstream inputs, so changing the filter immediately refreshes the pickers below it. The full pipeline story — which stage shapes are supported and which are not — is in Chapter 2.",
     "crumbs": [
       "Foundations",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Placeholders</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The Built-in Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "placeholders.html#placeholders-work-anywhere-in-a-pipeline",
+    "href": "placeholders.html#placeholders-work-anywhere-in-a-pipeline",
+    "title": "3  The Built-in Placeholders",
+    "section": "",
+    "text": "Four placeholder kinds in one app: the ppExpr code box for the filter (seeded with mpg &gt; 15), three column pickers, a numeric input for point size, and a text input for the title.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The Built-in Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "placeholders.html#seeding-defaults-are-literal-never-evaluated",
+    "href": "placeholders.html#seeding-defaults-are-literal-never-evaluated",
+    "title": "3  The Built-in Placeholders",
+    "section": "3.2 Seeding: defaults are literal, never evaluated",
+    "text": "3.2 Seeding: defaults are literal, never evaluated\nAny placeholder takes a single positional argument as its boot value: ppVar(\"wt\") (a string) or ppVar(wt) (a bare name) pre-picks the column, ppNum(3) pre-fills the number, ppText(\"A title\") the text, ppExpr(mpg &gt; 15) the code box. The default is read literally from the formula text; it is not evaluated as user code. The one convenience: ppNum accepts simple arithmetic such as ppNum(2 * pi), folded at build time against a small allowlist of pure functions.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The Built-in Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "placeholders.html#ppupload-the-data-comes-from-the-user",
+    "href": "placeholders.html#ppupload-the-data-comes-from-the-user",
+    "title": "3  The Built-in Placeholders",
+    "section": "3.3 ppUpload: the data comes from the user",
+    "text": "3.3 ppUpload: the data comes from the user\nppUpload is the source placeholder: it renders a file picker plus a dataset-name box. Seed it with a bare dataset name and the app boots against that data with no upload needed — the upload widget stays available to swap it out:\n\nptr_app(\n  ppUpload(iris) |&gt;\n    ggplot(aes(x = ppVar(Sepal.Length), y = ppVar(Sepal.Width), color = ppVar(Species))) +\n    geom_point()\n)\n\n\n\n\nppUpload(iris) seeds the app with iris; the seeded column pickers let the first Update plot draw immediately. Uploading a file re-points every downstream picker at the new columns.\n\n\nUploaded column names are normalized automatically so that ppVar always sees syntactic, unique names (Chapter 4 covers the same normalization for local data). The trust model behind ppExpr validation and ppUpload parsing — what is checked, what is not — has its own chapter: Chapter 17.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The Built-in Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "placeholders.html#nothing-renders-until-you-click-update",
+    "href": "placeholders.html#nothing-renders-until-you-click-update",
+    "title": "3  The Built-in Placeholders",
+    "section": "3.4 Nothing renders until you click Update",
+    "text": "3.4 Nothing renders until you click Update\nUnder the default gate_draw = TRUE setting, ggpaintr re-draws only on Update plot. Changing a widget stages a new value but does not redraw on its own. (Setting ptr_options(gate_draw = FALSE) before building the app removes the button and re-renders live on every change.) This is deliberate: it keeps a half-typed expression from strobing the plot, and it is the one thing to remember when scripting an app in tests — set the inputs, then click the button.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The Built-in Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "placeholders.html#beyond-the-built-ins",
+    "href": "placeholders.html#beyond-the-built-ins",
+    "title": "3  The Built-in Placeholders",
+    "section": "3.5 Beyond the built-ins",
+    "text": "3.5 Beyond the built-ins\nWhen none of the five fits — you want a slider, a range, a multi-column picker — you register your own placeholder with the same three roles. That is Chapter 13; the gallery (Chapter 6) uses several custom placeholders in realistic plots if you want to see them in action first.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The Built-in Placeholders</span>"
     ]
   },
   {
@@ -87,7 +208,40 @@
     "href": "generated-code.html",
     "title": "4  The Generated Code and Plot",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: How the formula plus current inputs become runnable ggplot2 code and the rendered plot.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "4.1 Empty inputs clean themselves out\nEvery ggpaintr app can show its work. The &lt;/&gt; toggle in the plot pane opens the generated-code window: the exact ggplot2 (and dplyr) code that produced the current plot, with every placeholder replaced by the user’s committed input. Two views are offered — Final code, the runnable script you can copy straight back into R, and Spec, the restore values that reproduce the current widget state via ptr_app(..., spec = ) (Chapter 2). A Copy button does what it says.\nThis round trip is the point of ggpaintr for teaching: a student explores with widgets, then walks away with the code that does the same thing without the app.\nA placeholder that resolves to “missing” — an empty ppVar pick, a blank ppText, a cleared ppNum — drops its argument from the generated code. When that leaves an empty call whose name is in ggpaintr’s curated cleanup list, the whole call disappears too:\nptr_app(\"\nggplot(iris, aes(x = ppVar('Sepal.Length'), y = ppVar('Sepal.Width'))) +\ngeom_point() +\nlabs(title = ppText) +\nfacet_wrap(ppExpr)\n\")\nThe cleanup list spans ggplot2, dplyr, and the rest of the core tidyverse (tidyr, tibble, purrr, stringr, forcats, lubridate, and more). On the ggplot2 side that includes theme(), labs(), xlab / ylab / ggtitle, facet_wrap / facet_grid / facet_null, xlim / ylim / lims, expand_limits, guides, annotate, and the empty mapping helper aes(); an empty filter(), mutate(), or select() vanishes the same way. Third-party helpers (e.g. pcp_theme() from ggpcp) are not on the list — absence is the “removal safety unknown” signal. Pass safe_to_remove = c(\"pcp_theme\") to opt a specific name into the cleanup pass. A ppExpr whose user typed an expression always wins: whatever was typed is honoured verbatim, even if its top-level name is in safe_to_remove.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>The Generated Code and Plot</span>"
+    ]
+  },
+  {
+    "objectID": "generated-code.html#empty-inputs-clean-themselves-out",
+    "href": "generated-code.html#empty-inputs-clean-themselves-out",
+    "title": "4  The Generated Code and Plot",
+    "section": "",
+    "text": "The code window after an update with the title and facet left empty: the generated code is just ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() — the empty labs() and facet_wrap() vanished.",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>The Generated Code and Plot</span>"
+    ]
+  },
+  {
+    "objectID": "generated-code.html#column-names-the-generated-code-can-actually-use",
+    "href": "generated-code.html#column-names-the-generated-code-can-actually-use",
+    "title": "4  The Generated Code and Plot",
+    "section": "4.2 Column names the generated code can actually use",
+    "text": "4.2 Column names the generated code can actually use\nppVar placeholders need syntactic, unique column names — Sepal.Length is fine, \"Sepal Length\" is not. If your local data has spaces, reserved words, or duplicate names, pipe it through ptr_normalize_column_names() before referencing it from a formula. This chunk really runs:\n\nlibrary(ggpaintr)\n\nmessy &lt;- data.frame(\n  check.names = FALSE,\n  \"first column\" = 1:3,\n  \"if\"           = 4:6\n)\nclean &lt;- ptr_normalize_column_names(messy)\nnames(clean)\n\n[1] \"first_column\" \"if_\"         \n\n\nUploaded data (Chapter 3) goes through the same normalization automatically; the manual call is only needed for data already in your R session. ?ptr_normalize_column_names documents the exact rules (runs of non-alphanumeric characters become _, duplicates are de-duplicated with _-numbered suffixes, and reserved words get a trailing _ — so \"first column\" becomes first_column and \"if\" becomes if_, exactly as the chunk above prints).",
+    "crumbs": [
+      "Foundations",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>The Generated Code and Plot</span>"
+    ]
+  },
+  {
+    "objectID": "generated-code.html#reading-the-plot-and-code-programmatically",
+    "href": "generated-code.html#reading-the-plot-and-code-programmatically",
+    "title": "4  The Generated Code and Plot",
+    "section": "4.3 Reading the plot and code programmatically",
+    "text": "4.3 Reading the plot and code programmatically\nThe code window is the interactive face of two exported helpers, ptr_extract_code(state) and ptr_extract_plot(state), which read the same artifacts off a running app’s state object. They only make sense once you own the server side of the app — that story starts at Chapter 10, and Chapter 12 uses them to feed plotly and friends.",
     "crumbs": [
       "Foundations",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>The Generated Code and Plot</span>"
@@ -96,12 +250,67 @@
   {
     "objectID": "use-cases.html",
     "href": "use-cases.html",
-    "title": "5  Use cases",
+    "title": "5  Use Cases: the Three Levels",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: detailed, end-to-end use cases. Absorbs (and expands) the package’s ggpaintr-use-cases vignette once that vignette is e2e-green and drift-audit-clean. Migration is paired with the package PR that drops the vignette content from there per dev/plans/book-workflow.md § “Cross-repo vignette migration”.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "5.1 Single plot — ptr_app()\nggpaintr exposes three levels of control, and choosing the right one up front saves rework. This chapter covers L1, the all-in-one entry point, and maps where the other two live:\nL1 is the dominant use case: hand ggpaintr a formula, get back a running Shiny app.\nThe string form of the formula works exactly like the bare-code form you saw in Chapter 1:\nptr_app(\n\"ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point() + labs(title = ppText)\"\n)",
     "crumbs": [
       "Use cases & gallery",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use cases</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use Cases: the Three Levels</span>"
+    ]
+  },
+  {
+    "objectID": "use-cases.html#single-plot-ptr_app",
+    "href": "use-cases.html#single-plot-ptr_app",
+    "title": "5  Use Cases: the Three Levels",
+    "section": "",
+    "text": "The L1 app: three column pickers and a title input, plus the standard chrome.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use Cases: the Three Levels</span>"
+    ]
+  },
+  {
+    "objectID": "use-cases.html#the-chrome-you-get-for-free",
+    "href": "use-cases.html#the-chrome-you-get-for-free",
+    "title": "5  Use Cases: the Three Levels",
+    "section": "5.2 The chrome you get for free",
+    "text": "5.2 The chrome you get for free\nEvery L1 app ships the same furniture, all driven by the formula with no configuration:\n\nptr_app(\n\"ggplot(mpg, aes(displ, hwy)) +\ngeom_point(alpha = ppNum(0.5)) +\ngeom_smooth(method = ppText('loess'))\"\n)\n\n\n\n\nA two-layer formula: the Layer dropdown switches the widget panel between ggplot, geom_point, and geom_smooth; each layer shows only its own placeholders.\n\n\n\nThe layer picker. One entry per layer in the formula; selecting a layer shows that layer’s widgets. Layers carrying no placeholder still appear, so the user sees the whole chart’s structure.\nThe Data subtab. When a layer’s data argument is a pipeline (Chapter 2), its stages get widgets and per-stage toggles here.\nThe code window. The &lt;/&gt; toggle opens the generated code — Final code and Spec views, with a Copy button (Chapter 4).\nThe Update plot button. Nothing redraws until it is clicked (Chapter 3).",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use Cases: the Three Levels</span>"
+    ]
+  },
+  {
+    "objectID": "use-cases.html#several-plots-in-one-app",
+    "href": "use-cases.html#several-plots-in-one-app",
+    "title": "5  Use Cases: the Three Levels",
+    "section": "5.3 Several plots in one app",
+    "text": "5.3 Several plots in one app\nptr_app() builds exactly one plot per app. To place several ggpaintr plots in one Shiny app — optionally sharing a control across them — you drop down one level to ptr_ui() / ptr_server() and own the shinyApp() shell yourself. That is a small step, not a leap: Chapter 9 walks through it, and Chapter 8 covers the shared-widget machinery.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use Cases: the Three Levels</span>"
+    ]
+  },
+  {
+    "objectID": "use-cases.html#a-different-shell-or-theme",
+    "href": "use-cases.html#a-different-shell-or-theme",
+    "title": "5  Use Cases: the Three Levels",
+    "section": "5.4 A different shell or theme",
+    "text": "5.4 A different shell or theme\nThe built-in chrome is deliberately plain. For your own page shell, branding, or theme, write a thin wrapper over the public primitives — the recipe and a worked example are in Chapter 14, and the stable CSS surface is documented in Chapter 7.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use Cases: the Three Levels</span>"
+    ]
+  },
+  {
+    "objectID": "use-cases.html#local-data-with-non-syntactic-columns",
+    "href": "use-cases.html#local-data-with-non-syntactic-columns",
+    "title": "5  Use Cases: the Three Levels",
+    "section": "5.5 Local data with non-syntactic columns",
+    "text": "5.5 Local data with non-syntactic columns\nppVar placeholders need syntactic, unique column names — Sepal.Length is fine, \"Sepal Length\" is not, and iris deliberately ships clean. If your local data has spaces, reserved words, or duplicates in its names, pipe it through ptr_normalize_column_names() before referencing it from a formula:\n\nmessy &lt;- data.frame(\n  check.names = FALSE,\n  \"first column\" = 1:3,\n  \"if\"           = 4:6\n)\nclean &lt;- ptr_normalize_column_names(messy)\n\nptr_app(\"ggplot(clean, aes(x = ppVar('first_column'), y = ppVar('if_'))) + geom_point()\")\n\n\n\n\nThe app runs against the normalized copy: first column became first_column, the reserved if became if_.\n\n\nUploaded data is normalized automatically; the manual call is only for data already in your session. The exact rules are in Chapter 4 and ?ptr_normalize_column_names.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Use Cases: the Three Levels</span>"
     ]
   },
   {
@@ -109,7 +318,62 @@
     "href": "gallery.html",
     "title": "6  Gallery",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: a catalogue of representative apps with the formula and a screenshot of each. Absorbs (and expands) the package’s ggpaintr-gallery vignette once that vignette is e2e-green and drift-audit-clean.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "6.1 A realistic ggplot2 graphic, parameterized\nThis chapter is the recipe book. Every section pairs a plain ggplot2 (or extension-package) graphic an analyst would actually write — shown as real, evaluated output — with the ptr_app() formula that exposes its knobs, shown verbatim with a screenshot of the running app. The originals run as ordinary R at render time; the app versions are bound to tested fixtures like everywhere else in this book.\nThe custom placeholders used along the way (ppRange, ppVars, ppPercent) are defined inline so every example is self-contained; Chapter 13 explains the constructor machinery behind them.\nA typical exploratory plot stacks several layers and reads several hard-coded constants. Here is a multi-layer fuel-economy chart from the mpg dataset:\nlibrary(ggplot2)\n\nggplot(mpg, aes(displ, hwy, color = class)) +\n  geom_point(alpha = 0.6, size = 2) +\n  geom_smooth(method = \"loess\", se = FALSE, span = 0.75) +\n  facet_wrap(~ drv) +\n  scale_color_brewer(palette = \"Set2\") +\n  labs(title = \"Highway MPG vs engine displacement\",\n       x = \"Engine displacement (L)\", y = \"Highway MPG\") +\n  coord_cartesian(xlim = c(1, 7), ylim = c(10, 45))\nNow replace each tuning knob with a placeholder. The columns become pickers, the labels become text inputs, the y-range becomes a slider backed by a small custom value placeholder, ppRange, defined right in the chunk. Its length-2 default is validated by the package’s own ptr_arg_numeric(vector = TRUE, length = 2L), which constant-folds a literal like c(10, 45) without evaluating arbitrary code:\nppRange &lt;- ptr_define_placeholder_value(\n  keyword = \"ppRange\",\n  build_ui = function(node, label = NULL, selected = NULL, ...) {\n    v &lt;- suppressWarnings(as.numeric(selected))\n    initial &lt;- if (length(v) == 2L && all(is.finite(v))) v else c(0, 50)\n    shiny::sliderInput(node$id, label = label %||% \"Range\",\n                       min = -100, max = 100, value = initial, step = 1)\n  },\n  resolve_expr = function(value, node, ...) {\n    if (is.null(value) || length(value) != 2L) return(NULL)\n    rlang::expr(c(!!value[1], !!value[2]))\n  },\n  ui_text_defaults = list(label = \"Range for {param}\"),\n  parse_positional_arg = ptr_arg_numeric(vector = TRUE, length = 2L)\n)\n\n{\n  ggplot(mpg, aes(ppVar(displ), ppVar(hwy), color = ppVar(class))) +\n    geom_point(alpha = 0.6, size = 2) +\n    geom_smooth(method = ppText(\"loess\"), se = FALSE, span = 0.75) +\n    ppLayerOff(facet_wrap(~ ppVar(drv)), FALSE) +\n    scale_color_brewer(palette = \"Set2\") +\n    labs(title = \"Highway MPG vs engine displacement\",\n         x = ppText(\"Engine displacement (L)\"), y = ppText(\"Highway MPG\")) +\n    coord_cartesian(xlim = ppExpr(c(1, 7)), ylim = ppRange(c(10, 45)))\n} |&gt;\n  ptr_app()\nRebuilding the original graphic from the running app is a matter of picking those values; the code window lifts the selections back into a static script (Chapter 4).",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Gallery</span>"
+    ]
+  },
+  {
+    "objectID": "gallery.html#sec-gallery-realistic",
+    "href": "gallery.html#sec-gallery-realistic",
+    "title": "6  Gallery",
+    "section": "",
+    "text": "The parameterized version after one update: seeded pickers reproduce the original, the facet layer is toggleable, and the y-range is a slider.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Gallery</span>"
+    ]
+  },
+  {
+    "objectID": "gallery.html#sec-gallery-pipelines",
+    "href": "gallery.html#sec-gallery-pipelines",
+    "title": "6  Gallery",
+    "section": "6.2 Data-cleaning pipelines into ggplot()",
+    "text": "6.2 Data-cleaning pipelines into ggplot()\nggpaintr’s formula grammar is a single ggplot() call plus + layers, and that covers the common “clean, then plot” pipeline: stages piped into ggplot() are lifted into the app when the lift gates pass — at least one stage, a lossless round-trip of the split, and a source that is a bare symbol (or a source-role placeholder like ppUpload). Pipeline stages with placeholders get the per-layer Data subtab described in Chapter 2.\n\n6.2.1 Filter, group, and plot\n\nlibrary(dplyr)\n\nmpg |&gt;\n  dplyr::filter(displ &gt; 1.5) |&gt;\n  dplyr::group_by(class) |&gt;\n  dplyr::filter(dplyr::n() &gt; 5) |&gt;\n  dplyr::ungroup() |&gt;\n  ggplot(aes(displ, hwy, color = class)) +\n  geom_point(alpha = 0.5)\n\n\n\n\n\n\n\n\nThe same pipeline parameterized — thresholds, grouping column, and aesthetics become widgets:\n\nptr_app(\n  mpg |&gt;\n    dplyr::filter(ppVar(displ) &gt; ppNum(1.5)) |&gt;\n    dplyr::group_by(ppVar(class)) |&gt;\n    dplyr::filter(ppExpr(dplyr::n() &gt; 5)) |&gt;\n    dplyr::ungroup() |&gt;\n    ggplot(aes(ppVar(displ), ppVar(hwy), color = ppVar(class))) +\n    geom_point(alpha = 0.5)\n)\n\n\n\n\nEach placeholder-carrying stage has its own widgets and enable/disable toggle under the Data subtab.\n\n\n\n\n6.2.2 PCA scores with 95% confidence ellipses\nA classic exploratory move — project numeric columns onto their first two principal components, colour by a grouping factor, overlay confidence ellipses. The do_pca() helper keeps the lambda out of the pipe — a lambda stage would still run in the generated code, but it is silently inert in the UI: no stage row or toggle, and any placeholder inside it is ignored (Chapter 2):\n\nlibrary(broom)\n\ndo_pca &lt;- function(d, cols) {\n  broom::augment(prcomp(d[, cols], scale. = TRUE), d)\n}\n\niris |&gt;\n  do_pca(c(\"Sepal.Length\", \"Sepal.Width\", \"Petal.Length\", \"Petal.Width\")) |&gt;\n  ggplot(aes(.fittedPC1, .fittedPC2, color = Species)) +\n    stat_ellipse(level = 0.95, linewidth = 0.8) +\n    geom_point(alpha = 0.8, size = 2) +\n    scale_color_brewer(palette = \"Dark2\") +\n    labs(title = \"Iris in PC space, with 95% ellipses\",\n         x = \"PC1\", y = \"PC2\") +\n    theme_minimal() +\n    theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nThe app version adds a multi-column picker — a custom consumer placeholder, ppVars, that resolves its choices against the upstream data — plus an upload head and a toggleable drop_na() stage:\n\nppVars &lt;- ptr_define_placeholder_consumer(\n  keyword = \"ppVars\",\n  build_ui = function(node, cols, data, label = NULL, selected = NULL, ...) {\n    retained &lt;- intersect(selected %||% character(0), cols)\n    shiny::selectInput(node$id, label = label %||% \"Columns\",\n                       choices = cols, selected = retained,\n                       multiple = TRUE)\n  },\n  resolve_expr = function(value, node, ...) {\n    if (length(value) == 0L) return(NULL)\n    rlang::call2(\"c\", !!!as.list(value))\n  },\n  validate_session_input = function(value, ctx) {\n    bad &lt;- setdiff(value, ctx$upstream_cols)\n    if (length(bad) == 0L) TRUE\n    else paste0(\"Not in upstream data: \", paste(bad, collapse = \", \"))\n  },\n  ui_text_defaults = list(label = \"Columns for {param}\"),\n  parse_positional_arg = ptr_arg_string(vector = TRUE)\n)\n\ndo_pca &lt;- function(d, cols) {\n  broom::augment(prcomp(d[, cols], scale. = TRUE), d)\n}\n\n{ppUpload(iris) |&gt;\n    ppVerbSwitch(drop_na(), FALSE) |&gt;\n    do_pca(ppVars(c(\"Sepal.Length\", \"Sepal.Width\", \"Petal.Length\", \"Petal.Width\"))) |&gt;\n    ggplot(aes(ppVar(.fittedPC1), ppVar(.fittedPC2), color = ppVar(Species))) +\n    stat_ellipse(level = 0.95, linewidth = 0.8) +\n    geom_point(alpha = 0.8, size = 2) +\n    scale_color_brewer(palette = \"Dark2\") +\n    labs(title = \"Iris in PC space, with 95% ellipses\",\n         x = \"PC1\", y = \"PC2\") +\n    theme_minimal() +\n    theme(legend.position = \"bottom\")} |&gt;\n  ptr_app()\n\n\n\n\nUpload any dataset, pick which numeric columns enter the PCA, and toggle the drop_na() stage. The axis pickers list the augmented frame’s .fittedPC* columns.\n\n\n\n\n6.2.3 K-means elbow plot\nMap kmeans() over a range of k, glance for tot.withinss, plot the elbow. This one stays static here: its natural parameterization (the cluster range driving both the data step and the x-axis breaks) uses a shared placeholder, covered in Chapter 8.\n\nlibrary(tidyr)\nlibrary(purrr)\n\ntibble(k = 1:9) |&gt;\n  mutate(\n    kmeans  = map(k, function(.k) kmeans(\n      scale(iris[, c(\"Sepal.Length\", \"Sepal.Width\",\n                     \"Petal.Length\", \"Petal.Width\")]),\n      centers = .k, nstart = 25)),\n    glanced = map(kmeans, broom::glance)\n  ) |&gt;\n  unnest(glanced) |&gt;\n  ggplot(aes(k, tot.withinss)) +\n    geom_line(color = \"gray50\") +\n    geom_point(size = 3, color = \"#0072B2\") +\n    scale_x_continuous(breaks = 1:9) +\n    labs(title = \"Elbow plot for k-means on iris\",\n         x = \"Number of clusters\", y = \"Total within-cluster SS\") +\n    theme_minimal()\n\n\n\n\n\n\n\n\n\n\n6.2.4 Regression diagnostics\nbroom::augment() turns an lm fit into a tidy frame whose .fitted, .resid, .hat, .std.resid, and .cooksd columns are the staples of regression diagnostics:\n\nbroom::augment(lm(mpg ~ wt + cyl + hp, data = mtcars)) |&gt;\n  ggplot(aes(.fitted, .resid)) +\n    geom_hline(yintercept = 0, color = \"gray60\", linetype = 2) +\n    geom_point(alpha = 0.7, size = 2.5, color = \"#D55E00\") +\n    geom_smooth(method = \"loess\", se = FALSE, span = 0.75) +\n    labs(title = \"Residuals vs fitted (mpg ~ wt + cyl + hp)\",\n         x = \"Fitted\", y = \"Residual\") +\n    theme_minimal()\n\n\n\n\n\n\n\n\nThe app version swaps the data for an upload widget and the smoother for a text input:\n\n{broom::augment(lm(mpg ~ wt + cyl + hp, data = ppUpload(mtcars))) |&gt;\n    ggplot(aes(.fitted, .resid)) +\n    geom_hline(yintercept = 0, color = \"gray60\", linetype = 2) +\n    geom_point(alpha = 0.7, size = 2.5, color = \"#D55E00\") +\n    geom_smooth(method = ppText(\"loess\"), se = FALSE, span = 0.75) +\n    labs(title = \"Residuals vs fitted (mpg ~ wt + cyl + hp)\",\n         x = \"Fitted\", y = \"Residual\") +\n    theme_minimal()} |&gt;\n  ptr_app()\n\n\n\n\nResiduals vs fitted, with the data swappable by upload.\n\n\nGoing one step further, the model formula itself becomes a ppExpr widget, so the user can swap responses and predictors at will:\n\n{broom::augment(lm(ppExpr(Sepal.Length ~ Sepal.Width + Petal.Length), data = ppUpload(iris))) |&gt;\n    ggplot(aes(.fitted, .resid)) +\n    geom_hline(yintercept = ppExpr(0), color = \"gray60\", linetype = 2) +\n    geom_point(alpha = 0.7, size = 2.5, color = \"#D55E00\") +\n    geom_smooth(method = ppText(\"loess\"), se = FALSE, span = 0.75) +\n    labs(title = \"Residuals vs fitted (user-chosen model on iris)\",\n         x = \"Fitted\", y = \"Residual\") +\n    theme_minimal()} |&gt;\n  ptr_app()\n\n\n\n\nThe model formula is a validated code box; type Petal.Width ~ . and the diagnostics redraw for the new fit.\n\n\n\n\n6.2.5 Rolling time-series\neconomics (ships with ggplot2) holds 40+ years of monthly US macro indicators. The standard recipe — pick a series, overlay an n-month rolling mean:\n\nroll_mean &lt;- function(x, n) {\n  as.numeric(stats::filter(x, rep(1 / n, n), sides = 1))\n}\n\neconomics |&gt;\n  mutate(roll = roll_mean(unemploy, 12)) |&gt;\n  ggplot(aes(date, unemploy)) +\n    geom_line(color = \"gray70\") +\n    geom_line(aes(y = roll), color = \"#0072B2\", linewidth = 1) +\n    labs(title = \"US unemployment with 12-month rolling mean\",\n         x = NULL, y = \"Persons (thousands)\") +\n    theme_minimal()\n\n\n\n\n\n\n\n\nParameterized, the series and the window size become widgets:\n\nroll_mean &lt;- function(x, n) {\n  as.numeric(stats::filter(x, rep(1 / n, n), sides = 1))\n}\n\n{economics |&gt;\n    mutate(roll = roll_mean(ppVar(unemploy), ppNum(12))) |&gt;\n    ggplot(aes(date, ppVar(unemploy))) +\n    geom_line(color = \"gray70\") +\n    geom_line(aes(y = roll), color = \"#0072B2\", linewidth = 1) +\n    labs(title = \"US unemployment with 12-month rolling mean\",\n         x = NULL, y = \"Persons (thousands)\") +\n    theme_minimal()} |&gt;\n  ptr_app()\n\n\n\n\nSwap the series or the window length; both lines redraw together.\n\n\n\n\n6.2.6 Group-wise regression coefficients\nNest by a grouping factor, fit one lm per group, tidy the coefficients with confidence intervals, plot as a forest. Static here — its parameterization is a good exercise once you have read Chapter 13:\n\nlibrary(palmerpenguins)\n\npenguins |&gt;\n  tidyr::drop_na(bill_depth_mm, bill_length_mm) |&gt;\n  group_by(species) |&gt;\n  tidyr::nest() |&gt;\n  mutate(\n    fit  = map(data, function(.d) lm(bill_depth_mm ~ bill_length_mm, data = .d)),\n    tidy = map(fit,  function(.f) broom::tidy(.f, conf.int = TRUE))\n  ) |&gt;\n  unnest(tidy) |&gt;\n  filter(term == \"bill_length_mm\") |&gt;\n  ggplot(aes(estimate, species, color = species)) +\n    geom_vline(xintercept = 0, color = \"gray60\", linetype = 2) +\n    geom_pointrange(aes(xmin = conf.low, xmax = conf.high), size = 0.8) +\n    scale_color_brewer(palette = \"Dark2\") +\n    labs(title = \"Slope of bill depth ~ bill length, by species\",\n         x = \"Estimate (95% CI)\", y = NULL) +\n    theme_minimal() +\n    theme(legend.position = \"none\")",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Gallery</span>"
+    ]
+  },
+  {
+    "objectID": "gallery.html#sec-gallery-interactive",
+    "href": "gallery.html#sec-gallery-interactive",
+    "title": "6  Gallery",
+    "section": "6.3 Interactive output packages",
+    "text": "6.3 Interactive output packages\nggpaintr’s default renderer is a static plot pane, but the plot object it builds is an ordinary ggplot — anything that consumes a ggplot can render it. The two examples below show the original interactive graphics; wiring a ggpaintr app to drive them requires owning the renderer, which is exactly the L3 pattern in Chapter 12 — that chapter’s worked examples are these two plots.\n\n6.3.1 plotly tooltips\n\nlibrary(plotly)\n\np &lt;- ggplot(mpg, aes(displ, hwy, color = class,\n                     text = paste(manufacturer, model, sep = \" \"))) +\n       geom_point(size = 3, alpha = 0.7) +\n       coord_cartesian(xlim = c(1, 7), ylim = c(10, 45))\n\nplotly::ggplotly(p, tooltip = \"text\")\n\n\n\n\n\n\n\n6.3.2 ggiraph tooltips\n\nlibrary(ggiraph)\n\ngg &lt;- ggplot(mpg, aes(displ, hwy)) +\n  geom_point_interactive(aes(tooltip = model), size = 3, color = \"#e63946\")\ngirafe(ggobj = gg)",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Gallery</span>"
+    ]
+  },
+  {
+    "objectID": "gallery.html#sec-gallery-extensions",
+    "href": "gallery.html#sec-gallery-extensions",
+    "title": "6  Gallery",
+    "section": "6.4 ggplot2 extension packages",
+    "text": "6.4 ggplot2 extension packages\nggpaintr does not know about extension geoms — it sees them as ordinary layer calls and parameterizes their arguments the same way it parameterizes core geoms.\n\n6.4.1 ggpcp — parallel coordinates\n\nlibrary(ggpcp)\ndata(flea, package = \"GGally\")\n\nflea |&gt;\n  pcp_select(species, tars1, tars2, head, aede1, aede2, aede3) |&gt;\n  pcp_scale(method = \"uniminmax\") |&gt;\n  pcp_arrange() |&gt;\n  ggplot(aes_pcp()) +\n    geom_pcp_axes() +\n    geom_pcp(aes(colour = species))\n\n\n\n\n\n\n\n\nThe app version lets the user pick which columns go on the parallel axes, reusing the ppVars consumer from the PCA example:\n\nppVars &lt;- ptr_define_placeholder_consumer(\n  keyword = \"ppVars\",\n  build_ui = function(node, cols, data, label = NULL, selected = NULL, ...) {\n    retained &lt;- intersect(selected %||% character(0), cols)\n    shiny::selectInput(node$id, label = label %||% \"Columns\",\n                       choices = cols, selected = retained,\n                       multiple = TRUE)\n  },\n  resolve_expr = function(value, node, ...) {\n    if (length(value) == 0L) return(NULL)\n    rlang::call2(\"c\", !!!as.list(value))\n  },\n  validate_session_input = function(value, ctx) {\n    bad &lt;- setdiff(value, ctx$upstream_cols)\n    if (length(bad) == 0L) TRUE\n    else paste0(\"Not in upstream data: \", paste(bad, collapse = \", \"))\n  },\n  ui_text_defaults = list(label = \"Columns for {param}\"),\n  parse_positional_arg = ptr_arg_string(vector = TRUE)\n)\n\n{ppUpload(flea) |&gt;\n    pcp_select(ppVars(c(\"species\", \"tars1\", \"tars2\", \"head\", \"aede1\", \"aede2\", \"aede3\"))) |&gt;\n    pcp_scale(method = \"uniminmax\") |&gt;\n    pcp_arrange() |&gt;\n    ggplot(aes_pcp()) +\n    geom_pcp_axes() +\n    geom_pcp(aes(colour = ppVar(species)))} |&gt;\n  ptr_app()\n\n\n\n\nDrop axes in and out of the parallel-coordinates plot with the multi-column picker.\n\n\n\n\n6.4.2 ggridges — ridge densities\n\nlibrary(ggridges)\n\nggplot(lincoln_weather,\n       aes(x = `Mean Temperature [F]`, y = Month, fill = after_stat(x))) +\n  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01,\n                               bandwidth = 3) +\n  scale_fill_viridis_c(option = \"C\")\n\n\n\n\n\n\n\n\nlincoln_weather ships with non-syntactic column names (Mean Temperature [F], …), so a parameterized version needs ptr_normalize_column_names() first — the recipe is in Chapter 5.\n\n\n6.4.3 ggrepel — labelled scatter\n\nlibrary(ggrepel)\n\nmt &lt;- data.frame(mtcars, model = rownames(mtcars))\n\nggplot(mt, aes(wt, mpg, label = model)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_text_repel(size = 3.5, max.overlaps = 12, box.padding = 0.3)\n\n\n\n\n\n\n\n\n\n\n6.4.4 ggalluvial — flow diagrams\n\nlibrary(ggalluvial)\n\nggplot(vaccinations,\n       aes(x = survey, stratum = response, alluvium = subject,\n           y = freq, fill = response)) +\n  geom_flow(alpha = 0.7) +\n  geom_stratum() +\n  scale_x_discrete(expand = c(0.1, 0.1))\n\n\n\n\n\n\n\n\n\n\n6.4.5 ggdist — distribution visualizations\n\nlibrary(ggdist)\n\nggplot(mtcars, aes(x = factor(cyl), y = mpg)) +\n  stat_halfeye(adjust = 0.5, justification = -0.2,\n               .width = 0, point_colour = NA, slab_alpha = 0.6) +\n  geom_boxplot(width = 0.15, outlier.shape = NA) +\n  coord_flip()\n\n\n\n\n\n\n\n\nFor the parameterized flavour of this family, here is a complete custom value placeholder: ppPercent renders a 0–100 slider and folds back the value divided by 100 — a friendlier alpha control than a raw decimal:\n\nppPercent &lt;- ptr_define_placeholder_value(\n  keyword = \"ppPercent\",\n\n  build_ui = function(node, label = NULL, selected = NULL,\n                      named_args = list(), ...) {\n    step &lt;- named_args$step %||% 1\n    shiny::sliderInput(\n      node$id, label = label %||% \"Percent\",\n      min = 0, max = 100,\n      value = selected,\n      step = step\n    )\n  },\n\n  resolve_expr = function(value, node, ...) {\n    if (is.null(value)) return(NULL)\n    as.numeric(value) / 100\n  },\n\n  validate_session_input = function(value, ctx) {\n    v &lt;- suppressWarnings(as.numeric(value))\n    if (length(v) != 1L || is.na(v) || v &lt; 0 || v &gt; 100) {\n      rlang::abort(\"Percent must be a single number between 0 and 100.\")\n    }\n    TRUE\n  },\n\n  parse_positional_arg = ptr_arg_numeric(),\n  parse_named_args = list(step = ptr_arg_numeric()),\n  embellish_eval   = function(x, ...) as.numeric(x) / 100,\n  ui_text_defaults = list(label = \"Percent for {param}\")\n)\n\nptr_app(\n  ggplot(mtcars, aes(x = ppVar(\"wt\"), y = ppVar(\"mpg\"))) +\n    geom_point(alpha = ppPercent(40, step = 5))\n)\n\n\n\n\nppPercent(40, step = 5): the slider boots at 40, steps by 5, and the generated code reads alpha = 0.4.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Gallery</span>"
+    ]
+  },
+  {
+    "objectID": "gallery.html#sec-gallery-next",
+    "href": "gallery.html#sec-gallery-next",
+    "title": "6  Gallery",
+    "section": "6.5 Where to go next",
+    "text": "6.5 Where to go next\n\nThe three-level ladder (all-in-one app → embed → own the layout): Chapter 5, Chapter 10, Chapter 11.\nThe shared-placeholder pattern (one widget driving several plots, or several spots in one formula): Chapter 8.\nThe custom-placeholder constructors used throughout this gallery, with the full hook contract: Chapter 13.\nDriving plotly / ggiraph from a ggpaintr app — the interactive versions of § “Interactive output packages”: Chapter 12.\nThe safety model behind ppExpr and ppUpload: Chapter 17.",
     "crumbs": [
       "Use cases & gallery",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Gallery</span>"
@@ -120,7 +384,40 @@
     "href": "customization.html",
     "title": "7  Customization",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: re-styling, re-labelling, re-arranging — the user-facing customization surface. Absorbs the package’s ggpaintr-customization vignette in full once that vignette is e2e-green and drift-audit-clean; the package drops its copy in the paired PR. Covers UI text, CSS hooks, widget defaults, and theming wrappers from a user perspective; the extension-author perspective on the same surfaces is in Custom placeholders and Theming wrappers.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "7.1 Boot state belongs in the formula\nThis chapter covers the user-facing customization surface: where boot-state defaults live, and how to restyle the default shell with CSS. The deeper levers each have their own chapter — rewriting every label and copy string is Chapter 15, packaging a styled shell as a reusable function is Chapter 14, and adding new widget types is Chapter 13.\nOlder ggpaintr exposed a per-call checkbox_defaults = argument (and a global checkbox_default_all_other_layer option) to start layers unchecked. Both are gone: the formula-side keywords ppLayerOff() and ppVerbSwitch() (Chapter 2) carry that information inside the chart text itself, so the source of truth for “what starts off?” is the same string you wrote the chart against. If you are migrating old code, three mechanical conversions cover every prior use:\nPer-run overrides of these defaults go through spec = (Chapter 2).",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Customization</span>"
+    ]
+  },
+  {
+    "objectID": "customization.html#boot-state-belongs-in-the-formula",
+    "href": "customization.html#boot-state-belongs-in-the-formula",
+    "title": "7  Customization",
+    "section": "",
+    "text": "Direct entries — start one named layer off:\n\n# Old\nptr_app(\"ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point() + geom_smooth()\",\n        checkbox_defaults = list(geom_smooth = FALSE))\n\n# New\nptr_app(\"ggplot(mtcars, aes(x = ppVar, y = ppVar)) + geom_point() + ppLayerOff(geom_smooth(), TRUE)\")\n\nDuplicate-group expansion — a vector at a bare base name used to address every same-name instance; now wrap exactly the instance you mean:\n\n# Old (apply c(TRUE, FALSE) across two geom_point() layers)\nptr_app(\"ggplot(...) + geom_point() + geom_point()\",\n        checkbox_defaults = list(geom_point = c(TRUE, FALSE)))\n\n# New\nptr_app(\"ggplot(...) + geom_point() + ppLayerOff(geom_point(), TRUE)\")\n\nOpt-in mode — code that relied on the removed global option wraps every should-start-off layer in ppLayerOff(..., TRUE) explicitly.",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Customization</span>"
+    ]
+  },
+  {
+    "objectID": "customization.html#styling-with-css",
+    "href": "customization.html#styling-with-css",
+    "title": "7  Customization",
+    "section": "7.2 Styling with CSS",
+    "text": "7.2 Styling with CSS\nggpaintr ships a bundled stylesheet and a BEM-style class vocabulary under the ptr- prefix. Two surfaces, in order of invasiveness.\n\n7.2.1 Surface 1 — class hooks ggpaintr already emits\nEvery region of the default shell carries a class you can target from your own CSS. These classes are the practical styling hook today, but the package does not document them as a stability contract — the documented theming surface is the --ptr-* CSS custom-property tokens on .ptr-app. Pin your ggpaintr version if a theme leans on the class names:\n\n\n\n\n\n\n\n\nRegion\nBlock\nNotable elements\n\n\n\n\nOuter shell\n.ptr-app\n.ptr-app__header, .ptr-app__mark, .ptr-app__title\n\n\nPlot card\n.ptr-card\n.ptr-card--plot, .ptr-card__head, .ptr-card__title, .ptr-card__body\n\n\nOutput area\n.ptr-output\n—\n\n\nGenerated-code window\n.ptr-code-window\n.ptr-code-window__head, .ptr-code-window__title, .ptr-code-window__actions, .ptr-code-window__close, .ptr-code-window__body, .ptr-copy-btn, .ptr-code-toggle, .ptr-icon-btn\n\n\nShared-controls panel\n.ptr-shared-panel\n.ptr-shared-panel__title, .ptr-shared-panel__help, .ptr-shared-panel__tip\n\n\nPipeline stage rows\n.ptr-stage\n.ptr-stage-head, .ptr-stage-fields, .ptr-stage-row\n\n\nInline errors\n.ptr-alert\n.ptr-alert--error, .ptr-alert__detail\n\n\n\n\n\n7.2.2 Surface 2 — injecting your own stylesheet with css =\nEvery self-contained entry point (ptr_app(), ptr_ui(), ptr_shared_panel()) accepts a css = argument — as does the optional L3 page shell ptr_ui_page(), and the ptr_ui_assets(css = ) escape hatch for roots that bypass ptr_ui_page() (Chapter 11). It takes a character vector of paths to .css files; each is registered as a static resource and linked after the bundled stylesheet, so your rules win at equal specificity. Relative url(...) references resolve against each file’s own directory, so images can ship next to the stylesheet.\nA minimal theme that recolours the title bar and tightens the card padding:\n/* my-theme.css */\n.ptr-app__header { background: #1f2937; color: #f9fafb; }\n.ptr-app__title  { font-family: \"Inter\", sans-serif; letter-spacing: -0.01em; }\n.ptr-card__body  { padding: 0.5rem 0.75rem; }\n\nptr_app(\n  \"ggplot(mtcars, aes(ppVar('wt'), ppVar('mpg'))) + geom_point()\",\n  css = \"my-theme.css\"\n)\n\n\n\n\nThe same app with my-theme.css injected: dark header, tightened plot card. Everything else is the bundled stylesheet.\n\n\ncss = validates each path at construction time — missing files and non-.css extensions abort with a clear message, so typos surface before the first browser load.\n\n\n7.2.3 What is not stable surface\n\nInternal markup details — element order, nesting depth, descendant tag names — may change between releases even when class names stay. Style by class, not by structural selectors like .ptr-card &gt; div:nth-child(2).\nClasses emitted by upstream Shiny, shinyWidgets, and bslib (.shiny-input-container, .selectize-control, .form-control, …) belong to those packages; their stability is governed there.\nAnything matching ptr_ with an underscore is an id (Shiny input/output id), not a class; styling against ids is possible but brittle, since ids are namespaced by host modules (Chapter 8).",
+    "crumbs": [
+      "Use cases & gallery",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Customization</span>"
+    ]
+  },
+  {
+    "objectID": "customization.html#beyond-css",
+    "href": "customization.html#beyond-css",
+    "title": "7  Customization",
+    "section": "7.3 Beyond CSS",
+    "text": "7.3 Beyond CSS\nIf you find yourself passing the same css = and ui_text = to every app, package the combination as a wrapper function — that recipe, including how wrappers compose, is Chapter 14.",
     "crumbs": [
       "Use cases & gallery",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Customization</span>"
@@ -131,7 +428,51 @@
     "href": "shared-placeholders.html",
     "title": "8  Shared Placeholders",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: var(shared=), the ptr_shared() coordinator, section vs panel, and how partition governs ownership.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "8.1 One instance: no coordinator, ever\nA placeholder annotated keyword(shared = \"&lt;key&gt;\") is driven by one widget in lockstep wherever that key appears — across aes(), pipeline stages, and (in the multi-plot case) across formulas. Where that widget surfaces is decided per key by how many formulas reference it — the partition rule:\nExample: f1 = sharedA + sharedA + sharedB, f2 = sharedC + sharedC + sharedB ⟹ f1’s inline section holds sharedA, f2’s holds sharedC, the standalone panel holds sharedB.\nThe practical consequence is a hard split by instance count.\nWith a single ggpaintr instance every shared key is formula-local by definition, so it auto-renders in that instance’s inline shared section. The single-instance realization is plain L1 ptr_app() — write the annotation and you are done:\nptr_app(\n  \"ggplot(iris, aes(x = ppVar(shared = 'col'), y = ppVar - ppVar(shared = 'col'),\n                    color = Species)) + geom_point()\"\n)\nBare ptr_server() on a shared = \"...\" formula behaves the same way: it self-binds every declared key under its own namespace and renders the widgets inline, exactly like ptr_app() does.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shared Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "shared-placeholders.html#one-instance-no-coordinator-ever",
+    "href": "shared-placeholders.html#one-instance-no-coordinator-ever",
+    "title": "8  Shared Placeholders",
+    "section": "",
+    "text": "One key, used twice in one formula: a single picker in the inline Shared controls section drives both occurrences. No coordinator involved.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shared Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "shared-placeholders.html#multiple-instances-the-shared-trio",
+    "href": "shared-placeholders.html#multiple-instances-the-shared-trio",
+    "title": "8  Shared Placeholders",
+    "section": "8.2 Multiple instances: the shared trio",
+    "text": "8.2 Multiple instances: the shared trio\nWhen you embed two or more ggpaintr blocks (Chapter 9) and want one widget to drive several of them, build the coordinator once and feed it to the three consumers. The contract:\n\nptr_shared(formulas, ...) → obj. Pass the same list of formula strings you will hand to the modules. Widgets for shared keys are auto-built from each key’s placeholder kind — a ppVar(shared = \"...\") gets a column picker, a ppNum a numeric input, and a registered custom placeholder its own build_ui. obj carries the computed partition (obj$panel_keys, plus the per-formula local keys) and is pure and non-reactive, so the UI and server can never disagree about which key lives where.\nptr_shared_panel(obj, css = NULL) — the one standalone panel, holding exactly obj’s cross-formula keys. Self-contained; place it once, wherever you want on the page.\nptr_shared_server(obj) — call once at the top level of your server (never inside moduleServer()). Returns the shared-state bundle.\nptr_server(formula, id, shared_state = &lt;bundle&gt;) — pass the bundle to every per-plot module. Each module renders its own formula-local keys inline and reads the panel keys from the bundle.\n\n\nplots &lt;- list(\n  \"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Length, fill = Species)) + geom_boxplot()\",\n  \"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Width,  fill = Species)) + geom_violin()\"\n)\n\nobj &lt;- ptr_shared(formulas = plots)\n\nui &lt;- shiny::fluidPage(\n  shiny::titlePanel(\"My host app\"),\n  ptr_shared_panel(obj),\n  shiny::fluidRow(\n    shiny::column(6, ptr_ui(plots[[1]], \"plot_1\", shared = obj)),\n    shiny::column(6, ptr_ui(plots[[2]], \"plot_2\", shared = obj))\n  )\n)\nserver &lt;- function(input, output, session) {\n  sh &lt;- ptr_shared_server(obj)\n  ptr_server(plots[[1]], \"plot_1\", shared_state = sh)\n  ptr_server(plots[[2]], \"plot_2\", shared_state = sh)\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nmetric is referenced by both formulas, so its picker lives in the standalone shared panel on top; picking a column and clicking Draw all redraws both plots in lockstep.\n\n\nptr_shared_panel() emits a Draw all button (top-level input id ptr_shared_draw_all) whenever the coordinator spans two or more formulas and the gate_draw setting is on (the default; ptr_options(gate_draw = FALSE) drops the button and each panel re-renders live instead); the per-module Update plot buttons still work independently. Building ptr_shared() from a formulas list that declares no shared = \"...\" annotation is an error — drop the coordinator and use the plain module path if nothing is shared.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shared Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "shared-placeholders.html#the-partition-in-action",
+    "href": "shared-placeholders.html#the-partition-in-action",
+    "title": "8  Shared Placeholders",
+    "section": "8.3 The partition in action",
+    "text": "8.3 The partition in action\nMix a cross-formula key with formula-local ones and the rule sorts every widget into the right place:\n\nplots &lt;- list(\n  \"ggplot(iris, aes(x = ppVar(shared = 'ax1'), y = ppVar - ppVar(shared = 'ax1'),\n                    color = Species)) + geom_point(size = ppNum(shared = 'sz'))\",\n  \"ggplot(iris, aes(x = ppVar(shared = 'ax2'), y = Sepal.Width,\n                    color = Species)) + geom_point(size = ppNum(shared = 'sz'))\"\n)\n\nobj &lt;- ptr_shared(formulas = plots)\n# sz → both formulas → standalone panel.  ax1 → only plot_1's inline section.\n# ax2 → only plot_2's inline section.\n\nui &lt;- shiny::fluidPage(\n  ptr_shared_panel(obj),             # holds sz only\n  shiny::fluidRow(\n    shiny::column(6, ptr_ui(plots[[1]], \"plot_1\", shared = obj)),  # ax1 inline\n    shiny::column(6, ptr_ui(plots[[2]], \"plot_2\", shared = obj))   # ax2 inline\n  )\n)\nserver &lt;- function(input, output, session) {\n  sh &lt;- ptr_shared_server(obj)\n  ptr_server(plots[[1]], \"plot_1\", shared_state = sh)\n  ptr_server(plots[[2]], \"plot_2\", shared_state = sh)\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nThe standalone panel owns the cross-formula sz; each plot’s inline shared section owns its formula-local axis key (ax1 left, ax2 right).",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shared Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "shared-placeholders.html#how-input-ids-are-built-and-how-to-avoid-colliding-with-them",
+    "href": "shared-placeholders.html#how-input-ids-are-built-and-how-to-avoid-colliding-with-them",
+    "title": "8  Shared Placeholders",
+    "section": "8.4 How input ids are built — and how to avoid colliding with them",
+    "text": "8.4 How input ids are built — and how to avoid colliding with them\nThe framework names every widget it emits from the formula’s syntax, so the same formula always produces the same ids. When you mix ggpaintr UI with your own widgets in the same Shiny namespace, the cleanest fix is to wrap the embed in ptr_ui() / ptr_server() with a unique id — everything ggpaintr emits then lives under &lt;id&gt;-… and your top-level inputs cannot collide. If you can’t namespace, the surface to avoid:\nLayer names. Each top-level call in the formula contributes a layer name equal to the function being called (ggplot, geom_point, facet_wrap, …). Repeats get -2, -3, … suffixes: geom_point() + geom_point() yields geom_point, geom_point-2.\nPer-placeholder input ids follow &lt;layer&gt;_&lt;path&gt;_&lt;keyword&gt;_NA, where &lt;path&gt; is the underscore-joined positional index path into the call. aes(x = ppVar, y = ppVar) inside the ggplot() layer yields ggplot_1_1_ppVar_NA and ggplot_1_2_ppVar_NA. A shared annotation never gets a layer-derived id: ppVar(shared = \"x_col\") is bound at the canonical shared_x_col. Every shared key owns shared_&lt;key&gt; (and, when the key sits on a piped stage, shared_&lt;key&gt;_stage_enabled), so treat those as part of the collision surface too.\nLayer-derived ids:\n\n\n\n\n\n\n\nPattern\nWhat it is\n\n\n\n\n&lt;layer&gt;_checkbox\n“include this layer” toggle (no checkbox on ggplot)\n\n\n&lt;layer&gt;_&lt;path&gt;_stage_enabled\nper-stage toggle on piped data-arg pipelines\n\n\n&lt;placeholder-id&gt;_ui\nrenderUI container for any placeholder (value, source, or consumer)\n\n\n&lt;layer&gt;_subtab, ptr_layer_content_&lt;layer&gt;\ninternal layer-nav and panel-container ids\n\n\n\nTop-level package-owned ids. The framework writes to a fixed set of ptr_-prefixed top-level ids that are not user-configurable: ptr_plot, ptr_error, ptr_code, ptr_code_mode, ptr_update_plot, the panel ids ptr_shared_draw_all / ptr_shared_errors, and the layer-nav inputs ptr_layer_select / ptr_layer_tabset. Treat the whole ptr_ prefix as reserved. When ptr_shared(id = \"&lt;id&gt;\") is supplied, every coordinator-owned id is carried under an &lt;id&gt;- prefix, so two coordinators can coexist in one session.\n\nRule of thumb: in a host app’s top-level namespace, don’t author Shiny inputs or outputs whose ids start with ptr_ or shared_, or match &lt;layer-name-from-your-formula&gt;_…. If that feels brittle, wrap the embed with a unique id and the collision surface disappears entirely.",
     "crumbs": [
       "Composition",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shared Placeholders</span>"
@@ -142,7 +483,51 @@
     "href": "multi-plot.html",
     "title": "9  Multi-Plot Apps",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: ptr_app_grid(): several formulas with widgets shared across plots.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "9.1 One plot inside your own app\nptr_app() builds exactly one plot per app. To place a ggpaintr plot inside your own app — alongside other UI, several plots at once, controls of your own — you drop down one level to ptr_ui() / ptr_server() and own the shinyApp() shell yourself.\nYou write the fluidPage and the server function. Put ptr_ui(formula, id) where the plot’s controls and output should go, and ptr_server(formula, id) in the server with a matching id. ptr_server() namespaces itself — call it bare, never wrapped in your own moduleServer().\nBoth functions take the formula the same way ptr_app() does: pass the ggplot() call directly, or — to write it once and hand the same formula to both — store it with rlang::expr() and splice it in with !!. (The string form still works as a fallback.)\nf &lt;- rlang::expr(ggplot(mtcars, aes(x = ppVar(\"wt\"), y = ppVar(\"mpg\"))) + geom_point())\n\nui &lt;- shiny::fluidPage(\n  shiny::h3(\"My dashboard\"),\n  ptr_ui(!!f, \"plot1\")\n)\nserver &lt;- function(input, output, session) {\n  ptr_server(!!f, \"plot1\")\n}\nshiny::shinyApp(ui, server)\nThe id (\"plot1\") is the namespace shared by the UI and the server; they must agree on it. Omitting it (id = NULL) gives bare, un-namespaced ids — fine for a single plot, and the reason namespacing matters is in Chapter 8 § “How input ids are built”.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-Plot Apps</span>"
+    ]
+  },
+  {
+    "objectID": "multi-plot.html#one-plot-inside-your-own-app",
+    "href": "multi-plot.html#one-plot-inside-your-own-app",
+    "title": "9  Multi-Plot Apps",
+    "section": "",
+    "text": "A ggpaintr plot living inside a host fluidPage, drawn after one update. Everything ggpaintr emits is namespaced under plot1-.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-Plot Apps</span>"
+    ]
+  },
+  {
+    "objectID": "multi-plot.html#several-plots-laid-out-your-way",
+    "href": "multi-plot.html#several-plots-laid-out-your-way",
+    "title": "9  Multi-Plot Apps",
+    "section": "9.2 Several plots, laid out your way",
+    "text": "9.2 Several plots, laid out your way\nThere is no special grid entry point: tiles are plain Shiny layout. fluidRow() + column() around two ptr_ui() calls gives side-by-side plots; each gets its own ptr_server() call:\nui &lt;- shiny::fluidPage(\n  shiny::fluidRow(\n    shiny::column(6, ptr_ui(\"ggplot(iris, aes(ppVar, Sepal.Length)) + geom_boxplot()\", \"left\")),\n    shiny::column(6, ptr_ui(\"ggplot(iris, aes(ppVar, Sepal.Width)) + geom_violin()\",  \"right\"))\n  )\n)\nserver &lt;- function(input, output, session) {\n  ptr_server(\"ggplot(iris, aes(ppVar, Sepal.Length)) + geom_boxplot()\", \"left\")\n  ptr_server(\"ggplot(iris, aes(ppVar, Sepal.Width)) + geom_violin()\",  \"right\")\n}\nshiny::shinyApp(ui, server)\nEach plot is fully independent: its own widgets, its own Update plot button, its own generated code.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-Plot Apps</span>"
+    ]
+  },
+  {
+    "objectID": "multi-plot.html#sharing-one-control-across-several-plots",
+    "href": "multi-plot.html#sharing-one-control-across-several-plots",
+    "title": "9  Multi-Plot Apps",
+    "section": "9.3 Sharing one control across several plots",
+    "text": "9.3 Sharing one control across several plots\nIndependence is usually not what you want for the common knobs — one x-axis picker or one size slider should drive every plot at once. That is the shared-placeholder mechanism: annotate the placeholder with shared = \"&lt;key&gt;\" in every formula that should listen, build one coordinator object with ptr_shared(), and hand it to the UI and server pieces. The complete contract — including the partition rule that decides which widget renders where — is the subject of Chapter 8; its worked example is exactly the two-plot layout above with a shared size slider.",
+    "crumbs": [
+      "Composition",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-Plot Apps</span>"
+    ]
+  },
+  {
+    "objectID": "multi-plot.html#when-to-skip-all-of-this",
+    "href": "multi-plot.html#when-to-skip-all-of-this",
+    "title": "9  Multi-Plot Apps",
+    "section": "9.4 When to skip all of this",
+    "text": "9.4 When to skip all of this\nIf one plot and the default chrome are enough, stay at L1 (Chapter 5). If what you actually want is a different layout of the standard pieces — controls left, plot right, code window elsewhere — you may want the bare L3 pieces instead of whole-module embedding: Chapter 11.",
     "crumbs": [
       "Composition",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-Plot Apps</span>"
@@ -151,34 +536,221 @@
   {
     "objectID": "embed-default.html",
     "href": "embed-default.html",
-    "title": "10  Embedding with the default layout",
+    "title": "10  Embedding with the Default Layout",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: dropping ggpaintr into your own Shiny app with the default layout. The self-contained ptr_ui() / ptr_server() pair. Multi-instance: the ptr_shared() coordinator + ptr_shared_panel() + ptr_shared_server(). Optional CSS restyle.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "10.1 The pair\nL2 is “I already have a Shiny app and want to drop a ggpaintr-driven block somewhere inside it, keeping ggpaintr’s default layout.” Every L2 function is self-contained — it owns its own .ptr-app theme scope and bundled asset dependency, so it drops straight into a host page with no scaffolding. This is the self-contained half of the naming convention; the bare pieces (ptr_ui_page, ptr_ui_controls, ptr_ui_plot, …) are L3 (Chapter 11).\nThere is no free-form controls-here / plot-there split at L2: the only default-layout block is the self-contained ptr_ui() / ptr_server() pair. Placing the controls in one region and the plot in another — or replacing a built-in pane with your own renderer — is L3, covered in Chapter 11 and Chapter 12. L2 is strictly “default layout, dropped into your app.”\nControls and outputs live next to each other inside the module’s namespace. The id is not required if there is only one ggpaintr module in the app:\nformula &lt;- \"ggplot(iris, aes(ppVar, ppVar, color = ppVar)) + geom_point()\"\n\nui &lt;- shiny::fluidPage(\n  shiny::titlePanel(\"My host app\"),\n  ptr_ui(formula)\n)\nserver &lt;- function(input, output, session) {\n  ptr_server(formula)\n}\n\nshiny::shinyApp(ui, server)",
     "crumbs": [
       "Embedding",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Embedding with the default layout</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Embedding with the Default Layout</span>"
+    ]
+  },
+  {
+    "objectID": "embed-default.html#the-pair",
+    "href": "embed-default.html#the-pair",
+    "title": "10  Embedding with the Default Layout",
+    "section": "",
+    "text": "The default-layout block dropped under a host titlePanel. The block brings its own theme scope and assets.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Embedding with the Default Layout</span>"
+    ]
+  },
+  {
+    "objectID": "embed-default.html#what-ptr_server-gives-you",
+    "href": "embed-default.html#what-ptr_server-gives-you",
+    "title": "10  Embedding with the Default Layout",
+    "section": "10.2 What ptr_server() gives you",
+    "text": "10.2 What ptr_server() gives you\nptr_server() returns the app’s state object — embedders that want to react to it (inject layers with ptr_gg_extra(), or read the live plot and code via state$runtime()$plot / state$runtime()$code_text inside a reactive context) capture the return value; otherwise the side effects are all that matter. The one-shot readers ptr_extract_plot() / ptr_extract_code() are isolate()-wrapped — reserve them for non-reactive contexts (download handlers, tests), not render*{} blocks. Its ... are forwarded, so ui_text =, expr_check =, and safe_to_remove = are available here exactly as on ptr_app(); the shared-binding arguments (shared_state = and friends) are also accepted, going beyond what ptr_app() offers. Boot-state still lives in the formula: write ppLayerOff(geom_X(), TRUE) to start a layer unchecked (Chapter 7).",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Embedding with the Default Layout</span>"
+    ]
+  },
+  {
+    "objectID": "embed-default.html#several-linked-blocks",
+    "href": "embed-default.html#several-linked-blocks",
+    "title": "10  Embedding with the Default Layout",
+    "section": "10.3 Several linked blocks",
+    "text": "10.3 Several linked blocks\nTwo or more ptr_ui() / ptr_server() blocks with a control shared across them is the coordinator pattern — ptr_shared() + ptr_shared_panel() + ptr_shared_server(). The full contract, including the partition rule, is Chapter 8; the layout mechanics are Chapter 9.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Embedding with the Default Layout</span>"
+    ]
+  },
+  {
+    "objectID": "embed-default.html#restyling-the-block",
+    "href": "embed-default.html#restyling-the-block",
+    "title": "10  Embedding with the Default Layout",
+    "section": "10.4 Restyling the block",
+    "text": "10.4 Restyling the block\nptr_ui() accepts the same css = argument as ptr_app() — see Chapter 7 for the stable class vocabulary and injection rules.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Embedding with the Default Layout</span>"
     ]
   },
   {
     "objectID": "embed-bare.html",
     "href": "embed-bare.html",
-    "title": "11  Embedding with bare pieces",
+    "title": "11  Embedding with Bare Pieces",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: owning the layout. Bare UI pieces (ptr_ui_controls, ptr_ui_plot, ptr_ui_error, ptr_ui_code, ptr_ui_header, ptr_ui_shared_panel) and the combinators (ptr_ui_inline_error, ptr_ui_toggle_code). The optional ptr_ui_page shell. Per ADR 0006, the server side is the single public ptr_server() — there is no separate “L3 server”.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "11.1 The bare pieces and combinators\nL3 is the level finer than L2: instead of one self-contained default-layout block, every piece of ggpaintr’s UI has its own bare exported function — emitting only its widgets, no wrapper, no assets — so you can pick exactly the pieces you want and place each one anywhere in your own Shiny. L3 is a UI-side split only. The server side does not change: you still call the single ptr_server(formula, id) exactly as at L2. The pieces write to and read from the same canonical ids it already targets, so a piece you never place is simply a no-op.\nThe pieces are deliberately orthogonal — an id (and, where relevant, a formula) plus at most a few cosmetic arguments such as style =, page =, or css =. There are no error= / code_toggle= flags on ptr_ui_plot(); layered behaviour is added by combinators that wrap already-built pieces:\nTwo facts shape how the pieces behave:\nIds must line up: pass the same id to every piece and to ptr_server(formula, id). A single embedding needs no id at all; you never write your own shiny::moduleServer(). Hand-placing pieces makes id collisions most likely, so keep the whole ptr_-prefixed top-level id set reserved — the full list lives in Chapter 8 § “How input ids are built”.",
     "crumbs": [
       "Embedding",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with bare pieces</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with Bare Pieces</span>"
+    ]
+  },
+  {
+    "objectID": "embed-bare.html#the-bare-pieces-and-combinators",
+    "href": "embed-bare.html#the-bare-pieces-and-combinators",
+    "title": "11  Embedding with Bare Pieces",
+    "section": "",
+    "text": "Function\nWhat it emits\n\n\n\n\nptr_ui_page(..., page, css)\nThe optional page shell: a Bootstrap-3 page + the single .ptr-app theme scope + the deduped asset bundle, wrapping the pieces you pass\n\n\nptr_ui_header(title)\nThe branded header bar\n\n\nptr_ui_controls(formula, id = NULL, ...)\nThe generated control widgets (layer picker, per-layer panels, Update plot, inline shared section)\n\n\nptr_ui_plot(id)\nThe bare plot card — no error slot, no toggle\n\n\nptr_ui_error(id)\nThe bare inline error slot\n\n\nptr_ui_code(id, style)\nThe bare generated-code pane; style = \"panel\" (plain, always visible — default) or \"window\"\n\n\nptr_ui_inline_error(plot, error)\nCombinator: nests an error piece inside a plot piece’s card body\n\n\nptr_ui_toggle_code(plotish, code)\nCombinator: wraps a plot-ish piece + code piece into the &lt;/&gt; slide-out layout\n\n\nptr_ui_shared_panel(obj)\nThe bare cross-formula shared panel (L3 counterpart of ptr_shared_panel())\n\n\nptr_ui_assets(css)\nThe CSS/JS bundle — escape hatch only, for roots ptr_ui_page() can’t cover\n\n\n\n\n\nptr_ui_page() is the only scaffolding to remember — and it is optional. The controls need Bootstrap’s CSS/JS, which Shiny loads only when the outermost UI object is a Bootstrap page builder; and the bundled theme is scoped under a single .ptr-app. ptr_ui_page() resolves both at once: it is the Bootstrap page and owns the theme scope plus the deduped assets. Write your own bare Shiny root instead and you own that scaffolding — the navbarPage recipe below shows exactly what to reproduce.\nCombinators add behaviour; flags do not. A standalone ptr_ui_code() is a plain, always-visible panel needing no wiring. The inline error and the draggable slide-out code window come from composing pieces through the two combinators — pure DOM-structure helpers with no server coupling.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with Bare Pieces</span>"
+    ]
+  },
+  {
+    "objectID": "embed-bare.html#a-fully-hand-laid-out-page",
+    "href": "embed-bare.html#a-fully-hand-laid-out-page",
+    "title": "11  Embedding with Bare Pieces",
+    "section": "11.2 A fully hand-laid-out page",
+    "text": "11.2 A fully hand-laid-out page\nHeader, controls, plot, error, and code each in their own region:\n\nformula &lt;- \"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()\"\n\nui &lt;- ptr_ui_page(                          # Bootstrap page + single .ptr-app + assets\n  ptr_ui_header(\"Iris explorer\"),\n  shiny::fluidRow(\n    shiny::column(4, ptr_ui_controls(formula = formula)),\n    shiny::column(8, ptr_ui_plot())         # bare plot card; error placed below\n  ),\n  ptr_ui_error(),                           # error banner in its own row\n  ptr_ui_code()                             # plain, always-visible code card\n)\nserver &lt;- function(input, output, session) {\n  ptr_server(formula)   # binds ptr_plot / ptr_error / ptr_code\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nBare pieces, hand-placed: controls left, plot right, error row and always-visible code card below.\n\n\nSwap the page builder with page = for a different Bootstrap-3 root — ptr_ui_page(..., page = shiny::fillPage) for edge-to-edge, for instance. The contract is any BS3 page builder whose ... are tag children: fluidPage (default), fixedPage, fillPage, bootstrapPage, basicPage. It is not navbarPage (which takes a positional title plus tabPanel() children) and not a bslib/BS5 page (the bundled CSS is Bootstrap-3-scoped). For those roots, decompose by hand (below).\nAll three panes — plot, error, code — are empty until the first Update plot click, exactly as in the bundled app. And ptr_ui_code() already renders its own bordered card with a “Generated code” header — drop it straight into the layout; don’t bury it in a collapsed tags$details(), or only the disclosure summary shows.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with Bare Pieces</span>"
+    ]
+  },
+  {
+    "objectID": "embed-bare.html#the-familiar-slide-out-code-window",
+    "href": "embed-bare.html#the-familiar-slide-out-code-window",
+    "title": "11  Embedding with Bare Pieces",
+    "section": "11.3 The familiar slide-out code window",
+    "text": "11.3 The familiar slide-out code window\nWant the &lt;/&gt; slide-out and inline error while owning the surrounding layout? Compose with the two combinators — this nested call is byte-for-byte the output block ptr_ui() renders internally. ptr_app() wires the same behaviour but builds its slide-out window slightly differently (its code-mode toggle sits in the window head), so only cosmetics differ from that path:\n\nformula &lt;- \"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()\"\n\nui &lt;- ptr_ui_page(\n  ptr_ui_header(\"Iris explorer\"),\n  shiny::sidebarLayout(\n    shiny::sidebarPanel(ptr_ui_controls(formula = formula)),\n    shiny::mainPanel(\n      ptr_ui_toggle_code(                                   # &lt;/&gt; slide-out toggle ...\n        ptr_ui_inline_error(ptr_ui_plot(), ptr_ui_error()), # ... around plot + inline error\n        ptr_ui_code()                                       # ... wrapped as the slide-out window\n      )\n    )\n  )\n)\nserver &lt;- function(input, output, session) {\n  ptr_server(formula)\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nThe combinator recipe inside a sidebarLayout: plot card with inline error slot, code window behind the &lt;/&gt; toggle.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with Bare Pieces</span>"
+    ]
+  },
+  {
+    "objectID": "embed-bare.html#custom-or-navbarpage-roots-decompose-by-hand",
+    "href": "embed-bare.html#custom-or-navbarpage-roots-decompose-by-hand",
+    "title": "11  Embedding with Bare Pieces",
+    "section": "11.4 Custom or navbarPage roots — decompose by hand",
+    "text": "11.4 Custom or navbarPage roots — decompose by hand\nFor the roots ptr_ui_page() deliberately does not cover, hand-build what it expands to — a Bootstrap page, ptr_ui_assets() once (its only sanctioned use), and one div(class = \"ptr-app\") around the pieces:\n\nformula &lt;- \"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()\"\n\nui &lt;- shiny::navbarPage(\n  \"Iris explorer\",                            # navbarPage needs a positional title\n  shiny::tabPanel(\n    \"Plot\",\n    ptr_ui_assets(),                          # the bundle, once (self-deduping) — escape hatch\n    shiny::tags$div(\n      class = \"ptr-app\",                      # the single theme scope\n      shiny::sidebarLayout(\n        shiny::sidebarPanel(ptr_ui_controls(formula = formula)),\n        shiny::mainPanel(\n          ptr_ui_toggle_code(\n            ptr_ui_inline_error(ptr_ui_plot(), ptr_ui_error()),\n            ptr_ui_code()\n          )\n        )\n      )\n    )\n  ),\n  shiny::tabPanel(\"About\", \"Built with ggpaintr.\")\n)\nserver &lt;- function(input, output, session) {\n  ptr_server(formula)\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nThe same composition living in one tab of a navbarPage, with the assets and theme scope reproduced by hand.\n\n\nThis is exactly the body of ptr_ui_page() — page(ptr_ui_assets(css), div(class = \"ptr-app\", ...)) — inlined into the one tab, so it doubles as a transparent view of what the shell does for you. Keep ptr_ui_assets() and the .ptr-app wrapper inside each tab that hosts ggpaintr pieces; the bundle is self-deduping, so repeating it costs nothing.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with Bare Pieces</span>"
+    ]
+  },
+  {
+    "objectID": "embed-bare.html#placing-individual-placeholder-widgets",
+    "href": "embed-bare.html#placing-individual-placeholder-widgets",
+    "title": "11  Embedding with Bare Pieces",
+    "section": "11.5 Placing individual placeholder widgets",
+    "text": "11.5 Placing individual placeholder widgets\nptr_ui_controls() is the whole controls panel and is the supported way to render the generated widgets. ggpaintr does not expose a public accessor for the parsed node tree, so hand-placing individual placeholder widgets is not a supported workflow. To add custom widget types, register them instead — Chapter 13.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with Bare Pieces</span>"
+    ]
+  },
+  {
+    "objectID": "embed-bare.html#swapping-a-pane-for-your-own-renderer",
+    "href": "embed-bare.html#swapping-a-pane-for-your-own-renderer",
+    "title": "11  Embedding with Bare Pieces",
+    "section": "11.6 Swapping a pane for your own renderer",
+    "text": "11.6 Swapping a pane for your own renderer\nNever place ptr_ui_plot() and put a plotly::plotlyOutput() there instead — that is the custom-renderer pattern, and it gets its own chapter: Chapter 12.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Embedding with Bare Pieces</span>"
     ]
   },
   {
     "objectID": "custom-render.html",
     "href": "custom-render.html",
-    "title": "12  Custom rendering",
+    "title": "12  Custom Rendering",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: rendering the plot in your own output widget (plotly, ggiraph, a custom htmlwidget). The canonical pattern per ADR 0006: state &lt;- ptr_server(formula, id) in your host server, place your own widget at shiny::NS(id)(\"my_plot\") in the UI, and read state$runtime()$plot. Also covers ptr_gg_extra() programmatic layer injection.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "12.1 The canonical pattern\n“I want my own renderer.” ptr_server() returns the app’s state, so you can swap ggpaintr’s plot pane for plotly, ggiraph, or any custom host. The runtime stays inside ggpaintr; you replace only the output. This is a UI-side swap — you place your own output widget — not a separate server pattern.\nPlace your output widget at shiny::NS(id)(...) in the UI next to ptr_ui_controls(formula, id), call the single ptr_server(formula, id) in your plain server function (it namespaces internally — you do not write a moduleServer), and bind your widget off the returned state:\nBecause ptr_server() returns to your top-level server, Shiny does not auto-namespace your output assignment — wrap the id with shiny::NS(id)(), the same expression you used on the UI side. (Single embedding: omit the id and the NS() wrapper.)",
     "crumbs": [
       "Embedding",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom rendering</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html#the-canonical-pattern",
+    "href": "custom-render.html#the-canonical-pattern",
+    "title": "12  Custom Rendering",
+    "section": "",
+    "text": "# UI:     plotly::plotlyOutput(shiny::NS(\"plot1\")(\"my_plot\"))\n#         + ptr_ui_controls(formula, \"plot1\")\n# server: state &lt;- ptr_server(formula, \"plot1\")\n#         output[[shiny::NS(\"plot1\")(\"my_plot\")]] &lt;-\n#           plotly::renderPlotly(state$runtime()$plot)",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html#two-reading-paths-off-the-state",
+    "href": "custom-render.html#two-reading-paths-off-the-state",
+    "title": "12  Custom Rendering",
+    "section": "12.2 Two reading paths off the state",
+    "text": "12.2 Two reading paths off the state\n\n\n\n\n\n\n\nInside renderX({...}) / reactive({...}) / observeEvent({...})\nOutside reactive contexts (download handlers, snapshots)\n\n\n\n\nRead state$runtime() and unpack its slots ($ok, $plot, $code_text, $error). This takes the reactive dependency that wires re-renders to Update plot clicks.\nCall ptr_extract_plot(state) / ptr_extract_code(state) / ptr_extract_error(state). These wrap shiny::isolate() — current value, no reactive dependency.\n\n\n\nMixing them — ptr_extract_plot(state) inside renderPlotly({...}) — silently breaks reactivity: the block fires once on mount and never again. Stick to state$runtime() inside reactive blocks.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html#custom-plot-renderer",
+    "href": "custom-render.html#custom-plot-renderer",
+    "title": "12  Custom Rendering",
+    "section": "12.3 Custom plot renderer",
+    "text": "12.3 Custom plot renderer\nRender ptr_ui_controls() for the widgets, place your own output container, and never place ptr_ui_plot() — with no UI slot bound to it, the built-in plot output stays inert, so there is no bundled pane at all:\n\nformula &lt;- \"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) + geom_point()\"\n\nui &lt;- ptr_ui_page(\n  shiny::fluidRow(\n    shiny::column(5, ptr_ui_controls(formula, \"plot1\")),      # widgets only\n    shiny::column(\n      7,\n      plotly::plotlyOutput(shiny::NS(\"plot1\")(\"custom_plot\"), # your own output\n                           height = \"500px\") |&gt;\n        ptr_ui_toggle_code(ptr_ui_code(\"plot1\"))\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n  state &lt;- ptr_server(formula, \"plot1\")\n  output[[shiny::NS(\"plot1\")(\"custom_plot\")]] &lt;- plotly::renderPlotly({\n    res &lt;- state$runtime()\n    shiny::req(isTRUE(res$ok), res$plot)\n    plotly::ggplotly(res$plot)\n  })\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nggpaintr’s controls driving a plotly output instead of the bundled plot pane. The &lt;/&gt; toggle still serves the generated code.\n\n\nreq(isTRUE(res$ok), res$plot) keeps the panel quiet between draws and on transient error states. The gallery’s plotly and ggiraph originals (Chapter 6 § “Interactive output packages”) are the graphics this pattern brings to life.\nIf you would rather keep ggpaintr’s chrome and add a second custom view, capture the module’s state and render a second output off it — ptr_ui(formula, \"p\") in the UI plus state &lt;- ptr_server(formula, \"p\") in the server — but ptr_ui() always renders the bundled plot pane alongside your custom one. Use the bare-piece composition above when you want exactly one (custom) plot.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html#custom-code-panel",
+    "href": "custom-render.html#custom-code-panel",
+    "title": "12  Custom Rendering",
+    "section": "12.4 Custom code panel",
+    "text": "12.4 Custom code panel\nBind to state$runtime() inside renderText({...}) and pull code_text off it — in the same server function, after state &lt;- ptr_server(formula, \"plot1\"):\noutput[[shiny::NS(\"plot1\")(\"my_code\")]] &lt;- shiny::renderText({\n  state$runtime()$code_text %||% \"\"\n})\nBe aware that code_text holds only the substituted formula code — any ptr_gg_extra() extras (see below) are folded into the plot, never into this slot, so the panel above silently drops them. If your panel must show extras too, keep a state$runtime() read for the reactive dependency and return ptr_extract_code(state) instead — that accessor appends the extras text on top, exactly like the bundled code panel does.\nFor non-reactive contexts (a download handler, a snapshot test), the public accessor is ptr_extract_code(state). It returns a single string and includes any ptr_gg_extra() expressions captured on the state.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html#custom-error-ui",
+    "href": "custom-render.html#custom-error-ui",
+    "title": "12  Custom Rendering",
+    "section": "12.5 Custom error UI",
+    "text": "12.5 Custom error UI\nstate$runtime()$error is the latest runtime error string, or NULL when the last cycle succeeded:\noutput[[shiny::NS(\"plot1\")(\"my_status\")]] &lt;- shiny::renderUI({\n  msg &lt;- state$runtime()$error\n  if (is.null(msg)) shiny::tags$div(class = \"status-ok\", \"Plot is up to date\")\n  else              shiny::tags$div(class = \"status-error\", msg)\n})\nptr_extract_error(state) is the non-reactive counterpart.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html#programmatic-layer-injection-ptr_gg_extra",
+    "href": "custom-render.html#programmatic-layer-injection-ptr_gg_extra",
+    "title": "12  Custom Rendering",
+    "section": "12.6 Programmatic layer injection — ptr_gg_extra()",
+    "text": "12.6 Programmatic layer injection — ptr_gg_extra()\nptr_gg_extra(state, ...) evaluates one or more ggplot2 expressions and attaches the results as “extras” on the state. The runtime folds them into the rendered plot on the next cycle; in the generated code they never enter state$runtime()$code_text — the extras text is appended on top only by ptr_extract_code(state) and the bundled code panel. Each call replaces the previously captured extras — pass everything you want layered on in a single call:\n\nformula &lt;- \"ggplot(mtcars, aes(x = mpg, y = hp)) + geom_point()\"\n\nui &lt;- shiny::fluidPage(\n  shiny::actionButton(\"add_log\", \"Toggle log-scale\"),\n  ptr_ui(formula)\n)\n\nserver &lt;- function(input, output, session) {\n  state &lt;- ptr_server(formula)\n  shiny::observeEvent(input$add_log, {\n    ptr_gg_extra(state, ggplot2::scale_x_log10())\n  })\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nA host button injecting scale_x_log10() into the next draw via ptr_gg_extra().\n\n\nEval errors from the captured expressions leave the existing extras untouched (atomic update), and extras are suppressed automatically while the underlying runtime reports a failure — on the custom-renderer path (state$runtime() reads and the ptr_extract_plot() / ptr_extract_code() / ptr_extract_error() accessors), stale extras from a prior successful draw never surface during an error state. The bundled panes behave differently: their retain-on-error fallback keeps the last successful plot and code on screen — extras included — while the error pane shows the new diagnostic.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
+    ]
+  },
+  {
+    "objectID": "custom-render.html#shared-widgets-driving-custom-renderers",
+    "href": "custom-render.html#shared-widgets-driving-custom-renderers",
+    "title": "12  Custom Rendering",
+    "section": "12.7 Shared widgets driving custom renderers",
+    "text": "12.7 Shared widgets driving custom renderers\nThe multi-instance coordinator (Chapter 8) composes with custom outputs: one ptr_shared_server(obj) bundle feeds every per-plot ptr_server(), and each returned state feeds its own renderPlotly(). The cross-formula key lives in the bare ptr_ui_shared_panel(obj); its keys are excluded from each ptr_ui_controls(formula, id, shared = obj):\n\nplots &lt;- list(\n  \"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Length, fill = Species)) + geom_boxplot()\",\n  \"ggplot(iris, aes(x = ppVar(shared = 'metric'), y = Sepal.Width,  fill = Species)) + geom_violin()\"\n)\n\nobj &lt;- ptr_shared(formulas = plots)\n\nui &lt;- ptr_ui_page(\n  ptr_ui_shared_panel(obj),                                  # cross-formula panel (bare, L3)\n  shiny::fluidRow(\n    shiny::column(3, ptr_ui_controls(plots[[1]], \"plot_1\", shared = obj)),\n    shiny::column(9, plotly::plotlyOutput(shiny::NS(\"plot_1\")(\"custom\")))\n  ),\n  shiny::fluidRow(\n    shiny::column(3, ptr_ui_controls(plots[[2]], \"plot_2\", shared = obj)),\n    shiny::column(9, plotly::plotlyOutput(shiny::NS(\"plot_2\")(\"custom\")))\n  )\n)\nserver &lt;- function(input, output, session) {\n  sh &lt;- ptr_shared_server(obj)                               # top level, once\n  state1 &lt;- ptr_server(plots[[1]], \"plot_1\", shared_state = sh)\n  state2 &lt;- ptr_server(plots[[2]], \"plot_2\", shared_state = sh)\n  output[[shiny::NS(\"plot_1\")(\"custom\")]] &lt;- plotly::renderPlotly({\n    res &lt;- state1$runtime(); shiny::req(isTRUE(res$ok), res$plot)\n    plotly::ggplotly(res$plot)\n  })\n  output[[shiny::NS(\"plot_2\")(\"custom\")]] &lt;- plotly::renderPlotly({\n    res &lt;- state2$runtime(); shiny::req(isTRUE(res$ok), res$plot)\n    plotly::ggplotly(res$plot)\n  })\n}\n\nshiny::shinyApp(ui, server)\n\n\n\n\nOne shared metric picker on top; each plot’s state drives its own plotly output.\n\n\nBecause each ptr_server() call is at the top level, writing output$custom would bind to the bare id \"custom\", not the namespaced \"plot_1-custom\" the UI expects — use output[[shiny::NS(id)(name)]], the same id expression as on the UI side.",
+    "crumbs": [
+      "Embedding",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Custom Rendering</span>"
     ]
   },
   {
@@ -186,7 +758,62 @@
     "href": "custom-placeholders.html",
     "title": "13  Custom Placeholders",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: ptr_define_placeholder_value/consumer/source, the process-global registry, and the hooks.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "13.1 A value placeholder — every argument\nThe five built-ins are themselves registered through the same public API you are about to use. You define a placeholder by calling one of three constructors, keyed by the role from Chapter 3:\nAll three are thin wrappers over a shared core, so they take an overlapping set of arguments. This chapter covers the value constructor in full, then only what is different for consumer and source. A few facts hold for all three:\nA custom ppPercent: a 0–100 slider whose value is divided by 100 before it reaches the plot. It exercises every argument of ptr_define_placeholder_value(); the positional 40 in the app seeds the slider, the named step = 5 is forwarded to build_ui:\nppPercent &lt;- ptr_define_placeholder_value(\n  keyword = \"ppPercent\",\n\n  build_ui = function(node, label = NULL, selected = NULL,\n                      named_args = list(), ...) {\n    step &lt;- named_args$step %||% 1\n    shiny::sliderInput(\n      node$id, label = label %||% \"Percent\",\n      min = 0, max = 100,\n      value = selected,   # the framework routes ppPercent(40) in here\n      step = step\n    )\n  },\n\n  resolve_expr = function(value, node, ...) {\n    if (is.null(value)) return(NULL)\n    as.numeric(value) / 100\n  },\n\n  validate_session_input = function(value, ctx) {\n    v &lt;- suppressWarnings(as.numeric(value))\n    if (length(v) != 1L || is.na(v) || v &lt; 0 || v &gt; 100) {\n      return(\"Percent must be a single number between 0 and 100.\")\n    }\n    TRUE\n  },\n\n  parse_positional_arg = ptr_arg_numeric(),\n  parse_named_args     = list(step = ptr_arg_numeric()),\n  embellish_eval       = function(x, ...) as.numeric(x) / 100,\n  ui_text_defaults = list(label = \"Percent for {param}\")\n)\n\nptr_app(\n  ggplot(mtcars, aes(x = ppVar(\"wt\"), y = ppVar(\"mpg\"))) +\n    geom_point(alpha = ppPercent(40, step = 5))\n)",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Custom Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "custom-placeholders.html#a-value-placeholder-every-argument",
+    "href": "custom-placeholders.html#a-value-placeholder-every-argument",
+    "title": "13  Custom Placeholders",
+    "section": "",
+    "text": "The registered ppPercent rendering as a 0–100 slider; the generated code shows alpha = 0.4.\n\n\n\n13.1.1 keyword\nThe name to register and to write in formulas. Required.\n\n\n13.1.2 build_ui — and why its signature looks the way it does\nbuild_ui returns the Shiny control. Its first argument is node (required) — carrying, among other things, node$id (the input id you must give your widget) and node$default (the literal positional default from the formula, or NULL — exposed for the framework’s own bookkeeping; never read it inside the hook, as explained next).\nThe framework does not call build_ui(node) bare. It calls it through an injector that also passes label (the resolved copy from ui_text_defaults, possibly overridden by the app’s ui_text), selected (the persisted value, injected only if your function can receive it), and named_args (the validated named arguments from the formula call). Hence the canonical signature function(node, label = NULL, selected = NULL, named_args = list(), ...):\n\nYou opt in to an injected argument by naming it — or by having .... If you neither name selected nor accept ..., it is never injected. Naming the ones you use and keeping ... to swallow the rest is the safe, forward-compatible shape.\nSeed the widget from selected — and only selected. The framework owns the precedence: on the first render it routes the formula’s positional default (ppPercent(40)) into selected; on every later render selected is the live input, verbatim. Never read node$default yourself and never hardcode a fallback for the empty case — both bypass the seeding layer and snap a user-cleared widget back to the default on the next re-render. When selected is empty (NULL, character(0), \"\", NA), render the widget empty; boot defaults belong in the formula.\nUse node$id — and only node$id — as the widget id. Do not namespace it yourself; the framework already did.\n\n\n\n13.1.3 resolve_expr\nfunction(value, node, ...) → the value (or expression) spliced back into the formula. Return NULL to contribute nothing (an empty field), which drops the argument cleanly (Chapter 4). Here we divide by 100 so the plot sees a 0–1 alpha.\n\n\n13.1.4 validate_session_input\nOptional. function(value, ctx), run before resolve_expr. Return TRUE or NULL to accept; return a single character string to reject — it surfaces as the inline error message (rlang::abort() also rejects). Any other return value fails closed with a generic “validation failed” — so returning the value itself, a natural-looking mistake, rejects every draw. For mid-typing artifacts that should not flash an error, signal ptr_signal_partial() instead of aborting — it is caught on the live keystroke path but not on the draw path. (ctx earns its keep for consumers, below.)\n\n\n13.1.5 parse_positional_arg\nDeclares whether the placeholder accepts a positional default in the formula, and validates it. Pass one of the argument validators — ptr_arg_string(), ptr_arg_numeric(), ptr_arg_symbol(), ptr_arg_symbol_or_string(), ptr_arg_expression(). Each inspects the default as unevaluated code (the symbol, string, and expression validators never eval(); ptr_arg_numeric() first walks the AST against an allowlist, then constant-folds it in a sealed environment), so ppPercent(40) is validated to be a numeric literal at translate time. The element factories take vector = TRUE to accept a c(...) of elements — ptr_arg_numeric(vector = TRUE, length = 2), ptr_arg_symbol(vector = TRUE) for a multi-column default like c(mpg, hp). Leaving it NULL (the default) rejects any positional argument.\n\n\n13.1.6 parse_named_args\nA fully-named list mapping extra named-argument names to validators, same family as above. It lets the formula write ppPercent(40, step = 5); validated values arrive in build_ui as named_args. The name shared is reserved (it is the cross-widget binding key, Chapter 8) and may not appear here.\n\n\n13.1.7 embellish_eval\nThe plain-R meaning of the keyword outside ptr_app(). A placeholder-embellished formula must stay valid plain R that still renders the original plot with no app running; embellish_eval supplies that meaning. Each constructor returns this function, so bind it under the keyword name — ppPercent &lt;- ptr_define_placeholder_value(\"ppPercent\", ...), after which ppPercent(40) is 0.4 as ordinary R. The meaning is author-controlled, never derived. If omitted, value and consumer keywords default to embellish_identity() (a transparent no-op wrapper); embellish_symbol_to_string() covers the column-selecting consumer case (it returns the referenced column names as strings, so a naked tidyselect formula still works).\n\n\n13.1.8 ui_text_defaults\nA named list of copy defaults over label, help, placeholder, and empty_text, with {param} interpolated to the argument name. These are the defaults; an app overrides them through ui_text = (Chapter 15).",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Custom Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "custom-placeholders.html#a-consumer-placeholder-the-delta",
+    "href": "custom-placeholders.html#a-consumer-placeholder-the-delta",
+    "title": "13  Custom Placeholders",
+    "section": "13.2 A consumer placeholder — the delta",
+    "text": "13.2 A consumer placeholder — the delta\nEverything above applies; two things change.\nbuild_ui gains two arguments: cols and data. The injector fills cols with the column names of the data flowing into this point of the pipeline and data with that frame, re-running build_ui whenever the upstream changes:\n\ncolvars &lt;- ptr_define_placeholder_consumer(\n  keyword = \"colvars\",\n\n  build_ui = function(node, cols = character(), data = NULL,\n                      label = NULL, selected = character(0), ...) {\n    shiny::selectInput(\n      node$id, label = label %||% \"Columns\",\n      choices  = cols,\n      selected = intersect(selected, cols),  # keep only still-valid picks\n      multiple = TRUE\n    )\n  },\n\n  resolve_expr = function(value, node, ...) {\n    if (length(value) == 0L) return(NULL)\n    rlang::call2(\"c\", !!!as.list(value))   # c(col1, col2, ...)\n  },\n\n  parse_positional_arg = ptr_arg_symbol_or_string(),\n  ui_text_defaults = list(label = \"Columns for {param}\")\n)\n\nptr_app(\n  mtcars |&gt;\n    dplyr::select(colvars) |&gt;\n    ggplot(aes(x = ppVar, y = ppVar)) + geom_point()\n)\n\n\n\n\ncolvars as a multi-column picker inside a dplyr::select() pipeline stage; the downstream ppVar pickers re-resolve against whatever it selects.\n\n\nvalidate_session_input’s ctx is now useful. ctx$data holds the upstream data frame, so a validator can do data-aware checks — reject a non-numeric column, range-check chosen values, and so on. (The gallery’s ppVars uses ctx$upstream_cols the same way: Chapter 6.)",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Custom Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "custom-placeholders.html#a-source-placeholder-the-delta",
+    "href": "custom-placeholders.html#a-source-placeholder-the-delta",
+    "title": "13  Custom Placeholders",
+    "section": "13.3 A source placeholder — the delta",
+    "text": "13.3 A source placeholder — the delta\nA source produces the data, so it sits at the head of a pipeline. Three things differ:\n\nresolve_data replaces resolve_expr as the required producer: function(value, node, ...) must return a data frame. resolve_expr becomes optional, defaulting to the symbol that names the produced frame in generated code — override it only for different generated code. The two can disagree on purpose: show read.csv(\"...\") in the code while reading uploaded bytes at runtime.\nembellish_eval defaults to an abort guard, not identity — a source has no sensible plain-R meaning until you give it one.\nshortcut = TRUE adds a framework-owned companion text box (at node$shortcut_id) into which the user types the name of a data frame to load — the “or type a dataset name” box you saw on ppUpload. The framework owns the box and the lookup: it resolves the typed name itself, via get(name, envir, inherits = TRUE) against the envir passed to ptr_app() / ptr_server(). Because the framework owns that box, your build_ui must render only node$id — or nothing at all.\n\nThis ppDataset lets the user type the name of any data frame in scope. There is less to write than you might expect, because the shortcut machinery is not yours to reimplement: the typed name flows into resolve_expr as value (the default rlang::sym(value) already splices it into the generated code as a bare symbol), while resolve_data — still required, as the role’s producer — receives the primary widget’s value, input[[node$id]], never the typed name (that reaches your hooks through node if you need it). With no primary widget that value is always NULL, so a no-op hook returning NULL (“no data yet”) is the whole job:\n\nptr_define_placeholder_source(\n  keyword  = \"ppDataset\",\n  shortcut = TRUE,\n\n  build_ui = function(node, label = NULL, ...) {\n    # Shortcut-only source: the framework's text box is the sole entry\n    # point, so build_ui contributes no widget of its own.\n    NULL\n  },\n\n  resolve_data = function(value, node, ...) {\n    # `value` is the primary widget's value -- always NULL here, since\n    # build_ui renders nothing. The shortcut lookup is the framework's.\n    NULL\n  },\n\n  ui_text_defaults = list(label = \"Dataset for {param}\")\n)\n\nptr_app(\n  ppDataset() |&gt; ggplot(aes(x = ppVar(\"mpg\"))) + geom_histogram()\n)\n\n\n\n\nppDataset() at the pipeline head: type mtcars into the framework’s text box and the downstream pickers light up.\n\n\nA source that owns a real widget (a selectInput of dataset names, say) is the same shape with shortcut = FALSE and a build_ui that renders the picker at node$id — there resolve_data does the real work, turning input[[node$id]] into the frame (the example in ?ptr_define_placeholder_source is exactly this shape).",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Custom Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "custom-placeholders.html#common-pitfalls",
+    "href": "custom-placeholders.html#common-pitfalls",
+    "title": "13  Custom Placeholders",
+    "section": "13.4 Common pitfalls",
+    "text": "13.4 Common pitfalls\n\nForgetting inputId = node$id. The widget renders, the user types, nothing happens — the value never reaches resolve_expr.\nReturning a string when you wanted a symbol. resolve_expr = function(value, ...) value for a column picker splices \"cyl\" (a string literal), so geom_point(color = \"cyl\") paints a constant color. Wrap with rlang::sym(value).\nForgetting empty input. Shiny calls your hooks before the user touches anything. Treat NULL, character(0), NA, and empty strings as “no value yet” and return(NULL) — the framework prunes the argument.\nConfusing resolve_expr with resolve_data. For sources: resolve_data produces the actual frame; resolve_expr produces the text in the rendered call.\nDropping ... from a hook signature. Future framework versions may inject new named arguments; without ... the call fails.\nRe-registering inside a reactive. The registry is process-global; register once at script top level, before ptr_app().",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Custom Placeholders</span>"
+    ]
+  },
+  {
+    "objectID": "custom-placeholders.html#unregistering",
+    "href": "custom-placeholders.html#unregistering",
+    "title": "13  Custom Placeholders",
+    "section": "13.5 Unregistering",
+    "text": "13.5 Unregistering\nptr_clear_placeholder(\"ppPercent\") removes one user-registered keyword; ptr_clear_placeholder() removes them all. Seven keywords are protected (clearing one errors): the five built-in placeholders plus the structural ppLayerOff / ppVerbSwitch. Re-registering an existing keyword overwrites the previous entry with a notice — no need to clear first.",
     "crumbs": [
       "Extension",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Custom Placeholders</span>"
@@ -197,7 +824,40 @@
     "href": "theming-wrappers.html",
     "title": "14  Theming and Wrappers",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: ptr_app_bslib(), exposing downstream bslib arguments, and CSS assets.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "14.1 A worked example: a bslib wrapper\nWhen CSS alone (Chapter 7) is not enough — you want a different page shell, a theme system like bslib, or a layout that does not map onto ptr_app()’s defaults — write a thin wrapper around the public ggpaintr primitives. A single-formula wrapper composes the bare L3 pieces (Chapter 11) plus the scaffolding they need:\nThe entire wrapper is short enough to read in one screen — everything ggpaintr-specific is public API; the only non-ggpaintr pieces are bslib::page_sidebar() and the theme = passthrough, which belong to bslib:\nmy_app_bslib &lt;- function(formula,\n                         envir = parent.frame(),\n                         ui_text = NULL,\n                         expr_check = TRUE,\n                         safe_to_remove = character(),\n                         theme = NULL) {\n  if (!requireNamespace(\"bslib\", quietly = TRUE)) {\n    rlang::abort(\"Package 'bslib' is required for my_app_bslib().\")\n  }\n  if (is.null(theme)) {\n    theme &lt;- bslib::bs_theme(version = 5, bootswatch = \"flatly\")\n  }\n  id &lt;- \"ptr\"\n  title &lt;- ptr_resolve_ui_text(\"title\", ui_text = ui_text)$label %||% \"ggpaintr\"\n\n  ui &lt;- bslib::page_sidebar(\n    title = title,\n    theme = theme,\n    sidebar = bslib::sidebar(\n      title = \"Controls\",\n      # The `.ptr-app` div restores the themed scope the bslib page chrome\n      # does not provide, and ptr_ui_assets() ships the bundle (deduped\n      # page-wide by htmlDependency).\n      shiny::tags$div(\n        class = \"ptr-app\",\n        ptr_ui_assets(),\n        ptr_ui_controls(\n          id = id, formula = formula,\n          ui_text = ui_text,\n          expr_check = expr_check,\n          shared = NULL\n        )\n      )\n    ),\n    bslib::card(\n      shiny::tags$div(\n        class = \"ptr-app\",\n        ptr_ui_assets(),\n        ptr_ui_toggle_code(\n          ptr_ui_inline_error(ptr_ui_plot(id), ptr_ui_error(id)),\n          ptr_ui_code(id)\n        )\n      )\n    )\n  )\n\n  server &lt;- function(input, output, session) {\n    ptr_server(\n      formula = formula,\n      id = id,\n      envir = envir,\n      ui_text = ui_text,\n      expr_check = expr_check,\n      safe_to_remove = safe_to_remove\n    )\n  }\n\n  shiny::shinyApp(ui = ui, server = server)\n}\n\nmy_app_bslib(\"ggplot(iris, aes(ppVar('Sepal.Length'), ppVar('Sepal.Width'), color = ppVar('Species'))) + geom_point()\")\nNote the bslib root is exactly the case ptr_ui_page() does not cover (the bundled CSS is Bootstrap-3-scoped, and a BS5 page is not a BS3 page builder) — which is why the wrapper reproduces the shell’s two obligations by hand: ptr_ui_assets() once per ggpaintr region, and the .ptr-app theme scope around the pieces. That recipe is the same one the navbarPage decomposition uses (Chapter 11).",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Theming and Wrappers</span>"
+    ]
+  },
+  {
+    "objectID": "theming-wrappers.html#a-worked-example-a-bslib-wrapper",
+    "href": "theming-wrappers.html#a-worked-example-a-bslib-wrapper",
+    "title": "14  Theming and Wrappers",
+    "section": "",
+    "text": "The same ggpaintr machinery under a bslib page_sidebar shell with the flatly theme.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Theming and Wrappers</span>"
+    ]
+  },
+  {
+    "objectID": "theming-wrappers.html#wrappers-compose",
+    "href": "theming-wrappers.html#wrappers-compose",
+    "title": "14  Theming and Wrappers",
+    "section": "14.2 Wrappers compose",
+    "text": "14.2 Wrappers compose\nA “dark mode” variant is one line:\nmy_app_dark &lt;- function(formula, ...) {\n  my_app_bslib(\n    formula,\n    theme = bslib::bs_theme(version = 5, bootswatch = \"darkly\"),\n    ...\n  )\n}\nThe same template extends to other shells — bslib::page_navbar(), a custom fluidPage() with bespoke chrome, a flexdashboard-style page: swap the UI half, leave the ptr_server() half alone. A wrapper is free to expose any downstream-library arguments (here theme =) alongside the ggpaintr ones it forwards (ui_text =, expr_check =, safe_to_remove =, envir =).",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Theming and Wrappers</span>"
+    ]
+  },
+  {
+    "objectID": "theming-wrappers.html#public-api-limits",
+    "href": "theming-wrappers.html#public-api-limits",
+    "title": "14  Theming and Wrappers",
+    "section": "14.3 Public-API limits",
+    "text": "14.3 Public-API limits\nThe bare pieces are independently placeable, so a layout that puts the plot and the generated code in separate containers — two side-by-side bslib::card()s, say — is just a matter of dropping each piece where you want it instead of nesting them through the combinators; skip ptr_ui_toggle_code() / ptr_ui_inline_error() and the panes render plain and standalone. Single-formula ppVar(shared = \"...\") coordination also works on the bare path — ptr_server() self-binds every declared key under its own namespace, exactly like ptr_app(). The coordinator trio is only for two or more ggpaintr blocks (Chapter 8).\nOne thing a wrapper cannot do: hand-place individual placeholder widgets. ptr_ui_controls() is the supported rendering of the generated widgets, and there is no public accessor for the parsed node tree (Chapter 11).",
     "crumbs": [
       "Extension",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Theming and Wrappers</span>"
@@ -208,7 +868,62 @@
     "href": "ui-text.html",
     "title": "15  UI Text and Copy",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: The ptr_ui_text() override model: shell vs params, alias normalization, merge precedence.\nExamples follow the Shiny rendering convention (book-conventions.md): code shown verbatim and not executed, the running UI shown as a screenshot/GIF, kept in sync with a tested package fixture.",
+    "text": "15.1 The six override sections\nEvery label, placeholder, and help string in the generated UI comes from a deep-merged copy-rules tree. ggpaintr ships defaults; you override any subset by passing ui_text = to any entry point (ptr_app(), ptr_ui() / ptr_server(), ptr_shared()). Only the keys you spell out change — everything else stays at its built-in value.\nThe first three sections have fixed lookup paths: layer_checkbox is a single leaf, upload nests one level (file, name), and shell holds one leaf entry per chrome slot plus four plain-string keys for shared-controls copy (shared_section_title / shared_section_hint, shared_panel_title / shared_panel_hint). The last three are nested by keyword — and, for layers, by layer name × keyword × parameter — letting you scope an override to a single placeholder, a single parameter, or a single layer.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>UI Text and Copy</span>"
+    ]
+  },
+  {
+    "objectID": "ui-text.html#the-six-override-sections",
+    "href": "ui-text.html#the-six-override-sections",
+    "title": "15  UI Text and Copy",
+    "section": "",
+    "text": "Section\nWhat it controls\n\n\n\n\nshell\nOuter chrome — app title, draw / draw-all buttons, layer picker label, data / controls subtab labels.\n\n\nupload\nThe ppUpload widget — nested file and name entries carrying the file-picker label and the optional dataset-name label / placeholder / help text.\n\n\nlayer_checkbox\nThe “include this layer” toggle on each layer panel.\n\n\ndefaults\nPer-keyword copy defaults — one entry per registered placeholder, including custom ones (auto-populated from each registration’s ui_text_defaults).\n\n\nparams\nPer-parameter overrides — copy that applies when a placeholder appears as the x, color, title, alpha, … argument of a layer.\n\n\nlayers\nPer-layer overrides — copy scoped to one placeholder occurrence inside one specific layer call (e.g. the positional ppExpr of facet_wrap()).",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>UI Text and Copy</span>"
+    ]
+  },
+  {
+    "objectID": "ui-text.html#merge-precedence",
+    "href": "ui-text.html#merge-precedence",
+    "title": "15  UI Text and Copy",
+    "section": "15.2 Merge precedence",
+    "text": "15.2 Merge precedence\nWhen the runtime needs the copy for a control (the widget for one placeholder occurrence in one layer), it deep-merges three rules in order:\n\ndefaults[[keyword]] — most general.\nparams[[param_key]][[keyword]] — keyed by the surrounding parameter name.\nlayers[[layer_name]][[keyword]][[param_key]] — keyed by the layer the placeholder lives in.\n\nEach later rule wins on fields it specifies; fields it omits fall back to the earlier rule. For the other UI slots (chrome, upload widget, layer checkbox) the resolution path is fixed — the override either replaces a leaf field or does not.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>UI Text and Copy</span>"
+    ]
+  },
+  {
+    "objectID": "ui-text.html#building-overrides",
+    "href": "ui-text.html#building-overrides",
+    "title": "15  UI Text and Copy",
+    "section": "15.3 Building overrides",
+    "text": "15.3 Building overrides\n\ncustom_text &lt;- ptr_ui_text(list(\n  shell = list(\n    title       = list(label = \"Iris explorer\"),\n    draw_button = list(label = \"Render\")\n  ),\n  params = list(\n    x     = list(ppVar  = list(label = \"X variable\")),\n    title = list(ppText = list(label = \"Plot heading\"))\n  )\n))\n\nptr_app(\n  \"ggplot(iris, aes(x = ppVar, y = ppVar, color = ppVar)) +\n     geom_point() +\n     labs(title = ppText)\",\n  ui_text = custom_text\n)\n\n\n\n\nThe overridden copy in place: “Iris explorer” title, a “Render” button, “X variable” on the x picker, “Plot heading” on the title input. Unspecified labels keep their defaults.\n\n\nptr_ui_text() validates the partial override and returns a fully-merged object. Passing the bare list works too — the entry points call it internally — but wrapping explicitly catches typos in section keys at construction time rather than at render time.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>UI Text and Copy</span>"
+    ]
+  },
+  {
+    "objectID": "ui-text.html#the-low-level-lookup",
+    "href": "ui-text.html#the-low-level-lookup",
+    "title": "15  UI Text and Copy",
+    "section": "15.4 The low-level lookup",
+    "text": "15.4 The low-level lookup\nptr_resolve_ui_text(component, keyword, param, layer_name, ui_text) is the lookup the runtime uses to fetch the resolved copy for a single UI slot. Embedders writing custom UIs that mix ggpaintr-driven labels with their own copy can call it directly — the wrapper in Chapter 14 uses it to resolve its page title — but most users never need it.",
+    "crumbs": [
+      "Extension",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>UI Text and Copy</span>"
+    ]
+  },
+  {
+    "objectID": "ui-text.html#where-custom-placeholders-fit",
+    "href": "ui-text.html#where-custom-placeholders-fit",
+    "title": "15  UI Text and Copy",
+    "section": "15.5 Where custom placeholders fit",
+    "text": "15.5 Where custom placeholders fit\nA custom placeholder’s registration-time ui_text_defaults (Chapter 13) populates its entry in the defaults section, so app authors can re-copy your widget through the same ui_text = machinery without touching your code — the {param} interpolation included.",
     "crumbs": [
       "Extension",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>UI Text and Copy</span>"
@@ -217,23 +932,165 @@
   {
     "objectID": "llm.html",
     "href": "llm.html",
-    "title": "16  LLM integration",
+    "title": "16  Using ggpaintr from an LLM",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: ggpaintr’s LLM-assisted features for editing formulas. Absorbs the package’s ggpaintr-llm vignette once that vignette is e2e-green and drift-audit-clean. Covers the user-facing API only — provider configuration, prompt shape, fallback behavior — not the internals of how the assistant is wired.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R. LLM-backed fixtures need either a mocked provider or skip-on-no-key handling; the gate must boot them either way.",
+    "text": "16.1 Quick start — three lines of setup\nLarge language models are fluent at writing raw shiny::fluidPage() + server scaffolding from memory. They are not fluent at writing ggpaintr, because every model today has zero prior exposure to this package. Without help, a user asking “build me a Shiny app where I can pick columns from iris and see a scatter plot” gets hundreds of lines of hand-rolled Shiny that the ptr_app() one-liner would have covered.\nThis chapter shows how to make any ellmer chat session reach for ggpaintr first, using two exported helpers:\nThe tool is backed by ptr_llm_topic(), which returns the content of one bundled topic file. The LLM pulls only the topic it needs, instead of the whole manual loading the context window on every turn.\nlibrary(ellmer)\nlibrary(ggpaintr)\n\nchat &lt;- chat_anthropic(system_prompt = ptr_llm_primer())\nptr_llm_register(chat)\n\nchat$chat(\"Build a Shiny app where the user picks X and Y columns from mtcars.\")\nUnder the hood:\nOn the first turn the model sees the user’s prompt, recognises it as a plot-explorer task, calls ggpaintr_docs(topic = \"level1_ptr_app\"), and writes a ptr_app(...) snippet rather than raw Shiny.",
     "crumbs": [
       "Advanced topics",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>LLM integration</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#quick-start-three-lines-of-setup",
+    "href": "llm.html#quick-start-three-lines-of-setup",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "",
+    "text": "chat_anthropic() loads the primer (~4,000 tokens) into the system prompt, which stays in context every turn.\nptr_llm_register() attaches a single tool named ggpaintr_docs to the chat session. The tool’s one argument — topic — is constrained by type_enum() to the exact set of topic names returned by ptr_llm_topics(), so the LLM cannot request a topic that does not exist.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#what-the-primer-tool-split-buys-you",
+    "href": "llm.html#what-the-primer-tool-split-buys-you",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.2 What the primer + tool split buys you",
+    "text": "16.2 What the primer + tool split buys you\nA common alternative is to stuff the entire manual into the system prompt. That works but wastes tokens: every chat turn pays for the full manual whether or not it is relevant. The primer/tool split is a lightweight form of retrieval:\n\n\n\n\n\n\n\n\nLayer\nWhen it loads\nWhat it teaches\n\n\n\n\nPrimer\nEvery turn (~4,000 tokens)\nggpaintr exists; 3-level model; decision rule.\n\n\nggpaintr_docs(topic)\nOn demand\nOne focused runnable example (~500–2,800 tokens).\n\n\n\nThe primer carries an explicit rule — “Before writing R code for an interactive plot task, call ggpaintr_docs(topic) to fetch the runnable example” — and that rule plus the enum-constrained argument is what makes the LLM reliably reach for the tool instead of hallucinating an API.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#the-available-topics",
+    "href": "llm.html#the-available-topics",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.3 The available topics",
+    "text": "16.3 The available topics\nThis chunk runs against the pinned ggpaintr at render time, so the list below is the canonical one:\n\nlibrary(ggpaintr)\nptr_llm_topics()\n\n [1] \"custom_placeholder\"   \"formula_syntax\"       \"level1_ptr_app\"      \n [4] \"level1_ptr_options\"   \"level2_custom_ids\"    \"level2_module\"       \n [7] \"level2_shared\"        \"level2_ui_text\"       \"level3_custom_render\"\n[10] \"level3_gg_extra\"      \"level3_layout\"        \"overview\"            \n\n\nA short guide to each:\n\n\n\n\n\n\n\nTopic\nWhen the LLM should call it\n\n\n\n\noverview\nFirst orientation — the 3-level model and decision rule.\n\n\nformula_syntax\nWhich placeholder keyword goes where; pipelines; shared = \"...\".\n\n\nlevel1_ptr_app\nQuick turn-key single-plot app (ptr_app()).\n\n\nlevel1_ptr_options\nPackage-global settings: verbosity, layer-checkbox default.\n\n\nlevel2_module\nEmbed the default-layout block (ptr_ui() / ptr_server()) in the user’s own Shiny app.\n\n\nlevel2_custom_ids\nId collisions, the ptr_ reserved prefix, generated-id grammar.\n\n\nlevel2_shared\nMultiple instances + the shared-coordinator trio for cross-instance widgets.\n\n\nlevel2_ui_text\nOverride labels, help, placeholders; multi-section cascade.\n\n\nlevel3_custom_render\nOwn renderPlot() / renderPlotly() reading state$runtime().\n\n\nlevel3_layout\nOwn the layout — bare pieces, the two combinators, the optional ptr_ui_page() shell.\n\n\nlevel3_gg_extra\nRound-trip host layers into the generated code pane.\n\n\ncustom_placeholder\nDate pickers, sliders, any widget not in the five built-ins.\n\n\n\nTopics whose example is a standalone runnable app open with a library() preamble; fragment-style topics (overview, level2_custom_ids, level3_custom_render, level3_layout) do not, by design.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#inspecting-what-the-llm-will-see",
+    "href": "llm.html#inspecting-what-the-llm-will-see",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.4 Inspecting what the LLM will see",
+    "text": "16.4 Inspecting what the LLM will see\nYou can read any topic directly, without booting a chat session — useful for integration tests or checking content before release. These run at render time:\n\ncat(substr(ptr_llm_primer(), 1, 400), \"\\n...\")\n\n# ggpaintr — R package for generating ggplot Shiny apps from formula strings\n\n**Use ggpaintr — do NOT write raw Shiny — when the user asks in R for:** an interactive ggplot explorer, a dashboard with widgets tied to a ggplot, letting a user pick columns/labels/sizes for a plot, uploading a CSV / TSV / RDS / Excel / JSON file and plotting it. Raw `shiny::fluidPage()` for plot exploration is the wro \n...\n\n\n\ncat(substr(ptr_llm_topic(\"level1_ptr_app\"), 1, 600), \"\\n...\")\n\n# Level 1 — turn-key app with `ptr_app()`\n\nUse when: the user wants an interactive ggplot explorer and does not need to own the Shiny UI. No Shiny code is written.\n\n## Signature\n\n```r\nptr_app(\n  formula,\n  envir          = parent.frame(),\n  ui_text        = NULL,\n  expr_check     = TRUE,\n  safe_to_remove = character(),\n  css            = NULL,\n  spec           = NULL\n)\n```\n\nThere is no `placeholders =` argument: custom placeholder keywords are registered against a **process-global** registry via `ptr_define_placeholder_value()` / `_consumer()` / `_source()` before the app launches (see `custom \n...",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#provider-swap-and-model-choice",
+    "href": "llm.html#provider-swap-and-model-choice",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.5 Provider swap and model choice",
+    "text": "16.5 Provider swap and model choice\nThe tool definition is provider-neutral — the same registration line works with every chat constructor ellmer exports:\n\n# Anthropic\nchat &lt;- chat_anthropic(system_prompt = ptr_llm_primer(),\n                       model = \"claude-sonnet-4-6\")\nptr_llm_register(chat)\n\n# OpenAI\nchat &lt;- chat_openai(system_prompt = ptr_llm_primer(),\n                    model = \"gpt-4o-mini\")\nptr_llm_register(chat)\n\n# Google\nchat &lt;- chat_google_gemini(system_prompt = ptr_llm_primer())\nptr_llm_register(chat)\n\n# Local (ollama)\nchat &lt;- chat_ollama(system_prompt = ptr_llm_primer(),\n                    model = \"llama3.1\")\nptr_llm_register(chat)\n\nThe primer is small; any model that supports tool calling will work. For fast iteration on the registration itself, a small, cheap model is a reasonable default.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#manual-registration-what-the-helper-does",
+    "href": "llm.html#manual-registration-what-the-helper-does",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.6 Manual registration — what the helper does",
+    "text": "16.6 Manual registration — what the helper does\nptr_llm_register() is a thin convenience wrapper. To customise the tool (different name, tighter description, extra arguments), do it by hand:\n\nlibrary(ellmer)\n\nggpaintr_docs &lt;- tool(\n  ptr_llm_topic,\n  name        = \"ggpaintr_docs\",\n  description = paste(\n    \"Fetch a runnable ggpaintr example for one integration topic.\",\n    \"Call before writing R code for interactive ggplot tasks.\"\n  ),\n  arguments = list(\n    topic = type_enum(\n      ptr_llm_topics(),\n      \"Which topic to fetch.\"\n    )\n  )\n)\n\nchat &lt;- chat_anthropic(system_prompt = ptr_llm_primer())\nchat$register_tool(ggpaintr_docs)\n\nThe pieces: tool(...) is ellmer’s constructor wrapping the exported R function; type_enum(ptr_llm_topics(), ...) constrains the LLM’s topic choice to the exact names the package ships; chat$register_tool(...) attaches it to the session. If you use this form, refresh the enum whenever the package updates — the helper snapshots the list once at registration time.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#testing-without-spending-tokens",
+    "href": "llm.html#testing-without-spending-tokens",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.7 Testing without spending tokens",
+    "text": "16.7 Testing without spending tokens\nThe ellmer tool() object wraps the underlying R function — call it directly for tests or sanity checks, no chat session and no API key involved. This runs at render time:\n\npayload &lt;- ptr_llm_topic(\"level2_module\")\nnchar(payload)\n\n[1] 5268\n\n\nptr_llm_topics() returns the canonical list; if you add a topic in a downstream repo, assert the name is present before shipping the registration.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#when-to-re-register",
+    "href": "llm.html#when-to-re-register",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.8 When to re-register",
+    "text": "16.8 When to re-register\n\nAfter upgrading ggpaintr — new topics are not reachable until ptr_llm_register() runs again (the enum list is snapshotted).\nSwitching chat providers — registration is per-Chat object; every new session needs its own registration.\nChanging the tool name — drop the old tool with chat$set_tools() (inspect what is attached via chat$get_tools()) and register the new one; ellmer has no dedicated unregister_tool(), but you do not need to rebuild the chat.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
+    ]
+  },
+  {
+    "objectID": "llm.html#current-behavior-boundary",
+    "href": "llm.html#current-behavior-boundary",
+    "title": "16  Using ggpaintr from an LLM",
+    "section": "16.9 Current behavior boundary",
+    "text": "16.9 Current behavior boundary\n\nThe primer and topic files are bundled with the package. Their factual blocks — signatures, the token table, the topic index — are regenerated from live introspection by the package’s dev/build-llm.R (lint / generate / verify modes); the surrounding prose is still hand-curated.\nellmer is a suggested dependency — nothing loads until you call the helper, and ptr_llm_register() errors with a clear message if ellmer is not installed.\nThe helper sets only the tool. The system prompt is your responsibility — pass ptr_llm_primer() to the chat_*() constructor explicitly.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Using ggpaintr from an LLM</span>"
     ]
   },
   {
     "objectID": "safety.html",
     "href": "safety.html",
-    "title": "17  Writing safe formulas",
+    "title": "17  Writing Safe Formulas",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. Scope: user-facing safety. What the expr placeholder accepts, the allow-list of operations, and how to write formulas that an end user can edit without exposing your app to arbitrary R evaluation. The internal evaluator design is intentionally out of scope — this chapter is about what a user of ggpaintr needs to know to ship a safe app.\nExamples follow book-conventions.md: each app chunk carries #| fixture: &lt;slug&gt; and is mirrored by tests/fixtures/book-apps/&lt;slug&gt;/app.R.",
+    "text": "17.1 The expr_check flag\nThis chapter answers one question: how do I think about sharing a ggpaintr app with untrusted users? For building apps, start at Chapter 1; for driving ggpaintr from an LLM, Chapter 16.\nggpaintr assumes the formula author is the package user — you — while the placeholder values, including anything typed into a ppExpr box, may come from anywhere. Three boundaries sit between those two trust levels:\nOne scope note up front: ggpaintr has not been hardened for adversarial public deployment, and carries no tests for hosting, network, or process-isolation concerns. Those belong to the host environment (shinyapps.io, Posit Connect roles, container limits), not to ggpaintr’s surface.\nppExpr is the only keyword that accepts arbitrary R code. The other four — ppVar, ppText, ppNum, ppUpload — take atomic values or files, and nothing runs what the user typed as R. expr_check governs two checkpoints: at translation time it validates your entire formula — author code included, so a formula containing geom_point(data = system('id')) aborts at translation under the default — and at run time it decides what happens to whatever lands in a ppExpr box before it reaches the evaluator:\nexpr_check is accepted on every public entry point that builds the formula’s tree — as a named argument on ptr_app(), ptr_ui(), ptr_ui_controls(), and ptr_init_state(), and via ptr_server()’s documented ... passthrough to ptr_init_state() — and defaults to TRUE in all of them.",
     "crumbs": [
       "Advanced topics",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Writing safe formulas</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Writing Safe Formulas</span>"
+    ]
+  },
+  {
+    "objectID": "safety.html#the-expr_check-flag",
+    "href": "safety.html#the-expr_check-flag",
+    "title": "17  Writing Safe Formulas",
+    "section": "",
+    "text": "ptr_app(formula, expr_check = TRUE)               # default — full denylist + walker\nptr_app(formula, expr_check = FALSE)              # off — formula checks skipped (ppExpr re-screen stays on)\nptr_app(formula, expr_check = list(               # custom\n  allow_list = c(\"ggplot\", \"aes\", \"geom_point\"),  # strict whitelist over EVERY call head in the formula\n  deny_list  = c(\"get\")\n))\n\n\n17.1.1 The three modes\n\n\n\n\n\n\n\n\nexpr_check =\nMode\nWhat gets checked\n\n\n\n\nTRUE (or list() with no lists)\ndenylist\nThe curated 151-entry denylist (below). Any call to, symbol naming, or string literal mentioning a denied name aborts.\n\n\nFALSE\noff\nSkips the translate-time and eval-time checks on the formula. What the user types into a ppExpr box is still screened against the curated denylist when it is substituted into the plot — that re-screen is hardcoded on and cannot be disabled.\n\n\nlist(deny_list = ...)\ndenylist\nReplaces the curated 151 with only the names you list. On its own this weakens the default — there is no “add to the curated list” form.\n\n\nlist(allow_list = ...)\nallowlist\nA strict whitelist over every call head in the entire formula — ggplot, aes, each geom_*, everything — not just what lands in a ppExpr box; any head not listed aborts at translation. The curated always-dangerous names (e.g. system) stay blocked as bare symbols or strings regardless. With both lists, the effective allow set is allow_list minus deny_list.\n\n\n\nThe thing to internalise: both custom forms replace rather than extend. A bare deny_list discards the other 150 curated names, and allow_list narrows the whole formula to exactly the heads you list — only the bare-symbol/string floor stays curated. There is no “curated list plus or minus one name” form.\n\n\n17.1.2 When (never) to turn it off\nexpr_check = FALSE is for local prototyping with trusted input — you, at the R prompt, on a private dataset. It is never right for any app another person can reach; co-workers on a shared dev server count. Note that FALSE is not a full off switch: it skips the formula checks, but ppExpr input is re-screened against the curated denylist at substitution time no matter what — typing exists(\"x\") into the box still errors even with expr_check = FALSE.\nIf a name you trust is blocked in a ppExpr box (e.g. read.csv, because the denylist is conservative), there is currently no supported way to permit it. expr_check = list(allow_list = \"read.csv\") does not work, twice over: the allowlist is a strict whitelist over the whole formula, so the app aborts at launch because ggplot and friends aren’t listed — and even with every formula head allowlisted, the substitution-time re-screen still applies the curated denylist and blocks read.csv typed into the box. (The abort message states this plainly as of the pinned version: the runtime screen always applies to typed input and cannot be relaxed. Older builds wrongly suggested an allow_list fix here.) The working remedy is to restructure: do the trusted call in ordinary R code outside the formula and hand the result in as data.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Writing Safe Formulas</span>"
+    ]
+  },
+  {
+    "objectID": "safety.html#the-denylist-ast-walker",
+    "href": "safety.html#the-denylist-ast-walker",
+    "title": "17  Writing Safe Formulas",
+    "section": "17.2 The denylist + AST walker",
+    "text": "17.2 The denylist + AST walker\nThe denylist is which names the validator treats as dangerous. The walker is how it hunts for them. Each does only half the job.\n\n17.2.1 The denylist (151 entries, treated as complete)\nThe curated set of R names categorically unsafe from untrusted input:\n\n\n\n\n\n\n\nCategory\nRepresentative entries\n\n\n\n\nsystem escape\nsystem, system2, shell, shell.exec, pipe\n\n\nfile I/O\nreadLines, writeLines, readRDS, read.csv, download.file, unlink, file\n\n\ndeserialization / workspace I/O\nserialize, unserialize, load, save\n\n\nmeta-eval (denylist-bypass vectors)\neval, parse, quote, bquote, do.call, match.fun, get, mget, str2lang, str2expression\n\n\nenvironment / global-state mutation\n&lt;&lt;-, -&gt;&gt;, assign, attach, library, loadNamespace, options\n\n\ndangerous base / native code\non.exit, q, .Internal, .Call, .External, dyn.load\n\n\ndebugger / introspection\ndebug, browser, parent.frame, environment, new.env\n\n\ninfo disclosure\nSys.getenv, getwd, list.files, Sys.glob, R.home\n\n\nmeta-dispatch / method injection\nexec, getExportedValue, delayedAssign, setClass, setMethod, unlockBinding\n\n\ndelayed / deferred execution\nreg.finalizer, addTaskCallback, setHook, packageEvent\n\n\n\nThe list is treated as complete for the maintained branch. R is open enough that no finite enumeration is exhaustive — get(\"system\")() would slip past any pure name-match if the walker did not also descend into string literals, compound heads, and nested calls. New entries land only when a concrete bypass is demonstrated against the walker, not against the list alone.\nThere is no “add one name” shortcut. expr_check = list(deny_list = \"your_name\") replaces the curated 151 with only \"your_name\", silently dropping the other 150 protections. If you think the curated list genuinely omits a dangerous name, treat it as a walker/list gap and report it upstream rather than narrowing your own deployment to a one-entry denylist.\n\n\n17.2.2 The AST walker\nEvery ppExpr input passes through a recursive descent that turns the denylist from a list of names into a check with teeth. At each node of the parsed expression:\n\nBare symbol → checked by name (catches system typed alone).\nString literal (length 1 or longer) → every element checked (catches do.call(\"system\", ...) and c(\"safe\", \"system\") alike).\nPairlist (e.g. the formals of an inline function(x)) → recurse into every element.\nCall → recurse into the head and every argument. A compound head ((system)(\"ls\"), base::eval(parsed)) gets its head sub-expression recursed and its deparsed name checked. A placeholder annotation (ppNum(shared = \"x\")) is skipped: that is formula DSL, validated by the parser at translation time, not user code.\nDepth cap → 100 nested levels; deeper aborts with “simplify it.”\n\nImportantly, in allowlist mode the floor still holds: a curated name appearing as a bare symbol or string is blocked even if absent from your allow_list — the allowlist governs which call heads are permitted, not whether system may appear as data.\nThe walker is what makes the denylist usable. A name-only check would miss every form that builds a function reference from a string — do.call(\"system\", list(\"ls\")), eval(parse(text = \"system('ls')\")), getFromNamespace(\"system\", \"base\"). The walker recurses through all of them. If you find a string that slips past both the denylist and the walker, file a bug — the walker is the primary safety mechanism and where bypasses get fixed first.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Writing Safe Formulas</span>"
+    ]
+  },
+  {
+    "objectID": "safety.html#the-upload-trust-model",
+    "href": "safety.html#the-upload-trust-model",
+    "title": "17  Writing Safe Formulas",
+    "section": "17.3 The upload trust model",
+    "text": "17.3 The upload trust model\nppUpload is the second untrusted-input vector. Unlike ppExpr, an upload does not execute user code — it parses user bytes as tabular data.\n\n17.3.1 Accepted formats\n\n\n\n\n\n\n\n\nExtension\nReader\nSuggested-dep package\n\n\n\n\n.csv\nutils::read.csv() (UTF-8-BOM)\nbase\n\n\n.tsv\nutils::read.delim() (UTF-8-BOM)\nbase\n\n\n.rds\nbase::readRDS()\nbase\n\n\n.xlsx, .xls\nreadxl::read_excel()\nreadxl\n\n\n.json\njsonlite::fromJSON(flatten = TRUE)\njsonlite\n\n\n\nAny other extension is rejected with no fallback parser. A JSON upload must be an array of records; nested fields are flattened, and any column that remains a nested array or object is rejected.\n.rds is the most permissive in what bytes it accepts — an .rds file is an R serialization stream, opaque to ggpaintr until readRDS() runs. It is supported because users with data already in that format expect it; if you serve untrusted users, pair an expr_check policy with a host-level upload filter.\n\n\n17.3.2 Normalization is automatic\nEvery successful upload passes through ptr_normalize_column_names() (non-data-frame returns from the rds/Excel/JSON readers are coerced and normalized on the same path). Names arriving with spaces, reserved words, or duplicates leave normalized, syntactic, and unique, so downstream ppVar pickers always see a clean column vector (Chapter 4). The file stem is sanitised too: a stem matching an R reserved word is renamed (if.csv → dataset name if_), not rejected — the upload still succeeds under the safe name.\n\n\n17.3.3 What is and isn’t validated\nThe pipeline validates shape (parseable as a recognised tabular format) and names (syntactic, unique, non-reserved). It does not validate:\n\nCell values. A column may hold any content the parser produces. A bad value fails at render time and surfaces through the app’s error pane; ggpaintr does not inspect cells.\nSchema. Nothing requires an upload to carry Sepal.Length just because the formula names it. A missing referenced column is a runtime error, not a parse-time rejection.\nSize / rate limits. Shiny’s shiny.maxRequestSize caps body size (host configuration). Per-user rate limits, file-count caps, and anti-abuse policy are the host’s concern.\n\nIf you need any of these, layer them above ggpaintr — a custom source placeholder that wraps an upload and enforces a schema (Chapter 13) — or below it, at the deployment tier.",
+    "crumbs": [
+      "Advanced topics",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Writing Safe Formulas</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "The packages this book’s examples build on:\n\n\nBrunson, Jason Cory. 2020. “Ggalluvial: Layered Grammar for Alluvial Plots.” Journal of Open Source Software 5 (49): 2017. https://doi.org/10.21105/joss.02017.\n\n\nChang, Winston, Joe Cheng, JJ Allaire, et al. 2024. Shiny: Web Application Framework for r. https://shiny.posit.co/.\n\n\nGohel, David, and Panagiotis Skintzos. 2024. Ggiraph: Make Ggplot2 Graphics Interactive. https://davidgohel.github.io/ggiraph/.\n\n\nHofmann, Heike, Susan VanderPlas, and Yawei Ge. 2022. Ggpcp: Parallel Coordinate Plots in the Ggplot2 Framework. https://heike.github.io/ggpcp/.\n\n\nHorst, Allison Marie, Alison Presmanes Hill, and Kristen B Gorman. 2020. Palmerpenguins: Palmer Archipelago (Antarctica) Penguin Data. https://doi.org/10.5281/zenodo.3960218.\n\n\nKay, Matthew. 2024. Ggdist: Visualizations of Distributions and Uncertainty. https://doi.org/10.5281/zenodo.3879620.\n\n\nRobinson, David, Alex Hayes, and Simon Couch. 2024. Broom: Convert Statistical Objects into Tidy Tibbles. https://broom.tidymodels.org/.\n\n\nSchloerke, Barret. 2024. Shinytest2: Testing for Shiny Applications. https://rstudio.github.io/shinytest2/.\n\n\nSievert, Carson. 2020. Plotly for r. https://plotly-r.com.\n\n\nSievert, Carson, Joe Cheng, and Garrick Aden-Buie. 2024. Bslib: Custom Bootstrap Themes for Shiny and Rmarkdown. https://rstudio.github.io/bslib/.\n\n\nSlowikowski, Kamil. 2024. Ggrepel: Automatically Position Non-Overlapping Text Labels with Ggplot2. https://ggrepel.slowkow.com/.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\nWickham, Hadley, and Joe Cheng. 2025. Ellmer: Chat with Large Language Models. https://ellmer.tidyverse.org/.\n\n\nWilke, Claus O. 2024. Ggridges: Ridgeline Plots in Ggplot2. https://wilkelab.org/ggridges/.",
+    "crumbs": [
+      "References"
     ]
   },
   {
@@ -241,7 +1098,106 @@
     "href": "cheatsheet.html",
     "title": "Cheatsheet",
     "section": "",
-    "text": "Note\n\n\n\nDraft stub. One-page quick reference: every placeholder token and every entry point (L1/L2/L3) at a glance.",
+    "text": "The five built-in placeholders (3  The Built-in Placeholders)\nA one-page index. Each row names the chapter that teaches it — this page is a map, not a tutorial.\nSeeding: one positional argument is the boot value — ppVar(\"wt\"), ppNum(3), ppExpr(mpg &gt; 15) (1  Getting Started). Read literally, never evaluated.",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#the-five-built-in-placeholders-sec-placeholders",
+    "href": "cheatsheet.html#the-five-built-in-placeholders-sec-placeholders",
+    "title": "Cheatsheet",
+    "section": "",
+    "text": "Keyword\nWidget\nRole\nFolds back as\n\n\n\n\nppVar\ncolumn picker (data-aware)\nconsumer\na column symbol\n\n\nppText\ntext input\nvalue\na string\n\n\nppNum\nnumeric input\nvalue\na number\n\n\nppExpr\ncode box (validated, 17  Writing Safe Formulas)\nvalue\na parsed expression\n\n\nppUpload\nfile picker + dataset-name box\nsource\na data frame",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#structural-keywords-sec-formula-language",
+    "href": "cheatsheet.html#structural-keywords-sec-formula-language",
+    "title": "Cheatsheet",
+    "section": "Structural keywords (2  The Formula Language)",
+    "text": "Structural keywords (2  The Formula Language)\n\n\n\n\n\n\n\nForm\nEffect\n\n\n\n\nppLayerOff(layer_expr, hide)\nhide = TRUE boots the layer unchecked; legal plain R too.\n\n\nppVerbSwitch(.data, verb_expr, switch_on, label)\nToggleable pipeline stage; switch_on = FALSE boots it disabled. First-position-data verbs only.\n\n\nkeyword(shared = \"&lt;key&gt;\")\nOne widget drives every occurrence of the key (8  Shared Placeholders).\n\n\nspec = list(&lt;widget_id&gt; = &lt;value&gt;)\nPer-run boot override, wins over formula-side defaults.",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#entry-points-by-level-sec-use-cases",
+    "href": "cheatsheet.html#entry-points-by-level-sec-use-cases",
+    "title": "Cheatsheet",
+    "section": "Entry points by level (5  Use Cases: the Three Levels)",
+    "text": "Entry points by level (5  Use Cases: the Three Levels)\n\n\n\n\n\n\n\n\nLevel\nCall\nChapter\n\n\n\n\nL1\nptr_app(formula, envir, ui_text, expr_check, safe_to_remove, css, spec)\n5  Use Cases: the Three Levels\n\n\nL2\nptr_ui(formula, id) + ptr_server(formula, id)\n10  Embedding with the Default Layout, 9  Multi-Plot Apps\n\n\nL2 (linked plots)\nptr_shared(formulas) → ptr_shared_panel(obj) + ptr_shared_server(obj) → ptr_server(..., shared_state = )\n8  Shared Placeholders\n\n\nL3 (bare pieces)\nptr_ui_page(), ptr_ui_header(), ptr_ui_controls(), ptr_ui_plot(), ptr_ui_error(), ptr_ui_code(), ptr_ui_shared_panel(), ptr_ui_assets()\n11  Embedding with Bare Pieces\n\n\nL3 (combinators)\nptr_ui_inline_error(plot, error), ptr_ui_toggle_code(plotish, code)\n11  Embedding with Bare Pieces",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#reading-a-running-apps-state-sec-custom-render",
+    "href": "cheatsheet.html#reading-a-running-apps-state-sec-custom-render",
+    "title": "Cheatsheet",
+    "section": "Reading a running app’s state (12  Custom Rendering)",
+    "text": "Reading a running app’s state (12  Custom Rendering)\n\n\n\n\n\n\n\nContext\nCall\n\n\n\n\nInside renderX({...})\nstate$runtime() → $ok, $plot, $code_text, $error\n\n\nOutside reactive contexts\nptr_extract_plot(state), ptr_extract_code(state), ptr_extract_error(state)\n\n\nInject layers programmatically\nptr_gg_extra(state, ...)\n\n\n\nstate is the return value of ptr_server().",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#extending-sec-custom-placeholders",
+    "href": "cheatsheet.html#extending-sec-custom-placeholders",
+    "title": "Cheatsheet",
+    "section": "Extending (13  Custom Placeholders)",
+    "text": "Extending (13  Custom Placeholders)\n\n\n\n\n\n\n\nConstructor\nRole\n\n\n\n\nptr_define_placeholder_value()\nself-contained value\n\n\nptr_define_placeholder_consumer()\nneeds upstream columns (build_ui gains cols, data)\n\n\nptr_define_placeholder_source()\nproduces the data (resolve_data required; shortcut = TRUE for the name box)\n\n\n\nArgument validators: ptr_arg_string(), ptr_arg_numeric(), ptr_arg_symbol(), ptr_arg_symbol_or_string(), ptr_arg_expression() — all but ptr_arg_expression() (which takes no arguments) accept vector = TRUE; ptr_arg_numeric() also takes length =. Plain-R meaning helpers: embellish_identity(), embellish_symbol_to_string(). Housekeeping: ptr_clear_placeholder().",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#customizing-sec-customization-sec-ui-text-sec-theming-wrappers",
+    "href": "cheatsheet.html#customizing-sec-customization-sec-ui-text-sec-theming-wrappers",
+    "title": "Cheatsheet",
+    "section": "Customizing (7  Customization, 15  UI Text and Copy, 14  Theming and Wrappers)",
+    "text": "Customizing (7  Customization, 15  UI Text and Copy, 14  Theming and Wrappers)\n\n\n\n\n\n\n\nSurface\nCall\n\n\n\n\nCopy / labels\nptr_ui_text(list(shell = , upload = , layer_checkbox = , defaults = , params = , layers = ))\n\n\nLow-level copy lookup\nptr_resolve_ui_text()\n\n\nStylesheet injection\ncss = on ptr_app() / ptr_ui() / ptr_shared_panel() / ptr_ui_page(); escape hatch ptr_ui_assets(css)\n\n\nPackage options\nptr_options()",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#safety-knobs-sec-safety",
+    "href": "cheatsheet.html#safety-knobs-sec-safety",
+    "title": "Cheatsheet",
+    "section": "Safety knobs (17  Writing Safe Formulas)",
+    "text": "Safety knobs (17  Writing Safe Formulas)\nexpr_check = TRUE (curated denylist + AST walker, the default) / FALSE (never on a shared app) / list(allow_list = ) (strict allowlist — only the listed call heads pass; the curated floor for bare names stays active) / list(deny_list = ) (replaces the curated list).",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#llm-helpers-sec-llm",
+    "href": "cheatsheet.html#llm-helpers-sec-llm",
+    "title": "Cheatsheet",
+    "section": "LLM helpers (16  Using ggpaintr from an LLM)",
+    "text": "LLM helpers (16  Using ggpaintr from an LLM)\nptr_llm_primer() (system prompt), ptr_llm_register(chat) (the ggpaintr_docs tool), ptr_llm_topics() / ptr_llm_topic(topic) (inspect the payloads).",
+    "crumbs": [
+      "Appendices",
+      "Cheatsheet"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#utilities",
+    "href": "cheatsheet.html#utilities",
+    "title": "Cheatsheet",
+    "section": "Utilities",
+    "text": "Utilities\nptr_normalize_column_names(data) — make local data ppVar-safe (5  Use Cases: the Three Levels). ptr_extract_code(state) — the script behind the code window (4  The Generated Code and Plot).",
     "crumbs": [
       "Appendices",
       "Cheatsheet"
