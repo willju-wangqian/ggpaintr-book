@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Using ggpaintr from an LLM – ggpaintr</title>
+<title>14&nbsp; Linked Selection – ggpaintr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./gallery.html" rel="next">
-<link href="./safety.html" rel="prev">
+<link href="./customization.html" rel="next">
+<link href="./custom-render.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./safety.html">Sharing &amp; advanced</a></li><li class="breadcrumb-item"><a href="./llm.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">ggpaintr in your own Shiny app</a></li><li class="breadcrumb-item"><a href="./linked-selection.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Linked Selection</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -276,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linked-selection.html" class="sidebar-item-text sidebar-link">
+  <a href="./linked-selection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Linked Selection</span></span></a>
   </div>
 </li>
@@ -328,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./llm.html" class="sidebar-item-text sidebar-link active">
+  <a href="./llm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></a>
   </div>
 </li>
@@ -384,24 +384,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#quick-start-three-lines-of-setup" id="toc-quick-start-three-lines-of-setup" class="nav-link active" data-scroll-target="#quick-start-three-lines-of-setup"><span class="header-section-number">19.1</span> Quick start — three lines of setup</a></li>
-  <li><a href="#what-the-primer-tool-split-buys-you" id="toc-what-the-primer-tool-split-buys-you" class="nav-link" data-scroll-target="#what-the-primer-tool-split-buys-you"><span class="header-section-number">19.2</span> What the primer + tool split buys you</a></li>
-  <li><a href="#the-available-topics" id="toc-the-available-topics" class="nav-link" data-scroll-target="#the-available-topics"><span class="header-section-number">19.3</span> The available topics</a></li>
-  <li><a href="#inspecting-what-the-llm-will-see" id="toc-inspecting-what-the-llm-will-see" class="nav-link" data-scroll-target="#inspecting-what-the-llm-will-see"><span class="header-section-number">19.4</span> Inspecting what the LLM will see</a></li>
-  <li><a href="#provider-swap-and-model-choice" id="toc-provider-swap-and-model-choice" class="nav-link" data-scroll-target="#provider-swap-and-model-choice"><span class="header-section-number">19.5</span> Provider swap and model choice</a></li>
-  <li><a href="#manual-registration-what-the-helper-does" id="toc-manual-registration-what-the-helper-does" class="nav-link" data-scroll-target="#manual-registration-what-the-helper-does"><span class="header-section-number">19.6</span> Manual registration — what the helper does</a></li>
-  <li><a href="#testing-without-spending-tokens" id="toc-testing-without-spending-tokens" class="nav-link" data-scroll-target="#testing-without-spending-tokens"><span class="header-section-number">19.7</span> Testing without spending tokens</a></li>
-  <li><a href="#when-to-re-register" id="toc-when-to-re-register" class="nav-link" data-scroll-target="#when-to-re-register"><span class="header-section-number">19.8</span> When to re-register</a></li>
-  <li><a href="#current-behavior-boundary" id="toc-current-behavior-boundary" class="nav-link" data-scroll-target="#current-behavior-boundary"><span class="header-section-number">19.9</span> Current behavior boundary</a></li>
+  <li><a href="#why-a-helper" id="toc-why-a-helper" class="nav-link active" data-scroll-target="#why-a-helper"><span class="header-section-number">14.1</span> Why a helper</a></li>
+  <li><a href="#the-two-helpers" id="toc-the-two-helpers" class="nav-link" data-scroll-target="#the-two-helpers"><span class="header-section-number">14.2</span> The two helpers</a></li>
+  <li><a href="#the-headline-two-linked-plots-zero-trigger-wiring" id="toc-the-headline-two-linked-plots-zero-trigger-wiring" class="nav-link" data-scroll-target="#the-headline-two-linked-plots-zero-trigger-wiring"><span class="header-section-number">14.3</span> The headline: two linked plots, zero trigger wiring</a></li>
+  <li><a href="#two-projections-of-one-selection" id="toc-two-projections-of-one-selection" class="nav-link" data-scroll-target="#two-projections-of-one-selection"><span class="header-section-number">14.4</span> Two projections of one selection</a></li>
+  <li><a href="#coordinating-the-widget-and-the-reader" id="toc-coordinating-the-widget-and-the-reader" class="nav-link" data-scroll-target="#coordinating-the-widget-and-the-reader"><span class="header-section-number">14.5</span> Coordinating the widget and the reader</a></li>
+  <li><a href="#when-the-selection-resets" id="toc-when-the-selection-resets" class="nav-link" data-scroll-target="#when-the-selection-resets"><span class="header-section-number">14.6</span> When the selection resets</a></li>
+  <li><a href="#reserved-names" id="toc-reserved-names" class="nav-link" data-scroll-target="#reserved-names"><span class="header-section-number">14.7</span> Reserved names</a></li>
+  <li><a href="#dont-do-this" id="toc-dont-do-this" class="nav-link" data-scroll-target="#dont-do-this"><span class="header-section-number">14.8</span> Don’t do this</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/llm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/linked-selection.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./safety.html">Sharing &amp; advanced</a></li><li class="breadcrumb-item"><a href="./llm.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./embed-default.html">ggpaintr in your own Shiny app</a></li><li class="breadcrumb-item"><a href="./linked-selection.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Linked Selection</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-llm" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Using ggpaintr from an LLM</span></span></h1>
+<h1 class="title"><span id="sec-linked-selection" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Linked Selection</span></span></h1>
 </div>
 
 
@@ -418,256 +417,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Large language models are fluent at writing raw <code>shiny::fluidPage()</code> + server scaffolding from memory. They are <em>not</em> fluent at writing ggpaintr, because every model today has zero prior exposure to this package. Without help, a user asking “build me a Shiny app where I can pick columns from iris and see a scatter plot” gets hundreds of lines of hand-rolled Shiny that the <code>ptr_app()</code> one-liner would have covered.</p>
-<p>This chapter shows how to make any <a href="https://ellmer.tidyverse.org/">ellmer</a> chat session reach for ggpaintr first, using two exported helpers:</p>
-<ul>
-<li><code>ptr_llm_primer()</code> — the system-prompt preamble that teaches the model the three-level integration model (<a href="introduction.html" class="quarto-xref"><span>Chapter 1</span></a>) and the “call the docs tool before writing code” rule.</li>
-<li><code>ptr_llm_register()</code> — one-line registration of the <code>ggpaintr_docs</code> tool that serves focused runnable examples on demand.</li>
-</ul>
-<p>The tool is backed by <code>ptr_llm_topic()</code>, which returns the content of one bundled topic file. The LLM pulls only the topic it needs, instead of the whole manual loading the context window on every turn.</p>
-<section id="quick-start-three-lines-of-setup" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="quick-start-three-lines-of-setup"><span class="header-section-number">19.1</span> Quick start — three lines of setup</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>())</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Build a Shiny app where the user picks X and Y columns from mtcars."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Under the hood:</p>
-<ul>
-<li><code>chat_anthropic()</code> loads the primer (~4,000 tokens) into the system prompt, which stays in context every turn.</li>
-<li><code>ptr_llm_register()</code> attaches a single tool named <code>ggpaintr_docs</code> to the chat session. The tool’s one argument — <code>topic</code> — is constrained by <code>type_enum()</code> to the exact set of topic names returned by <code>ptr_llm_topics()</code>, so the LLM cannot request a topic that does not exist.</li>
-</ul>
-<p>On the first turn the model sees the user’s prompt, recognises it as a plot-explorer task, calls <code>ggpaintr_docs(topic = "level1_ptr_app")</code>, and writes a <code>ptr_app(...)</code> snippet rather than raw Shiny.</p>
+<p>Brush a point cloud in one plot and watch a second plot — or a table — redraw to just the selected rows. ggpaintr ships two helpers that wire this up on top of the L3 custom-render pattern (<a href="custom-render.html" class="quarto-xref"><span>Chapter 13</span></a>): <code>ptr_ggplotly()</code> renders an instance through plotly with the selection plumbing already attached, and <code>ptr_plotly_selection()</code> hands you the current brush as a Shiny reactive. Both extract from the state returned by <code>ptr_server()</code>; core never learns about plotly or selection.</p>
+<section id="why-a-helper" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="why-a-helper"><span class="header-section-number">14.1</span> Why a helper</h2>
+<p>Linked brushing by hand is a known chore. You tag every row with a stable key, register <code>plotly_selected</code> and <code>plotly_deselect</code>, stash the brushed keys in a <code>reactiveVal</code>, and map those keys back onto the drawn data for the downstream view — and you redo the key tagging every time the source redraws, because a key only means a row <em>within the draw that emitted it</em>. The package keeps a pre-helper version of exactly this wiring at <code>dev/scripts/plotly_linked_select.R</code>; it is the shape these two helpers collapse. With the helpers, the key minting, the event registration, and the per-session store are internal. You write two calls.</p>
 </section>
-<section id="what-the-primer-tool-split-buys-you" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="what-the-primer-tool-split-buys-you"><span class="header-section-number">19.2</span> What the primer + tool split buys you</h2>
-<p>A common alternative is to stuff the entire manual into the system prompt. That works but wastes tokens: every chat turn pays for the full manual whether or not it is relevant. The primer/tool split is a lightweight form of retrieval:</p>
+<section id="the-two-helpers" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="the-two-helpers"><span class="header-section-number">14.2</span> The two helpers</h2>
+<p><code>ptr_ggplotly(state, ..., source = NULL)</code> is the state-first counterpart to <code>plotly::ggplotly()</code>. Call it inside <code>plotly::renderPlotly()</code> on a live <code>ptr_server()</code> instance. It reads the drawn plot off <code>state$runtime()$plot</code>, mints a per-draw row key on a <em>widget-only copy</em> of the data (your data is never mutated), sets <code>dragmode = "select"</code>, registers the selection events, and returns a <strong>plain plotly object</strong> — so your own plotly verbs keep piping after it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>plt <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_ggplotly</span>(state, <span class="at">tooltip =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    plotly<span class="sc">::</span><span class="fu">layout</span>(<span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>...</code> forwards verbatim to <code>plotly::ggplotly()</code>. The helper owns the pre-draw <code>req()</code> guard internally, so you do not write one. plotly is an optional dependency (<code>Suggests</code>); <code>ptr_ggplotly()</code> aborts with an install hint if it is missing.</p>
+<p><code>ptr_plotly_selection(state, mode = c("rows", "flag"), source = NULL)</code> is the companion reader. Call it <strong>once in your server</strong> — not inside a render — on the same instance. It returns a Shiny reactive; calling that reactive (<code>sel()</code>) yields a data frame. Feed it to a table, a download handler, or the pipeline head of a second formula.</p>
+</section>
+<section id="the-headline-two-linked-plots-zero-trigger-wiring" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="the-headline-two-linked-plots-zero-trigger-wiring"><span class="header-section-number">14.3</span> The headline: two linked plots, zero trigger wiring</h2>
+<p>The payoff is a second ggpaintr formula whose pipeline head <em>is</em> the selection reactive. Brush the plotly plot on the left; the formula on the right redraws with the brushed points highlighted, and a table below lists them. There is no trigger, no adapter, no selection plumbing in your server — instance 2 is an ordinary ggpaintr formula that happens to read <code>sel()</code>.</p>
+<div class="cell" data-fixture="linked-selection-hero">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Live mode: instance 2 redraws on every brush because its render body reads</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sel() un-isolated, so reading the selection is an ordinary reactive</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dependency. No trigger wiring — that is the whole point.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_options</span>(<span class="at">gate_draw =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Instance 1: an ordinary ggpaintr formula. Its drawn data is the snapshot the</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># selection projects off.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">expr</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(wt), <span class="at">y =</span> <span class="fu">ppVar</span>(mpg))) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Instance 2: an ordinary ggpaintr formula whose pipeline head is sel(). The</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># flag projection appends a logical .ptr_selected; color = .ptr_selected.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">expr</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sel</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">ppVar</span>(hp), <span class="at">y =</span> <span class="fu">ppVar</span>(qsec), <span class="at">color =</span> .ptr_selected)) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">ptr_ui_page</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  shiny<span class="sc">::</span><span class="fu">sidebarLayout</span>(</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">sidebarPanel</span>(</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_ui_controls</span>(<span class="at">formula =</span> f1, <span class="at">id =</span> <span class="st">"p1"</span>),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_ui_controls</span>(<span class="at">formula =</span> f2, <span class="at">id =</span> <span class="st">"p2"</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    shiny<span class="sc">::</span><span class="fu">mainPanel</span>(</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      plotly<span class="sc">::</span><span class="fu">plotlyOutput</span>(<span class="st">"main_plotly"</span>),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_ui_error</span>(<span class="st">"p1"</span>),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_ui_plot</span>(<span class="st">"p2"</span>),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_ui_error</span>(<span class="st">"p2"</span>),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      shiny<span class="sc">::</span><span class="fu">tableOutput</span>(<span class="st">"sel_table"</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  state1 <span class="ot">&lt;-</span> <span class="fu">ptr_server</span>(f1, <span class="st">"p1"</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Instance 1 rendered through plotly, wired for linked selection.</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>main_plotly <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">renderPlotly</span>(</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ptr_ggplotly</span>(state1)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The one selection, projected two ways off the instance-1 widget.</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  sel      <span class="ot">&lt;-</span> <span class="fu">ptr_plotly_selection</span>(state1, <span class="at">mode =</span> <span class="st">"flag"</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  sel_rows <span class="ot">&lt;-</span> <span class="fu">ptr_plotly_selection</span>(state1, <span class="at">mode =</span> <span class="st">"rows"</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Instance 2: ordinary ggpaintr formula, pipeline head sel().</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ptr_server</span>(f2, <span class="st">"p2"</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Empty selection is a zero-row table (same columns), so no req() dance.</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>sel_table <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">renderTable</span>(<span class="fu">sel_rows</span>())</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/linked-selection-hero.png" class="img-fluid figure-img"></p>
+<figcaption>The app at rest, nothing brushed: the plotly source plot is on top; below it the second formula draws every point one colour (<code>.ptr_selected</code> all <code>FALSE</code>) and the rows table shows only its column headers — the empty-selection state that renders without a <code>req()</code> dance. Brushing the top plot recolours the matching points via <code>color = .ptr_selected</code> and fills the table. The fixture mirrors the package’s browser-verified e2e fixture <code>adr28-plotly-linked</code>, dropping only its explicit <code>source =</code> (an e2e harness detail).</figcaption>
+</figure>
+</div>
+<p>The redraw-per-brush depends on <strong>live mode</strong> — <code>ptr_options(gate_draw = FALSE)</code>. Live mode runs an instance’s render body un-isolated, so instance 2 reading <code>sel()</code> is an ordinary reactive dependency: a new brush invalidates <code>sel()</code>, which invalidates the draw. Under the default gate (<code>gate_draw = TRUE</code>) instance 2 would only redraw on its own Update-plot click, and a brush would change <code>sel()</code> with nothing watching. See <a href="custom-render.html" class="quarto-xref"><span>Chapter 13</span></a> for the broader L3 contract this builds on.</p>
+</section>
+<section id="two-projections-of-one-selection" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="two-projections-of-one-selection"><span class="header-section-number">14.4</span> Two projections of one selection</h2>
+<p><code>mode =</code> picks how the <em>same</em> brush is shaped. Both project rows of the <strong>drawn data</strong> — <code>state$runtime()$plot$data</code> of the draw that produced the widget — never “the original object”.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 34%">
-<col style="width: 40%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Layer</th>
-<th>When it loads</th>
-<th>What it teaches</th>
+<th><code>mode</code></th>
+<th>Returns</th>
+<th>When nothing is selected</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Primer</td>
-<td>Every turn (~4,000 tokens)</td>
-<td>ggpaintr exists; 3-level model; decision rule.</td>
+<td><code>"rows"</code></td>
+<td>The selected slice of the drawn data</td>
+<td>A <strong>zero-row data frame with the same columns</strong> — renders unconditionally, so a <code>renderTable()</code> consumer needs no <code>req()</code> dance</td>
 </tr>
 <tr class="even">
-<td><code>ggpaintr_docs(topic)</code></td>
-<td>On demand</td>
-<td>One focused runnable example (~500–2,800 tokens).</td>
+<td><code>"flag"</code></td>
+<td>The <strong>full</strong> drawn data plus a logical <code>.ptr_selected</code></td>
+<td><code>.ptr_selected</code> is all <code>FALSE</code></td>
 </tr>
 </tbody>
 </table>
-<p>The primer carries an explicit rule — <em>“Before writing R code for an interactive plot task, call <code>ggpaintr_docs(topic)</code> to fetch the runnable example”</em> — and that rule plus the enum-constrained argument is what makes the LLM reliably reach for the tool instead of hallucinating an API.</p>
+<p>Use <code>"rows"</code> for a table or download of the selection itself. Use <code>"flag"</code> to drive a second formula — feed it as the pipeline head and map <code>color = .ptr_selected</code>, as in the headline. The internal row key (<code>.ptr_row</code>) never appears in either projection.</p>
 </section>
-<section id="the-available-topics" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="the-available-topics"><span class="header-section-number">19.3</span> The available topics</h2>
-<p>This chunk runs against the pinned ggpaintr at render time, so the list below is the canonical one:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpaintr)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_topics</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "custom_placeholder"   "formula_syntax"       "level1_ptr_app"      
- [4] "level1_ptr_options"   "level2_custom_ids"    "level2_module"       
- [7] "level2_shared"        "level2_ui_text"       "level3_custom_render"
-[10] "level3_gg_extra"      "level3_layout"        "overview"            </code></pre>
-</div>
-</div>
-<p>A short guide to each:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 44%">
-<col style="width: 55%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Topic</th>
-<th>When the LLM should call it</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>overview</code></td>
-<td>First orientation — the 3-level model and decision rule.</td>
-</tr>
-<tr class="even">
-<td><code>formula_syntax</code></td>
-<td>Which placeholder keyword goes where; pipelines; <code>shared = "..."</code>.</td>
-</tr>
-<tr class="odd">
-<td><code>level1_ptr_app</code></td>
-<td>Quick turn-key single-plot app (<code>ptr_app()</code>).</td>
-</tr>
-<tr class="even">
-<td><code>level1_ptr_options</code></td>
-<td>Package-global settings: verbosity, layer-checkbox default.</td>
-</tr>
-<tr class="odd">
-<td><code>level2_module</code></td>
-<td>Embed the default-layout block (<code>ptr_ui()</code> / <code>ptr_server()</code>) in the user’s own Shiny app.</td>
-</tr>
-<tr class="even">
-<td><code>level2_custom_ids</code></td>
-<td>Id collisions, the <code>ptr_</code> reserved prefix, generated-id grammar.</td>
-</tr>
-<tr class="odd">
-<td><code>level2_shared</code></td>
-<td>Multiple instances + the shared-coordinator trio for cross-instance widgets.</td>
-</tr>
-<tr class="even">
-<td><code>level2_ui_text</code></td>
-<td>Override labels, help, placeholders; multi-section cascade.</td>
-</tr>
-<tr class="odd">
-<td><code>level3_custom_render</code></td>
-<td>Own <code>renderPlot()</code> / <code>renderPlotly()</code> reading <code>state$runtime()</code>.</td>
-</tr>
-<tr class="even">
-<td><code>level3_layout</code></td>
-<td>Own the layout — bare pieces, the two combinators, the optional <code>ptr_ui_page()</code> shell.</td>
-</tr>
-<tr class="odd">
-<td><code>level3_gg_extra</code></td>
-<td>Round-trip host layers into the generated code pane.</td>
-</tr>
-<tr class="even">
-<td><code>custom_placeholder</code></td>
-<td>Date pickers, sliders, any widget not in the five built-ins.</td>
-</tr>
-</tbody>
-</table>
-<p>Topics whose example is a standalone runnable app open with a <code>library()</code> preamble; fragment-style topics (<code>overview</code>, <code>level2_custom_ids</code>, <code>level3_custom_render</code>, <code>level3_layout</code>) do not, by design.</p>
+<section id="coordinating-the-widget-and-the-reader" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="coordinating-the-widget-and-the-reader"><span class="header-section-number">14.5</span> Coordinating the widget and the reader</h2>
+<p><code>ptr_ggplotly()</code> and <code>ptr_plotly_selection()</code> find each other through plotly’s <code>source =</code> channel. Leave <code>source = NULL</code> (the default) on both and each derives the <strong>same</strong> id from the instance namespace — so for a single instance you simply omit it everywhere, as the headline does. If you set <code>source =</code> explicitly, it must be the <strong>same string</strong> on the widget call and on every selection reader for that instance.</p>
 </section>
-<section id="inspecting-what-the-llm-will-see" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="inspecting-what-the-llm-will-see"><span class="header-section-number">19.4</span> Inspecting what the LLM will see</h2>
-<p>You can read any topic directly, without booting a chat session — useful for integration tests or checking content before release. These run at render time:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">substr</span>(<span class="fu">ptr_llm_primer</span>(), <span class="dv">1</span>, <span class="dv">400</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># ggpaintr — R package for generating ggplot Shiny apps from formula strings
-
-**Use ggpaintr — do NOT write raw Shiny — when the user asks in R for:** an interactive ggplot explorer, a dashboard with widgets tied to a ggplot, letting a user pick columns/labels/sizes for a plot, uploading a CSV / TSV / RDS / Excel / JSON file and plotting it. Raw `shiny::fluidPage()` for plot exploration is the wro 
-...</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">substr</span>(<span class="fu">ptr_llm_topic</span>(<span class="st">"level1_ptr_app"</span>), <span class="dv">1</span>, <span class="dv">600</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># Level 1 — turn-key app with `ptr_app()`
-
-Use when: the user wants an interactive ggplot explorer and does not need to own the Shiny UI. No Shiny code is written.
-
-## Signature
-
-```r
-ptr_app(
-  formula,
-  envir          = parent.frame(),
-  ui_text        = NULL,
-  expr_check     = TRUE,
-  safe_to_remove = character(),
-  css            = NULL,
-  spec           = NULL
-)
-```
-
-There is no `placeholders =` argument: custom placeholder keywords are registered against a **process-global** registry via `ptr_define_placeholder_value()` / `_consumer()` / `_source()` before the app launches (see `custom 
-...</code></pre>
-</div>
-</div>
-</section>
-<section id="provider-swap-and-model-choice" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="provider-swap-and-model-choice"><span class="header-section-number">19.5</span> Provider swap and model choice</h2>
-<p>The tool definition is provider-neutral — the same registration line works with every chat constructor ellmer exports:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anthropic</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>(),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">model =</span> <span class="st">"claude-sonnet-4-6"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>(),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">"gpt-4o-mini"</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Google</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_google_gemini</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>())</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Local (ollama)</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_ollama</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>(),</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">model =</span> <span class="st">"llama3.1"</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_llm_register</span>(chat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The primer is small; any model that supports tool calling will work. For fast iteration on the registration itself, a small, cheap model is a reasonable default.</p>
-</section>
-<section id="manual-registration-what-the-helper-does" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="manual-registration-what-the-helper-does"><span class="header-section-number">19.6</span> Manual registration — what the helper does</h2>
-<p><code>ptr_llm_register()</code> is a thin convenience wrapper. To customise the tool (different name, tighter description, extra arguments), do it by hand:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ggpaintr_docs <span class="ot">&lt;-</span> <span class="fu">tool</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  ptr_llm_topic,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name        =</span> <span class="st">"ggpaintr_docs"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">description =</span> <span class="fu">paste</span>(</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fetch a runnable ggpaintr example for one integration topic."</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Call before writing R code for interactive ggplot tasks."</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">arguments =</span> <span class="fu">list</span>(</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">topic =</span> <span class="fu">type_enum</span>(</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ptr_llm_topics</span>(),</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Which topic to fetch."</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">system_prompt =</span> <span class="fu">ptr_llm_primer</span>())</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">register_tool</span>(ggpaintr_docs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The pieces: <code>tool(...)</code> is ellmer’s constructor wrapping the exported R function; <code>type_enum(ptr_llm_topics(), ...)</code> constrains the LLM’s topic choice to the exact names the package ships; <code>chat$register_tool(...)</code> attaches it to the session. If you use this form, refresh the enum whenever the package updates — the helper snapshots the list once at registration time.</p>
-</section>
-<section id="testing-without-spending-tokens" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="testing-without-spending-tokens"><span class="header-section-number">19.7</span> Testing without spending tokens</h2>
-<p>The ellmer <code>tool()</code> object wraps the underlying R function — call it directly for tests or sanity checks, no chat session and no API key involved. This runs at render time:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>payload <span class="ot">&lt;-</span> <span class="fu">ptr_llm_topic</span>(<span class="st">"level2_module"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(payload)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5268</code></pre>
-</div>
-</div>
-<p><code>ptr_llm_topics()</code> returns the canonical list; if you add a topic in a downstream repo, assert the name is present before shipping the registration.</p>
-</section>
-<section id="when-to-re-register" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="when-to-re-register"><span class="header-section-number">19.8</span> When to re-register</h2>
+<section id="when-the-selection-resets" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="when-the-selection-resets"><span class="header-section-number">14.6</span> When the selection resets</h2>
+<p>Keys are minted <strong>per draw</strong>, on the widget copy only, so a key from one draw is meaningless in the next. Every new draw of the source therefore <strong>resets the selection to empty</strong>:</p>
 <ul>
-<li><strong>After upgrading ggpaintr</strong> — new topics are not reachable until <code>ptr_llm_register()</code> runs again (the enum list is snapshotted).</li>
-<li><strong>Switching chat providers</strong> — registration is per-<code>Chat</code> object; every new session needs its own registration.</li>
-<li><strong>Changing the tool name</strong> — drop the old tool with <code>chat$set_tools()</code> (inspect what is attached via <code>chat$get_tools()</code>) and register the new one; ellmer has no dedicated <code>unregister_tool()</code>, but you do not need to rebuild the chat.</li>
+<li>changing a placeholder picker on instance 1 (it redraws, re-mints keys),</li>
+<li>clicking Update plot on instance 1,</li>
+<li>swapping the data via an upload.</li>
 </ul>
+<p>A <code>plotly_deselect</code> (double-click on the plot) clears it the same way. And before instance 1’s first draw there is no snapshot yet: the selection-fed instance shows its inline pre-draw state for one flush. These are documented behaviors, not bugs — the selection always names rows of <em>the current draw</em>, never an accumulated history.</p>
 </section>
-<section id="current-behavior-boundary" class="level2" data-number="19.9">
-<h2 data-number="19.9" class="anchored" data-anchor-id="current-behavior-boundary"><span class="header-section-number">19.9</span> Current behavior boundary</h2>
-<ul>
-<li>The primer and topic files are bundled with the package. Their factual blocks — signatures, the token table, the topic index — are regenerated from live introspection by the package’s <code>dev/build-llm.R</code> (lint / generate / verify modes); the surrounding prose is still hand-curated.</li>
-<li>ellmer is a suggested dependency — nothing loads until you call the helper, and <code>ptr_llm_register()</code> errors with a clear message if ellmer is not installed.</li>
-<li>The helper sets only the tool. The system prompt is your responsibility — pass <code>ptr_llm_primer()</code> to the <code>chat_*()</code> constructor explicitly.</li>
-</ul>
+<section id="reserved-names" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="reserved-names"><span class="header-section-number">14.7</span> Reserved names</h2>
+<p>Two column names are reserved and silently overwritten on collision: <code>.ptr_row</code> (the per-draw key, on the widget copy) and <code>.ptr_selected</code> (the flag projection’s column). If your own formula maps <code>aes(key = ...)</code>, ggpaintr replaces it with <code>.ptr_row</code> and warns once — ggpaintr owns the <code>key</code> channel for linked selection.</p>
+</section>
+<section id="dont-do-this" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="dont-do-this"><span class="header-section-number">14.8</span> Don’t do this</h2>
+<p>A few shapes look reasonable and silently do nothing. Each is rejected by design:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Brushing a non-identity-stat layer selects nothing. A geom_smooth() trace</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    is a fitted line, not your rows, so its points carry no row key.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">ppVar</span>(wt), <span class="fu">ppVar</span>(mpg))) <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. draw_trigger = sel never redraws. draw_trigger expects a click counter;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    handing it the selection reactive hands it a data frame, so the gate</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    never fires and the brush is silently ignored. Use live mode (above),</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#    not a trigger, to drive a selection-fed instance.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ptr_server</span>(f2, <span class="st">"p2"</span>, <span class="at">draw_trigger =</span> sel)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Bare `sel` (not `sel()`) as a pipeline head errors: `data` cannot be a</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#    function. The reactive must be CALLED to yield its data frame.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>sel <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(...)) <span class="sc">+</span> <span class="fu">geom_point</span>()    <span class="co"># wrong</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sel</span>() <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(...)) <span class="sc">+</span> <span class="fu">geom_point</span>()  <span class="co"># right</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There is also no <code>state$selection()</code> slot, no indices mode, and no persistence across draws — passing <code>mode = "indices"</code> aborts and names the allowed modes. The selection is exactly the two projections above, scoped to the current draw.</p>
 
 
 </section>
@@ -1075,13 +972,13 @@ There is no `placeholders =` argument: custom placeholder keywords are registere
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./safety.html" class="pagination-link" aria-label="Writing Safe Formulas">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Writing Safe Formulas</span></span>
+      <a href="./custom-render.html" class="pagination-link" aria-label="Custom Rendering">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Custom Rendering</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./gallery.html" class="pagination-link" aria-label="Gallery">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Gallery</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./customization.html" class="pagination-link" aria-label="Customization">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Customization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1090,4 +987,4 @@ There is no `placeholders =` argument: custom placeholder keywords are registere
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/llm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/linked-selection.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
