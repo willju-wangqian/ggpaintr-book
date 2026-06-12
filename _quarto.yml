@@ -35,6 +35,7 @@ book:
         - shared-placeholders.qmd
         - embed-bare.qmd
         - custom-render.qmd
+        - linked-selection.qmd
     - part: "Making it yours"
       chapters:
         - customization.qmd
