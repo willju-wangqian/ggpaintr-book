@@ -114,11 +114,14 @@ sha256_file <- function(path) {
 }
 
 scan_ptr_tokens <- function(qmd_files) {
-  # All ptr_* tokens referenced anywhere in .qmd (prose + code).
+  # All ptr_* tokens referenced anywhere in .qmd (prose + code). A leading "."
+  # (or word char) before ptr_ is excluded: a dot-prefixed token like
+  # `.ptr_row` / `.ptr_selected` is a reserved data-mask column name, not a
+  # ggpaintr API export, so it is out of this scanner's scope.
   tokens <- character()
   for (f in qmd_files) {
     lines <- readLines(f, warn = FALSE)
-    m <- regmatches(lines, gregexpr("\\bptr_[A-Za-z0-9_]+", lines))
+    m <- regmatches(lines, gregexpr("(?<![.\\w])ptr_[A-Za-z0-9_]+", lines, perl = TRUE))
     tokens <- c(tokens, unlist(m))
   }
   unique(tokens)
