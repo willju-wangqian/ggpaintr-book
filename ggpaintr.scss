@@ -1,0 +1,35 @@
+/*-- scss:defaults --*/
+
+// R4DS-style treatment layered on cosmo (see r4ds.hadley.nz / r4ds.scss).
+// Olive-green accent, larger body text, bookish heading scale.
+$primary:        #637238;
+$font-size-root:  18px;
+
+/*-- scss:rules --*/
+
+// Bookish heading scale (mirrors r4ds.scss).
+h2 { font-size: 1.4rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; }
+h3 { font-size: 1.2rem; font-weight: 500; margin-top: 1.5em; }
+h4 { font-size: 1.1rem; margin-top: 1.5em; }
+h5 { font-size: 1rem;   margin-top: 1.5em; }
+
+// Code blocks: subtle gradient so chunks read as a distinct surface.
+pre {
+  background: linear-gradient(160deg, #f8f8f8, #f1f1f1);
+}
+code { color: #373a3c; }
+
+// Section numbers slightly muted.
+.header-section-number { color: #6c6c6c; }
+
+// Active sidebar item reads as bold (current chapter).
+.sidebar nav a.active,
+.sidebar-item .active { font-weight: 700; }
+.sidebar-title { color: $primary; }
+
+// code-link underlines kept light, matching r4ds.
+a.quarto-section-identifier { text-decoration-color: #ccc; }
+
+// Cover / hero images get a soft lift.
+.quarto-cover-image,
+.column-margin img { box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15); }
