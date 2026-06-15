@@ -60,7 +60,7 @@ format:
     grid:
       sidebar-width: 300px
       body-width: 900px
-      margin-width: 300px
+      margin-width: 180px
       gutter-width: 3rem
     code-link: true
     code-copy: true

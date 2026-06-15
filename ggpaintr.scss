@@ -22,6 +22,10 @@ code { color: #373a3c; }
 // Section numbers slightly muted.
 .header-section-number { color: #6c6c6c; }
 
+// Looser sidebar nav line spacing (cosmo's default is cramped).
+.sidebar-item { margin-bottom: .4rem; }
+.sidebar-item .sidebar-item-text { line-height: 1.5; padding: .15rem 0; }
+
 // Active sidebar item reads as bold (current chapter).
 .sidebar nav a.active,
 .sidebar-item .active { font-weight: 700; }

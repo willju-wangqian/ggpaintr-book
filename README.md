@@ -1,5 +1,7 @@
 # ggpaintr book
 
+📖 **Read the book:** <https://willju-wangqian.github.io/ggpaintr-book/>
+
 Source for the **ggpaintr** book — a Quarto book, structured after the
 [ggplot2 book](https://ggplot2-book.org/), covering ggpaintr's formula
 language, placeholder system, the L1/L2/L3 embedding model, customization,

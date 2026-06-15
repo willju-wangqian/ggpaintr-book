@@ -41,6 +41,25 @@ update_id <- if (do_update && grepl("=", upd[[1]], fixed = TRUE)) {
 do_code <- "--code" %in% flags
 sets <- sub("^--set=", "", flags[startsWith(flags, "--set=")])
 
+# Crop trailing empty background off the bottom of a capture. The window is a
+# fixed 1200x900, but most apps fill only the top portion, leaving dead space.
+# The very bottom row is always empty, so it defines the background colour; the
+# lowest row that deviates from it is the content edge. Width and top are left
+# untouched (we only trim the bottom). No-op if content already reaches the
+# bottom. Independent of the pair-hash, which only ever hashes app.R.
+trim_bottom <- function(path, pad = 24L, thresh = 0.05) {
+  img <- png::readPNG(path)            # [H, W, C], values in [0, 1]
+  h <- dim(img)[[1]]
+  bg <- colMeans(img[h, , ])           # per-channel background (length C)
+  dev <- apply(abs(sweep(img, 3, bg)), c(1, 2), max)
+  rows <- which(apply(dev > thresh, 1, any))
+  if (length(rows) == 0L) return(invisible(FALSE))
+  bottom <- min(h, max(rows) + pad)
+  if (bottom >= h) return(invisible(FALSE))
+  png::writePNG(img[seq_len(bottom), , , drop = FALSE], path)
+  invisible(TRUE)
+}
+
 book_root <- rprojroot::find_root(rprojroot::has_file("_quarto.yml"))
 setwd(book_root)
 
@@ -56,6 +75,9 @@ if (!file.exists(fixture)) {
 
 if (!requireNamespace("shinytest2", quietly = TRUE)) {
   stop("shinytest2 required; install.packages('shinytest2')", call. = FALSE)
+}
+if (!requireNamespace("png", quietly = TRUE)) {
+  stop("png required (bottom-trim); install.packages('png')", call. = FALSE)
 }
 
 if (!dir.exists("images")) dir.create("images")
@@ -95,6 +117,7 @@ if (do_code) {
 }
 if (file.exists(image)) unlink(image)  # re-shoot replaces the stale capture
 app$get_screenshot(file = image)
+trim_bottom(image)  # drop the fixed-window dead space below the app content
 
 # ---- write pair-hash sidecar ----------------------------------------------
 
