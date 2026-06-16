@@ -4,7 +4,7 @@ project:
 book:
   title: "ggpaintr"
   subtitle: "Formula-Driven Shiny Plot Apps"
-  author: "Wang Qian Ju"
+  author: "Wangqian (Will) Ju"
   date: today
   repo-url: https://github.com/willju-wangqian/ggpaintr-book
   repo-branch: main
