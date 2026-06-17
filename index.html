@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Wangqian (Will) Ju">
-<meta name="dcterms.date" content="2026-06-16">
+<meta name="dcterms.date" content="2026-06-17">
 
 <title>ggpaintr</title>
 <style>
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ce1d2e53de88e3c64fe1995c50ec9035.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9a3a4cfbb6df3cb385a61fe80cc7976c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -134,7 +134,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ggpaintr</a> 
         <div class="sidebar-tools-main">
@@ -387,10 +391,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
   <ul class="collapse">
-  <li><a href="#version-this-book-documents" id="toc-version-this-book-documents" class="nav-link" data-scroll-target="#version-this-book-documents">Version this book documents</a></li>
   <li><a href="#who-this-is-for" id="toc-who-this-is-for" class="nav-link" data-scroll-target="#who-this-is-for">Who this is for</a></li>
+  <li><a href="#installing" id="toc-installing" class="nav-link" data-scroll-target="#installing">Installing</a></li>
   <li><a href="#sec-examples" id="toc-sec-examples" class="nav-link" data-scroll-target="#sec-examples">How the examples work</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/willju-wangqian/ggpaintr-book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/willju-wangqian/ggpaintr-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -418,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 16, 2026</p>
+      <p class="date">June 17, 2026</p>
     </div>
   </div>
   
@@ -432,32 +435,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
+<p><img src="images/logo.png" class="welcome-logo img-fluid" alt="ggpaintr logo" width="180"></p>
 <p>This is the book for <strong>ggpaintr</strong>, an R package that turns ggplot-like <em>formulas</em> into Shiny apps: placeholder keywords in the formula (<code>ppVar</code>, <code>ppText</code>, <code>ppNum</code>, <code>ppExpr</code>, <code>ppUpload</code>) become input widgets automatically.</p>
-<p>The book teaches <strong>how to use ggpaintr</strong> and <strong>how to extend it</strong>. It is purely user-facing; design ideas live in the package repository, not here. New to the package? Start with <a href="introduction.html" class="quarto-xref"><span>1&nbsp; Introduction</span></a> — it shows the plot-to-app round trip in one page and maps the rest of the book.</p>
-<section id="version-this-book-documents" class="level2">
-<h2 class="anchored" data-anchor-id="version-this-book-documents">Version this book documents</h2>
-<p>This book is pinned to ggpaintr <code>@9e30295</code> (the current development tip — no tagged release covers this API yet). The pin lives in <code>DESCRIPTION</code> <code>Remotes:</code> and is enforced by <code>Rscript dev/book-gate.R</code>. To follow along with the same version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"willju-wangqian/ggpaintr@9e30295ff88894aa169852f1a1b5402529a3d973"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When the package cuts a tagged release covering the API in this book, the pin will move to that tag in a single PR; the install snippet above will update accordingly.</p>
-</section>
+<p>The book teaches <strong>how to use ggpaintr</strong> and <strong>how to extend it</strong>. New to the package? Start with <a href="introduction.html" class="quarto-xref"><span>1&nbsp; Introduction</span></a> — it shows the plot-to-app round trip in one page and maps the rest of the book.</p>
 <section id="who-this-is-for" class="level2">
 <h2 class="anchored" data-anchor-id="who-this-is-for">Who this is for</h2>
 <p>Readers who know ggplot2 and want to build, embed, customize, or extend ggpaintr-driven plotting apps. <strong>No Shiny knowledge is assumed</strong>: the first half of the book never touches it, and the part that embeds ggpaintr inside your own Shiny app (<a href="embed-default.html" class="quarto-xref"><span>9&nbsp; Embedding with the Default Layout</span></a>) says so when that changes.</p>
 </section>
+<section id="installing" class="level2">
+<h2 class="anchored" data-anchor-id="installing">Installing</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"willju-wangqian/ggpaintr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 <section id="sec-examples" class="level2">
 <h2 class="anchored" data-anchor-id="sec-examples">How the examples work</h2>
-<p>ggpaintr produces <strong>interactive Shiny apps</strong>. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:</p>
-<ul>
-<li>code is shown <strong>verbatim and is not executed</strong> (the book default is <code>eval: false</code>);</li>
-<li>the resulting app UI is shown as a <strong>screenshot</strong> captured from the booted app;</li>
-<li>every app example is bound by <code>#| fixture: &lt;slug&gt;</code> to a tested fixture under <code>tests/fixtures/book-apps/&lt;slug&gt;/app.R</code>, and <code>Rscript dev/book-gate.R</code> enforces that what you read is what runs (see <a href="dev/plans/book-workflow.md"><code>dev/plans/book-workflow.md</code></a> and <code>book-conventions.md</code>).</li>
-</ul>
-<p>(Live in-browser shinylive widgets were evaluated and deferred: ggpaintr has no webR distribution channel today, so an embedded widget could not run the pinned version this book documents — see ADR 0002’s fallback rule and <code>dev/notes/2026-06-10-shinylive-spike.md</code>.)</p>
-<p>Output that <em>is</em> static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.</p>
-</section>
-<section id="source" class="level2">
-<h2 class="anchored" data-anchor-id="source">Source</h2>
-<p>This book lives in its <strong>own repository</strong>, separate from the ggpaintr package (mirroring how the ggplot2 book is separate from ggplot2). See <code>README.md</code> for build/deploy.</p>
+<p>ggpaintr produces <strong>interactive Shiny apps</strong>. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book — so every example shows the code verbatim alongside a screenshot of the resulting app. Output that <em>is</em> static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.</p>
 
 
 </section>
