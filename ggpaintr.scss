@@ -37,3 +37,6 @@ a.quarto-section-identifier { text-decoration-color: #ccc; }
 // Cover / hero images get a soft lift.
 .quarto-cover-image,
 .column-margin img { box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15); }
+
+// Welcome-page logo: centered, no border/shadow.
+.welcome-logo { display: block; margin: 0 auto 1.5rem; }

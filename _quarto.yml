@@ -12,6 +12,7 @@ book:
   search: true
   sidebar:
     style: docked
+    logo: images/logo.png
   chapters:
     - index.qmd
     - introduction.qmd

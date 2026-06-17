@@ -1,35 +1,21 @@
 # Welcome {.unnumbered}
 
+![](images/logo.png){.welcome-logo width="180" fig-alt="ggpaintr logo"}
+
 This is the book for **ggpaintr**, an R package that turns ggplot-like *formulas* into Shiny apps: placeholder keywords in the formula (`ppVar`, `ppText`, `ppNum`, `ppExpr`, `ppUpload`) become input widgets automatically.
 
-The book teaches **how to use ggpaintr** and **how to extend it**. It is purely user-facing; design ideas live in the package repository, not here. New to the package? Start with @sec-intro — it shows the plot-to-app round trip in one page and maps the rest of the book.
-
-## Version this book documents
-
-This book is pinned to ggpaintr `@9e30295` (the current development tip — no tagged release covers this API yet). The pin lives in `DESCRIPTION` `Remotes:` and is enforced by `Rscript dev/book-gate.R`. To follow along with the same version:
-
-```r
-remotes::install_github("willju-wangqian/ggpaintr@9e30295ff88894aa169852f1a1b5402529a3d973")
-```
-
-When the package cuts a tagged release covering the API in this book, the pin will move to that tag in a single PR; the install snippet above will update accordingly.
+The book teaches **how to use ggpaintr** and **how to extend it**. New to the package? Start with @sec-intro — it shows the plot-to-app round trip in one page and maps the rest of the book.
 
 ## Who this is for
 
 Readers who know ggplot2 and want to build, embed, customize, or extend ggpaintr-driven plotting apps. **No Shiny knowledge is assumed**: the first half of the book never touches it, and the part that embeds ggpaintr inside your own Shiny app (@sec-embed-default) says so when that changes.
 
+## Installing
+
+```r
+remotes::install_github("willju-wangqian/ggpaintr")
+```
+
 ## How the examples work {#sec-examples}
 
-ggpaintr produces **interactive Shiny apps**. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book. So throughout this book:
-
-- code is shown **verbatim and is not executed** (the book default is `eval: false`);
-- the resulting app UI is shown as a **screenshot** captured from the booted app;
-- every app example is bound by `#| fixture: <slug>` to a tested fixture under `tests/fixtures/book-apps/<slug>/app.R`, and `Rscript dev/book-gate.R` enforces that what you read is what runs (see [`dev/plans/book-workflow.md`](dev/plans/book-workflow.md) and `book-conventions.md`).
-
-(Live in-browser shinylive widgets were evaluated and deferred: ggpaintr has no webR distribution channel today, so an embedded widget could not run the pinned version this book documents — see ADR 0002's fallback rule and `dev/notes/2026-06-10-shinylive-spike.md`.)
-
-Output that *is* static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.
-
-## Source
-
-This book lives in its **own repository**, separate from the ggpaintr package (mirroring how the ggplot2 book is separate from ggplot2). See `README.md` for build/deploy.
+ggpaintr produces **interactive Shiny apps**. Unlike a ggplot2 plot, a running app cannot be embedded as static HTML in a book — so every example shows the code verbatim alongside a screenshot of the resulting app. Output that *is* static (the generated ggplot2 code string, the formula→widget mapping) is shown as real evaluated output.
